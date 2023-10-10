@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.core',
+    'apps.account',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -128,7 +132,9 @@ DATABASES = {
         'NAME': 'aston_project_3',
         'USER': 'extranet',
         'PASSWORD': 'extranet',
-        'HOST': 'localhost',  # Ou l'adresse IP de votre serveur PostgreSQL
-        'PORT': '5432',       # Port par défaut de PostgreSQL
+        # Ou l'adresse IP de votre serveur PostgreSQL
+        'HOST': 'localhost',
+        # Port par défaut de PostgreSQL
+        'PORT': '5432',
     }
 }
