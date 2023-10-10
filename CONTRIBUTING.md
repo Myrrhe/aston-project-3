@@ -12,4 +12,4 @@
 
 ## Code
 
-Make sure that the code is devoid of warnings, deprecated, methods call, commented code.
+Make sure that the code is devoid of warnings, deprecated methods call, commented code.
