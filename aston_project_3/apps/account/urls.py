@@ -1,3 +1,4 @@
+"""The urls file"""
 from django.urls import path, include
 from apps.account.views import HomeViewSet
 

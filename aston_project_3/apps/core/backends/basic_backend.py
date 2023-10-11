@@ -1,11 +1,19 @@
+"""The backend authentication"""
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
+from django.http import HttpRequest
+
+from apps.account.models import User
 
 UserModel = get_user_model()
 
 
 class BasicBackend(BaseBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    """The backend authentication class"""
+
+    def authenticate(
+        self, request: HttpRequest, username: str = None, password: str = None, **kwargs
+    ) -> any:
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         if username is None or password is None:
@@ -20,14 +28,14 @@ class BasicBackend(BaseBackend):
             if user.check_password(password) and self.user_can_authenticate(user):
                 return user
 
-    def get_user(self, user_id):
+    def get_user(self, user_id: str) -> any:
         try:
             user = UserModel._default_manager.get(pk=user_id)
         except UserModel.DoesNotExist:
             return None
         return user if self.user_can_authenticate(user) else None
 
-    def user_can_authenticate(self, user):
+    def user_can_authenticate(self, user: User) -> any:
         """
         Reject users with is_active=False. Custom user models that don't have
         that attribute are allowed.

@@ -1,7 +1,10 @@
-from django.http import HttpResponse
+"""The home view"""
+from django.http import HttpRequest, HttpResponse
 from django.views import View
 
 
 class HomeViewSet(View):
-    def get(self, request, *args, **kwargs):
+    """The home view"""
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         return HttpResponse("Hello, World!")
