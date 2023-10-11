@@ -31,14 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "apps.core",
+    "apps.account",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.account",
 ]
 
 MIDDLEWARE = [
@@ -106,7 +106,8 @@ AUTH_USER_MODEL = "account.User"
 
 AUTHENTICATION_BACKENDS = ["apps.core.backends.BasicBackend"]
 
-LOGIN_REDIRECT_URL = "/api/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login"
 
 
 # Internationalization
