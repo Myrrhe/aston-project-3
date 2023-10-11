@@ -1,3 +1,6 @@
+"""The user's model"""
+from __future__ import annotations
+
 import urllib
 import uuid
 
@@ -9,6 +12,7 @@ from django.contrib.auth.models import (
 from django.db import models
 
 from apps.core.models.timestamped_model import TimestampedModel
+
 # from apps.core.tokens import encode_token
 
 
@@ -21,7 +25,7 @@ class UserManager(BaseUserManager):
     to create `User` objects.
     """
 
-    def create_user(self, email, password=None):
+    def create_user(self, email: str, password: str = None) -> User:
         """Create and return a `User` with an email, username and password."""
         if email is None:
             raise TypeError("Users must have an email address.")
@@ -32,7 +36,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email: str, password: str) -> User:
         """
         Create and return a `User` with superuser powers.
         Superuser powers means that this use is an admin that can do anything
@@ -50,15 +54,15 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
-    id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, editable=False
-    )
+    """The user's model"""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(
         max_length=50,
         null=True,
         blank=False,
-        verbose_name='username',
-        help_text='The username',
+        verbose_name="username",
+        help_text="The username",
     )
     email = models.EmailField(
         max_length=50,
@@ -92,18 +96,20 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     objects = UserManager()
 
     class Meta(TimestampedModel.Meta):
+        """The meta class"""
+
         db_table = "user"
         verbose_name = "user"
         verbose_name_plural = "users"
 
     @property
-    def is_staff(self):
+    def is_staff(self) -> bool:
         return self.is_admin
 
-    def has_module_perms(self, app_label):
+    def has_module_perms(self, app_label: str) -> bool:
         return self.is_staff
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, perm: str, obj: object = None) -> bool:
         return self.is_staff
 
     # def send_email_confirmation(self, template, path, email):
@@ -133,5 +139,5 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     #         },
     #     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.email}"

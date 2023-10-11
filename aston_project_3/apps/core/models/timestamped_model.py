@@ -1,14 +1,19 @@
+"""A basic class to have a timestamp"""
 from django.db import models
 
 
 class TimestampedModel(models.Model):
+    """A basic class to have a timestamp"""
+
     # A timestamp representing when this object was created.
     created_at = models.DateTimeField(auto_now_add=True)
 
     # A timestamp reprensenting when this object was last updated.
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
+    class Meta(object):
+        """The meta class"""
+
         abstract = True
 
         # By default, any model that inherits from `TimestampedModel` should

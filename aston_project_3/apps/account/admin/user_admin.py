@@ -1,10 +1,14 @@
+"""The user's admin"""
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from apps.account.models import User
 
+
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
+    """The user's admin"""
+
     list_display = (
         "email",
         "is_admin",
@@ -60,5 +64,8 @@ class UserAdmin(BaseUserAdmin):
         "email",
     ]
     ordering = ("email",)
-    list_filter = ("is_admin", "is_superuser",)
+    list_filter = (
+        "is_admin",
+        "is_superuser",
+    )
     select_related = True
