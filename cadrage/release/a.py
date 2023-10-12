@@ -5,10 +5,6 @@ Created on Tue Sep 26 10:16:56 2023
 @author: baudi
 """
 
-import sys
-import time
-
-
 while True:
     # p: your player number (0 to 1).
     p = input()
@@ -24,7 +20,7 @@ while True:
         yfina[i] = y1
     # Décommenter cette ligne pour émuler un temps de réponse trop grand
     # time.sleep(20)
-    if (xinit[0] == 0):
-        print('LEFT')
+    if xinit[0] == 0:
+        print("LEFT")
     else:
         print("RIGHT")

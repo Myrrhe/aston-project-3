@@ -9,6 +9,7 @@ import queue
 import subprocess
 import sys
 import threading
+from typing import IO
 
 # Ce programme envoi des nombre à deux autres programmes : A et B
 # A et B renvoient une réponse différente selon les nombres envoyés
@@ -23,103 +24,104 @@ import threading
 
 
 # Fonction pour lire la sortie du sous-programme de manière asynchrone
-def read_output(output, output_queue):
+def read_output(output: IO[str], output_queue: queue) -> None:
+    """Read the output"""
     for line in iter(output.readline, ""):
         output_queue.put(line)
     output.close()
 
 
 def main() -> int:
-    print('Programme principal lancé\n')
-    
+    """The main method"""
+    print("Programme principal lancé\n")
+
     count = 0
-    
+
     # Créez une file pour stocker la sortie du sous-programme
-    output_queueA = queue.Queue()
-    output_queueB = queue.Queue()
-    
+    output_queue_a = queue.Queue()
+    output_queue_b = queue.Queue()
+
     # Lancez les sous-programmes en tant que processus enfants
-    processA = subprocess.Popen(
-        ["python", "a.py"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        text=True
+    process_a = subprocess.Popen(
+        ["python", "a.py"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True
     )
-    processB = subprocess.Popen(
-        ["python", "b.py"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        text=True
+    process_b = subprocess.Popen(
+        ["python", "b.py"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True
     )
-    
+
     # Créez des threads pour lire la sortie des sous-programmes de manière asynchrone
-    output_threadA = threading.Thread(
-        target=read_output,
-        args=(processA.stdout, output_queueA)
+    output_thread_a = threading.Thread(
+        target=read_output, args=(process_a.stdout, output_queue_a)
     )
-    output_threadA.daemon = True
-    output_threadA.start()
-    
-    output_threadB = threading.Thread(
-        target=read_output,
-        args=(processB.stdout, output_queueB)
+    output_thread_a.daemon = True
+    output_thread_a.start()
+
+    output_thread_b = threading.Thread(
+        target=read_output, args=(process_b.stdout, output_queue_b)
     )
-    output_threadB.daemon = True
-    output_threadB.start()
-    
+    output_thread_b.daemon = True
+    output_thread_b.start()
+
     res = ""
-    
+
     try:
         while res != "RIGHT-DOWN-":
             count += 1
 
             res = ""
-            
+
             inp = "0" if count < 3 else "1"
-            
+
             # Envoyez des données au sous-programmes via l'entrée standard
             # On peut envoyer des mots séparés par des expaces, ou un mot unique
-            processA.stdin.write("0\n")
-            processA.stdin.flush()
-            processA.stdin.write(f"{inp} {inp} {inp} {inp}\n")
-            processA.stdin.flush()
-            processA.stdin.write(f"{inp} {inp} {inp} {inp}\n")
-            processA.stdin.flush()
-    
+            process_a.stdin.write("0\n")
+            process_a.stdin.flush()
+            process_a.stdin.write(f"{inp} {inp} {inp} {inp}\n")
+            process_a.stdin.flush()
+            process_a.stdin.write(f"{inp} {inp} {inp} {inp}\n")
+            process_a.stdin.flush()
+
             # Attendez une réponse du sous-programme avec un timeout
             try:
-                response = output_queueA.get(timeout=10)  # Définissez le timeout en secondes
+                # Définissez le timeout en secondes
+                response = output_queue_a.get(timeout=10)
                 print("Réponse du sous-programme A :", response)
                 res += response
             except queue.Empty:
-                print("Timeout : Le sous-programme A n'a pas répondu dans le délai spécifié.")
+                print(
+                    "Timeout : Le sous-programme A n'a pas répondu dans le délai spécifié."
+                )
 
-            processB.stdin.write("1\n")
-            processB.stdin.flush()
-            processB.stdin.write(f"{inp} {inp} {inp} {inp}\n")
-            processB.stdin.flush()
-            processB.stdin.write(f"{inp} {inp} {inp} {inp}\n")
-            processB.stdin.flush()
-    
+            process_b.stdin.write("1\n")
+            process_b.stdin.flush()
+            process_b.stdin.write(f"{inp} {inp} {inp} {inp}\n")
+            process_b.stdin.flush()
+            process_b.stdin.write(f"{inp} {inp} {inp} {inp}\n")
+            process_b.stdin.flush()
+
             # Attendez une réponse du sous-programme avec un timeout
             try:
-                response = output_queueB.get(timeout=10)  # Définissez le timeout en secondes
+                # Définissez le timeout en secondes
+                response = output_queue_b.get(timeout=10)
                 print("Réponse du sous-programme B :", response)
                 res += response
             except queue.Empty:
-                print("Timeout : Le sous-programme B n'a pas répondu dans le délai spécifié.")
-            
+                print(
+                    "Timeout : Le sous-programme B n'a pas répondu dans le délai spécifié."
+                )
+
             res = res.replace("\n", "-")
             print(f"Réponse globale = {res}\n")
     except KeyboardInterrupt:
         pass
-    
-    processA.stdin.close()
-    processA.wait()
-    processB.stdin.close()
-    processB.wait()
-    print('Programme principal terminé')
+
+    process_a.stdin.close()
+    process_a.wait()
+    process_b.stdin.close()
+    process_b.wait()
+    print("Programme principal terminé")
     return 0
 
-if __name__ == '__main__':
-    sys.exit(main()) 
+
+if __name__ == "__main__":
+    sys.exit(main())
