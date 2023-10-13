@@ -1,5 +1,4 @@
 """The home view"""
-from django.contrib.auth import authenticate, login
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.views import View
