@@ -17,14 +17,19 @@
 
 <form method="post" action="{% url "login" %}">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     <table>
         <tr>
-            <td>{{ form.username.label_tag }}</td>
+            <label for="{{ form.username.id_for_label }}">Email :</label>
             <td>{{ form.username }}</td>
         </tr>
         <tr>
-            <td>{{ form.password.label_tag }}</td>
+            <label for="{{ form.password.id_for_label }}">Mot de passe :</label>
             <td>{{ form.password }}</td>
+        </tr>
+        <tr>
+            <label for="{{ form.security_key.id_for_label }}">Clef de sécurité :</label>
+            <td>{{ form.security_key }}</td>
         </tr>
     </table>
 
