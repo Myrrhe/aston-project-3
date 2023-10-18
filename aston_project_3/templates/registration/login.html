@@ -8,18 +8,20 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+{% comment %} {% if form.errors %}
+    <p class="text-alert">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
-{% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %}
-{% endif %}
+    {% if user.is_authenticated %}
+        <p class="text-alert">
+            Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.
+        </p>
+    {% else %}
+        <p class="text-alert">Please login to see this page.</p>
+    {% endif %}
+{% endif %} {% endcomment %}
 
 <div class="h-100 d-flex align-items-center justify-content-center">
 
@@ -27,9 +29,16 @@
 
         <p class="fore-front title-login mt-1">Connexion à un compte existant</p>
 
-        <form method="post" action="{% url "login" %}" class="w-75">
+        <form method="post" action="{% url "login" message="" %}" class="w-75">
             {% csrf_token %}
-            {{ form.non_field_errors }}
+
+            {% if form.non_field_errors %}
+                <ul class="non-field-errors text-alert">
+                    {% for err in form.non_field_errors %}
+                        <li class="form-error">{{ err }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
             <div class="input-group mb-3">
                 {{ form.username }}

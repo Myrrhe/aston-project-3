@@ -61,13 +61,21 @@
     background-color: var(--bright-color) !important;
 } */
 
-.fore-light {
+/* .fore-light {
     color: var(--fore-color) !important;
-}
+} */
 
 /* .fore-dark {
     color: var(--back-color) !important;
 } */
+
+.text-light {
+    color: var(--fore-color) !important;
+}
+
+.text-alert {
+    color: var(--alert-color) !important;
+}
 
 .dropdown-nav {
     background-color: var(--main-color) !important;
@@ -129,4 +137,16 @@
 
 .navbar-nav ul.dropdown-menu a:hover {
     border-bottom: 5px solid transparent;
+}
+
+
+
+.form-login {
+    background-color: var(--main-color);
+}
+
+.title-login {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
