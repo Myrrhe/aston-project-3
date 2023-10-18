@@ -1,2 +1,94 @@
-{% block content %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+            {% load static %}
+            {% load bootstrap5 %}
+            {% block head_css_site %}
+                <link href="{% static "fontawesomefree/css/fontawesome.css" %}" rel="stylesheet" type="text/css">
+                <link href="{% static "fontawesomefree/css/solid.css" %}" rel="stylesheet" type="text/css">
+
+                <link href="{% static "style/reset.css" %}" rel="stylesheet" type="text/css">
+                <link href="{% static "style/colors.css" %}" rel="stylesheet" type="text/css">
+                <link href="{% static "style/base.css" %}" rel="stylesheet" type="text/css">
+            {% endblock head_css_site %}
+            {% bootstrap_css %}
+            {% bootstrap_javascript %}
+            <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
+            <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+    </head>
+    <body>
+        <div class="container-fluid p-0 main-container d-flex flex-column">
+            <nav class="navbar navbar-expand-lg main-nav">
+                <div class="d-flex align-items-stretch">
+                    <a class="navbar-brand my-2" href="{% url "home" %}">
+                        <img
+                            src="{% static "img/svg/logo_00.svg" %}"
+                            alt="Le logo du site"
+                            height="50px"
+                            width="auto"
+                            class="ms-5 me-2"
+                            />
+                    </a>
+                    <ul class="navbar-nav align-items-stretch">
+                        <li class="d-flex align-items-center">
+                            <a href="{% url "home" %}" class="h-100 d-flex align-items-center">
+                                <p class="link-light fas fa-house link-nav-icon"></p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Mes bots
+                            </a>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Voir mes bots</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Créer un nouveau bot</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Matchs
+                            </a>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Voir mes matchs</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Rechercher un match</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Communauté
+                            </a>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Discussion</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Classement</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center auth-block ms-auto me-5">
+                    <a class="btn button button-dark link-nav me-2" href="{% url "login" %}">Se connecter</a>
+                    <a class="btn button button-bright link-nav" href="{% url "signup" %}">S'inscrire</a>
+                </div>
+            </nav>
+
+            {% block content %}
+            {% endblock %}
+            <div class="main-footer mt-auto">
+                <div class="links-footer d-flex flex-column mt-4 ms-4 mb-4">
+                    <a class="link-footer link-light" href="/contact">Contact</a>
+                    <a class="link-footer link-light" href="/faq">FAQ</a>
+                    <a class="link-footer link-light" href="/about">À propos</a>
+                    <a class="link-footer link-light" href="/legal">Mentions légales</a>
+                </div>
+                <div class="copyright-footer">
+                    <p class="fore-light pb-1 text-center">
+                        Copyright © 2019 Myrrhe. All Rights Reserved. This is an alpha version, some features may be missing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

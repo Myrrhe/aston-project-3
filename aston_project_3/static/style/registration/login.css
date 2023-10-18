@@ -1,0 +1,9 @@
+.form-login {
+    background-color: var(--main-color);
+}
+
+.title-login {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
