@@ -1,12 +1,66 @@
 {% extends "base.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/signup.css" %}">
+{% endblock head_css_site %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+
+    <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
+
+        <p class="fore-front title-login mt-1">Créer un compte</p>
+
+        <form method="post" class="w-75">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <ul class="non-field-errors text-alert">
+                    {% for field in form %}
+                        <li>
+                            <ul>
+                                {% for error in field.errors %}
+                                    <li>{{ error|escape }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <ul class="non-field-errors text-alert">
+                    {% for error in form.non_field_errors %}
+                    <li class="form-error">{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="input-group mb-3">
+                {{ form.email }}
+            </div>
+
+            <div class="input-group mb-3">
+                {{ form.password1 }}
+            </div>
+
+            <div class="text-light">
+                {{ form.password1.help_text }}
+            </div class="input-group mb-3">
+
+            <div class="input-group mb-3">
+                {{ form.password2 }}
+            </div>
+
+            <div class="input-group mb-3 d-flex align-items-center">
+                {{ form.is_tou_accepted }}
+                <span class="text-light ps-3">{{ form.is_tou_accepted.help_text }}</span>
+            </div>
+
+            <input type="submit" value="Créer mon compte" class="w-100 mt-1 mb-3 button button-bright btn">
+        </form>
+        <p><a href="{% url "login" %}" class="link-light">J'ai déjà un compte</a></p>
+    </div>
+
+</div>
 {% endblock %}
