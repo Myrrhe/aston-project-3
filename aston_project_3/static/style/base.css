@@ -1,0 +1,132 @@
+.main-container {
+    background-color: var(--back-color);
+}
+
+.main-nav {
+    background-color: var(--main-color);
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.fore-front {
+    color: var(--fore-color);
+}
+
+.link-nav {
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+}
+
+.link-nav-icon {
+    font-size: 1.4rem !important;
+}
+
+.button {
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+}
+
+.button-bright {
+    background-color: var(--bright-color) !important;
+    color: var(--back-color) !important;
+}
+
+.button-bright:hover {
+    background-color: var(--bright-hover-color) !important;
+}
+
+.button-dark {
+    background-color: var(--primary-light-color) !important;
+    color: var(--fore-color) !important;
+}
+
+.button-dark:hover {
+    background-color: var(--primary-light-hover-color) !important;
+}
+
+.main-footer {
+    background-color: var(--main-color);
+}
+
+.link-footer {
+    margin-top: 1rem;
+}
+
+/* .back-primary-light {
+    background-color: var(--primary-light-color) !important;
+}
+
+.back-bright {
+    background-color: var(--bright-color) !important;
+} */
+
+.fore-light {
+    color: var(--fore-color) !important;
+}
+
+/* .fore-dark {
+    color: var(--back-color) !important;
+} */
+
+.dropdown-nav {
+    background-color: var(--main-color) !important;
+    padding: 0 !important;
+    border-width: 0 !important;
+}
+
+.dropdown-nav-item:hover {
+    background-color: var(--primary-light-color) !important;
+}
+
+@media screen and (min-width: 768px) {
+
+    .dropdown:hover .dropdown-menu,
+    .btn-group:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        margin-top: 0;
+    }
+
+    .dropdown-toggle {
+        margin-bottom: 2px;
+    }
+
+    .navbar .dropdown-toggle,
+    .nav-tabs .dropdown-toggle {
+        margin-bottom: 0;
+    }
+}
+
+.navbar-nav a {
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+.navbar-nav li.dropdown a {
+    border-bottom: 5px solid transparent;
+    color: var(--fore-color);
+}
+
+.navbar-nav li:hover>a {
+    color: var(--bright-color) !important;
+    background-color: var(--primary-light-color) !important;
+}
+
+.navbar-nav li:not(:first-of-type):hover>a {
+    border-bottom: 5px solid #002873;
+}
+
+.navbar-nav li:hover>a .fa-house {
+    color: var(--bright-color) !important;
+}
+
+.navbar-nav ul.dropdown-menu {
+    box-shadow: none;
+}
+
+.navbar-nav ul.dropdown-menu a:hover {
+    border-bottom: 5px solid transparent;
+}
