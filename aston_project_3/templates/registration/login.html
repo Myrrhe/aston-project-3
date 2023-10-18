@@ -29,7 +29,7 @@
 
         <p class="fore-front title-login mt-1">Connexion à un compte existant</p>
 
-        <form method="post" action="{% url "login" %}" class="w-75">
+        <form method="post" action="{% url "login" message="" %}" class="w-75">
             {% csrf_token %}
 
             {% if form.non_field_errors %}

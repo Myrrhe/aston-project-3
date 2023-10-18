@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+L'aventure commence ici !
+
+{% endblock %}

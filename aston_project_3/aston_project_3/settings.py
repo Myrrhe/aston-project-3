@@ -108,7 +108,7 @@ AUTH_USER_MODEL = "account.User"
 
 AUTHENTICATION_BACKENDS = ["apps.core.backends.BasicBackend"]
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "home"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

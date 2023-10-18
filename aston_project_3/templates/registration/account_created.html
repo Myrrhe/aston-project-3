@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+
+    <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
+
+        <p class="fore-front title-login mt-1">Votre compte a été créé</p>
+        <a href="{% url "login" message="" %}" class="link-light">Revenir à la page de connexion</a>
+
+    </div>
+
+</div>
+
+{% endblock %}
