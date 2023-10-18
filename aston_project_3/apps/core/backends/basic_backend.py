@@ -14,7 +14,14 @@ class BasicBackend(BaseBackend):
     def authenticate(
         self, request: HttpRequest, username: str = None, password: str = None, **kwargs
     ) -> any:
-        print(request.POST["security_key"])
+        if request.path == "/login/":
+            print("Logging via non-admin")
+        elif request.path == "/admin/login/":
+            print("Logging via admin")
+        else:
+            print("Logging via unknown")
+        if "security_key" in request.POST:
+            print(request.POST["security_key"])
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         if username is None or password is None:

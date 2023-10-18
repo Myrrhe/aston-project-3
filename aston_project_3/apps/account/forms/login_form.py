@@ -11,26 +11,31 @@ class LoginForm(AuthenticationForm):
 
     username = UsernameField(
         widget=forms.TextInput(
-            attrs={"class": "form-control", "placeholder": "", "id": "email"}
-        )
+            attrs={
+                "class": "form-control",
+                "placeholder": "Email",
+                "id": "email",
+            },
+        ),
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "",
+                "placeholder": "Mot de passe",
                 "id": "password",
-            }
-        )
+            },
+        ),
     )
     security_key = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "",
+                "placeholder": "Clef de sécurité (optionel)",
                 "id": "security_key",
-            }
-        )
+            },
+        ),
+        required=False,
     )
 
     def __init__(self, *args, **kwargs) -> None:

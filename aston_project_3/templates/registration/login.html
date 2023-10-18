@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
 {% block content %}
 
 {% if form.errors %}
@@ -15,29 +21,38 @@
 {% endif %}
 {% endif %}
 
-<form method="post" action="{% url "login" %}">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    <table>
-        <tr>
-            <label for="{{ form.username.id_for_label }}">Email :</label>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <label for="{{ form.password.id_for_label }}">Mot de passe :</label>
-            <td>{{ form.password }}</td>
-        </tr>
-        <tr>
-            <label for="{{ form.security_key.id_for_label }}">Clef de sécurité :</label>
-            <td>{{ form.security_key }}</td>
-        </tr>
-    </table>
+<div class="h-100 d-flex align-items-center justify-content-center">
 
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+    <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url "password_reset" %}">Lost password?</a></p>
+        <p class="fore-front title-login mt-1">Connexion à un compte existant</p>
+
+        <form method="post" action="{% url "login" %}" class="w-75">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="input-group mb-3">
+                {{ form.username }}
+            </div>
+
+            <div class="input-group mb-3">
+                {{ form.password }}
+            </div>
+
+            <div class="input-group mb-3">
+                {{ form.security_key }}
+            </div>
+
+            <input type="submit" value="Se connecter" class="w-100 mt-1 mb-3 button button-bright btn">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        {# Assumes you set up the password_reset view in your URLconf #}
+        <p><a href="{% url "password_reset" %}" class="link-light">J'ai oublié mon mot de passe</a></p>
+        <p><a href="{% url "signup" %}" class="link-light">Je veux créer mon compte</a></p>
+
+    </div>
+
+</div>
 
 {% endblock %}
