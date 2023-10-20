@@ -123,7 +123,7 @@
     background-color: var(--primary-light-color) !important;
 }
 
-.navbar-nav li:not(:first-of-type):hover>a {
+.navbar-nav li:not(.no-bar):hover>a {
     border-bottom: 5px solid #002873;
 }
 
