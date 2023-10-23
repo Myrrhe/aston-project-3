@@ -11,10 +11,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -138,12 +149,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "aston_project_3",
-        "USER": "extranet",
-        "PASSWORD": "extranet",
+        "NAME": env("NAME_DB"),
+        "USER": env("USER_DB"),
+        "PASSWORD": env("PASSWORD_DB"),
         # Ou l'adresse IP de votre serveur PostgreSQL
-        "HOST": "localhost",
+        "HOST": env("HOST_DB"),
         # Port par défaut de PostgreSQL
-        "PORT": "5432",
+        "PORT": env("PORT_DB"),
     }
 }
