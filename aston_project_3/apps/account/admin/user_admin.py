@@ -25,6 +25,14 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
         (
+            "Additionnal info",
+            {
+                "fields": (
+                    "username",
+                )
+            },
+        ),
+        (
             "Permissions",
             {
                 "fields": (

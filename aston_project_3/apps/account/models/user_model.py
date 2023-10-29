@@ -11,6 +11,8 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
+from django.utils.translation import gettext as _
+
 from apps.core.models.timestamped_model import TimestampedModel
 
 # from apps.core.tokens import encode_token
@@ -61,8 +63,8 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         max_length=50,
         null=True,
         blank=False,
-        verbose_name="username",
-        help_text="The username",
+        verbose_name=_("username"),
+        help_text=_("username_help_text"),
     )
     email = models.EmailField(
         max_length=50,
