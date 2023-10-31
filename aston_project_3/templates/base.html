@@ -2,20 +2,21 @@
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
-            {% load static %}
-            {% load bootstrap5 %}
-            {% block head_css_site %}
-                <link href="{% static "fontawesomefree/css/fontawesome.css" %}" rel="stylesheet" type="text/css">
-                <link href="{% static "fontawesomefree/css/solid.css" %}" rel="stylesheet" type="text/css">
+        {% load i18n %}
+        {% load static %}
+        {% load bootstrap5 %}
+        {% block head_css_site %}
+            <link href="{% static "fontawesomefree/css/fontawesome.css" %}" rel="stylesheet" type="text/css">
+            <link href="{% static "fontawesomefree/css/solid.css" %}" rel="stylesheet" type="text/css">
 
-                <link href="{% static "style/reset.css" %}" rel="stylesheet" type="text/css">
-                <link href="{% static "style/colors.css" %}" rel="stylesheet" type="text/css">
-                <link href="{% static "style/base.css" %}" rel="stylesheet" type="text/css">
-            {% endblock head_css_site %}
-            {% bootstrap_css %}
-            {% bootstrap_javascript %}
-            <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
-            <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+            <link href="{% static "style/reset.css" %}" rel="stylesheet" type="text/css">
+            <link href="{% static "style/colors.css" %}" rel="stylesheet" type="text/css">
+            <link href="{% static "style/base.css" %}" rel="stylesheet" type="text/css">
+        {% endblock head_css_site %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
+        <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
     </head>
     <body>
         <div class="container-fluid p-0 main-container d-flex flex-column">
@@ -39,31 +40,31 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mes bots
+                                {% translate "my_bots" %}
                             </a>
                             <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Voir mes bots</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Créer un nouveau bot</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "see_my_bots" %}</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "create_new_bot" %}</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Matchs
+                                {% translate "matches" %}
                             </a>
                             <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Voir mes matchs</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Rechercher un match</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "see_matches" %}</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "look_for_match" %}</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Communauté
+                                {% translate "community" %}
                             </a>
                             <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">Discussions</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">Classement</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "discussions" %}</a></li>
+                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "ranking" %}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -76,15 +77,15 @@
                                     {{request.user.email}}
                                 </a>
                                 <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "logout" %}">Se déconnecter</a></li>
+                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "logout" %}">{% translate "deconnect" %}</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 {% else %}
                     <div class="d-flex auth-block ms-auto me-5">
-                        <a class="btn button button-dark link-nav me-2" href="{% url "login" message="" %}">Se connecter</a>
-                        <a class="btn button button-bright link-nav" href="{% url "signup" %}">S'inscrire</a>
+                        <a class="btn button button-dark link-nav me-2" href="{% url "login" message="" %}">{% translate "connect" %}</a>
+                        <a class="btn button button-bright link-nav" href="{% url "signup" %}">{% translate "signup" %}</a>
                     </div>
                 {% endif %}
             </nav>
@@ -93,14 +94,14 @@
             {% endblock %}
             <div class="main-footer mt-auto">
                 <div class="links-footer d-flex flex-column mt-4 ms-4 mb-4">
-                    <a class="link-footer link-light" href="/contact">Contact</a>
-                    <a class="link-footer link-light" href="/faq">FAQ</a>
-                    <a class="link-footer link-light" href="/about">À propos</a>
-                    <a class="link-footer link-light" href="/legal">Mentions légales</a>
+                    <a class="link-footer link-light" href="/contact">{% translate "contact" %}</a>
+                    <a class="link-footer link-light" href="/faq">{% translate "faq" %}</a>
+                    <a class="link-footer link-light" href="/about">{% translate "about" %}</a>
+                    <a class="link-footer link-light" href="/legal">{% translate "terms_of_use" %}</a>
                 </div>
                 <div class="copyright-footer">
                     <p class="text-light pb-1 text-center">
-                        Copyright © 2019 Myrrhe. All Rights Reserved. This is an alpha version, some features may be missing.
+                        {% translate "copyright" %}
                     </p>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 """The login form"""
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.utils.translation import gettext as _
 
 from django import forms
 
@@ -13,7 +14,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Email",
+                "placeholder": _("email"),
                 "id": "email",
             },
         ),
@@ -22,7 +23,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Mot de passe",
+                "placeholder": _("password"),
                 "id": "password",
             },
         ),
@@ -31,7 +32,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Clef de sécurité (optionel)",
+                "placeholder": _("security_key_optionnal"),
                 "id": "security_key",
             },
         ),

@@ -3,6 +3,7 @@ from django import forms
 
 from apps.account.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext as _
 
 
 class SignupForm(UserCreationForm):
@@ -12,7 +13,7 @@ class SignupForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Email",
+                "placeholder": _("email"),
                 "id": "email",
             },
         ),
@@ -22,7 +23,7 @@ class SignupForm(UserCreationForm):
         widget=forms.CheckboxInput(
             attrs={},
         ),
-        help_text="J'accepte la Politique de confidentialité et la Politique de cookies. (requis)",
+        help_text=_("tou_text"),
     )
 
     class Meta(object):
@@ -39,13 +40,13 @@ class SignupForm(UserCreationForm):
         self.fields["email"].widget.attrs.update({"placeholder": "Email"})
         self.fields["password1"].widget.attrs.update(
             {
-                "placeholder": "Mot de passe",
+                "placeholder": _("password"),
                 "class": "form-control",
             }
         )
         self.fields["password2"].widget.attrs.update(
             {
-                "placeholder": "Répétez le mot de passe",
+                "placeholder": _("password_repeat"),
                 "class": "form-control",
             }
         )

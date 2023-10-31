@@ -1,6 +1,7 @@
 """The user's admin"""
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.utils.translation import gettext as _
 
 from apps.account.models import User
 
@@ -16,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
     )
     fieldsets = (
         (
-            "Personal info",
+            _("personal_info"),
             {
                 "fields": (
                     "email",
@@ -25,7 +26,11 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
         (
-            "Permissions",
+            _("additionnal_info"),
+            {"fields": ("username",)},
+        ),
+        (
+            _("permissions"),
             {
                 "fields": (
                     "is_admin",
@@ -35,7 +40,7 @@ class UserAdmin(BaseUserAdmin):
                 ),
             },
         ),
-        ("Informations", {"fields": ("last_login",)}),
+        (_("informations"), {"fields": ("last_login",)}),
         (
             None,
             {

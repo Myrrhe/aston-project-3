@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-31 15:09+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\apps\account\admin\user_admin.py:20
+msgid "personal_info"
+msgstr "Informations personnelles"
+
+#: .\apps\account\admin\user_admin.py:29
+msgid "additionnal_info"
+msgstr "Informations additionnelles"
+
+#: .\apps\account\admin\user_admin.py:33
+msgid "permissions"
+msgstr "Permissions"
+
+#: .\apps\account\admin\user_admin.py:43
+msgid "informations"
+msgstr "Informations"
+
+#: .\apps\account\forms\login_form.py:17 .\apps\account\forms\signup_form.py:16
+#: .\apps\account\models\user_model.py:74
+msgid "email"
+msgstr "Email"
+
+#: .\apps\account\forms\login_form.py:26 .\apps\account\forms\signup_form.py:43
+msgid "password"
+msgstr "Mot de passe"
+
+#: .\apps\account\forms\login_form.py:35
+msgid "security_key_optionnal"
+msgstr "Clef de sécurité (optionel)"
+
+#: .\apps\account\forms\signup_form.py:26
+msgid "tou_text"
+msgstr ""
+"J'accepte la Politique de confidentialité et la Politique de cookies. "
+"(requis)"
+
+#: .\apps\account\forms\signup_form.py:49
+msgid "password_repeat"
+msgstr "Répétez le mot de passe"
+
+#: .\apps\account\models\user_model.py:66
+msgid "username"
+msgstr "Nom d'utilisateur"
+
+#: .\apps\account\models\user_model.py:67
+msgid "username_help_text"
+msgstr "Le nom utilisé par l'utilisateur"
+
+#: .\apps\account\models\user_model.py:75
+msgid "email_help_text"
+msgstr "L'email de l'utilisateur"
+
+#: .\apps\account\models\user_model.py:81
+msgid "is_email_confirmed"
+msgstr "Email confirmé"
+
+#: .\apps\account\models\user_model.py:82
+msgid "is_email_confirmed_help_text"
+msgstr "L'adresse email a-t-elle été vérifiée"
+
+#: .\apps\account\models\user_model.py:86
+msgid "is_tou_accepted"
+msgstr "Conditions d'utilisations"
+
+#: .\apps\account\models\user_model.py:87
+msgid "is_tou_accepted_help_text"
+msgstr ""
+"Les conditions d'utilisations ont-elles été acceptées par l'utilisateur"
+
+#: .\apps\account\models\user_model.py:91
+msgid "is_admin"
+msgstr "Admin"
+
+#: .\apps\account\models\user_model.py:92
+msgid "is_admin_help_text"
+msgstr "L'utilisateur est-il un administrateur"
+
+#: .\apps\account\models\user_model.py:104
+msgid "user"
+msgstr "Utilisateur"
+
+#: .\apps\account\models\user_model.py:105
+msgid "users"
+msgstr "Utilisateurs"
+
+#: .\templates\base.html:43
+msgid "my_bots"
+msgstr "Mes bots"
+
+#: .\templates\base.html:46
+msgid "see_my_bots"
+msgstr "Voir mes bots"
+
+#: .\templates\base.html:47
+msgid "create_new_bot"
+msgstr "Créer un nouveau bot"
+
+#: .\templates\base.html:53
+msgid "matches"
+msgstr "Matchs"
+
+#: .\templates\base.html:56
+msgid "see_matches"
+msgstr "Voir mes matchs"
+
+#: .\templates\base.html:57
+msgid "look_for_match"
+msgstr "Rechercher un match"
+
+#: .\templates\base.html:63
+msgid "community"
+msgstr "Communauté"
+
+#: .\templates\base.html:66
+msgid "discussions"
+msgstr "Discussions"
+
+#: .\templates\base.html:67
+msgid "ranking"
+msgstr "Classement"
+
+#: .\templates\base.html:80
+msgid "deconnect"
+msgstr "Se déconnecter"
+
+#: .\templates\base.html:87 .\templates\registration\login.html:56
+msgid "connect"
+msgstr "Se connecter"
+
+#: .\templates\base.html:88
+msgid "signup"
+msgstr "S'inscrire"
+
+#: .\templates\base.html:97
+msgid "contact"
+msgstr "Me contacter"
+
+#: .\templates\base.html:98
+msgid "faq"
+msgstr "FAQ"
+
+#: .\templates\base.html:99
+msgid "about"
+msgstr "À propos"
+
+#: .\templates\base.html:100
+msgid "terms_of_use"
+msgstr "Mentions légales"
+
+#: .\templates\base.html:104
+msgid "copyright"
+msgstr "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some features may be missing."
+
+#: .\templates\registration\account_created.html:15
+msgid "account_created"
+msgstr "Votre compte a été créé"
+
+#: .\templates\registration\account_created.html:16
+msgid "back_to_connection"
+msgstr "Revenir à la page de connexion"
+
+#: .\templates\registration\login.html:31
+msgid "connect_existing_account"
+msgstr "Connexion à un compte existant"
+
+#: .\templates\registration\login.html:61
+msgid "forgot_password"
+msgstr "J'ai oublié mon mot de passe"
+
+#: .\templates\registration\login.html:62
+msgid "want_to_create_account"
+msgstr "Je veux créer mon compte"
+
+#: .\templates\registration\signup.html:15
+msgid "create_account"
+msgstr "Créer un compte"
+
+#: .\templates\registration\signup.html:63
+msgid "create_my_account"
+msgstr "Créer mon compte"
+
+#: .\templates\registration\signup.html:66
+msgid "already_have_account"
+msgstr "J'ai déjà un compte"
