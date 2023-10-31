@@ -71,25 +71,25 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         unique=True,
         null=False,
         blank=False,
-        verbose_name="email",
-        help_text="The email",
+        verbose_name=_("email"),
+        help_text=_("email_help_text"),
     )
     is_email_confirmed = models.BooleanField(
         default=False,
         null=False,
         blank=False,
-        verbose_name="is email confirmed",
-        help_text="is email confirmed user detail",
+        verbose_name=_("is_email_confirmed"),
+        help_text=_("is_email_confirmed_help_text"),
     )
     is_tou_accepted = models.BooleanField(
         default=False,
-        verbose_name="is tou accepted",
-        help_text="is tou accepted user detail",
+        verbose_name=_("is_tou_accepted"),
+        help_text=_("is_tou_accepted_help_text"),
     )
     is_admin = models.BooleanField(
-        "admin",
         default=False,
-        help_text="is admin user detail",
+        verbose_name=_("is_admin"),
+        help_text=_("is_admin_help_text"),
     )
 
     USERNAME_FIELD = "email"
@@ -101,8 +101,8 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         """The meta class"""
 
         db_table = "user"
-        verbose_name = "user"
-        verbose_name_plural = "users"
+        verbose_name = _("user")
+        verbose_name_plural = _("users")
 
     @property
     def is_staff(self) -> bool:

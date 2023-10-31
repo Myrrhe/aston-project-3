@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 {% block head_css_site %}
 {{ block.super }}
@@ -27,7 +27,7 @@
 
     <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-        <p class="fore-front title-login mt-1">Connexion à un compte existant</p>
+        <p class="fore-front title-login mt-1">{% translate "connect_existing_account" %}</p>
 
         <form method="post" action="{% url "login" message="" %}" class="w-75">
             {% csrf_token %}
@@ -52,13 +52,13 @@
                 {{ form.security_key }}
             </div>
 
-            <input type="submit" value="Se connecter" class="w-100 mt-1 mb-3 button button-bright btn">
+            <input type="submit" value="{% translate "connect" %}" class="w-100 mt-1 mb-3 button button-bright btn">
             <input type="hidden" name="next" value="{{ next }}">
         </form>
 
         {# Assumes you set up the password_reset view in your URLconf #}
-        <p><a href="{% url "password_reset" %}" class="link-light">J'ai oublié mon mot de passe</a></p>
-        <p><a href="{% url "signup" %}" class="link-light">Je veux créer mon compte</a></p>
+        <p><a href="{% url "password_reset" %}" class="link-light">{% translate "forgot_password" %}</a></p>
+        <p><a href="{% url "signup" %}" class="link-light">{% translate "want_to_create_account" %}</a></p>
 
     </div>
 

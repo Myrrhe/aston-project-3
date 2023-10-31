@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-25 10:11+0200\n"
+"POT-Creation-Date: 2023-10-31 15:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\apps\account\admin\user_admin.py:20
+msgid "personal_info"
+msgstr ""
+
+#: .\apps\account\admin\user_admin.py:29
+msgid "additionnal_info"
+msgstr ""
+
+#: .\apps\account\admin\user_admin.py:33
+msgid "permissions"
+msgstr ""
+
+#: .\apps\account\admin\user_admin.py:43
+msgid "informations"
+msgstr ""
+
+#: .\apps\account\forms\login_form.py:17 .\apps\account\forms\signup_form.py:16
+#: .\apps\account\models\user_model.py:74
+msgid "email"
+msgstr ""
+
+#: .\apps\account\forms\login_form.py:26 .\apps\account\forms\signup_form.py:43
+msgid "password"
+msgstr ""
+
+#: .\apps\account\forms\login_form.py:35
+msgid "security_key_optionnal"
+msgstr ""
+
+#: .\apps\account\forms\signup_form.py:26
+msgid "tou_text"
+msgstr ""
+
+#: .\apps\account\forms\signup_form.py:49
+msgid "password_repeat"
+msgstr ""
+
 #: .\apps\account\models\user_model.py:66
 msgid "username"
 msgstr "User name"
@@ -25,3 +62,151 @@ msgstr "User name"
 #: .\apps\account\models\user_model.py:67
 msgid "username_help_text"
 msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:75
+#, fuzzy
+#| msgid "username_help_text"
+msgid "email_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:81
+msgid "is_email_confirmed"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:82
+#, fuzzy
+#| msgid "username_help_text"
+msgid "is_email_confirmed_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:86
+msgid "is_tou_accepted"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:87
+#, fuzzy
+#| msgid "username_help_text"
+msgid "is_tou_accepted_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:91
+msgid "is_admin"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:92
+#, fuzzy
+#| msgid "username_help_text"
+msgid "is_admin_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:104
+#, fuzzy
+#| msgid "username"
+msgid "user"
+msgstr "User name"
+
+#: .\apps\account\models\user_model.py:105
+#, fuzzy
+#| msgid "username"
+msgid "users"
+msgstr "User name"
+
+#: .\templates\base.html:43
+msgid "my_bots"
+msgstr ""
+
+#: .\templates\base.html:46
+msgid "see_my_bots"
+msgstr ""
+
+#: .\templates\base.html:47
+msgid "create_new_bot"
+msgstr ""
+
+#: .\templates\base.html:53
+msgid "matches"
+msgstr ""
+
+#: .\templates\base.html:56
+msgid "see_matches"
+msgstr ""
+
+#: .\templates\base.html:57
+msgid "look_for_match"
+msgstr ""
+
+#: .\templates\base.html:63
+msgid "community"
+msgstr ""
+
+#: .\templates\base.html:66
+msgid "discussions"
+msgstr ""
+
+#: .\templates\base.html:67
+msgid "ranking"
+msgstr ""
+
+#: .\templates\base.html:80
+msgid "deconnect"
+msgstr ""
+
+#: .\templates\base.html:87 .\templates\registration\login.html:56
+msgid "connect"
+msgstr ""
+
+#: .\templates\base.html:88
+msgid "signup"
+msgstr ""
+
+#: .\templates\base.html:97
+msgid "contact"
+msgstr ""
+
+#: .\templates\base.html:98
+msgid "faq"
+msgstr ""
+
+#: .\templates\base.html:99
+msgid "about"
+msgstr ""
+
+#: .\templates\base.html:100
+msgid "terms_of_use"
+msgstr ""
+
+#: .\templates\base.html:104
+msgid "copyright"
+msgstr ""
+
+#: .\templates\registration\account_created.html:15
+msgid "account_created"
+msgstr ""
+
+#: .\templates\registration\account_created.html:16
+msgid "back_to_connection"
+msgstr ""
+
+#: .\templates\registration\login.html:31
+msgid "connect_existing_account"
+msgstr ""
+
+#: .\templates\registration\login.html:61
+msgid "forgot_password"
+msgstr ""
+
+#: .\templates\registration\login.html:62
+msgid "want_to_create_account"
+msgstr ""
+
+#: .\templates\registration\signup.html:15
+msgid "create_account"
+msgstr ""
+
+#: .\templates\registration\signup.html:63
+msgid "create_my_account"
+msgstr ""
+
+#: .\templates\registration\signup.html:66
+msgid "already_have_account"
+msgstr ""

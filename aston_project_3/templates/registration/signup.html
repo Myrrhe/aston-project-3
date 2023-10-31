@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 {% block head_css_site %}
 {{ block.super }}
@@ -12,7 +12,7 @@
 
     <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-        <p class="fore-front title-login mt-1">Créer un compte</p>
+        <p class="fore-front title-login mt-1">{% translate "create_account" %}</p>
 
         <form method="post" class="w-75">
             {% csrf_token %}
@@ -20,13 +20,15 @@
             {% if form.errors %}
                 <ul class="non-field-errors text-alert">
                     {% for field in form %}
-                        <li>
-                            <ul>
-                                {% for error in field.errors %}
-                                    <li>{{ error|escape }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
+                        {% if field.errors %}
+                            <li>
+                                <ul>
+                                    {% for error in field.errors %}
+                                        <li>{{ error|escape }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 <ul class="non-field-errors text-alert">
@@ -57,9 +59,11 @@
                 <span class="text-light ps-3">{{ form.is_tou_accepted.help_text }}</span>
             </div>
 
-            <input type="submit" value="Créer mon compte" class="w-100 mt-1 mb-3 button button-bright btn">
+            <input type="submit"
+             value="{% translate "create_my_account" %}"
+             class="w-100 mt-1 mb-3 button button-bright btn">
         </form>
-        <p><a href="{% url "login" message="" %}" class="link-light">J'ai déjà un compte</a></p>
+        <p><a href="{% url "login" message="" %}" class="link-light">{% translate "already_have_account" %}</a></p>
     </div>
 
 </div>
