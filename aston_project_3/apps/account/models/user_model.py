@@ -13,6 +13,8 @@ from django.db import models
 
 from django.utils.translation import gettext as _
 
+from django_otp.plugins.otp_totp.models import TOTPDevice
+
 from apps.core.models.timestamped_model import TimestampedModel
 
 # from apps.core.tokens import encode_token
@@ -58,14 +60,19 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     """The user's model"""
 
+    LANGUAGES_CHOICES = [
+        ("EN", "English"),
+        ("FR", "Français"),
+        ("ES", "Español"),
+    ]
+
+    DARK_CHOICES = [
+        ("DARK", 0),
+        ("LIGHT", 1),
+        ("AUTO", 2),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(
-        max_length=50,
-        null=True,
-        blank=False,
-        verbose_name=_("username"),
-        help_text=_("username_help_text"),
-    )
     email = models.EmailField(
         max_length=50,
         unique=True,
@@ -73,6 +80,22 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         blank=False,
         verbose_name=_("email"),
         help_text=_("email_help_text"),
+    )
+    username = models.CharField(
+        max_length=50,
+        null=True,
+        blank=False,
+        verbose_name=_("username"),
+        help_text=_("username_help_text"),
+    )
+    language = models.CharField(
+        max_length=2,
+        choices=LANGUAGES_CHOICES,
+        default="FR",
+    )
+    theme = models.IntegerField(
+        choices=DARK_CHOICES,
+        default="AUTO",
     )
     is_email_confirmed = models.BooleanField(
         default=False,
