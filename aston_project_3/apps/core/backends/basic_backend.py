@@ -32,17 +32,37 @@ class BasicBackend(BaseBackend):
             if user.check_password(password) and self.user_can_authenticate(user):
                 if request.path == "/login/":
                     print("Logging via non-admin")
-                    if verify_token(
-                        user,
-                        TOTPDevice.objects.get(user=user),
-                        request.POST["security_key"],
-                    ):
-                        return user
+                    if TOTPDevice.objects.filter(user_id=user.id).exists():
+                        # The user have a security key
+                        if verify_token(
+                            user,
+                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            request.POST["security_key"],
+                        ):
+                            return user
+                        else:
+                            print("Wrong code")
+                            return
                     else:
-                        return
+                        # The user don't have a security key
+                        return user
                 elif request.path == "/admin/login/":
                     print("Logging via admin")
-                    return user
+                    if TOTPDevice.objects.filter(user_id=user.id).exists():
+                        # The user have a security key
+                        if verify_token(
+                            user,
+                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            request.POST["security_key"],
+                        ):
+                            return user
+                        else:
+                            print("Wrong code")
+                            return
+                    else:
+                        # The user don't have a security key
+                        print("No security key")
+                        return
                 else:
                     print("Logging via unknown")
                     return

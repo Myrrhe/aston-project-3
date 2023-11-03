@@ -93,7 +93,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         choices=LANGUAGES_CHOICES,
         default="FR",
     )
-    theme = models.IntegerField(
+    theme = models.CharField(
         choices=DARK_CHOICES,
         default="AUTO",
     )

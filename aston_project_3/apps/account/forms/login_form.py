@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from django import forms
 
 from apps.account.models import User
+from apps.core.inputs import NonStickyTextInput
 
 
 class LoginForm(AuthenticationForm):
@@ -29,11 +30,12 @@ class LoginForm(AuthenticationForm):
         ),
     )
     security_key = forms.CharField(
-        widget=forms.TextInput(
+        widget=NonStickyTextInput(
             attrs={
                 "class": "form-control",
                 "placeholder": _("security_key_optionnal"),
                 "id": "security_key",
+                "autocomplete": "off",
             },
         ),
         required=False,

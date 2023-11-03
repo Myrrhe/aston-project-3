@@ -1,0 +1,5 @@
+.login .form-row #security_key {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
