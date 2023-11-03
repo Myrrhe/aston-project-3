@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-31 15:13+0100\n"
+"POT-Creation-Date: 2023-11-03 17:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,16 +34,16 @@ msgstr ""
 msgid "informations"
 msgstr ""
 
-#: .\apps\account\forms\login_form.py:17 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:74
+#: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
+#: .\apps\account\models\user_model.py:81
 msgid "email"
 msgstr ""
 
-#: .\apps\account\forms\login_form.py:26 .\apps\account\forms\signup_form.py:43
+#: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
 msgid "password"
 msgstr ""
 
-#: .\apps\account\forms\login_form.py:35
+#: .\apps\account\forms\login_form.py:36
 msgid "security_key_optionnal"
 msgstr ""
 
@@ -55,63 +55,90 @@ msgstr ""
 msgid "password_repeat"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:66
-msgid "username"
-msgstr "Nombre de usuario"
-
-#: .\apps\account\models\user_model.py:67
-#, fuzzy
-#| msgid "username"
-msgid "username_help_text"
-msgstr "Nombre de usuario"
-
-#: .\apps\account\models\user_model.py:75
+#: .\apps\account\models\user_model.py:82
 #, fuzzy
 #| msgid "username"
 msgid "email_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:81
+#: .\apps\account\models\user_model.py:88
+msgid "username"
+msgstr "Nombre de usuario"
+
+#: .\apps\account\models\user_model.py:89
+#, fuzzy
+#| msgid "username"
+msgid "username_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\account\models\user_model.py:104
 msgid "is_email_confirmed"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:82
+#: .\apps\account\models\user_model.py:105
 #, fuzzy
 #| msgid "username"
 msgid "is_email_confirmed_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:86
+#: .\apps\account\models\user_model.py:109
 msgid "is_tou_accepted"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:87
+#: .\apps\account\models\user_model.py:110
 #, fuzzy
 #| msgid "username"
 msgid "is_tou_accepted_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:91
+#: .\apps\account\models\user_model.py:114
 msgid "is_admin"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:92
+#: .\apps\account\models\user_model.py:115
 #, fuzzy
 #| msgid "username"
 msgid "is_admin_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:104
+#: .\apps\account\models\user_model.py:127
 #, fuzzy
 #| msgid "username"
 msgid "user"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:105
+#: .\apps\account\models\user_model.py:128
 #, fuzzy
 #| msgid "username"
 msgid "users"
 msgstr "Nombre de usuario"
+
+#: .\templates\admin\login.html:9
+msgid ""
+"\n"
+"Please correct the error below."
+msgid_plural "Please correct the errors below.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\templates\admin\login.html:27
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: .\templates\admin\login.html:45
+msgid "security_key"
+msgstr ""
+
+#: .\templates\admin\login.html:59
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: .\templates\admin\login.html:63
+msgid "Log in"
+msgstr ""
 
 #: .\templates\base.html:43
 msgid "my_bots"
@@ -150,34 +177,38 @@ msgid "ranking"
 msgstr ""
 
 #: .\templates\base.html:80
+msgid "my_account"
+msgstr ""
+
+#: .\templates\base.html:81
 msgid "deconnect"
 msgstr ""
 
-#: .\templates\base.html:87 .\templates\registration\login.html:56
+#: .\templates\base.html:88 .\templates\registration\login.html:56
 msgid "connect"
 msgstr ""
 
-#: .\templates\base.html:88
+#: .\templates\base.html:89
 msgid "signup"
 msgstr ""
 
-#: .\templates\base.html:97
+#: .\templates\base.html:98
 msgid "contact"
 msgstr ""
 
-#: .\templates\base.html:98
+#: .\templates\base.html:99
 msgid "faq"
 msgstr ""
 
-#: .\templates\base.html:99
+#: .\templates\base.html:100
 msgid "about"
 msgstr ""
 
-#: .\templates\base.html:100
+#: .\templates\base.html:101
 msgid "terms_of_use"
 msgstr ""
 
-#: .\templates\base.html:104
+#: .\templates\base.html:105
 msgid "copyright"
 msgstr ""
 

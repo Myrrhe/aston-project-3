@@ -2,6 +2,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
+from django_otp.plugins.otp_totp.models import TOTPDevice
+from django_otp import verify_token
 
 from apps.account.models import User
 
@@ -14,12 +16,6 @@ class BasicBackend(BaseBackend):
     def authenticate(
         self, request: HttpRequest, username: str = None, password: str = None, **kwargs
     ) -> any:
-        if request.path == "/login/":
-            print("Logging via non-admin")
-        elif request.path == "/admin/login/":
-            print("Logging via admin")
-        else:
-            print("Logging via unknown")
         if "security_key" in request.POST:
             print(request.POST["security_key"])
         if username is None:
@@ -34,7 +30,42 @@ class BasicBackend(BaseBackend):
             UserModel().set_password(password)
         else:
             if user.check_password(password) and self.user_can_authenticate(user):
-                return user
+                if request.path == "/login/":
+                    print("Logging via non-admin")
+                    if TOTPDevice.objects.filter(user_id=user.id).exists():
+                        # The user have a security key
+                        if verify_token(
+                            user,
+                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            request.POST["security_key"],
+                        ):
+                            return user
+                        else:
+                            print("Wrong code")
+                            return
+                    else:
+                        # The user don't have a security key
+                        return user
+                elif request.path == "/admin/login/":
+                    print("Logging via admin")
+                    if TOTPDevice.objects.filter(user_id=user.id).exists():
+                        # The user have a security key
+                        if verify_token(
+                            user,
+                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            request.POST["security_key"],
+                        ):
+                            return user
+                        else:
+                            print("Wrong code")
+                            return
+                    else:
+                        # The user don't have a security key
+                        print("No security key")
+                        return
+                else:
+                    print("Logging via unknown")
+                    return
 
     def get_user(self, user_id: str) -> any:
         try:
