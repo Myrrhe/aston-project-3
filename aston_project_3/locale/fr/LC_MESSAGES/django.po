@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 17:21+0100\n"
+"POT-Creation-Date: 2023-11-06 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,85 +123,145 @@ msgstr "Clef de sécurité"
 
 #: .\templates\admin\login.html:59
 msgid "Forgotten your password or username?"
-msgstr ""
+msgstr "Mot de passe oublié ?"
 
 #: .\templates\admin\login.html:63
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
-#: .\templates\base.html:43
+#: .\templates\base.html:44
 msgid "my_bots"
 msgstr "Mes bots"
 
-#: .\templates\base.html:46
+#: .\templates\base.html:47
 msgid "see_my_bots"
 msgstr "Voir mes bots"
 
-#: .\templates\base.html:47
+#: .\templates\base.html:48
 msgid "create_new_bot"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\base.html:53
+#: .\templates\base.html:54
 msgid "matches"
 msgstr "Matchs"
 
-#: .\templates\base.html:56
+#: .\templates\base.html:57
 msgid "see_matches"
 msgstr "Voir mes matchs"
 
-#: .\templates\base.html:57
+#: .\templates\base.html:58
 msgid "look_for_match"
 msgstr "Rechercher un match"
 
-#: .\templates\base.html:63
+#: .\templates\base.html:64
 msgid "community"
 msgstr "Communauté"
 
-#: .\templates\base.html:66
+#: .\templates\base.html:67
 msgid "discussions"
 msgstr "Discussions"
 
-#: .\templates\base.html:67
+#: .\templates\base.html:68
 msgid "ranking"
 msgstr "Classement"
 
-#: .\templates\base.html:80
+#: .\templates\base.html:81
 msgid "my_account"
 msgstr "Mon compte"
 
-#: .\templates\base.html:81
+#: .\templates\base.html:82
 msgid "deconnect"
 msgstr "Se déconnecter"
 
-#: .\templates\base.html:88 .\templates\registration\login.html:56
+#: .\templates\base.html:89 .\templates\registration\login.html:56
 msgid "connect"
 msgstr "Se connecter"
 
-#: .\templates\base.html:89
+#: .\templates\base.html:90
 msgid "signup"
 msgstr "S'inscrire"
 
-#: .\templates\base.html:98
+#: .\templates\base.html:99
 msgid "contact"
 msgstr "Me contacter"
 
-#: .\templates\base.html:99
+#: .\templates\base.html:100
 msgid "faq"
 msgstr "FAQ"
 
-#: .\templates\base.html:100
+#: .\templates\base.html:101
 msgid "about"
 msgstr "À propos"
 
-#: .\templates\base.html:101
+#: .\templates\base.html:102
 msgid "terms_of_use"
 msgstr "Mentions légales"
 
-#: .\templates\base.html:105
+#: .\templates\base.html:106
 msgid "copyright"
 msgstr ""
 "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some "
 "features may be missing."
+
+#: .\templates\cookies\modal.html:6 .\templates\cookies\settings.html:29
+msgid "cookies_settings"
+msgstr "Gestion des cookies"
+
+#: .\templates\cookies\modal.html:12
+msgid "cookies_text"
+msgstr ""
+"Ce site utilise des cookies. Veuillez sélectionner vos préférences. Sachez "
+"que vos données ne seront jamais communiquées à un tiers."
+
+#: .\templates\cookies\modal.html:15 .\templates\cookies\settings.html:36
+msgid "required_cookies"
+msgstr "Cookies nécessaires"
+
+#: .\templates\cookies\modal.html:19 .\templates\cookies\settings.html:40
+msgid "theme_cookie"
+msgstr "Cookie du thème visuel"
+
+#: .\templates\cookies\modal.html:23 .\templates\cookies\settings.html:44
+msgid "lang_cookie"
+msgstr "Cookie de langue"
+
+#: .\templates\cookies\modal.html:27
+msgid "required_cookies_only"
+msgstr "Nécessaires uniquement"
+
+#: .\templates\cookies\modal.html:28
+msgid "accept_all"
+msgstr "Accepter tous"
+
+#: .\templates\cookies\modal.html:29 .\templates\cookies\settings.html:47
+msgid "save_settings"
+msgstr "Enregistrer les préférences"
+
+#: .\templates\cookies\modal.html:30
+msgid "cookies_settings_page"
+msgstr "Gérer les cookies"
+
+#: .\templates\cookies\modal.html:31
+msgid "learn_more"
+msgstr "En savoir plus"
+
+#: .\templates\cookies\settings.html:13
+msgid "settings_saved"
+msgstr "Préférences enregistrées"
+
+#: .\templates\cookies\settings.html:21
+msgid "settings_saved_text"
+msgstr "Vos préférences ont bien été enregistrées"
+
+#: .\templates\cookies\settings.html:32
+msgid "cookies_text_page"
+msgstr ""
+"Ce site utilise des cookies. Veuillez sélectionner vos préférences. Sachez "
+"que vos données ne seront jamais communiquées à un tiers."
+
+#: .\templates\cookies\settings.html:48
+msgid "go_to_cookies_policy_page"
+msgstr "Voir la politique des cookies"
 
 #: .\templates\registration\account_created.html:15
 msgid "account_created"
