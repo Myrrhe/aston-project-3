@@ -15,8 +15,9 @@
         {% endblock head_css_site %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
-        <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
-        <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+        <script src="{% static "fontawesomefree/js/fontawesome.js" %}"></script>
+        <script src="{% static "fontawesomefree/js/solid.js" %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="container-fluid p-0 main-container d-flex flex-column">
@@ -107,5 +108,8 @@
                 </div>
             </div>
         </div>
+
+        {% include "cookies/modal.html" %}
+        <script src="{% static "js/base.js" %}"></script>
     </body>
 </html>

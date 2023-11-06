@@ -12,6 +12,10 @@
     color: var(--fore-color);
 }
 
+.text-fore {
+    color: var(--fore-color);
+}
+
 .link-nav {
     font-weight: 600 !important;
     font-size: 1rem !important;
@@ -149,4 +153,21 @@
     font-weight: 600;
     font-size: 1.5rem;
     text-transform: uppercase;
+}
+
+button.close {
+    background-color: #00000000;
+    border-style: none;
+}
+
+.close {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #888888ff;
+}
+
+.close:focus,
+.close:hover {
+    color: #000000ff;
 }

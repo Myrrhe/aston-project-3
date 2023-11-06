@@ -1,0 +1,35 @@
+{% load i18n %}
+<div class="modal fade" tabindex="-1" role="dialog" id="modal_cookies">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% translate "cookies_settings" %}</h5>
+          <button type="button" class="close button-cookie" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{% translate "cookies_text" %}</p>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switch-cookie-required" checked disabled>
+            <label class="form-check-label" for="switch-cookie-required">{% translate "required_cookies" %}</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input switch-cookie" type="checkbox" id="switch-cookie-theme">
+            <label class="form-check-label" for="switch-cookie-theme">{% translate "theme_cookie" %}</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input switch-cookie" type="checkbox" id="switch-cookie-lang">
+            <label class="form-check-label" for="switch-cookie-lang">{% translate "lang_cookie" %}</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="button_cookie_required" type="button" class="btn btn-primary button-cookie" data-bs-dismiss="modal" >{% translate "required_cookies_only" %}</button>
+          <button id="button_cookie_accept_all" type="button" class="btn btn-secondary button-cookie" data-bs-dismiss="modal">{% translate "accept_all" %}</button>
+          <button type="button" class="btn btn-secondary button-cookie" data-bs-dismiss="modal">{% translate "save_settings" %}</button>
+          <a href="{% url "cookies-settings" %}" class="btn btn-secondary button-cookie">{% translate "cookies_settings_page" %}</a>
+          <a href="{% url "cookies-policy" %}" class="button-cookie">{% translate "learn_more" %}</a>
+        </div>
+      </div>
+    </div>
+</div>
