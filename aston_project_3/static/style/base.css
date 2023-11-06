@@ -1,3 +1,9 @@
+.icon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
 .main-container {
     background-color: var(--back-color);
 }
@@ -170,4 +176,26 @@ button.close {
 .close:focus,
 .close:hover {
     color: #000000ff;
+}
+
+#night-button {
+    background-color: #00000000;
+    border-style: none;
+}
+
+#night-button::before {
+    font: var(--fa-font-solid);
+    color: var(--fore-color);
+}
+
+.light::before {
+    content: "\f185";
+}
+
+.dark::before {
+    content: "\f186";
+}
+
+.lightdark::before {
+    content: "\f042";
 }
