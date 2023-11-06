@@ -24,14 +24,62 @@ function setOneCookie(cname, cvalue, exdays = 365) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-$(document).ready(function () {
-    if (!checkOneCookie("cookies_init")) {
-        $("#modal_cookies").modal('show');
-        setOneCookie("cookies_init", "1");
-        setOneCookie("theme_save", "0");
-        setOneCookie("lang_save", "0");
+function getButtonTheme() {
+    if ($("#night-button").hasClass("dark")) {
+        return 0;
+    } else if ($("#night-button").hasClass("light")) {
+        return 1;
+    } else {
+        return 2;
     }
-});
+}
+
+function setButtonTheme(theme) {
+    if ($("#night-button").hasClass("dark")) {
+        $("#night-button").removeClass("dark");
+    }
+    if ($("#night-button").hasClass("light")) {
+        $("#night-button").removeClass("light");
+    }
+    if ($("#night-button").hasClass("lightdark")) {
+        $("#night-button").removeClass("lightdark");
+    }
+    if (theme == 0) {
+        $("#night-button").addClass("dark");
+    } else if (theme == 1) {
+        $("#night-button").addClass("light");
+    } else {
+        $("#night-button").addClass("lightdark");
+    }
+}
+
+function switchButtonTheme() {
+    setButtonTheme((getButtonTheme() + 1) % 3)
+}
+
+function getOsTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function updateTheme() {
+    if ($("body").hasClass("dark-mode")) {
+        $("body").removeClass("dark-mode");
+    }
+    if ($("body").hasClass("light-mode")) {
+        $("body").removeClass("light-mode");
+    }
+    let theme = 0;
+    if (checkOneCookie("theme")) {
+        theme = getOneCookie("theme");
+    } else {
+        theme = getButtonTheme();
+    }
+    if (theme == 0 || (theme == 2 && getOsTheme())) {
+        $("body").addClass("dark-mode");
+    } else {
+        $("body").addClass("light-mode");
+    }
+}
 
 $(".button-cookie").on("click", function () {
     if ($(this).attr("id") === "button_cookie_required") {
@@ -56,4 +104,31 @@ $(".switch-cookie").change(function () {
         default:
             break;
     }
+});
+
+$("#night-button").on("click", function () {
+    switchButtonTheme();
+    if (checkOneCookie("theme_save") && getOneCookie("theme_save") == "1") {
+        setOneCookie("theme", getButtonTheme());
+    }
+    updateTheme();
+});
+
+$(document).ready(function () {
+    if (!checkOneCookie("cookies_init")) {
+        $("#modal_cookies").modal('show');
+        setOneCookie("cookies_init", "1");
+        setOneCookie("theme_save", "0");
+        setOneCookie("lang_save", "0");
+    }
+    if (checkOneCookie("theme_save") && getOneCookie("theme_save") == "1") {
+        if (!checkOneCookie("theme")) {
+            setOneCookie("theme", "2");
+        }
+        setButtonTheme(getOneCookie("theme"));
+    } else {
+        setOneCookie("theme", "");
+        setButtonTheme("2");
+    }
+    updateTheme();
 });
