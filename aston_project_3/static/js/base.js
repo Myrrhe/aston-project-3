@@ -162,7 +162,7 @@ function getFlagEmoji(countryCode) {
 $(document).ready(function () {
     // Cookies
     if (!checkOneCookie("cookies_init")) {
-        $("#modal_cookies").modal('show');
+        $("#modal_cookies").modal("show");
         setOneCookie("cookies_init", "1");
         setOneCookie("theme_save", "0");
         setOneCookie("lang_save", "0");

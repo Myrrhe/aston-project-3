@@ -82,4 +82,5 @@ urlpatterns += i18n_patterns(
         ),
         name="password_reset_complete",
     ),
+    prefix_default_language=True,
 )
