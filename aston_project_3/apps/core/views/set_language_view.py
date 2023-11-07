@@ -30,12 +30,12 @@ class SetLanguageViewSet(View):
 
         url = ""
         if url_is_allowed:
-            url = request.META.get("HTTP_REFERER")
+            url = current_url
             response = HttpResponseRedirect(url)
             if "language" in request.POST:
                 response["Accept-Language"] = request.POST["language"]
                 url_splitted = url.split("/")
-                url_splitted[3] = request.POST["language"]
+                url_splitted[1] = request.POST["language"]
                 response = HttpResponseRedirect("/".join(url_splitted))
                 activate(request.POST["language"])
             return response
