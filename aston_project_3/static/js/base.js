@@ -1,5 +1,7 @@
 "use strict";
 
+// COOKIES
+
 function getOneCookie(cname) {
     const name = cname + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
@@ -23,6 +25,8 @@ function setOneCookie(cname, cvalue, exdays = 365) {
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+// THEME
 
 function getButtonTheme() {
     if ($("#night-button").hasClass("dark")) {
@@ -81,6 +85,18 @@ function updateTheme() {
     }
 }
 
+// LANGUAGE
+
+function getSelectLanguage() {
+    return $("#language-select").val();
+}
+
+function setSelectLanguage(language) {
+    $("#language-select").val(language);
+}
+
+// MODAL COOKIES
+
 $(".button-cookie").on("click", function () {
     if ($(this).attr("id") === "button_cookie_required") {
         setOneCookie("theme_save", "0");
@@ -106,6 +122,8 @@ $(".switch-cookie").change(function () {
     }
 });
 
+// NIGHT BUTTON
+
 $("#night-button").on("click", function () {
     switchButtonTheme();
     if (checkOneCookie("theme_save") && getOneCookie("theme_save") == "1") {
@@ -114,13 +132,43 @@ $("#night-button").on("click", function () {
     updateTheme();
 });
 
+// SELECT LANGUAGE
+
+// $("#language-select").on("change", function () {
+//     if (checkOneCookie("lang_save") && getOneCookie("lang_save") == "1") {
+//         setOneCookie("language", getSelectLanguage());
+//     }
+//     // location.reload();
+// });
+
+$("#submit-language").on("click", function () {
+    if (checkOneCookie("lang_save") && getOneCookie("lang_save") == "1") {
+        setOneCookie("language", getSelectLanguage());
+    }
+});
+
+// COUNTRY FLAG
+
+function getFlagEmoji(countryCode) {
+    const codePoints = countryCode
+        .toUpperCase()
+        .split("")
+        .map(char => 127397 + char.charCodeAt());
+    return String.fromCodePoint(...codePoints);
+}
+
+// PAGE LOAD
+
 $(document).ready(function () {
+    // Cookies
     if (!checkOneCookie("cookies_init")) {
         $("#modal_cookies").modal('show');
         setOneCookie("cookies_init", "1");
         setOneCookie("theme_save", "0");
         setOneCookie("lang_save", "0");
     }
+
+    // Theme
     if (checkOneCookie("theme_save") && getOneCookie("theme_save") == "1") {
         if (!checkOneCookie("theme")) {
             setOneCookie("theme", "2");
@@ -131,4 +179,23 @@ $(document).ready(function () {
         setButtonTheme("2");
     }
     updateTheme();
+
+    // Language
+    // if (checkOneCookie("lang_save") && getOneCookie("lang_save") == "1") {
+    //     if (!checkOneCookie("language")) {
+    //         setOneCookie("language", "fr");
+    //     }
+    //     setSelectLanguage(getOneCookie("language"));
+    // } else {
+    //     setOneCookie("language", "");
+    //     setSelectLanguage("fr");
+    // }
+
+    $.each($(".option-capitalize"), function (_, value) {
+        const words = value.text.split(" ");
+        if (words.length > 0) {
+            words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
+        }
+        value.text = words.join(" ");
+    });
 });

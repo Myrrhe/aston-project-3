@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>{% block title %}{% endblock %}</title>
         {% load i18n %}
         {% load static %}
+        {% comment %} {% load flag_templatefilter %} {% endcomment %}
         {% load bootstrap5 %}
         {% block head_css_site %}
             <link href="{% static "fontawesomefree/css/fontawesome.css" %}" rel="stylesheet" type="text/css">
@@ -40,7 +41,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% translate "my_bots" %}
                             </a>
                             <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
@@ -72,6 +73,21 @@
                 </div>
                 <div class="d-flex align-items-stretch mx-1">
                     <button id="night-button" class="darklight fa-lg"></button>
+                    {% load flag_templatetag %}
+                    <form action="{% if False %}{% url "set_language" %}{% else %}{% url "set-language" %}{% endif%}" method="post" class="ms-2 d-flex">
+                        {% csrf_token %}
+                        <select class="form-select" aria-label="Language selection" id="language-select" name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} class="option-capitalize">
+                                    {{ language.name_local }} ({{ language.code }}) {{ language.code|flag }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="{% translate "change" %}" class="mx-1 btn small_button button-dark" id="submit-language">
+                    </form>
                 </div>
                 {% if request.user.is_authenticated %}
                     <div class="d-flex auth-block ms-auto me-5 align-self-stretch">

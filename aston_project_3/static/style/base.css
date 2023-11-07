@@ -37,6 +37,11 @@
     font-size: 1.2rem !important;
 }
 
+.small_button {
+    font-weight: 500 !important;
+    font-size: 1.1rem !important;
+}
+
 .button-bright {
     background-color: var(--bright-color) !important;
     color: var(--back-color) !important;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 15:07+0100\n"
+"POT-Creation-Date: 2023-11-07 10:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,6 +102,18 @@ msgstr "Utilisateur"
 msgid "users"
 msgstr "Utilisateurs"
 
+#: .\aston_project_3\settings.py:132 .\templates\base.html:80
+msgid "english"
+msgstr "Anglais"
+
+#: .\aston_project_3\settings.py:133 .\templates\base.html:79
+msgid "french"
+msgstr "Français"
+
+#: .\aston_project_3\settings.py:134 .\templates\base.html:81
+msgid "spanish"
+msgstr "Espagnol"
+
 #: .\templates\admin\login.html:9
 msgid ""
 "\n"
@@ -165,39 +177,43 @@ msgstr "Discussions"
 msgid "ranking"
 msgstr "Classement"
 
-#: .\templates\base.html:81
+#: .\templates\base.html:83
+msgid "change"
+msgstr "Modifier"
+
+#: .\templates\base.html:95
 msgid "my_account"
 msgstr "Mon compte"
 
-#: .\templates\base.html:82
+#: .\templates\base.html:96
 msgid "deconnect"
 msgstr "Se déconnecter"
 
-#: .\templates\base.html:89 .\templates\registration\login.html:56
+#: .\templates\base.html:103 .\templates\registration\login.html:56
 msgid "connect"
 msgstr "Se connecter"
 
-#: .\templates\base.html:90
+#: .\templates\base.html:104
 msgid "signup"
 msgstr "S'inscrire"
 
-#: .\templates\base.html:99
+#: .\templates\base.html:113
 msgid "contact"
 msgstr "Me contacter"
 
-#: .\templates\base.html:100
+#: .\templates\base.html:114
 msgid "faq"
 msgstr "FAQ"
 
-#: .\templates\base.html:101
+#: .\templates\base.html:115
 msgid "about"
 msgstr "À propos"
 
-#: .\templates\base.html:102
+#: .\templates\base.html:116
 msgid "terms_of_use"
 msgstr "Mentions légales"
 
-#: .\templates\base.html:106
+#: .\templates\base.html:120
 msgid "copyright"
 msgstr ""
 "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some "
