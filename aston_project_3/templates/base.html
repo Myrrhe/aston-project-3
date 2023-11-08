@@ -76,6 +76,7 @@
                     {% load flag_templatetag %}
                     <form action="{% if False %}{% url "set_language" %}{% else %}{% url "set-language" %}{% endif%}" method="post" class="ms-2 d-flex">
                         {% csrf_token %}
+                        <input name="next" id="next" class="d-none" value="{{ request.path }}" hidden></input>
                         <select class="form-select" aria-label="Language selection" id="language-select" name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
