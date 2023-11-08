@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 env = environ.Env(
     # set casting, default value
@@ -127,7 +128,15 @@ LOGIN_REDIRECT_URL = "home"
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "fr-FR"
+LANGUAGES = [
+    ("fr", _("french")),
+    ("en", _("english")),
+    ("es", _("spanish")),
+]
+
+# LANGUAGE_CODE = "fr-FR"
+
+LANGUAGE_COOKIE_NAME = "language"
 
 TIME_ZONE = "UTC"
 

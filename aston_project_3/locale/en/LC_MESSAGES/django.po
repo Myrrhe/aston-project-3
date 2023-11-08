@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 15:07+0100\n"
+"POT-Creation-Date: 2023-11-07 10:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,6 +111,18 @@ msgstr "User name"
 msgid "users"
 msgstr "User name"
 
+#: .\aston_project_3\settings.py:132 .\templates\base.html:80
+msgid "english"
+msgstr "English"
+
+#: .\aston_project_3\settings.py:133 .\templates\base.html:79
+msgid "french"
+msgstr "French"
+
+#: .\aston_project_3\settings.py:134 .\templates\base.html:81
+msgid "spanish"
+msgstr "Spanish"
+
 #: .\templates\admin\login.html:9
 msgid ""
 "\n"
@@ -174,39 +186,43 @@ msgstr ""
 msgid "ranking"
 msgstr ""
 
-#: .\templates\base.html:81
+#: .\templates\base.html:83
+msgid "change"
+msgstr ""
+
+#: .\templates\base.html:95
 msgid "my_account"
 msgstr ""
 
-#: .\templates\base.html:82
+#: .\templates\base.html:96
 msgid "deconnect"
 msgstr ""
 
-#: .\templates\base.html:89 .\templates\registration\login.html:56
+#: .\templates\base.html:103 .\templates\registration\login.html:56
 msgid "connect"
 msgstr ""
 
-#: .\templates\base.html:90
+#: .\templates\base.html:104
 msgid "signup"
 msgstr ""
 
-#: .\templates\base.html:99
+#: .\templates\base.html:113
 msgid "contact"
 msgstr ""
 
-#: .\templates\base.html:100
+#: .\templates\base.html:114
 msgid "faq"
 msgstr ""
 
-#: .\templates\base.html:101
+#: .\templates\base.html:115
 msgid "about"
 msgstr ""
 
-#: .\templates\base.html:102
+#: .\templates\base.html:116
 msgid "terms_of_use"
 msgstr ""
 
-#: .\templates\base.html:106
+#: .\templates\base.html:120
 msgid "copyright"
 msgstr ""
 
@@ -261,6 +277,8 @@ msgstr ""
 #: .\templates\cookies\settings.html:32
 msgid "cookies_text_page"
 msgstr ""
+"This site uses cookies. Please select your preferences. Your data will never "
+"be passed on to third parties."
 
 #: .\templates\cookies\settings.html:48
 msgid "go_to_cookies_policy_page"
