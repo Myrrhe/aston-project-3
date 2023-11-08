@@ -66,9 +66,7 @@ class SetLanguageViewSet(View):
                 require_https=request.is_secure(),
             ):
                 next_url = "/"
-        response = (
-            HttpResponseRedirect(next_url) if next_url else HttpResponse(status=204)
-        )
+        response = HttpResponseRedirect("/")
         if request.method == "POST":
             lang_code = request.POST.get("language")
             if lang_code and check_for_language(lang_code):
