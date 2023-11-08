@@ -9,6 +9,6 @@ class StartViewSet(View):
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         if request.user.is_authenticated:
-            return redirect("home")
+            return redirect("account:home")
         else:
             return render(request, "home/start.html")

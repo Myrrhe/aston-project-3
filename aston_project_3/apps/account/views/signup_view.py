@@ -13,5 +13,5 @@ class SignupViewSet(generic.CreateView):
 
     def get_success_url(self) -> any:
         return reverse_lazy(
-            "account-created",
+            "account:account-created",
         )

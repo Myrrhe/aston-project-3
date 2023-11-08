@@ -204,3 +204,23 @@ button.close {
 .lightdark::before {
     content: "\f042";
 }
+
+h1 {
+    color: var(--fore-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: var(--fore-color);
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+hr {
+    color: var(--fore-color) !important;
+    opacity: 0.5 !important;
+    height: 2px !important;
+}

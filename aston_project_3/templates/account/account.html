@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 {% block head_css_site %}
 {{ block.super }}
@@ -8,6 +8,42 @@
 
 {% block content %}
 
-Account
+<div class="h-100 d-flex align-items-center justify-content-center">
 
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+
+        <h1 class="mt-1">{% translate "my_account" %}</h1>
+        <hr class="hr" />
+        <h2>{% translate "connexion" %}</h2>
+
+        <div id="block-email">
+            <label for="email_disabled" class="text-fore">{% translate "email" %}</label>
+            <div class="d-flex flex-row">
+                <input type="text" id="email_disabled" name="email_disabled" class="form-control" disabled value="{{ user.email }}" />
+                <button class="btn button button-dark link-nav me-2" id="button-email">{% translate "edit" %}</button>
+            </div>
+        </div>
+
+        <div id="form-email" class="d-none">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ email_form.as_p }}
+                <div>
+                    <input type="submit" name="{{email_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
+                    <button class="btn button button-dark link-nav me-2" id="cancel-email">{% translate "cancel" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <label for="password_disabled" class="text-fore">{% translate "password" %}</label>
+            <div class="d-flex flex-row">
+                <input type="password" id="password_disabled" name="password_disabled" class="form-control" disabled value="********" />
+                <button class="btn button button-dark link-nav me-2">{% translate "edit" %}</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{% static "js/account/account.js" %}"></script>
 {% endblock %}
