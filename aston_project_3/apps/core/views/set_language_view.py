@@ -72,13 +72,25 @@ class SetLanguageViewSet(View):
         if request.method == "POST":
             lang_code = request.POST.get("language")
             if lang_code and check_for_language(lang_code):
+                activate(get_language_from_path(next_url))
                 if next_url:
-                    url_splitted = next_url.split("/")
-                    url_splitted[1] = lang_code
-                    next_trans = "/".join(url_splitted)
-                    # next_trans = translate_url(next_url, lang_code)
-                    if next_trans != next_url:
-                        response = HttpResponseRedirect(next_trans)
+                    url_is_allowed = None
+                    try:
+                        resolve(next_url)
+                        url_is_allowed = True
+                    except Resolver404:
+                        url_is_allowed = False
+                    if url_is_allowed:
+                        next_url = reverse(resolve(next_url).url_name)
+                        url_splitted = next_url.split("/")
+                        url_splitted[1] = lang_code
+                        next_trans = "/".join(url_splitted)
+                        if next_trans != next_url:
+                            response = HttpResponseRedirect(next_trans)
+                    else:
+                        response = HttpResponseRedirect("/")
+                response["Accept-Language"] = lang_code
+                activate(lang_code)
                 # response.set_cookie(
                 #     settings.LANGUAGE_COOKIE_NAME,
                 #     lang_code,
