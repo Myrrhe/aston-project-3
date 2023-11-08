@@ -29,7 +29,7 @@
 
         <p class="fore-front title-login mt-1">{% translate "connect_existing_account" %}</p>
 
-        <form method="post" action="{% url "login" message="" %}" class="w-75">
+        <form method="post" action="{% url "account:login" message="" %}" class="w-75">
             {% csrf_token %}
 
             {% if form.non_field_errors %}
@@ -58,7 +58,7 @@
 
         {# Assumes you set up the password_reset view in your URLconf #}
         <p><a href="{% url "password_reset" %}" class="link-light">{% translate "forgot_password" %}</a></p>
-        <p><a href="{% url "signup" %}" class="link-light">{% translate "want_to_create_account" %}</a></p>
+        <p><a href="{% url "account:signup" %}" class="link-light">{% translate "want_to_create_account" %}</a></p>
 
     </div>
 

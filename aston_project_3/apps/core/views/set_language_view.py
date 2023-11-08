@@ -1,13 +1,13 @@
 """The language view"""
 from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import resolve, Resolver404, reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import (
     activate,
     check_for_language,
     get_language_from_path,
 )
 from django.views import View
-from django.utils.http import url_has_allowed_host_and_scheme
 
 
 class SetLanguageViewSet(View):
@@ -37,7 +37,11 @@ class SetLanguageViewSet(View):
                 if next_url:
                     try:
                         resolved = resolve(next_url)
-                        next_url = reverse(resolved.url_name, kwargs=resolved.kwargs)
+                        next_url = reverse(
+                            resolved.app_name + ":" + resolved.url_name,
+                            kwargs=resolved.kwargs,
+                            current_app=resolved.app_name,
+                        )
                         url_splitted = next_url.split("/")
                         url_splitted[1] = lang_code
                         next_trans = "/".join(url_splitted)

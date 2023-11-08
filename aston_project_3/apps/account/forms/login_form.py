@@ -1,6 +1,6 @@
 """The login form"""
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from django import forms
 
@@ -33,7 +33,7 @@ class LoginForm(AuthenticationForm):
         widget=NonStickyTextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": _("security_key_optionnal"),
+                "placeholder": _("security_key_optional"),
                 "id": "security_key",
                 "autocomplete": "off",
             },

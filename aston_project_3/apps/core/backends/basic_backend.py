@@ -4,6 +4,7 @@ from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp import verify_token
+from django.urls import resolve
 
 from apps.account.models import User
 
@@ -16,8 +17,6 @@ class BasicBackend(BaseBackend):
     def authenticate(
         self, request: HttpRequest, username: str = None, password: str = None, **kwargs
     ) -> any:
-        if "security_key" in request.POST:
-            print(request.POST["security_key"])
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         if username is None or password is None:
@@ -30,7 +29,8 @@ class BasicBackend(BaseBackend):
             UserModel().set_password(password)
         else:
             if user.check_password(password) and self.user_can_authenticate(user):
-                if request.path == "/login/":
+                resolved = resolve(request.path)
+                if resolved.url_name == "login" and resolved.namespace == "account":
                     print("Logging via non-admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():
                         # The user have a security key
@@ -46,7 +46,7 @@ class BasicBackend(BaseBackend):
                     else:
                         # The user don't have a security key
                         return user
-                elif request.path == "/admin/login/":
+                elif resolved.url_name == "login" and resolved.namespace == "admin":
                     print("Logging via admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():
                         # The user have a security key
