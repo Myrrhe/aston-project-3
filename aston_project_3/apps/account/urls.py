@@ -4,6 +4,7 @@ from django.urls import path, re_path
 from apps.account.forms import LoginForm
 from apps.account.views import AccountCreatedViewSet
 from apps.account.views import AccountViewSet
+from apps.account.views import AddSecurityKeyViewSet
 from apps.account.views import CookiesPolicyViewSet
 from apps.account.views import CookiesSettingsViewSet
 from apps.account.views import HomeViewSet
@@ -29,4 +30,5 @@ urlpatterns = [
     path(
         "cookies-settings/", CookiesSettingsViewSet.as_view(), name="cookies-settings"
     ),
+    path("add-security-key/", AddSecurityKeyViewSet.as_view(), name="add-security-key"),
 ]

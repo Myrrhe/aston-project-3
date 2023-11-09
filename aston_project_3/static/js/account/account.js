@@ -17,3 +17,21 @@ $("#cancel-email").on("click", function () {
         $("#form-email").addClass("d-none");
     }
 });
+
+$("#button-password").on("click", function () {
+    if (!$("#block-password").hasClass("d-none")) {
+        $("#block-password").addClass("d-none");
+    }
+    if ($("#form-password").hasClass("d-none")) {
+        $("#form-password").removeClass("d-none");
+    }
+});
+
+$("#cancel-password").on("click", function () {
+    if ($("#block-password").hasClass("d-none")) {
+        $("#block-password").removeClass("d-none");
+    }
+    if (!$("#form-password").hasClass("d-none")) {
+        $("#form-password").addClass("d-none");
+    }
+});

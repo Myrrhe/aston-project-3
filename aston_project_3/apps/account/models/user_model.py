@@ -4,6 +4,8 @@ from __future__ import annotations
 import urllib
 import uuid
 
+from django.conf import settings
+
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -60,12 +62,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     """The user's model"""
 
-    LANGUAGES_CHOICES = [
-        ("EN", "English"),
-        ("FR", "Français"),
-        ("ES", "Español"),
-    ]
-
     DARK_CHOICES = [
         ("DARK", 0),
         ("LIGHT", 1),
@@ -88,10 +84,17 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         verbose_name=_("username"),
         help_text=_("username_help_text"),
     )
+    biography = models.CharField(
+        max_length=60,
+        null=True,
+        blank=False,
+        verbose_name=_("biography"),
+        help_text=_("biography_help_text"),
+    )
     language = models.CharField(
         max_length=2,
-        choices=LANGUAGES_CHOICES,
-        default="FR",
+        choices=settings.LANGUAGES,
+        default="fr",
     )
     theme = models.CharField(
         choices=DARK_CHOICES,
@@ -136,6 +139,9 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     def has_perm(self, perm: str, obj: object = None) -> bool:
         return self.is_staff
+
+    def has_security_key(self) -> bool:
+        return TOTPDevice.objects.filter(user_id=self.id).exists()
 
     # def send_email_confirmation(self, template, path, email):
     #     email_key = "newEmail" if email is not None else "email"

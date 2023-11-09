@@ -14,7 +14,7 @@
 
         <h1 class="mt-1">{% translate "my_account" %}</h1>
         <hr class="hr" />
-        <h2>{% translate "connexion" %}</h2>
+        <h2>{% translate "connection" %}</h2>
 
         <div id="block-email">
             <label for="email_disabled" class="text-fore">{% translate "email" %}</label>
@@ -35,13 +35,49 @@
             </form>
         </div>
 
-        <div>
+        <div id="block-password">
             <label for="password_disabled" class="text-fore">{% translate "password" %}</label>
             <div class="d-flex flex-row">
                 <input type="password" id="password_disabled" name="password_disabled" class="form-control" disabled value="********" />
-                <button class="btn button button-dark link-nav me-2">{% translate "edit" %}</button>
+                <button class="btn button button-dark link-nav me-2" id="button-password">{% translate "edit" %}</button>
             </div>
         </div>
+
+        <div id="form-password" class="d-none">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ password_form.as_p }}
+                <div>
+                    <input type="submit" name="{{password_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
+                    <button class="btn button button-dark link-nav me-2" id="cancel-password">{% translate "cancel" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <hr class="hr" />
+
+        <h2>{% translate "my_informations" %}</h2>
+
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ personal_informations_form.as_p }}
+                <div>
+                    <input type="submit" name="{{personal_informations_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
+                </div>
+            </form>
+        </div>
+
+        <hr class="hr" />
+
+        <h2>{% translate "security_key" %}</h2>
+
+        {% if has_security_key %}
+        has_security_key
+
+        {% else %}
+            <a class="btn button button-dark link-nav me-2" href="{% url "account:add-security-key" %}">{% translate "add_security_key" %}</a>
+        {% endif %}
     </div>
 
 </div>

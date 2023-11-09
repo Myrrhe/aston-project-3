@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 11:07+0100\n"
+"POT-Creation-Date: 2023-11-09 11:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,18 +34,44 @@ msgstr ""
 msgid "informations"
 msgstr ""
 
+#: .\apps\account\forms\change_email_form.py:19
 #: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:81
+#: .\apps\account\models\user_model.py:77 .\templates\account\account.html:20
 msgid "email"
 msgstr ""
 
+#: .\apps\account\forms\change_email_form.py:28
 #: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
+#: .\templates\account\account.html:39
 msgid "password"
 msgstr ""
 
+#: .\apps\account\forms\change_email_form.py:37
+#: .\apps\account\forms\change_password_form.py:28
 #: .\apps\account\forms\login_form.py:36
 msgid "security_key_optional"
 msgstr "Security key (optional)"
+
+#: .\apps\account\forms\change_password_form.py:19
+msgid "current_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:39
+msgid "new_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:48
+msgid "repeat_new_password"
+msgstr ""
+
+#: .\apps\account\forms\personal_informations_form.py:17
+msgid "pseudo"
+msgstr ""
+
+#: .\apps\account\forms\personal_informations_form.py:26
+#: .\apps\account\models\user_model.py:91
+msgid "biography"
+msgstr ""
 
 #: .\apps\account\forms\signup_form.py:26
 msgid "tou_text"
@@ -55,57 +81,63 @@ msgstr ""
 msgid "password_repeat"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:82
+#: .\apps\account\models\user_model.py:78
 #, fuzzy
 #| msgid "username_help_text"
 msgid "email_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\account\models\user_model.py:88
+#: .\apps\account\models\user_model.py:84
 msgid "username"
 msgstr "User name"
 
-#: .\apps\account\models\user_model.py:89
+#: .\apps\account\models\user_model.py:85
 msgid "username_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\account\models\user_model.py:104
+#: .\apps\account\models\user_model.py:92
+#, fuzzy
+#| msgid "username_help_text"
+msgid "biography_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\account\models\user_model.py:107
 msgid "is_email_confirmed"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:105
+#: .\apps\account\models\user_model.py:108
 #, fuzzy
 #| msgid "username_help_text"
 msgid "is_email_confirmed_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\account\models\user_model.py:109
+#: .\apps\account\models\user_model.py:112
 msgid "is_tou_accepted"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:110
+#: .\apps\account\models\user_model.py:113
 #, fuzzy
 #| msgid "username_help_text"
 msgid "is_tou_accepted_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\account\models\user_model.py:114
+#: .\apps\account\models\user_model.py:117
 msgid "is_admin"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:115
+#: .\apps\account\models\user_model.py:118
 #, fuzzy
 #| msgid "username_help_text"
 msgid "is_admin_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\account\models\user_model.py:127
+#: .\apps\account\models\user_model.py:130
 #, fuzzy
 #| msgid "username"
 msgid "user"
 msgstr "User name"
 
-#: .\apps\account\models\user_model.py:128
+#: .\apps\account\models\user_model.py:131
 #, fuzzy
 #| msgid "username"
 msgid "users"
@@ -123,6 +155,41 @@ msgstr "English"
 msgid "spanish"
 msgstr "Spanish"
 
+#: .\templates\account\account.html:15 .\templates\base.html:102
+msgid "my_account"
+msgstr ""
+
+#: .\templates\account\account.html:17
+msgid "connection"
+msgstr ""
+
+#: .\templates\account\account.html:23 .\templates\account\account.html:42
+msgid "edit"
+msgstr ""
+
+#: .\templates\account\account.html:32 .\templates\account\account.html:51
+#: .\templates\account\account.html:66
+msgid "validate"
+msgstr ""
+
+#: .\templates\account\account.html:33 .\templates\account\account.html:52
+msgid "cancel"
+msgstr ""
+
+#: .\templates\account\account.html:59
+msgid "my_informations"
+msgstr ""
+
+#: .\templates\account\account.html:73 .\templates\admin\login.html:45
+msgid "security_key"
+msgstr ""
+
+#: .\templates\account\account.html:79
+#, fuzzy
+#| msgid "security_key_optional"
+msgid "add_security_key"
+msgstr "Security key (optional)"
+
 #: .\templates\admin\login.html:9
 msgid ""
 "\n"
@@ -136,10 +203,6 @@ msgstr[1] ""
 msgid ""
 "You are authenticated as %(username)s, but are not authorized to access this "
 "page. Would you like to login to a different account?"
-msgstr ""
-
-#: .\templates\admin\login.html:45
-msgid "security_key"
 msgstr ""
 
 #: .\templates\admin\login.html:59
@@ -188,10 +251,6 @@ msgstr ""
 
 #: .\templates\base.html:91
 msgid "change"
-msgstr ""
-
-#: .\templates\base.html:102
-msgid "my_account"
 msgstr ""
 
 #: .\templates\base.html:103
