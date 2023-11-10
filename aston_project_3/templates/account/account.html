@@ -71,13 +71,18 @@
         <hr class="hr" />
 
         <h2>{% translate "security_key" %}</h2>
-
         {% if has_security_key %}
-        has_security_key
-
+            <p>{% translate "already_security_key" %}</p>
         {% else %}
+            <p>{% translate "no_security_key_text" %}</p>
             <a class="btn button button-dark link-nav me-2" href="{% url "account:add-security-key" %}">{% translate "add_security_key" %}</a>
         {% endif %}
+
+        <hr class="hr" />
+
+        <div>
+            <p class="fore-danger">{% translate "danger_zone" %}</p>
+        </div>
     </div>
 
 </div>

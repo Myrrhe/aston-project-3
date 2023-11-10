@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 {% block head_css_site %}
 {{ block.super }}
@@ -8,6 +8,23 @@
 
 {% block content %}
 
-Add security key
-
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+        <h1 class="mt-1">{% translate "add_security_key" %}</h1>
+        <p>{% translate "security_key_text" %}</p>
+        {% if has_security_key %}
+            <p>{% translate "already_security_key" %}</p>
+        {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div>
+                    <button class="btn button button-dark link-nav me-2" id="button-security-code">{% translate "create_security_code" %}</button>
+                    <input type="submit" class="btn button button-bright" value="{% translate "validate" %}" />
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+<script src="{% static "js/security_key/add.js" %}"></script>
 {% endblock %}
