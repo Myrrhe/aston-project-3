@@ -5,10 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from django import forms
 from django.forms import ModelForm, ValidationError
-from django.http import HttpRequest
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
-from apps.account.models import User
 from apps.core.inputs import NonStickyTextInput
 
 

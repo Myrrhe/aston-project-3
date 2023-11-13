@@ -2,14 +2,18 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
 from apps.account.forms import LoginForm
-from apps.account.views import AccountCreatedViewSet
-from apps.account.views import AccountViewSet
-from apps.account.views import AddSecurityKeyViewSet
-from apps.account.views import CookiesPolicyViewSet
-from apps.account.views import CookiesSettingsViewSet
-from apps.account.views import HomeViewSet
-from apps.account.views import SignupViewSet
-from apps.account.views import StartViewSet
+from apps.account.views import (
+    AccountCreatedViewSet,
+    AccountDeletedViewSet,
+    AccountViewSet,
+    AddSecurityKeyViewSet,
+    CookiesPolicyViewSet,
+    CookiesSettingsViewSet,
+    DeleteAccountViewSet,
+    HomeViewSet,
+    SignupViewSet,
+    StartViewSet,
+)
 
 app_name = "account"
 
@@ -26,6 +30,8 @@ urlpatterns = [
     path("signup/", SignupViewSet.as_view(), name="signup"),
     path("account_created/", AccountCreatedViewSet.as_view(), name="account-created"),
     path("account/", AccountViewSet.as_view(), name="account"),
+    path("delete-account/", DeleteAccountViewSet.as_view(), name="delete-account"),
+    path("account-deleted/", AccountDeletedViewSet.as_view(), name="account-deleted"),
     path("cookies-policy/", CookiesPolicyViewSet.as_view(), name="cookies-policy"),
     path(
         "cookies-settings/", CookiesSettingsViewSet.as_view(), name="cookies-settings"

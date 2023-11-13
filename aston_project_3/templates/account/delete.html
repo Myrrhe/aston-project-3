@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+
+        <h1 class="mt-1">{% translate "account_deletion" %}</h1>
+
+        <p>{% translate "account_deletion_text" %}</p>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <input type="submit" class="btn button button-bright" value="{% translate "delete_my_account" %}" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<script src="{% static "js/account/account.js" %}"></script>
+{% endblock %}

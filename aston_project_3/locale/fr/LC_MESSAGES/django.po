@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 11:43+0100\n"
+"POT-Creation-Date: 2023-11-13 11:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,11 +48,13 @@ msgstr "Mot de passe"
 
 #: .\apps\account\forms\change_email_form.py:37
 #: .\apps\account\forms\change_password_form.py:28
+#: .\apps\account\forms\delete_account_form.py:30
 #: .\apps\account\forms\login_form.py:36
 msgid "security_key_optional"
 msgstr "Clef de sécurité (optionel)"
 
 #: .\apps\account\forms\change_password_form.py:19
+#: .\apps\account\forms\delete_account_form.py:21
 msgid "current_password"
 msgstr "Mot de passe actuel"
 
@@ -64,14 +66,30 @@ msgstr "Nouveau mot de passe"
 msgid "repeat_new_password"
 msgstr "Confirmez le mot de passe"
 
+#: .\apps\account\forms\create_security_key_form.py:20
+msgid "key"
+msgstr "Clef"
+
+#: .\apps\account\forms\create_security_key_form.py:30
+msgid "code"
+msgstr "Code"
+
+#: .\apps\account\forms\create_security_key_form.py:61
+msgid "code_did_not_work"
+msgstr "Ce code n'a pas fonctionné"
+
+#: .\apps\account\forms\delete_account_form.py:53
+msgid "authentication_error"
+msgstr "L'authentification a échouée"
+
 #: .\apps\account\forms\personal_informations_form.py:17
 msgid "pseudo"
-msgstr ""
+msgstr "Pseudonyme"
 
 #: .\apps\account\forms\personal_informations_form.py:26
 #: .\apps\account\models\user_model.py:91
 msgid "biography"
-msgstr ""
+msgstr "Biographie"
 
 #: .\apps\account\forms\signup_form.py:26
 msgid "tou_text"
@@ -157,7 +175,7 @@ msgid "edit"
 msgstr "Éditer"
 
 #: .\templates\account\account.html:32 .\templates\account\account.html:51
-#: .\templates\account\account.html:66
+#: .\templates\account\account.html:66 .\templates\security_key\add.html:23
 msgid "validate"
 msgstr "Valider"
 
@@ -173,9 +191,49 @@ msgstr "Mes informations"
 msgid "security_key"
 msgstr "Clef de sécurité"
 
-#: .\templates\account\account.html:79
+#: .\templates\account\account.html:75 .\templates\security_key\add.html:16
+msgid "already_security_key"
+msgstr "Ce compte possède déjà une clef de sécurité"
+
+#: .\templates\account\account.html:77
+msgid "no_security_key_text"
+msgstr "Ce compte ne possède pas de clef de sécurité"
+
+#: .\templates\account\account.html:78 .\templates\security_key\add.html:13
 msgid "add_security_key"
 msgstr "Ajouter une clef de sécurité au compte"
+
+#: .\templates\account\account.html:84
+msgid "danger_zone"
+msgstr "Zone de de danger"
+
+#: .\templates\account\account.html:85 .\templates\account\delete.html:23
+msgid "delete_my_account"
+msgstr "Supprimer mon compte"
+
+#: .\templates\account\delete.html:15
+msgid "account_deletion"
+msgstr "Suppression du compte"
+
+#: .\templates\account\delete.html:17
+msgid "account_deletion_text"
+msgstr "Votre compte ainsi que tous vos bots seront supprimés. Cette action est DÉFINITIVE."
+
+#: .\templates\account\deleted.html:14
+msgid "account_deleted"
+msgstr "Compte supprimé"
+
+#: .\templates\account\deleted.html:15
+msgid "account_deleted_text"
+msgstr "Votre compte a été supprimé avec succès."
+
+#: .\templates\account\deleted.html:17
+msgid "connect_to_another_account"
+msgstr "Se connecter à un autre compte"
+
+#: .\templates\account\deleted.html:18
+msgid "create_another_account"
+msgstr "Créer un nouveau compte"
 
 #: .\templates\admin\login.html:9
 msgid ""
@@ -365,3 +423,11 @@ msgstr "Créer mon compte"
 #: .\templates\registration\signup.html:66
 msgid "already_have_account"
 msgstr "J'ai déjà un compte"
+
+#: .\templates\security_key\add.html:14
+msgid "security_key_text"
+msgstr "Une clef de sécurité permet de renforcer la protection de votre compte."
+
+#: .\templates\security_key\add.html:22
+msgid "create_security_code"
+msgstr "Ajouter une clef de sécurité au compte"
