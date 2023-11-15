@@ -47,7 +47,7 @@ class CreateSecurityKeyForm(ModelForm):
 
     def __init__(self, *args, **kwargs) -> None:
         self.request = kwargs.pop("request")
-        super(CreateSecurityKeyForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields["key"].initial = b32encode(self.instance.bin_key).decode("utf-8")
         self.fields["key_init"].initial = self.instance.key
 

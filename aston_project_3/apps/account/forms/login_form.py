@@ -42,7 +42,7 @@ class LoginForm(AuthenticationForm):
     )
 
     def __init__(self, *args, **kwargs) -> None:
-        super(LoginForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     class Meta(object):
         """The meta class"""

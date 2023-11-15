@@ -52,11 +52,11 @@ class ChangePasswordForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs) -> None:
-        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def is_valid(self) -> bool:
         res = True
-        res = res and super(ChangePasswordForm, self).is_valid()
+        res = res and super().is_valid()
         return res
 
     def save(self, request: HttpRequest) -> None:

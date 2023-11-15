@@ -37,7 +37,7 @@ class DeleteAccountForm(forms.Form):
 
     def __init__(self, *args, **kwargs) -> None:
         self.request = kwargs.pop("request")
-        super(DeleteAccountForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:
         if self.request.user.check_password(self.cleaned_data["password"]) and (
@@ -52,7 +52,7 @@ class DeleteAccountForm(forms.Form):
         else:
             raise ValidationError(_("authentication_error"))
 
-    def save(self, commit: bool = False) -> None:
+    def delete_account(self) -> None:
         print("###########################################################")
         if self.request.user.has_security_key():
             TOTPDevice.objects.filter(user_id=self.request.user.id).delete()

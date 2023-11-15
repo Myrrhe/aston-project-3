@@ -18,14 +18,14 @@ class AddSecurityKeyViewSet(CreateView):
         )
 
     def get_context_data(self, **kwargs) -> any:
-        context = super(AddSecurityKeyViewSet, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["has_security_key"] = self.request.user.has_security_key()
         return context
 
     def get_form_kwargs(self) -> any:
         """Passes the request object to the form class.
         This is necessary to give the current user to the form"""
-        kwargs = super(AddSecurityKeyViewSet, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs["request"] = self.request
         return kwargs
 
