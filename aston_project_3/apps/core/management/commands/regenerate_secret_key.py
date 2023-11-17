@@ -19,12 +19,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options) -> None:
         if options["auto"]:
-            machin = truc()
+            new_secret_key = truc()
             new_env = []
             with open("aston_project_3/.env", "r") as file:
                 for line in file:
                     if line.startswith("SECRET_KEY="):
-                        line = f"SECRET_KEY={machin}"
+                        line = f"SECRET_KEY={new_secret_key}"
                     new_env.append(line)
             with open("aston_project_3/.env", "w") as file:
                 for line in new_env:
@@ -32,6 +32,6 @@ class Command(BaseCommand):
                 file.write("\n")
             print("The secret key has been regenerated")
             if options["verbosity"] > 1:
-                print(machin)
+                print(new_secret_key)
         else:
             print(get_random_secret_key())
