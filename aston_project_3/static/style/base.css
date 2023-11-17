@@ -51,6 +51,15 @@
     background-color: var(--bright-hover-color) !important;
 }
 
+.button-bright-alt {
+    background-color: var(--bright-alt-color) !important;
+    color: var(--back-color) !important;
+}
+
+.button-bright-alt:hover {
+    background-color: var(--bright-alt-hover-color) !important;
+}
+
 .button-dark {
     background-color: var(--primary-light-color) !important;
     color: var(--fore-color) !important;
@@ -203,4 +212,43 @@ button.close {
 
 .lightdark::before {
     content: "\f042";
+}
+
+h1 {
+    color: var(--fore-color);
+    font-weight: 600 !important;
+    font-size: 1.75rem !important;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: var(--fore-color);
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    text-transform: uppercase;
+}
+
+h3 {
+    color: var(--fore-color);
+    font-weight: 400 !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase;
+}
+
+hr {
+    color: var(--fore-color) !important;
+    opacity: 0.5 !important;
+    height: 2px !important;
+}
+
+.hr-medium {
+    color: var(--fore-color) !important;
+    opacity: 0.25 !important;
+    height: 2px !important;
+}
+
+.hr-low {
+    color: var(--fore-color) !important;
+    opacity: 0.1 !important;
+    height: 2px !important;
 }

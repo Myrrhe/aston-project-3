@@ -27,8 +27,8 @@
           <button id="button_cookie_required" type="button" class="btn btn-primary button-cookie" data-bs-dismiss="modal" >{% translate "required_cookies_only" %}</button>
           <button id="button_cookie_accept_all" type="button" class="btn btn-secondary button-cookie" data-bs-dismiss="modal">{% translate "accept_all" %}</button>
           <button type="button" class="btn btn-secondary button-cookie" data-bs-dismiss="modal">{% translate "save_settings" %}</button>
-          <a href="{% url "cookies-settings" %}" class="btn btn-secondary button-cookie">{% translate "cookies_settings_page" %}</a>
-          <a href="{% url "cookies-policy" %}" class="button-cookie">{% translate "learn_more" %}</a>
+          <a href="{% url "account:cookies-settings" %}" class="btn btn-secondary button-cookie">{% translate "cookies_settings_page" %}</a>
+          <a href="{% url "account:cookies-policy" %}" class="button-cookie">{% translate "learn_more" %}</a>
         </div>
       </div>
     </div>

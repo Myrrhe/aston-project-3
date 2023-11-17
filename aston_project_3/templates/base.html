@@ -24,7 +24,7 @@
         <div class="container-fluid p-0 main-container d-flex flex-column">
             <nav class="navbar navbar-expand-lg main-nav d-flex">
                 <div class="d-flex align-items-stretch">
-                    <a class="navbar-brand my-2" href="{% url "home" %}">
+                    <a class="navbar-brand my-2" href="{% url "account:home" %}">
                         <img
                             src="{% static "img/svg/logo_00.svg" %}"
                             alt="Le logo du site"
@@ -35,7 +35,7 @@
                     </a>
                     <ul class="navbar-nav align-items-stretch">
                         <li class="d-flex align-items-center no-bar">
-                            <a href="{% url "home" %}" class="h-100 d-flex align-items-center">
+                            <a href="{% url "account:home" %}" class="h-100 d-flex align-items-center">
                                 <p class="link-light fas fa-house link-nav-icon"></p>
                             </a>
                         </li>
@@ -98,7 +98,7 @@
                                     {{request.user.email}}
                                 </a>
                                 <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "account" %}">{% translate "my_account" %}</a></li>
+                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "account:account" %}">{% translate "my_account" %}</a></li>
                                     <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "logout" %}">{% translate "deconnect" %}</a></li>
                                 </ul>
                             </li>
@@ -106,8 +106,8 @@
                     </div>
                 {% else %}
                     <div class="d-flex auth-block ms-auto me-5">
-                        <a class="btn button button-dark link-nav me-2" href="{% url "login" message="" %}">{% translate "connect" %}</a>
-                        <a class="btn button button-bright link-nav" href="{% url "signup" %}">{% translate "signup" %}</a>
+                        <a class="btn button button-dark link-nav me-2" href="{% url "account:login" message="" %}">{% translate "connect" %}</a>
+                        <a class="btn button button-bright link-nav" href="{% url "account:signup" %}">{% translate "signup" %}</a>
                     </div>
                 {% endif %}
             </nav>

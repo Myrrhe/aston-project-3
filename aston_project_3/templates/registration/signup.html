@@ -33,7 +33,7 @@
                 </ul>
                 <ul class="non-field-errors text-alert">
                     {% for error in form.non_field_errors %}
-                    <li class="form-error">{{ error|escape }}</li>
+                        <li class="form-error">{{ error|escape }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -63,7 +63,13 @@
              value="{% translate "create_my_account" %}"
              class="w-100 mt-1 mb-3 button button-bright btn">
         </form>
-        <p><a href="{% url "login" message="" %}" class="link-light">{% translate "already_have_account" %}</a></p>
+        <p>
+            <a
+                href="{% url "account:login" message="" %}"
+                class="link-light">
+                {% translate "already_have_account" %}
+            </a>
+        </p>
     </div>
 
 </div>

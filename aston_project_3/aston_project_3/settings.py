@@ -123,7 +123,7 @@ AUTH_USER_MODEL = "account.User"
 
 AUTHENTICATION_BACKENDS = ["apps.core.backends.BasicBackend"]
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "account:home"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -134,7 +134,7 @@ LANGUAGES = [
     ("es", _("spanish")),
 ]
 
-# LANGUAGE_CODE = "fr-FR"
+LANGUAGE_CODE = "fr-FR"
 
 LANGUAGE_COOKIE_NAME = "language"
 

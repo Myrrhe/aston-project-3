@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-07 10:52+0100\n"
+"POT-Creation-Date: 2023-11-17 11:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,18 +34,94 @@ msgstr "Permissions"
 msgid "informations"
 msgstr "Informations"
 
+#: .\apps\account\forms\change_email_form.py:20
 #: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:81
+#: .\apps\account\models\user_model.py:78 .\templates\account\account.html:21
 msgid "email"
 msgstr "Email"
 
+#: .\apps\account\forms\change_email_form.py:24
+msgid "new_email"
+msgstr "Nouvel email"
+
+#: .\apps\account\forms\change_email_form.py:30
+#: .\apps\account\forms\change_email_form.py:34
+#: .\apps\account\forms\delete_account_form.py:21
+#: .\apps\account\forms\delete_account_form.py:25
 #: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
+#: .\templates\account\account.html:79
 msgid "password"
 msgstr "Mot de passe"
 
+#: .\apps\account\forms\change_email_form.py:40
+#: .\apps\account\forms\change_email_form.py:46
+#: .\apps\account\forms\change_password_form.py:30
+#: .\apps\account\forms\change_password_form.py:36
+#: .\apps\account\forms\delete_account_form.py:31
+#: .\apps\account\forms\delete_account_form.py:37
+#: .\templates\account\account.html:153 .\templates\admin\login.html:45
+msgid "security_key"
+msgstr "Clef de sécurité"
+
+#: .\apps\account\forms\change_email_form.py:58
+#: .\apps\account\forms\change_password_form.py:69
+msgid "invalid_credentials"
+msgstr "Identifiants invalides"
+
+#: .\apps\account\forms\change_password_form.py:20
+#: .\apps\account\forms\change_password_form.py:24
+msgid "current_password"
+msgstr "Mot de passe actuel"
+
+#: .\apps\account\forms\change_password_form.py:42
+#: .\apps\account\forms\change_password_form.py:46
+msgid "new_password"
+msgstr "Nouveau mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:52
+msgid "repeat_new_password"
+msgstr "Confirmez le mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:56
+msgid "confirm_new_password"
+msgstr "Confirmez le mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:71
+msgid "password_no_match"
+msgstr "Les deux mots de passes ne sont pas identiques"
+
+#: .\apps\account\forms\create_security_key_form.py:20
+#: .\apps\account\forms\create_security_key_form.py:25
+msgid "key"
+msgstr "Clef"
+
+#: .\apps\account\forms\create_security_key_form.py:31
+#: .\apps\account\forms\create_security_key_form.py:37
+msgid "code"
+msgstr "Code"
+
+#: .\apps\account\forms\create_security_key_form.py:63
+msgid "code_did_not_work"
+msgstr "Ce code n'a pas fonctionné"
+
+#: .\apps\account\forms\delete_account_form.py:55
+msgid "authentication_error"
+msgstr "L'authentification a échouée"
+
 #: .\apps\account\forms\login_form.py:36
-msgid "security_key_optionnal"
+msgid "security_key_optional"
 msgstr "Clef de sécurité (optionel)"
+
+#: .\apps\account\forms\personal_informations_form.py:17
+#: .\apps\account\forms\personal_informations_form.py:21
+msgid "pseudo"
+msgstr "Pseudonyme"
+
+#: .\apps\account\forms\personal_informations_form.py:27
+#: .\apps\account\forms\personal_informations_form.py:31
+#: .\apps\account\models\user_model.py:92
+msgid "biography"
+msgstr "Biographie"
 
 #: .\apps\account\forms\signup_form.py:26
 msgid "tou_text"
@@ -57,62 +133,149 @@ msgstr ""
 msgid "password_repeat"
 msgstr "Répétez le mot de passe"
 
-#: .\apps\account\models\user_model.py:82
+#: .\apps\account\models\user_model.py:79
 msgid "email_help_text"
 msgstr "L'email de l'utilisateur"
 
-#: .\apps\account\models\user_model.py:88
+#: .\apps\account\models\user_model.py:85
 msgid "username"
 msgstr "Nom d'utilisateur"
 
-#: .\apps\account\models\user_model.py:89
+#: .\apps\account\models\user_model.py:86
 msgid "username_help_text"
 msgstr "Le nom utilisé par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:104
+#: .\apps\account\models\user_model.py:93
+msgid "biography_help_text"
+msgstr "Un message de présentation de l'utilisateur"
+
+#: .\apps\account\models\user_model.py:108
 msgid "is_email_confirmed"
 msgstr "Email confirmé"
 
-#: .\apps\account\models\user_model.py:105
+#: .\apps\account\models\user_model.py:109
 msgid "is_email_confirmed_help_text"
 msgstr "L'adresse email a-t-elle été vérifiée"
 
-#: .\apps\account\models\user_model.py:109
+#: .\apps\account\models\user_model.py:113
 msgid "is_tou_accepted"
 msgstr "Conditions d'utilisations"
 
-#: .\apps\account\models\user_model.py:110
+#: .\apps\account\models\user_model.py:114
 msgid "is_tou_accepted_help_text"
 msgstr ""
 "Les conditions d'utilisations ont-elles été acceptées par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:114
+#: .\apps\account\models\user_model.py:118
 msgid "is_admin"
 msgstr "Admin"
 
-#: .\apps\account\models\user_model.py:115
+#: .\apps\account\models\user_model.py:119
 msgid "is_admin_help_text"
 msgstr "L'utilisateur est-il un administrateur"
 
-#: .\apps\account\models\user_model.py:127
+#: .\apps\account\models\user_model.py:131
 msgid "user"
 msgstr "Utilisateur"
 
-#: .\apps\account\models\user_model.py:128
+#: .\apps\account\models\user_model.py:132
 msgid "users"
 msgstr "Utilisateurs"
 
-#: .\aston_project_3\settings.py:132 .\templates\base.html:80
-msgid "english"
-msgstr "Anglais"
-
-#: .\aston_project_3\settings.py:133 .\templates\base.html:79
+#: .\aston_project_3\settings.py:132
 msgid "french"
 msgstr "Français"
 
-#: .\aston_project_3\settings.py:134 .\templates\base.html:81
+#: .\aston_project_3\settings.py:133
+msgid "english"
+msgstr "Anglais"
+
+#: .\aston_project_3\settings.py:134
 msgid "spanish"
 msgstr "Espagnol"
+
+#: .\templates\account\account.html:15 .\templates\base.html:102
+msgid "my_account"
+msgstr "Mon compte"
+
+#: .\templates\account\account.html:17
+msgid "connection"
+msgstr "Se connecter"
+
+#: .\templates\account\account.html:32 .\templates\account\account.html:90
+msgid "edit"
+msgstr "Éditer"
+
+#: .\templates\account\account.html:39
+msgid "change_email"
+msgstr "Changer l'email"
+
+#: .\templates\account\account.html:65 .\templates\account\account.html:116
+#: .\templates\account\account.html:146 .\templates\security_key\add.html:47
+msgid "validate"
+msgstr "Valider"
+
+#: .\templates\account\account.html:69 .\templates\account\account.html:120
+msgid "cancel"
+msgstr "Annuler"
+
+#: .\templates\account\account.html:97
+msgid "change_password"
+msgstr "Changer le mot de passe"
+
+#: .\templates\account\account.html:130
+msgid "my_informations"
+msgstr "Mes informations"
+
+#: .\templates\account\account.html:155 .\templates\security_key\add.html:16
+msgid "already_security_key"
+msgstr "Ce compte possède déjà une clef de sécurité"
+
+#: .\templates\account\account.html:157
+msgid "no_security_key_text"
+msgstr "Ce compte ne possède pas de clef de sécurité"
+
+#: .\templates\account\account.html:161 .\templates\security_key\add.html:13
+msgid "add_security_key"
+msgstr "Ajouter une clef de sécurité au compte"
+
+#: .\templates\account\account.html:168
+msgid "danger_zone"
+msgstr "Zone de de danger"
+
+#: .\templates\account\account.html:172 .\templates\account\delete.html:41
+msgid "delete_my_account"
+msgstr "Supprimer mon compte"
+
+#: .\templates\account\delete.html:15
+msgid "account_deletion"
+msgstr "Suppression du compte"
+
+#: .\templates\account\delete.html:17
+msgid "account_deletion_text"
+msgstr ""
+"Votre compte ainsi que tous vos bots seront supprimés. Cette action est "
+"DÉFINITIVE."
+
+#: .\templates\account\delete.html:36 .\templates\security_key\add.html:42
+msgid "back_to_account"
+msgstr "Revenir à mon compte"
+
+#: .\templates\account\deleted.html:14
+msgid "account_deleted"
+msgstr "Compte supprimé"
+
+#: .\templates\account\deleted.html:15
+msgid "account_deleted_text"
+msgstr "Votre compte a été supprimé avec succès."
+
+#: .\templates\account\deleted.html:17
+msgid "connect_to_another_account"
+msgstr "Se connecter à un autre compte"
+
+#: .\templates\account\deleted.html:18
+msgid "create_another_account"
+msgstr "Créer un nouveau compte"
 
 #: .\templates\admin\login.html:9
 msgid ""
@@ -129,10 +292,6 @@ msgid ""
 "page. Would you like to login to a different account?"
 msgstr ""
 
-#: .\templates\admin\login.html:45
-msgid "security_key"
-msgstr "Clef de sécurité"
-
 #: .\templates\admin\login.html:59
 msgid "Forgotten your password or username?"
 msgstr "Mot de passe oublié ?"
@@ -141,79 +300,75 @@ msgstr "Mot de passe oublié ?"
 msgid "Log in"
 msgstr "Se connecter"
 
-#: .\templates\base.html:44
+#: .\templates\base.html:46
 msgid "my_bots"
 msgstr "Mes bots"
 
-#: .\templates\base.html:47
+#: .\templates\base.html:49
 msgid "see_my_bots"
 msgstr "Voir mes bots"
 
-#: .\templates\base.html:48
+#: .\templates\base.html:50
 msgid "create_new_bot"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\base.html:54
+#: .\templates\base.html:56
 msgid "matches"
 msgstr "Matchs"
 
-#: .\templates\base.html:57
+#: .\templates\base.html:59
 msgid "see_matches"
 msgstr "Voir mes matchs"
 
-#: .\templates\base.html:58
+#: .\templates\base.html:60
 msgid "look_for_match"
 msgstr "Rechercher un match"
 
-#: .\templates\base.html:64
+#: .\templates\base.html:66
 msgid "community"
 msgstr "Communauté"
 
-#: .\templates\base.html:67
+#: .\templates\base.html:69
 msgid "discussions"
 msgstr "Discussions"
 
-#: .\templates\base.html:68
+#: .\templates\base.html:70
 msgid "ranking"
 msgstr "Classement"
 
-#: .\templates\base.html:83
+#: .\templates\base.html:91
 msgid "change"
 msgstr "Modifier"
 
-#: .\templates\base.html:95
-msgid "my_account"
-msgstr "Mon compte"
-
-#: .\templates\base.html:96
+#: .\templates\base.html:103
 msgid "deconnect"
 msgstr "Se déconnecter"
 
-#: .\templates\base.html:103 .\templates\registration\login.html:56
+#: .\templates\base.html:110 .\templates\registration\login.html:56
 msgid "connect"
 msgstr "Se connecter"
 
-#: .\templates\base.html:104
+#: .\templates\base.html:111
 msgid "signup"
 msgstr "S'inscrire"
 
-#: .\templates\base.html:113
+#: .\templates\base.html:120
 msgid "contact"
 msgstr "Me contacter"
 
-#: .\templates\base.html:114
+#: .\templates\base.html:121
 msgid "faq"
 msgstr "FAQ"
 
-#: .\templates\base.html:115
+#: .\templates\base.html:122
 msgid "about"
 msgstr "À propos"
 
-#: .\templates\base.html:116
+#: .\templates\base.html:123
 msgid "terms_of_use"
 msgstr "Mentions légales"
 
-#: .\templates\base.html:120
+#: .\templates\base.html:127
 msgid "copyright"
 msgstr ""
 "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some "
@@ -307,6 +462,20 @@ msgstr "Créer un compte"
 msgid "create_my_account"
 msgstr "Créer mon compte"
 
-#: .\templates\registration\signup.html:66
+#: .\templates\registration\signup.html:70
 msgid "already_have_account"
 msgstr "J'ai déjà un compte"
+
+#: .\templates\security_key\add.html:14
+msgid "security_key_text"
+msgstr ""
+"Une clef de sécurité permet de renforcer la protection de votre compte."
+
+#: .\templates\security_key\add.html:18
+msgid "security_key_method"
+msgstr ""
+"Entrez la clef dans votre authenticateur, puis entre le code obtenue dans le "
+"champ 'Code' avant de cliquer sur 'VALIDER'."
+
+#~ msgid "create_security_code"
+#~ msgstr "Ajouter une clef de sécurité au compte"

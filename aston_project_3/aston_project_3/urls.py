@@ -27,14 +27,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path("", include("apps.account.urls")),
-    re_path(
-        r"^login/(?P<message>[a-z]*)$",
-        auth_views.LoginView.as_view(
-            template_name="registration/login.html", authentication_form=LoginForm
-        ),
-        name="login",
-    ),
+    path("", include("apps.account.urls", namespace="account")),
     path(
         "logout/",
         auth_views.LogoutView.as_view(next_page="/login"),

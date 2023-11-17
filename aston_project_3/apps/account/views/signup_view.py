@@ -1,5 +1,5 @@
 """The signup view"""
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from apps.account.forms import SignupForm
 from django.views import generic
 
@@ -13,5 +13,5 @@ class SignupViewSet(generic.CreateView):
 
     def get_success_url(self) -> any:
         return reverse_lazy(
-            "account-created",
+            "account:account-created",
         )

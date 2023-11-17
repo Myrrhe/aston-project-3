@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+
+        <h1 class="mt-1">{% translate "account_deletion" %}</h1>
+
+        <p class="text-alert">{% translate "account_deletion_text" %}</p>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <ul class="non-field-errors text-alert">
+                    {% for err in form.non_field_errors %}
+                        <li class="form-error">{{ err }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% for field in form %}
+                {% if field.auto_id != "id_security_key" or has_security_key %}
+                    <p>
+                        <label
+                            class="text-fore d-none"
+                            for="{{ field.auto_id }}">{{ field.label }}
+                        </label>
+                        {{ field }}
+                    </p>
+                {% endif %}
+            {% endfor %}
+            <div>
+                <a
+                    class="btn button button-dark link-nav me-2"
+                    href="{% url "account:account" %}">
+                    {% translate "back_to_account" %}
+                </a>
+                <input
+                    type="submit"
+                    class="btn button button-bright-alt text-uppercase"
+                    value="{% translate "delete_my_account" %}" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<script src="{% static "js/account/account.js" %}"></script>
+{% endblock %}

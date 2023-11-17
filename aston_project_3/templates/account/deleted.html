@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+
+        <h1 class="mt-1">{% translate "account_deleted" %}</h1>
+        <p class="text-fore">{% translate "account_deleted_text" %}</p>
+
+        <p>
+            <a
+            href="{% url "account:login" message="" %}"
+            class="link-light">
+                {% translate "connect_to_another_account" %}
+            </a>
+        </p>
+        <p><a href="{% url "account:signup" %}" class="link-light">{% translate "create_another_account" %}</a></p>
+    </div>
+
+</div>
+{% endblock %}
