@@ -4,7 +4,7 @@ import string
 import random
 
 
-def truc() -> str:
+def create_secret_key() -> str:
     """A function to create a secret key"""
     return "".join(
         [
