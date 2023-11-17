@@ -12,9 +12,15 @@
     <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
 
         <h1 class="mt-1">{% translate "account_deleted" %}</h1>
-        <p>{% translate "account_deleted_text" %}</p>
+        <p class="text-fore">{% translate "account_deleted_text" %}</p>
 
-        <p><a href="{% url "account:login" message="" %}" class="link-light">{% translate "connect_to_another_account" %}</a></p>
+        <p>
+            <a
+            href="{% url "account:login" message="" %}"
+            class="link-light">
+                {% translate "connect_to_another_account" %}
+            </a>
+        </p>
         <p><a href="{% url "account:signup" %}" class="link-light">{% translate "create_another_account" %}</a></p>
     </div>
 

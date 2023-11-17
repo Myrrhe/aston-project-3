@@ -3,7 +3,7 @@ from django.forms import Form
 from django.http import HttpRequest
 
 
-def get_form(request: HttpRequest, formcls: Form, prefix: str) -> Form:
+def get_form(request: HttpRequest, formcls: Form, prefix: str, *args, **kwargs) -> Form:
     """A function to get a form with a prefix"""
     data = request.POST if prefix in request.POST else None
-    return formcls(data, prefix=prefix)
+    return formcls(data, *args, prefix=prefix, **kwargs)

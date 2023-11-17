@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 11:40+0100\n"
+"POT-Creation-Date: 2023-11-17 11:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,60 +34,92 @@ msgstr "Permissions"
 msgid "informations"
 msgstr "Informations"
 
-#: .\apps\account\forms\change_email_form.py:19
+#: .\apps\account\forms\change_email_form.py:20
 #: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:77 .\templates\account\account.html:20
+#: .\apps\account\models\user_model.py:78 .\templates\account\account.html:21
 msgid "email"
 msgstr "Email"
 
-#: .\apps\account\forms\change_email_form.py:28
+#: .\apps\account\forms\change_email_form.py:24
+msgid "new_email"
+msgstr "Nouvel email"
+
+#: .\apps\account\forms\change_email_form.py:30
+#: .\apps\account\forms\change_email_form.py:34
+#: .\apps\account\forms\delete_account_form.py:21
+#: .\apps\account\forms\delete_account_form.py:25
 #: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
-#: .\templates\account\account.html:39
+#: .\templates\account\account.html:79
 msgid "password"
 msgstr "Mot de passe"
 
-#: .\apps\account\forms\change_email_form.py:37
-#: .\apps\account\forms\change_password_form.py:28
-#: .\apps\account\forms\delete_account_form.py:30
+#: .\apps\account\forms\change_email_form.py:40
+#: .\apps\account\forms\change_email_form.py:46
+#: .\apps\account\forms\change_password_form.py:30
+#: .\apps\account\forms\change_password_form.py:36
+#: .\apps\account\forms\delete_account_form.py:31
+#: .\apps\account\forms\delete_account_form.py:37
+#: .\templates\account\account.html:153 .\templates\admin\login.html:45
+msgid "security_key"
+msgstr "Clef de sécurité"
+
+#: .\apps\account\forms\change_email_form.py:58
+#: .\apps\account\forms\change_password_form.py:69
+msgid "invalid_credentials"
+msgstr "Identifiants invalides"
+
+#: .\apps\account\forms\change_password_form.py:20
+#: .\apps\account\forms\change_password_form.py:24
+msgid "current_password"
+msgstr "Mot de passe actuel"
+
+#: .\apps\account\forms\change_password_form.py:42
+#: .\apps\account\forms\change_password_form.py:46
+msgid "new_password"
+msgstr "Nouveau mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:52
+msgid "repeat_new_password"
+msgstr "Confirmez le mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:56
+msgid "confirm_new_password"
+msgstr "Confirmez le mot de passe"
+
+#: .\apps\account\forms\change_password_form.py:71
+msgid "password_no_match"
+msgstr "Les deux mots de passes ne sont pas identiques"
+
+#: .\apps\account\forms\create_security_key_form.py:20
+#: .\apps\account\forms\create_security_key_form.py:25
+msgid "key"
+msgstr "Clef"
+
+#: .\apps\account\forms\create_security_key_form.py:31
+#: .\apps\account\forms\create_security_key_form.py:37
+msgid "code"
+msgstr "Code"
+
+#: .\apps\account\forms\create_security_key_form.py:63
+msgid "code_did_not_work"
+msgstr "Ce code n'a pas fonctionné"
+
+#: .\apps\account\forms\delete_account_form.py:55
+msgid "authentication_error"
+msgstr "L'authentification a échouée"
+
 #: .\apps\account\forms\login_form.py:36
 msgid "security_key_optional"
 msgstr "Clef de sécurité (optionel)"
 
-#: .\apps\account\forms\change_password_form.py:19
-#: .\apps\account\forms\delete_account_form.py:21
-msgid "current_password"
-msgstr "Mot de passe actuel"
-
-#: .\apps\account\forms\change_password_form.py:39
-msgid "new_password"
-msgstr "Nouveau mot de passe"
-
-#: .\apps\account\forms\change_password_form.py:48
-msgid "repeat_new_password"
-msgstr "Confirmez le mot de passe"
-
-#: .\apps\account\forms\create_security_key_form.py:20
-msgid "key"
-msgstr "Clef"
-
-#: .\apps\account\forms\create_security_key_form.py:30
-msgid "code"
-msgstr "Code"
-
-#: .\apps\account\forms\create_security_key_form.py:61
-msgid "code_did_not_work"
-msgstr "Ce code n'a pas fonctionné"
-
-#: .\apps\account\forms\delete_account_form.py:53
-msgid "authentication_error"
-msgstr "L'authentification a échouée"
-
 #: .\apps\account\forms\personal_informations_form.py:17
+#: .\apps\account\forms\personal_informations_form.py:21
 msgid "pseudo"
 msgstr "Pseudonyme"
 
-#: .\apps\account\forms\personal_informations_form.py:26
-#: .\apps\account\models\user_model.py:91
+#: .\apps\account\forms\personal_informations_form.py:27
+#: .\apps\account\forms\personal_informations_form.py:31
+#: .\apps\account\models\user_model.py:92
 msgid "biography"
 msgstr "Biographie"
 
@@ -101,52 +133,52 @@ msgstr ""
 msgid "password_repeat"
 msgstr "Répétez le mot de passe"
 
-#: .\apps\account\models\user_model.py:78
+#: .\apps\account\models\user_model.py:79
 msgid "email_help_text"
 msgstr "L'email de l'utilisateur"
 
-#: .\apps\account\models\user_model.py:84
+#: .\apps\account\models\user_model.py:85
 msgid "username"
 msgstr "Nom d'utilisateur"
 
-#: .\apps\account\models\user_model.py:85
+#: .\apps\account\models\user_model.py:86
 msgid "username_help_text"
 msgstr "Le nom utilisé par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:92
+#: .\apps\account\models\user_model.py:93
 msgid "biography_help_text"
 msgstr "Un message de présentation de l'utilisateur"
 
-#: .\apps\account\models\user_model.py:107
+#: .\apps\account\models\user_model.py:108
 msgid "is_email_confirmed"
 msgstr "Email confirmé"
 
-#: .\apps\account\models\user_model.py:108
+#: .\apps\account\models\user_model.py:109
 msgid "is_email_confirmed_help_text"
 msgstr "L'adresse email a-t-elle été vérifiée"
 
-#: .\apps\account\models\user_model.py:112
+#: .\apps\account\models\user_model.py:113
 msgid "is_tou_accepted"
 msgstr "Conditions d'utilisations"
 
-#: .\apps\account\models\user_model.py:113
+#: .\apps\account\models\user_model.py:114
 msgid "is_tou_accepted_help_text"
 msgstr ""
 "Les conditions d'utilisations ont-elles été acceptées par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:117
+#: .\apps\account\models\user_model.py:118
 msgid "is_admin"
 msgstr "Admin"
 
-#: .\apps\account\models\user_model.py:118
+#: .\apps\account\models\user_model.py:119
 msgid "is_admin_help_text"
 msgstr "L'utilisateur est-il un administrateur"
 
-#: .\apps\account\models\user_model.py:130
+#: .\apps\account\models\user_model.py:131
 msgid "user"
 msgstr "Utilisateur"
 
-#: .\apps\account\models\user_model.py:131
+#: .\apps\account\models\user_model.py:132
 msgid "users"
 msgstr "Utilisateurs"
 
@@ -170,44 +202,48 @@ msgstr "Mon compte"
 msgid "connection"
 msgstr "Se connecter"
 
-#: .\templates\account\account.html:23 .\templates\account\account.html:42
+#: .\templates\account\account.html:32 .\templates\account\account.html:90
 msgid "edit"
 msgstr "Éditer"
 
-#: .\templates\account\account.html:32 .\templates\account\account.html:51
-#: .\templates\account\account.html:66 .\templates\security_key\add.html:23
+#: .\templates\account\account.html:39
+msgid "change_email"
+msgstr "Changer l'email"
+
+#: .\templates\account\account.html:65 .\templates\account\account.html:116
+#: .\templates\account\account.html:146 .\templates\security_key\add.html:47
 msgid "validate"
 msgstr "Valider"
 
-#: .\templates\account\account.html:33 .\templates\account\account.html:52
+#: .\templates\account\account.html:69 .\templates\account\account.html:120
 msgid "cancel"
 msgstr "Annuler"
 
-#: .\templates\account\account.html:59
+#: .\templates\account\account.html:97
+msgid "change_password"
+msgstr "Changer le mot de passe"
+
+#: .\templates\account\account.html:130
 msgid "my_informations"
 msgstr "Mes informations"
 
-#: .\templates\account\account.html:73 .\templates\admin\login.html:45
-msgid "security_key"
-msgstr "Clef de sécurité"
-
-#: .\templates\account\account.html:75 .\templates\security_key\add.html:16
+#: .\templates\account\account.html:155 .\templates\security_key\add.html:16
 msgid "already_security_key"
 msgstr "Ce compte possède déjà une clef de sécurité"
 
-#: .\templates\account\account.html:77
+#: .\templates\account\account.html:157
 msgid "no_security_key_text"
 msgstr "Ce compte ne possède pas de clef de sécurité"
 
-#: .\templates\account\account.html:78 .\templates\security_key\add.html:13
+#: .\templates\account\account.html:161 .\templates\security_key\add.html:13
 msgid "add_security_key"
 msgstr "Ajouter une clef de sécurité au compte"
 
-#: .\templates\account\account.html:84
+#: .\templates\account\account.html:168
 msgid "danger_zone"
 msgstr "Zone de de danger"
 
-#: .\templates\account\account.html:85 .\templates\account\delete.html:23
+#: .\templates\account\account.html:172 .\templates\account\delete.html:41
 msgid "delete_my_account"
 msgstr "Supprimer mon compte"
 
@@ -217,7 +253,13 @@ msgstr "Suppression du compte"
 
 #: .\templates\account\delete.html:17
 msgid "account_deletion_text"
-msgstr "Votre compte ainsi que tous vos bots seront supprimés. Cette action est DÉFINITIVE."
+msgstr ""
+"Votre compte ainsi que tous vos bots seront supprimés. Cette action est "
+"DÉFINITIVE."
+
+#: .\templates\account\delete.html:36 .\templates\security_key\add.html:42
+msgid "back_to_account"
+msgstr "Revenir à mon compte"
 
 #: .\templates\account\deleted.html:14
 msgid "account_deleted"
@@ -420,14 +462,20 @@ msgstr "Créer un compte"
 msgid "create_my_account"
 msgstr "Créer mon compte"
 
-#: .\templates\registration\signup.html:66
+#: .\templates\registration\signup.html:70
 msgid "already_have_account"
 msgstr "J'ai déjà un compte"
 
 #: .\templates\security_key\add.html:14
 msgid "security_key_text"
-msgstr "Une clef de sécurité permet de renforcer la protection de votre compte."
+msgstr ""
+"Une clef de sécurité permet de renforcer la protection de votre compte."
 
-#: .\templates\security_key\add.html:22
-msgid "create_security_code"
-msgstr "Ajouter une clef de sécurité au compte"
+#: .\templates\security_key\add.html:18
+msgid "security_key_method"
+msgstr ""
+"Entrez la clef dans votre authenticateur, puis entre le code obtenue dans le "
+"champ 'Code' avant de cliquer sur 'VALIDER'."
+
+#~ msgid "create_security_code"
+#~ msgstr "Ajouter une clef de sécurité au compte"

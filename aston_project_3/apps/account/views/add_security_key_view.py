@@ -28,22 +28,3 @@ class AddSecurityKeyViewSet(CreateView):
         kwargs = super().get_form_kwargs()
         kwargs["request"] = self.request
         return kwargs
-
-    # def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-    #     return render(
-    #         request,
-    #         "security_key/add.html",
-    #         context={
-    #             "security_key_form": CreateSecurityKeyForm(
-    #                 {"new_code": b32encode(totp.bin_key).decode("utf-8")}
-    #             )
-    #         },
-    #     )
-
-    # def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-    #     security_key_form = CreateSecurityKeyForm(request.POST)
-    #     if security_key_form.is_bound and security_key_form.is_valid():
-    #         security_key_form.save(request)
-    #     else:
-    #         pass
-    #     return redirect("account:add-security-key")

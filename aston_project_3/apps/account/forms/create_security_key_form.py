@@ -22,6 +22,7 @@ class CreateSecurityKeyForm(ModelForm):
             },
         ),
         required=False,
+        label=_("key"),
     )
     code = forms.CharField(
         widget=NonStickyTextInput(
@@ -33,6 +34,7 @@ class CreateSecurityKeyForm(ModelForm):
             },
         ),
         required=False,
+        label=_("code"),
     )
     key_init = forms.CharField(
         widget=forms.TextInput(
@@ -58,7 +60,7 @@ class CreateSecurityKeyForm(ModelForm):
         self.instance.save()
         if not self.instance.verify_token(self.cleaned_data["code"]):
             TOTPDevice.objects.filter(user_id=self.request.user.id).delete()
-            raise ValidationError(_("code_did_not_work"))
+            raise ValidationError(_("code_did_not_work"), code="invalid_code")
         return self.cleaned_data
 
     class Meta(object):

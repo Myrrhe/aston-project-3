@@ -22,38 +22,34 @@ class DeleteAccountForm(forms.Form):
                 "id": "password1",
             },
         ),
+        label=_("password"),
     )
     security_key = forms.CharField(
         widget=NonStickyTextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": _("security_key_optional"),
+                "placeholder": _("security_key"),
                 "id": "security_key",
                 "autocomplete": "off",
             },
         ),
         required=False,
+        label=_("security_key"),
     )
 
     def __init__(self, *args, **kwargs) -> None:
-        self.request = kwargs.pop("request")
+        self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:
-        if self.request.user.check_password(self.cleaned_data["password"]) and (
-            not self.request.user.has_security_key()
-            or verify_token(
-                self.request.user,
-                TOTPDevice.objects.get(user_id=self.request.user.id).persistent_id,
-                self.cleaned_data["security_key"],
-            )
+        if not self.user.check_credentials(
+            self.cleaned_data["password"],
+            self.cleaned_data["security_key"],
         ):
-            return self.cleaned_data
-        else:
-            raise ValidationError(_("authentication_error"))
+            raise ValidationError(_("invalid_credentials"), code="invalid_credentials")
+        return self.cleaned_data
 
     def delete_account(self) -> None:
-        print("###########################################################")
         if self.request.user.has_security_key():
             TOTPDevice.objects.filter(user_id=self.request.user.id).delete()
         self.request.user.delete()

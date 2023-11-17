@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 11:40+0100\n"
+"POT-Creation-Date: 2023-11-17 11:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,60 +34,92 @@ msgstr ""
 msgid "informations"
 msgstr ""
 
-#: .\apps\account\forms\change_email_form.py:19
+#: .\apps\account\forms\change_email_form.py:20
 #: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:77 .\templates\account\account.html:20
+#: .\apps\account\models\user_model.py:78 .\templates\account\account.html:21
 msgid "email"
 msgstr ""
 
-#: .\apps\account\forms\change_email_form.py:28
+#: .\apps\account\forms\change_email_form.py:24
+msgid "new_email"
+msgstr ""
+
+#: .\apps\account\forms\change_email_form.py:30
+#: .\apps\account\forms\change_email_form.py:34
+#: .\apps\account\forms\delete_account_form.py:21
+#: .\apps\account\forms\delete_account_form.py:25
 #: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
-#: .\templates\account\account.html:39
+#: .\templates\account\account.html:79
 msgid "password"
 msgstr ""
 
-#: .\apps\account\forms\change_email_form.py:37
-#: .\apps\account\forms\change_password_form.py:28
-#: .\apps\account\forms\delete_account_form.py:30
+#: .\apps\account\forms\change_email_form.py:40
+#: .\apps\account\forms\change_email_form.py:46
+#: .\apps\account\forms\change_password_form.py:30
+#: .\apps\account\forms\change_password_form.py:36
+#: .\apps\account\forms\delete_account_form.py:31
+#: .\apps\account\forms\delete_account_form.py:37
+#: .\templates\account\account.html:153 .\templates\admin\login.html:45
+msgid "security_key"
+msgstr ""
+
+#: .\apps\account\forms\change_email_form.py:58
+#: .\apps\account\forms\change_password_form.py:69
+msgid "invalid_credentials"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:20
+#: .\apps\account\forms\change_password_form.py:24
+msgid "current_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:42
+#: .\apps\account\forms\change_password_form.py:46
+msgid "new_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:52
+msgid "repeat_new_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:56
+msgid "confirm_new_password"
+msgstr ""
+
+#: .\apps\account\forms\change_password_form.py:71
+msgid "password_no_match"
+msgstr ""
+
+#: .\apps\account\forms\create_security_key_form.py:20
+#: .\apps\account\forms\create_security_key_form.py:25
+msgid "key"
+msgstr ""
+
+#: .\apps\account\forms\create_security_key_form.py:31
+#: .\apps\account\forms\create_security_key_form.py:37
+msgid "code"
+msgstr ""
+
+#: .\apps\account\forms\create_security_key_form.py:63
+msgid "code_did_not_work"
+msgstr ""
+
+#: .\apps\account\forms\delete_account_form.py:55
+msgid "authentication_error"
+msgstr ""
+
 #: .\apps\account\forms\login_form.py:36
 msgid "security_key_optional"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\apps\account\forms\change_password_form.py:19
-#: .\apps\account\forms\delete_account_form.py:21
-msgid "current_password"
-msgstr ""
-
-#: .\apps\account\forms\change_password_form.py:39
-msgid "new_password"
-msgstr ""
-
-#: .\apps\account\forms\change_password_form.py:48
-msgid "repeat_new_password"
-msgstr ""
-
-#: .\apps\account\forms\create_security_key_form.py:20
-msgid "key"
-msgstr ""
-
-#: .\apps\account\forms\create_security_key_form.py:30
-msgid "code"
-msgstr ""
-
-#: .\apps\account\forms\create_security_key_form.py:61
-msgid "code_did_not_work"
-msgstr ""
-
-#: .\apps\account\forms\delete_account_form.py:53
-msgid "authentication_error"
-msgstr ""
-
 #: .\apps\account\forms\personal_informations_form.py:17
+#: .\apps\account\forms\personal_informations_form.py:21
 msgid "pseudo"
 msgstr ""
 
-#: .\apps\account\forms\personal_informations_form.py:26
-#: .\apps\account\models\user_model.py:91
+#: .\apps\account\forms\personal_informations_form.py:27
+#: .\apps\account\forms\personal_informations_form.py:31
+#: .\apps\account\models\user_model.py:92
 msgid "biography"
 msgstr ""
 
@@ -99,65 +131,65 @@ msgstr ""
 msgid "password_repeat"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:78
+#: .\apps\account\models\user_model.py:79
 #, fuzzy
 #| msgid "username"
 msgid "email_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:84
+#: .\apps\account\models\user_model.py:85
 msgid "username"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:85
+#: .\apps\account\models\user_model.py:86
 #, fuzzy
 #| msgid "username"
 msgid "username_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:92
+#: .\apps\account\models\user_model.py:93
 #, fuzzy
 #| msgid "username"
 msgid "biography_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:107
+#: .\apps\account\models\user_model.py:108
 msgid "is_email_confirmed"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:108
+#: .\apps\account\models\user_model.py:109
 #, fuzzy
 #| msgid "username"
 msgid "is_email_confirmed_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:112
+#: .\apps\account\models\user_model.py:113
 msgid "is_tou_accepted"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:113
+#: .\apps\account\models\user_model.py:114
 #, fuzzy
 #| msgid "username"
 msgid "is_tou_accepted_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:117
+#: .\apps\account\models\user_model.py:118
 msgid "is_admin"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:118
+#: .\apps\account\models\user_model.py:119
 #, fuzzy
 #| msgid "username"
 msgid "is_admin_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:130
+#: .\apps\account\models\user_model.py:131
 #, fuzzy
 #| msgid "username"
 msgid "user"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:131
+#: .\apps\account\models\user_model.py:132
 #, fuzzy
 #| msgid "username"
 msgid "users"
@@ -183,50 +215,54 @@ msgstr ""
 msgid "connection"
 msgstr ""
 
-#: .\templates\account\account.html:23 .\templates\account\account.html:42
+#: .\templates\account\account.html:32 .\templates\account\account.html:90
 msgid "edit"
 msgstr ""
 
-#: .\templates\account\account.html:32 .\templates\account\account.html:51
-#: .\templates\account\account.html:66 .\templates\security_key\add.html:23
+#: .\templates\account\account.html:39
+msgid "change_email"
+msgstr ""
+
+#: .\templates\account\account.html:65 .\templates\account\account.html:116
+#: .\templates\account\account.html:146 .\templates\security_key\add.html:47
 msgid "validate"
 msgstr ""
 
-#: .\templates\account\account.html:33 .\templates\account\account.html:52
+#: .\templates\account\account.html:69 .\templates\account\account.html:120
 msgid "cancel"
 msgstr ""
 
-#: .\templates\account\account.html:59
+#: .\templates\account\account.html:97
+msgid "change_password"
+msgstr ""
+
+#: .\templates\account\account.html:130
 msgid "my_informations"
 msgstr ""
 
-#: .\templates\account\account.html:73 .\templates\admin\login.html:45
-msgid "security_key"
-msgstr ""
-
-#: .\templates\account\account.html:75 .\templates\security_key\add.html:16
+#: .\templates\account\account.html:155 .\templates\security_key\add.html:16
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "already_security_key"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:77
+#: .\templates\account\account.html:157
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "no_security_key_text"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:78 .\templates\security_key\add.html:13
+#: .\templates\account\account.html:161 .\templates\security_key\add.html:13
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "add_security_key"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:84
+#: .\templates\account\account.html:168
 msgid "danger_zone"
 msgstr ""
 
-#: .\templates\account\account.html:85 .\templates\account\delete.html:23
+#: .\templates\account\account.html:172 .\templates\account\delete.html:41
 msgid "delete_my_account"
 msgstr ""
 
@@ -236,6 +272,10 @@ msgstr ""
 
 #: .\templates\account\delete.html:17
 msgid "account_deletion_text"
+msgstr ""
+
+#: .\templates\account\delete.html:36 .\templates\security_key\add.html:42
+msgid "back_to_account"
 msgstr ""
 
 #: .\templates\account\deleted.html:14
@@ -435,7 +475,7 @@ msgstr ""
 msgid "create_my_account"
 msgstr ""
 
-#: .\templates\registration\signup.html:66
+#: .\templates\registration\signup.html:70
 msgid "already_have_account"
 msgstr ""
 
@@ -445,11 +485,16 @@ msgstr ""
 msgid "security_key_text"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\security_key\add.html:22
+#: .\templates\security_key\add.html:18
 #, fuzzy
 #| msgid "security_key_optional"
-msgid "create_security_code"
+msgid "security_key_method"
 msgstr "Clave de seguridad (opcional)"
+
+#, fuzzy
+#~| msgid "security_key_optional"
+#~ msgid "create_security_code"
+#~ msgstr "Clave de seguridad (opcional)"
 
 #~ msgid "The username"
 #~ msgstr "Nombre de usuario"

@@ -18,6 +18,7 @@ class PersonalInformationsForm(forms.Form):
                 "id": "pseudo",
             },
         ),
+        label=_("pseudo"),
     )
     biography = forms.CharField(
         widget=forms.TextInput(
@@ -27,6 +28,7 @@ class PersonalInformationsForm(forms.Form):
                 "id": "biography",
             },
         ),
+        label=_("biography"),
     )
 
     def __init__(self, *args, **kwargs) -> None:

@@ -14,44 +14,122 @@
 
         <h1 class="mt-1">{% translate "my_account" %}</h1>
         <hr class="hr" />
-        <h2>{% translate "connection" %}</h2>
+        <h2 class="mb-1">{% translate "connection" %}</h2>
 
-        <div id="block-email">
-            <label for="email_disabled" class="text-fore">{% translate "email" %}</label>
-            <div class="d-flex flex-row">
-                <input type="text" id="email_disabled" name="email_disabled" class="form-control" disabled value="{{ user.email }}" />
-                <button class="btn button button-dark link-nav me-2" id="button-email">{% translate "edit" %}</button>
+        <div class="mb-3">
+            <div id="block-email" class="{% if email_form.errors %}d-none{% endif %}">
+                <label for="email_disabled" class="text-fore">{% translate "email" %}</label>
+                <div class="d-flex flex-row">
+                    <input
+                        type="text"
+                        id="email_disabled"
+                        name="email_disabled"
+                        class="form-control"
+                        disabled value="{{ user.email }}" />
+                    <button
+                        class="btn button button-dark link-nav me-2"
+                        id="button-email">
+                        {% translate "edit" %}
+                    </button>
+                </div>
+            </div>
+
+            <div id="form-email" class="{% if not email_form.errors %}d-none{% endif %}">
+                <hr class="hr-medium" />
+                <h3>{% translate "change_email" %}</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% if email_form.non_field_errors %}
+                        <ul class="non-field-errors text-alert">
+                            {% for err in email_form.non_field_errors %}
+                                <li class="form-error">{{ err }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% for field in email_form %}
+                        {% if field.auto_id != "id_email_form-security_key" or has_security_key %}
+                            <p>
+                                <label
+                                    class="text-fore d-none"
+                                    for="{{ field.auto_id }}">{{ field.label }}
+                                </label>
+                                {{ field }}
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <div>
+                        <input
+                            type="submit"
+                            name="{{email_form.prefix}}"
+                            class="btn button button-bright text-uppercase"
+                            value="{% translate "validate" %}" />
+                        <button
+                            class="btn button button-dark me-2 text-uppercase"
+                            id="cancel-email">
+                            {% translate "cancel" %}
+                        </button>
+                    </div>
+                </form>
+                <hr class="hr-medium" />
             </div>
         </div>
 
-        <div id="form-email" class="d-none">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ email_form.as_p }}
-                <div>
-                    <input type="submit" name="{{email_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
-                    <button class="btn button button-dark link-nav me-2" id="cancel-email">{% translate "cancel" %}</button>
+        <div>
+            <div id="block-password" class="{% if password_form.errors %}d-none{% endif %}">
+                <label for="password_disabled" class="text-fore">{% translate "password" %}</label>
+                <div class="d-flex flex-row">
+                    <input
+                        type="password"
+                        id="password_disabled"
+                        name="password_disabled"
+                        class="form-control"
+                        disabled value="********" />
+                    <button
+                        class="btn button button-dark link-nav me-2"
+                        id="button-password">
+                        {% translate "edit" %}
+                    </button>
                 </div>
-            </form>
-        </div>
-
-        <div id="block-password">
-            <label for="password_disabled" class="text-fore">{% translate "password" %}</label>
-            <div class="d-flex flex-row">
-                <input type="password" id="password_disabled" name="password_disabled" class="form-control" disabled value="********" />
-                <button class="btn button button-dark link-nav me-2" id="button-password">{% translate "edit" %}</button>
             </div>
-        </div>
 
-        <div id="form-password" class="d-none">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ password_form.as_p }}
-                <div>
-                    <input type="submit" name="{{password_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
-                    <button class="btn button button-dark link-nav me-2" id="cancel-password">{% translate "cancel" %}</button>
-                </div>
-            </form>
+            <div id="form-password" class="{% if not password_form.errors %}d-none{% endif %}">
+                <hr class="hr-medium" />
+                <h3>{% translate "change_password" %}</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% if password_form.non_field_errors %}
+                        <ul class="non-field-errors text-alert">
+                            {% for err in password_form.non_field_errors %}
+                                <li class="form-error">{{ err }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% for field in password_form %}
+                        {% if field.auto_id != "id_password_form-security_key" or has_security_key %}
+                            <p>
+                                <label
+                                    class="text-fore d-none"
+                                    for="{{ field.auto_id }}">{{ field.label }}
+                                </label>
+                                {{ field }}
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                    <div>
+                        <input
+                            type="submit"
+                            name="{{password_form.prefix}}"
+                            class="btn button button-bright text-uppercase"
+                            value="{% translate "validate" %}" />
+                        <button
+                            class="btn button button-dark link-nav me-2 text-uppercase"
+                            id="cancel-password">
+                            {% translate "cancel" %}
+                        </button>
+                    </div>
+                </form>
+                <hr class="hr-medium" />
+            </div>
         </div>
 
         <hr class="hr" />
@@ -61,9 +139,18 @@
         <div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ personal_informations_form.as_p }}
+                {% for field in personal_informations_form %}
+                    <p>
+                        <label class="text-fore" for="{{ field.auto_id }}">{{ field.label }}</label>
+                        {{ field }}
+                    </p>
+                {% endfor %}
                 <div>
-                    <input type="submit" name="{{personal_informations_form.prefix}}" class="btn button button-bright" value="{% translate "validate" %}" />
+                    <input
+                        type="submit"
+                        name="{{personal_informations_form.prefix}}"
+                        class="btn button button-bright text-uppercase"
+                        value="{% translate "validate" %}" />
                 </div>
             </form>
         </div>
@@ -74,15 +161,23 @@
         {% if has_security_key %}
             <p>{% translate "already_security_key" %}</p>
         {% else %}
-            <p>{% translate "no_security_key_text" %}</p>
-            <a class="btn button button-dark link-nav me-2" href="{% url "account:add-security-key" %}">{% translate "add_security_key" %}</a>
+            <p class="text-fore">{% translate "no_security_key_text" %}</p>
+            <a
+                class="btn button button-dark link-nav me-2"
+                href="{% url "account:add-security-key" %}">
+                {% translate "add_security_key" %}
+            </a>
         {% endif %}
 
         <hr class="hr" />
 
         <div>
-            <p class="fore-danger">{% translate "danger_zone" %}</p>
-            <a class="btn button button-dark link-nav me-2" href="{% url "account:delete-account" %}">{% translate "delete_my_account" %}</a>
+            <p class="text-alert">{% translate "danger_zone" %}</p>
+            <a
+                class="btn button button-bright-alt link-nav me-2"
+                href="{% url "account:delete-account" %}">
+                {% translate "delete_my_account" %}
+            </a>
         </div>
     </div>
 

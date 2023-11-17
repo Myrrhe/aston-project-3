@@ -15,6 +15,7 @@ from django.db import models
 
 from django.utils.translation import gettext as _
 
+from django_otp import verify_token
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
 from apps.core.models.timestamped_model import TimestampedModel
@@ -142,6 +143,16 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     def has_security_key(self) -> bool:
         return TOTPDevice.objects.filter(user_id=self.id).exists()
+
+    def check_security_key(self, security_key: str) -> bool:
+        return not self.has_security_key() or verify_token(
+            self,
+            TOTPDevice.objects.get(user_id=self.id).persistent_id,
+            security_key,
+        )
+
+    def check_credentials(self, password: str, security_key: str) -> bool:
+        return self.check_password(password) and self.check_security_key(security_key)
 
     # def send_email_confirmation(self, template, path, email):
     #     email_key = "newEmail" if email is not None else "email"
