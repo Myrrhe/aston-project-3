@@ -10,7 +10,7 @@ from base64 import b32encode
 class Command(BaseCommand):
     """The command to create a superuser"""
 
-    help = "Create super user if not exist "
+    help = "Create super user if one doesn't exists"
 
     def handle(self, *args, **options) -> None:
         if not User.objects.filter(is_superuser=True).first():
