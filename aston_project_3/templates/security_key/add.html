@@ -16,6 +16,11 @@
             <p class="text-fore">
                 {% translate "already_security_key" %}
             </p>
+            <a
+                class="btn button button-dark link-nav me-2"
+                href="{% url "account:account" %}">
+                {% translate "back_to_account" %}
+            </a>
         {% else %}
             <p class="text-fore">{% translate "security_key_method" %}</p>
             <form action="" method="post">

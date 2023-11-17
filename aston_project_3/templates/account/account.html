@@ -159,7 +159,9 @@
 
         <h2>{% translate "security_key" %}</h2>
         {% if has_security_key %}
-            <p>{% translate "already_security_key" %}</p>
+            <p class="text-fore">
+                {% translate "already_security_key" %}
+            </p>
         {% else %}
             <p class="text-fore">{% translate "no_security_key_text" %}</p>
             <a
