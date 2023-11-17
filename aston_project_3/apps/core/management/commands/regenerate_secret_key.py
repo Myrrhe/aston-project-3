@@ -2,6 +2,8 @@
 from django.core.management.base import BaseCommand, CommandParser
 from django.core.management.utils import get_random_secret_key
 
+from apps.core.utils.create_secret_key_util import create_secret_key
+
 
 class Command(BaseCommand):
     """The command toregenerate the secret key"""
@@ -17,7 +19,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options) -> None:
         if options["auto"]:
-            new_secret_key = get_random_secret_key()
+            new_secret_key = create_secret_key()
             new_env = []
             with open("aston_project_3/.env", "r") as file:
                 for line in file:
