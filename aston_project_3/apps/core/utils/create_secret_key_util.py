@@ -4,7 +4,7 @@ import string
 import random
 
 
-def create_secret_key() -> str:
+def create_django_key() -> str:
     """A function to create a secret key"""
     return "".join(
         [
