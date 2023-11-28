@@ -18,7 +18,7 @@ from django.utils.translation import gettext as _
 from django_otp import verify_token
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
-from apps.core.models.timestamped_model import TimestampedModel
+from apps.core.models import TimestampedModel
 
 # from apps.core.tokens import encode_token
 
