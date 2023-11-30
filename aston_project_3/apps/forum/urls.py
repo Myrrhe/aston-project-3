@@ -1,4 +1,4 @@
-"""The urls file"""
+"""The urls file."""
 from django.urls import path
 from apps.forum.views import (
     ForumViewSet,

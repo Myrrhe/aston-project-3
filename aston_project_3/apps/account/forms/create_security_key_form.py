@@ -1,4 +1,4 @@
-"""The security key creation form"""
+"""The security key creation form."""
 from base64 import b32encode
 
 from django.utils.translation import gettext_lazy as _
@@ -11,7 +11,7 @@ from apps.core.inputs import NonStickyTextInput
 
 
 class CreateSecurityKeyForm(ModelForm):
-    """The security key creation form"""
+    """The security key creation form."""
 
     key = forms.CharField(
         widget=forms.TextInput(
@@ -50,10 +50,13 @@ class CreateSecurityKeyForm(ModelForm):
     def __init__(self, *args, **kwargs) -> None:
         self.request = kwargs.pop("request")
         super().__init__(*args, **kwargs)
-        self.fields["key"].initial = b32encode(self.instance.bin_key).decode("utf-8")
+        self.fields["key"].initial = b32encode(
+            self.instance.bin_key
+        ).decode("utf-8")
         self.fields["key_init"].initial = self.instance.key
 
     def clean(self) -> dict[str]:
+        """Clean the form."""
         TOTPDevice.objects.filter(user_id=self.request.user.id).delete()
         self.instance.user_id = self.request.user.id
         self.instance.key = self.cleaned_data["key_init"]
@@ -64,7 +67,7 @@ class CreateSecurityKeyForm(ModelForm):
         return self.cleaned_data
 
     class Meta(object):
-        """The meta class"""
+        """The meta class."""
 
         model = TOTPDevice
 

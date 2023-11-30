@@ -10,7 +10,32 @@
 
 <div class="h-100 d-flex align-items-center justify-content-center">
 
-    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+
+        <div class="d-flex">
+
+            <select class="form-select" aria-label="Section selection" id="section-select" name="section">
+                {% for section in sections %}
+                    <option value="{{ section.code }}" class="option-capitalize">
+                        {{ section.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <a
+                class="mx-1 btn small_button button-dark"
+                id="link-section"
+                href="{% url forum:forum type=PLACEHOLDER_TYPE category=new page=1 %}">
+                {% translate "change" %}
+            </a>
+
+            {% comment %} <button
+                class="mx-1 btn small_button button-dark"
+                id="change-section">
+                {% translate "change" %}
+            </button> {% endcomment %}
+
+        </div>
 
         <ul>
             {% for topic in topics %}
@@ -20,4 +45,5 @@
 
     </div>
 </div>
+<script src="{% static "js/forum/main.js" %}"></script>
 {% endblock %}

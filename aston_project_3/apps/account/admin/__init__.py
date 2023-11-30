@@ -1,4 +1,4 @@
-"""The module file"""
+"""The module file."""
 from .user_admin import UserAdmin
 
 __all__ = [

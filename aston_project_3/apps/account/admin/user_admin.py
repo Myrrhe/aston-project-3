@@ -1,4 +1,4 @@
-"""The user's admin"""
+"""The user's admin."""
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
@@ -8,7 +8,7 @@ from apps.account.models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    """The user's admin"""
+    """The user's admin."""
 
     list_display = (
         "email",

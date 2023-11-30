@@ -1,5 +1,4 @@
-"""Get a flag emoji from a country code"""
-import functools
+"""Get a flag emoji from a country code."""
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -9,7 +8,7 @@ register = template.Library()
 @register.filter(name="flag")
 @stringfilter
 def flag(value: str) -> str:
-    """Get a flag emoji from a country code"""
+    """Get a flag emoji from a country code."""
     if value:
         if value == "en":
             value = "gb"

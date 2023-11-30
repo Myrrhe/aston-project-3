@@ -1,14 +1,14 @@
-"""The forum view"""
+"""The forum view."""
 from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 
-from apps.forum.models import Topic
+from apps.forum.models import Topic, TopicSection
 
 
 class ForumViewSet(View):
-    """The forum view"""
+    """The forum view."""
 
     def get(
         self,
@@ -19,6 +19,7 @@ class ForumViewSet(View):
         *args,
         **kwargs,
     ) -> HttpResponse:
+        """GET method."""
         topics = None
         match type:
             case "all":
@@ -27,8 +28,12 @@ class ForumViewSet(View):
                 ]
             case _:
                 print("error")
+        sections = TopicSection.objects.all()
         return render(
             request,
             "forum/forum.html",
-            context={"topics": topics},
+            context={
+                "topics": topics,
+                "sections": sections,
+            },
         )

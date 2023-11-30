@@ -1,4 +1,4 @@
-"""The account view"""
+"""The account view."""
 from django.contrib.auth import update_session_auth_hash
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -12,9 +12,10 @@ from apps.core.utils.get_form_util import get_form
 
 
 class AccountViewSet(View):
-    """The account view"""
+    """The account view."""
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        """GET method."""
         if request.user.is_authenticated:
             return render(
                 request,
@@ -42,6 +43,7 @@ class AccountViewSet(View):
             return redirect("account:login", "")
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        """POST method."""
         change_email_form = get_form(
             request, ChangeEmailForm, "email_form", user=request.user
         )
@@ -65,7 +67,6 @@ class AccountViewSet(View):
         ):
             # Personal informations
             personnal_informations_form.save(request)
-        # return redirect("account:account")
         return render(
             request,
             "account/account.html",

@@ -1,4 +1,4 @@
-"""The module file"""
+"""The module file."""
 from .user_model import User
 
 __all__ = [

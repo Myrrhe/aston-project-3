@@ -1,4 +1,4 @@
-"""The email change form"""
+"""The email change form."""
 from django.contrib.auth.forms import UsernameField
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -11,7 +11,7 @@ from apps.core.inputs import NonStickyTextInput
 
 
 class ChangeEmailForm(forms.Form):
-    """The email change form"""
+    """The email change form."""
 
     username = UsernameField(
         widget=forms.TextInput(
@@ -51,19 +51,24 @@ class ChangeEmailForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:
+        """Clean the form."""
         if not self.user.check_credentials(
             self.cleaned_data["password"],
             self.cleaned_data["security_key"],
         ):
-            raise ValidationError(_("invalid_credentials"), code="invalid_credentials")
+            raise ValidationError(
+                _("invalid_credentials"),
+                code="invalid_credentials"
+            )
         return self.cleaned_data
 
     def save(self, request: HttpRequest) -> None:
+        """Save the data of the form."""
         request.user.email = self.cleaned_data["username"]
         request.user.save()
 
     class Meta(object):
-        """The meta class"""
+        """The meta class."""
 
         model = User
         fields = (

@@ -1,4 +1,4 @@
-"""The user's model"""
+"""The user's model."""
 from __future__ import annotations
 
 import urllib
@@ -24,6 +24,7 @@ from apps.core.models import TimestampedModel
 
 
 class UserManager(BaseUserManager):
+
     """
     Django requires that custom users define their own Manager class. By
     inheriting from `BaseUserManager`, we get a lot of the same code used by
@@ -61,7 +62,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
-    """The user's model"""
+    """The user's model."""
 
     DARK_CHOICES = [
         ("DARK", 0),
@@ -125,7 +126,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     objects = UserManager()
 
     class Meta(TimestampedModel.Meta):
-        """The meta class"""
+        """The meta class."""
 
         db_table = "user"
         verbose_name = _("user")
@@ -133,18 +134,23 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     @property
     def is_staff(self) -> bool:
+        """Check if the user is a staff member."""
         return self.is_admin
 
     def has_module_perms(self, app_label: str) -> bool:
+        """Needed for the admin part."""
         return self.is_staff
 
     def has_perm(self, perm: str, obj: object = None) -> bool:
+        """Needed for the admin part."""
         return self.is_staff
 
     def has_security_key(self) -> bool:
+        """Check if the user has added a TOTP to their account."""
         return TOTPDevice.objects.filter(user_id=self.id).exists()
 
     def check_security_key(self, security_key: str) -> bool:
+        """Check if a given code is correct."""
         return not self.has_security_key() or verify_token(
             self,
             TOTPDevice.objects.get(user_id=self.id).persistent_id,
@@ -152,6 +158,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         )
 
     def check_credentials(self, password: str, security_key: str) -> bool:
+        """Check if a password as well as a code are correct."""
         return self.check_password(password) and self.check_security_key(security_key)
 
     # def send_email_confirmation(self, template, path, email):
@@ -182,4 +189,5 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     #     )
 
     def __str__(self) -> str:
+        """Represent the class objects as a string."""
         return f"{self.email}"

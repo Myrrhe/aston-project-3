@@ -4,8 +4,8 @@
         "pk": "00000000-0000-0000-0000-000000000001",
         "fields": {
             "title": "Titre 1",
-            "post": "Poste 1",
-            "section": "info",
+            "content": "Poste 1",
+            "section": "00000000-0000-0000-0000-000000000001",
             "views": 0,
             "deleted": false,
             "user_id": "a80dfb1d-af05-47c1-9def-e3a440ce350c",

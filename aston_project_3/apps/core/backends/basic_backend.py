@@ -1,4 +1,4 @@
-"""The backend authentication"""
+"""The backend authentication."""
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
@@ -12,11 +12,16 @@ UserModel = get_user_model()
 
 
 class BasicBackend(BaseBackend):
-    """The backend authentication class"""
+    """The backend authentication class."""
 
     def authenticate(
-        self, request: HttpRequest, username: str = None, password: str = None, **kwargs
+        self,
+        request: HttpRequest,
+        username: str = None,
+        password: str = None,
+        **kwargs
     ) -> any:
+        """Authenticate the user."""
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         if username is None or password is None:
@@ -36,7 +41,9 @@ class BasicBackend(BaseBackend):
                         # The user have a security key
                         if verify_token(
                             user,
-                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            TOTPDevice.objects.get(
+                                user_id=user.id
+                            ).persistent_id,
                             request.POST["security_key"],
                         ):
                             return user
@@ -52,7 +59,9 @@ class BasicBackend(BaseBackend):
                         # The user have a security key
                         if verify_token(
                             user,
-                            TOTPDevice.objects.get(user_id=user.id).persistent_id,
+                            TOTPDevice.objects.get(
+                                user_id=user.id
+                            ).persistent_id,
                             request.POST["security_key"],
                         ):
                             return user
@@ -68,6 +77,7 @@ class BasicBackend(BaseBackend):
                     return
 
     def get_user(self, user_id: str) -> any:
+        """Get the user from their PK if they can be authenticated."""
         try:
             user = UserModel._default_manager.get(pk=user_id)
         except UserModel.DoesNotExist:
@@ -76,7 +86,8 @@ class BasicBackend(BaseBackend):
 
     def user_can_authenticate(self, user: User) -> any:
         """
-        Reject users with is_active=False. Custom user models that don't have
-        that attribute are allowed.
+        Reject users with is_active=False.
+
+        Custom user models that don't have that attribute are allowed.
         """
         return getattr(user, "is_active", True)

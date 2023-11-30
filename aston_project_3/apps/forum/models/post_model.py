@@ -1,4 +1,4 @@
-"""The post's model"""
+"""The post's model."""
 
 import uuid
 
@@ -11,7 +11,7 @@ from apps.forum.models import Topic
 
 
 class Post(TimestampedModel):
-    """The post's model"""
+    """The post's model."""
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(
@@ -27,17 +27,17 @@ class Post(TimestampedModel):
         verbose_name=_("topic"),
         help_text=_("topic_of_post_help_text"),
     )
-    post = models.TextField(
+    content = models.TextField(
         max_length=4096,
-        null=False,
-        blank=False,
-        verbose_name=_("post"),
-        help_text=_("post_help_text"),
+        null=True,
+        blank=True,
+        verbose_name=_("content"),
+        help_text=_("content_help_text"),
     )
     deleted = models.BooleanField(
-        default=False,
         null=False,
         blank=False,
+        default=False,
         verbose_name=_("deleted"),
         help_text=_("deleted_help_text"),
     )
@@ -45,11 +45,12 @@ class Post(TimestampedModel):
     REQUIRED_FIELDS = []
 
     class Meta(TimestampedModel.Meta):
-        """The meta class"""
+        """The meta class."""
 
         db_table = "post"
         verbose_name = _("post")
         verbose_name_plural = _("posts")
 
     def __str__(self) -> str:
+        """Represent the class objects as a string."""
         return f"{self.topic.title} : {self.user}"

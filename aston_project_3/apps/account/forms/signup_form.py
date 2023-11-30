@@ -1,4 +1,4 @@
-"""The signup form"""
+"""The signup form."""
 from django import forms
 
 from apps.account.models import User
@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 
 
 class SignupForm(UserCreationForm):
-    """The signup form"""
+    """The signup form."""
 
     email = forms.EmailField(
         widget=forms.TextInput(
@@ -26,15 +26,6 @@ class SignupForm(UserCreationForm):
         help_text=_("tou_text"),
     )
 
-    class Meta(object):
-        """The meta class"""
-
-        model = User
-        fields = [
-            "email",
-            "is_tou_accepted",
-        ]
-
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs.update({"placeholder": "Email"})
@@ -50,3 +41,12 @@ class SignupForm(UserCreationForm):
                 "class": "form-control",
             }
         )
+
+    class Meta(object):
+        """The meta class."""
+
+        model = User
+        fields = [
+            "email",
+            "is_tou_accepted",
+        ]

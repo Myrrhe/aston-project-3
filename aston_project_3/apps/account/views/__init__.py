@@ -1,4 +1,4 @@
-"""The module file"""
+"""The module file."""
 from .account_created_view import AccountCreatedViewSet
 from .account_deleted_view import AccountDeletedViewSet
 from .account_view import AccountViewSet
