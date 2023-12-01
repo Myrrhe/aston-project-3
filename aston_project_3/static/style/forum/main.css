@@ -1,0 +1,11 @@
+/* .table-topic:nth-child (odd) {
+
+} */
+
+.row-topic:nth-child(2n) {
+    background-color: var(--white-veil-5-color);
+}
+
+.row-topic:nth-child(2n + 1) {
+    background-color: var(--white-veil-10-color);
+}

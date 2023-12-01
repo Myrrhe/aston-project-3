@@ -12,6 +12,8 @@
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
     --bright-alt-hover-color: #ff56c7ff;
+    --white-veil-5-color: #ffffff11;
+    --white-veil-10-color: #ffffff19;
 }
 
 .light-mode {
@@ -24,4 +26,6 @@
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
     --bright-alt-hover-color: #ff56c7ff;
+    --white-veil-5-color: #ffffff11;
+    --white-veil-10-color: #ffffff19;
 }

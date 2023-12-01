@@ -19,7 +19,7 @@
 }
 
 .text-fore {
-    color: var(--fore-color);
+    color: var(--fore-color) !important;
 }
 
 .link-nav {
