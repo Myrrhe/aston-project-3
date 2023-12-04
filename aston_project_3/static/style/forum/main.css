@@ -1,6 +1,16 @@
-/* .table-topic:nth-child (odd) {
+.navbar-forum {
+    padding: 12px 20px;
+    text-decoration: none;
+}
 
-} */
+.forum-link-selected {
+    background-color: var(--primary-light-hover-color);
+}
+
+.navbar-forum:hover {
+    color: var(--bright-color) !important;
+    background-color: var(--primary-light-hover-color);
+}
 
 .row-topic:nth-child(2n) {
     background-color: var(--white-veil-5-color);

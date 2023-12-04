@@ -1,16 +1,12 @@
 "use strict";
 
-const templateURL = $("#link-section").attr("href");
-
-function getCurrentURL() {
-    return encodeURI(templateURL.replace("PLACEHOLDER_TYPE", $("#section-select option").val()));
-    const section = $("#section-select option").val();
-    const page = $("#main").attr("data-page");
-    const category = $("#main").attr("data-category");
+function getCurrentURL(page, category) {
+    return encodeURI($("#link-" + page + "-page-" + category + "-category").attr("href")
+        .replace("PLACEHOLDER_TYPE", $("#section-select").val()));
 }
 
 function updateURL() {
-    $("#link-section").attr("href", getCurrentURL());
+    $(".update-url").each((_, element) => $(element).attr("href", getCurrentURL($(element).attr("data-page"), $(element).attr("data-category"))));
 }
 
 $("#section-select").on("change", function () {

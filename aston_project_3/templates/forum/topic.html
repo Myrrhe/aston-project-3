@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main"
+    data-page="{{page}}"
+    data-nb-pages="{{nb_pages}}">
+
+    <div class="form-login my-5 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+        <h1 class="mt-1">{{topic.title}}</h1>
+        <p class="text-fore">{{topic.section.name}}</p>
+        {% for post in posts %}
+            <div>
+                <hr class="hr">
+                <p class="text-fore">{{topic.user}}</p>
+                <p class="text-fore">{{topic.content}}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+<script src="{% static "js/forum/main.js" %}"></script>
+{% endblock %}

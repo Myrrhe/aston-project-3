@@ -13,27 +13,96 @@
     class="h-100 d-flex align-items-center justify-content-center"
     id="main"
     data-page="{{page}}"
+    data-nb-pages="{{nb_pages}}"
     data-category="{{category}}">
 
-    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+    <a
+        id="link-first-page-same-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page="1" %}">
+    </a>
+    <a
+        id="link-prev-page-same-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=prev_page %}">
+    </a>
+    <a
+        id="link-same-page-old-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="old" page=page %}">
+    </a>
+    <a
+        id="link-same-page-new-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="new" page=page %}">
+    </a>
+    <a
+        id="link-same-page-same-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=page %}">
+    </a>
+    <a
+        id="link-next-page-same-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=next_page %}">
+    </a>
+    <a
+        id="link-last-page-same-category"
+        class="d-none"
+        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=nb_pages %}">
+    </a>
+
+    <div class="form-login my-5 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+        <h1 class="mt-1">{% translate "forum" %}</h1>
 
         <div class="d-flex">
+            <div class="d-flex py-2">
 
-            <select class="form-select" aria-label="Section selection" id="section-select" name="section">
-                {% for section in sections %}
-                    <option value="{{ section.code }}" class="option-capitalize">
-                        {{ section.name }}
+                <select class="form-select" aria-label="Section selection" id="section-select" name="section">
+                    <option
+                        value="all"
+                        class="option-capitalize"
+                        {% if type == "all" %}selected{% endif %}>
+                        {% translate "all" %}
                     </option>
-                {% endfor %}
-            </select>
+                    {% for section in sections %}
+                        <option
+                            value="{{ section.code }}"
+                            class="option-capitalize"
+                            {% if type == section.code %}selected{% endif %}>
+                            {{ section.name }}
+                        </option>
+                    {% endfor %}
+                </select>
 
-            <a
-                class="mx-1 btn small_button button-dark update-url"
-                id="link-section"
-                href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page="1" %}">
-                {% translate "change" %}
-            </a>
+                <a
+                    class="mx-1 btn small_button button-dark update-url"
+                    id="link-section"
+                    data-page="same"
+                    data-category="same"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
+                    {% translate "change" %}
+                </a>
 
+            </div>
+            <div class="d-flex">
+
+                <a
+                    class="update-url link-nav link-light navbar-forum{% if category == "new" %} forum-link-selected{% endif %}"
+                    data-page="same"
+                    data-category="new"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="new" page="1" %}">
+                    {% translate "new" %}
+                </a>
+
+                <a
+                    class="update-url link-nav link-light navbar-forum{% if category == "old" %} forum-link-selected{% endif %}"
+                    data-page="same"
+                    data-category="old"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="old" page="1" %}">
+                    {% translate "old" %}
+                </a>
+            </div>
         </div>
 
         <table class="table text-fore table-topic">
@@ -41,20 +110,25 @@
             <thead>
                 <tr>
                     <th>{% translate "topic" %}</th>
-                    <th>{% translate "replies" %}</th>
-                    <th>{% translate "views" %}</th>
-                    <th>{% translate "activity" %}</th>
+                    <th class="text-center">{% translate "replies" %}</th>
+                    <th class="text-center">{% translate "views" %}</th>
+                    <th class="text-end">{% translate "activity" %}</th>
                 </tr>
             </thead>
 
             {% for topic in topics %}
                 <tr class="row-topic">
-                    <a href="https://www.google.com">
-                        <td>{{topic.title}}</td>
-                        <td>Replies</td>
-                        <td>{{topic.views}}</td>
-                        <td>Activity</td>
-                    </a>
+                    <td>
+                        <a
+                            href={% url "forum:topic" topic_id=topic.id page="1" %}
+                            class="link-light text-decoration-none">
+                            <div>{{topic.title}}</div>
+                            <div>{{topic.section.name}}</div>
+                        </a>
+                    </td>
+                    <td class="align-middle text-center">{{topic.get_replies}}</td>
+                    <td class="align-middle text-center">{{topic.views}}</td>
+                    <td class="align-middle text-end">{{topic.last_activity}}</td>
                 </tr>
             {% endfor %}
         </table>
@@ -71,7 +145,9 @@
                 <a
                     class="mx-1 btn small_button button-dark update-url"
                     id="prev-page"
-                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=prev_page %}">
+                    data-page="prev"
+                    data-category="same"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=prev_page %}">
                     {% translate "previous" %}
                 </a>
             {% endif %}
@@ -79,7 +155,9 @@
                 <a
                     class="mx-1 btn small_button button-dark update-url"
                     id="first-page"
-                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page="1" %}">
+                    data-page="first"
+                    data-category="same"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
                     1
                 </a>
             {% endif %}
@@ -103,7 +181,9 @@
                 <a
                     class="mx-1 btn small_button button-dark update-url"
                     id="last-page"
-                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=page %}">
+                    data-page="last"
+                    data-category="same"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=page %}">
                     {{ nb_pages }}
                 </a>
             {% endif %}
@@ -118,7 +198,9 @@
                 <a
                     class="mx-1 btn small_button button-dark update-url"
                     id="next-page"
-                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=next_page %}">
+                    data-page="next"
+                    data-category="same"
+                    href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=next_page %}">
                     {% translate "next" %}
                 </a>
             {% endif %}

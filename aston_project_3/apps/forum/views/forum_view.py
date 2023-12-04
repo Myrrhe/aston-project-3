@@ -1,5 +1,4 @@
 """The forum view."""
-from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -22,20 +21,32 @@ class ForumViewSet(View):
         **kwargs,
     ) -> HttpResponse:
         """GET method."""
-        topics = Topic.objects.filter(deleted=False).order_by("-created_at")
-        nb_topics = topics.count()
-        nb_pages = ceil(nb_topics / 10)
-        match type:
-            case "all":
-                topics = topics[(page - 1) * 10 : page * 10]
+        topics = Topic.objects.filter(deleted=False)
+        if type != "all":
+            topics = topics.filter(section__code=type)
+        match category:
+            case "new":
+                topics = topics.order_by("-created_at")
+            case "old":
+                topics = topics.order_by("created_at")
             case _:
                 print("error")
         sections = TopicSection.objects.all()
+        nb_topics = topics.count()
+        nb_pages = ceil(nb_topics / 10)
+        if nb_pages < 1:
+            nb_pages = 1
+        if page < 1:
+            page = 1
+        elif page > nb_pages:
+            page = nb_pages
+        topics = topics[(page - 1) * 10 : page * 10]
         return render(
             request,
             "forum/forum.html",
             context={
                 "topics": topics,
+                "type": type,
                 "sections": sections,
                 "category": category,
                 "page": page,

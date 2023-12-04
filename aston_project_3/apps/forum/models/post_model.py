@@ -26,6 +26,7 @@ class Post(TimestampedModel):
         on_delete=models.PROTECT,
         verbose_name=_("topic"),
         help_text=_("topic_of_post_help_text"),
+        related_name="posts",
     )
     content = models.TextField(
         max_length=4096,

@@ -25,8 +25,8 @@ class TopicSection(TimestampedModel):
         default=False,
         null=False,
         blank=False,
-        verbose_name=_("deleted"),
-        help_text=_("deleted_help_text"),
+        verbose_name=_("name"),
+        help_text=_("name_help_text"),
     )
     description = models.TextField(
         max_length=4096,

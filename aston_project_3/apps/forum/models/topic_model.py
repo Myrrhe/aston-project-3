@@ -66,6 +66,18 @@ class Topic(TimestampedModel):
         verbose_name = _("topic")
         verbose_name_plural = _("topics")
 
+    @property
+    def last_activity(self) -> str:
+        """Get the date of the last post."""
+        return (
+            self.posts.latest("created_at") if self.posts.count() else self.created_at
+        )
+
+    @property
+    def get_replies(self) -> int:
+        """Get the number of posts."""
+        return self.posts.count()
+
     def __str__(self) -> str:
         """Represent the class objects as a string."""
         return f"{self.title}"
