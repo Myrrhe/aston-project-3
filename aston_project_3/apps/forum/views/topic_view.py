@@ -5,6 +5,7 @@ from django.views import View
 
 from math import ceil
 
+from apps.forum.forms import AnswerTopicForm
 from apps.forum.models import Topic
 
 
@@ -24,9 +25,9 @@ class TopicViewSet(View):
         nb_pages = ceil(topic.get_replies / 10)
         if nb_pages < 1:
             nb_pages = 1
-        if page < 1:
+        if page < 0:
             page = 1
-        elif page > nb_pages:
+        elif page == 0 or page > nb_pages:
             page = nb_pages
         posts = topic.posts.order_by("created_at")[(page - 1) * 10 : page * 10]
         return render(
@@ -43,5 +44,6 @@ class TopicViewSet(View):
                 "page_last": page == nb_pages,
                 "next_page": page + 1,
                 "prev_page": page - 1,
+                "answer_form": AnswerTopicForm(initial={"topic_id": topic_id}),
             },
         )

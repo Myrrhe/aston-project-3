@@ -1,6 +1,7 @@
 """The urls file."""
 from django.urls import path
 from apps.forum.views import (
+    AnswerTopicViewSet,
     ForumViewSet,
     TopicViewSet,
 )
@@ -22,5 +23,10 @@ urlpatterns = [
         "forum/topic/<uuid:topic_id>/<int:page>",
         TopicViewSet.as_view(),
         name="topic",
+    ),
+    path(
+        "forum/topic/answer",
+        AnswerTopicViewSet.as_view(),
+        name="answer_topic",
     ),
 ]

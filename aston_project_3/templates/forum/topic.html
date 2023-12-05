@@ -5,6 +5,7 @@
 {{ block.super }}
     <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
     <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/topic.css" %}">
 {% endblock head_css_site %}
 
 {% block content %}
@@ -105,11 +106,41 @@
             </div>
 
             <div>
-                <button class="btn small_button button-bright">{% translate "answer" %}</button>
+                <button
+                    class="btn small_button button-bright"
+                    {% comment %} data-bs-toggle="modal" {% endcomment %}
+                    {% comment %} data-bs-target="#exampleModal" {% endcomment %}
+                    id="button-trigger-answer">
+                    {% translate "answer" %}
+                </button>
             </div>
         </div>
 
     </div>
+
+</div>
+
+{% comment %} {% include "forum/modal_answer.html" %} {% endcomment %}
+<div id="block-anwer" class="d-none opacity-0 position-fixed fixed-bottom bg-dark-grey">
+    Ma réponse
+    <form method="post" action="{% url "forum:answer_topic" %}">
+        {% csrf_token %}
+        {{ answer_form }}
+        <div class="d-flex">
+            <input
+                type="submit"
+                id="submit-answer"
+                class="btn button button-bright btn"
+                value="{% translate "answer" %}">
+            <button
+                type="button"
+                id="button-close-answer"
+                class="btn small_button button-dark">
+                {% translate "close" %}
+            </button>
+        </div>
+    </form>
 </div>
 <script src="{% static "js/forum/main.js" %}"></script>
+<script src="{% static "js/forum/topic.js" %}"></script>
 {% endblock %}

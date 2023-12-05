@@ -252,3 +252,8 @@ hr {
     opacity: 0.1 !important;
     height: 2px !important;
 }
+
+.bg-dark-grey {
+    background-color: var(--dark-grey-color);
+    color: var(--fore-color);
+}
