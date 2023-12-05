@@ -6,6 +6,7 @@ from django.db.utils import IntegrityError
 
 from apps.core.utils.json_processing_util import count_instance
 from apps.forum.models import (
+    Post,
     Topic,
     TopicSection,
 )
@@ -48,6 +49,7 @@ class Command(BaseCommand):
 
         self.loading_model(TopicSection, True)
         self.loading_model(Topic, True)
+        self.loading_model(Post, True)
         if Command.is_working:
             self.log(self.style.SUCCESS("Fixtures loading terminated without errors"))
         else:

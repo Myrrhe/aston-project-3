@@ -60,6 +60,10 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def get_by_natural_key(self, email: str = "admin@aston.com") -> User:
+        """Get a user by their email."""
+        return self.get(email=email)
+
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     """The user's model."""
@@ -82,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     username = models.CharField(
         max_length=50,
         null=True,
-        blank=False,
+        blank=True,
         verbose_name=_("username"),
         help_text=_("username_help_text"),
     )
@@ -137,6 +141,11 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         """Check if the user is a staff member."""
         return self.is_admin
 
+    @property
+    def get_name(self) -> str:
+        """Get the username ot the email."""
+        return self.username if self.username else self.email
+
     def has_module_perms(self, app_label: str) -> bool:
         """Needed for the admin part."""
         return self.is_staff
@@ -187,6 +196,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     #             "email": email,
     #         },
     #     )
+
+    def natural_key(self) -> tuple[str, ...]:
+        """Create a natural key."""
+        return (self.email,)
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""

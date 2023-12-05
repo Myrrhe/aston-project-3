@@ -1,13 +1,11 @@
 [
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000001",
         "fields": {
-            "title": "Titre 1",
             "content": "Poste 1",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -16,14 +14,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000002",
         "fields": {
-            "title": "Titre 2",
             "content": "Poste 2",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -32,14 +28,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000003",
         "fields": {
-            "title": "Titre 3",
             "content": "Poste 3",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -48,14 +42,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000004",
         "fields": {
-            "title": "Titre 4",
             "content": "Poste 4",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -64,14 +56,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000005",
         "fields": {
-            "title": "Titre 5",
             "content": "Poste 5",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -80,14 +70,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000006",
         "fields": {
-            "title": "Titre 6",
             "content": "Poste 6",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -96,14 +84,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000007",
         "fields": {
-            "title": "Titre 7",
             "content": "Poste 7",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -112,14 +98,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000008",
         "fields": {
-            "title": "Titre 8",
             "content": "Poste 8",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -128,14 +112,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000009",
         "fields": {
-            "title": "Titre 9",
             "content": "Poste 9",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -144,14 +126,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000010",
         "fields": {
-            "title": "Titre 10",
             "content": "Poste 10",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -160,14 +140,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000011",
         "fields": {
-            "title": "Titre 11",
             "content": "Poste 11",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -176,14 +154,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000012",
         "fields": {
-            "title": "Titre 12",
             "content": "Poste 12",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -192,14 +168,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000013",
         "fields": {
-            "title": "Titre 13",
             "content": "Poste 13",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -208,14 +182,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000014",
         "fields": {
-            "title": "Titre 14",
             "content": "Poste 14",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -224,14 +196,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000015",
         "fields": {
-            "title": "Titre 15",
             "content": "Poste 15",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -240,14 +210,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000016",
         "fields": {
-            "title": "Titre 16",
             "content": "Poste 16",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -256,14 +224,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000017",
         "fields": {
-            "title": "Titre 17",
             "content": "Poste 17",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -272,14 +238,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000018",
         "fields": {
-            "title": "Titre 18",
             "content": "Poste 18",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -288,14 +252,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000019",
         "fields": {
-            "title": "Titre 19",
             "content": "Poste 19",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -304,14 +266,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000020",
         "fields": {
-            "title": "Titre 20",
             "content": "Poste 20",
-            "section": "00000000-0000-0000-0000-000000000002",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],
@@ -320,14 +280,12 @@
         }
     },
     {
-        "model": "forum.topic",
+        "model": "forum.post",
         "pk": "00000000-0000-0000-0000-000000000021",
         "fields": {
-            "title": "Titre 21",
             "content": "Poste 21",
-            "section": "00000000-0000-0000-0000-000000000001",
-            "views": 0,
             "deleted": false,
+            "topic_id": "00000000-0000-0000-0000-000000000001",
             "user_id": [
                 "admin@aston.com"
             ],

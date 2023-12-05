@@ -15,16 +15,99 @@
     data-page="{{page}}"
     data-nb-pages="{{nb_pages}}">
 
-    <div class="form-login my-5 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+    <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
         <h1 class="mt-1">{{topic.title}}</h1>
         <p class="text-fore">{{topic.section.name}}</p>
         {% for post in posts %}
             <div>
                 <hr class="hr">
-                <p class="text-fore">{{topic.user}}</p>
-                <p class="text-fore">{{topic.content}}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-fore text-start">{{post.user.get_name}}</p>
+                    <p class="text-fore text-end">{{post.created_at}}</p>
+                </div>
+                <p class="text-fore">{{post.content}}</p>
             </div>
         {% endfor %}
+        <hr class="hr">
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                {% if page == 1 %}
+                    <button
+                        class="mx-1 btn small_button button-dark"
+                        id="prev-page"
+                        disabled>
+                        {% translate "previous" %}
+                    </button>
+                {% else %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="prev-page"
+                        data-page="prev"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=prev_page %}">
+                        {% translate "previous" %}
+                    </a>
+                {% endif %}
+                {% if not page_first %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="first-page"
+                        data-page="first"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page="1" %}">
+                        1
+                    </a>
+                {% endif %}
+                {% if page_greater_than_two %}
+                    <button class="mx-1 btn small_button button-dark" disabled>
+                        ...
+                    </button>
+                {% endif %}
+                <button
+                    class="mx-1 btn small_button button-bright"
+                    id="current-page"
+                    disabled>
+                    {{page}}
+                </button>
+                {% if page_lesser_than_penultimate %}
+                    <button class="mx-1 btn small_button button-dark" disabled>
+                        ...
+                    </button>
+                {% endif %}
+                {% if not page_last %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="last-page"
+                        data-page="last"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=nb_pages %}">
+                        {{ nb_pages }}
+                    </a>
+                {% endif %}
+                {% if page_last %}
+                    <button
+                        class="mx-1 btn small_button button-dark"
+                        id="next-page"
+                        disabled>
+                        {% translate "next" %}
+                    </button>
+                {% else %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="next-page"
+                        data-page="next"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=next_page %}">
+                        {% translate "next" %}
+                    </a>
+                {% endif %}
+            </div>
+
+            <div>
+                <button class="btn small_button button-bright">{% translate "answer" %}</button>
+            </div>
+        </div>
 
     </div>
 </div>

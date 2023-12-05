@@ -28,7 +28,7 @@ class TopicViewSet(View):
             page = 1
         elif page > nb_pages:
             page = nb_pages
-        posts = topic.posts.order_by("-created_at")[(page - 1) * 10 : page * 10]
+        posts = topic.posts.order_by("created_at")[(page - 1) * 10 : page * 10]
         return render(
             request,
             "forum/topic.html",
