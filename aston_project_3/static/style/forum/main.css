@@ -1,10 +1,11 @@
 .navbar-forum {
-    padding: 12px 20px;
-    text-decoration: none;
+    padding: 12px 20px !important;
+    text-decoration: none !important;
+    border-radius: 0 !important;
 }
 
 .forum-link-selected {
-    background-color: var(--primary-light-hover-color);
+    background-color: var(--primary-light-hover-color) !important;
 }
 
 .navbar-forum:hover {

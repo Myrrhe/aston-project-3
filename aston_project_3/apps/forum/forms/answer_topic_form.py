@@ -14,7 +14,7 @@ class AnswerTopicForm(forms.Form):
     content = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                "class": "form-control",
+                "class": "form-control p-3 textarea-answer",
                 "placeholder": _("your_answer"),
                 "id": "content",
             },

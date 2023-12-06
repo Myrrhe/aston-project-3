@@ -11,3 +11,12 @@
 .modal-open {
     overflow-y: auto;
 }
+
+#preview-answer {
+    /* min-height: 274px; */
+    border: 2px solid var(--white-veil-10-color);
+}
+
+.textarea-answer {
+    min-height: 280px !important;
+}

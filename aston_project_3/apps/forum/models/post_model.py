@@ -1,5 +1,7 @@
 """The post's model."""
 
+import markdown2
+
 import uuid
 
 from django.db import models
@@ -51,6 +53,11 @@ class Post(TimestampedModel):
         db_table = "post"
         verbose_name = _("post")
         verbose_name_plural = _("posts")
+
+    @property
+    def get_text_html(self) -> any:
+        """Get a transformed string."""
+        return markdown2.markdown(self.content)
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""

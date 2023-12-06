@@ -30,8 +30,7 @@
                             alt="Le logo du site"
                             height="50px"
                             width="auto"
-                            class="ms-5 me-2"
-                            />
+                            class="ms-5 me-2">
                     </a>
                     <ul class="navbar-nav align-items-stretch">
                         <li class="d-flex align-items-center no-bar">
@@ -44,14 +43,14 @@
                             <a
                                 class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
                                 href="#"
-                                id="navbarDropdown"
+                                id="navbarDropdown-bot"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">
                                 {% translate "my_bots" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-bot">
                                 <li>
                                     <a
                                         class="dropdown-item link-light dropdown-nav-item"
@@ -73,14 +72,14 @@
                             <a
                                 class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
                                 href="#"
-                                id="navbarDropdown"
+                                id="navbarDropdown-match"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">
                                 {% translate "matches" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-match">
                                 <li>
                                     <a
                                         class="dropdown-item link-light dropdown-nav-item"
@@ -102,14 +101,14 @@
                             <a
                                 class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
                                 href="#"
-                                id="navbarDropdown"
+                                id="navbarDropdown-community"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">
                                 {% translate "community" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-community">
                                 <li>
                                     <a
                                         class="dropdown-item link-light dropdown-nav-item"
@@ -136,7 +135,7 @@
                         method="post"
                         class="ms-2 d-flex">
                         {% csrf_token %}
-                        <input name="next" id="next" class="d-none" value="{{ request.path }}" hidden></input>
+                        <input name="next" id="next" class="d-none" value="{{ request.path }}" hidden>
                         <select
                             class="form-select"
                             aria-label="Language selection"
@@ -168,14 +167,14 @@
                                 <a
                                     class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
                                     href="#"
-                                    id="navbarDropdown"
+                                    id="navbarDropdown-account"
                                     role="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false">
                                     {{request.user.email}}
                                 </a>
-                                <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-account">
                                     <li>
                                         <a
                                             class="dropdown-item link-light dropdown-nav-item"
