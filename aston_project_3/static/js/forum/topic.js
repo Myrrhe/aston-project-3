@@ -20,9 +20,7 @@ $("#button-close-answer").on("click", function () {
 
 $("#content").on("change", function () {
     const converter = new showdown.Converter();
-    const text = $(this).val();
-    const html = converter.makeHtml(text);
-    $("#preview-answer").html(html);
+    $("#preview-answer").html(converter.makeHtml($(this).val()));
 });
 
 $("#button-write").on("click", function () {
