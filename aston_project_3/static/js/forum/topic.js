@@ -19,18 +19,15 @@ $("#button-close-answer").on("click", function () {
 });
 
 $("#content").on("change", function () {
-    // const converter = new showdown.Converter();
-    // $("#preview-answer").html(converter.makeHtml($(this).val()));
-
     const converter = new showdown.Converter();
     const markdownText = $(this).val();
-    const escapedHtml = $("<div>").text(converter.makeHtml(markdownText)).html();
-    $("#preview-answer").html(escapedHtml);
-
-    // const converter = new showdown.Converter();
-    // const markdownText = $(this).val();
-    // const htmlText = converter.makeHtml(markdownText);
-    // $("#preview-answer").html(htmlText);
+    const markdownTextSanitized = markdownText
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    $("#preview-answer").html(converter.makeHtml(markdownTextSanitized));
 });
 
 $("#button-write").on("click", function () {
