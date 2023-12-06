@@ -169,8 +169,11 @@
         </div>
     </form>
 </div>
-<script src="{% static "js/core/showdown.js" %}"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+    integrity="sha256-iOtvu+DCcN3zOEruDJYg0HDgkKJuB8Z0Ia42yQO11kk="
+    crossorigin="anonymous">
+</script>
 <script src="{% static "js/forum/main.js" %}"></script>
 <script src="{% static "js/forum/topic.js" %}"></script>
-{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script> {% endcomment %}
 {% endblock %}

@@ -20,8 +20,7 @@ $("#button-close-answer").on("click", function () {
 
 $("#content").on("change", function () {
     const converter = new showdown.Converter();
-    const markdownText = $(this).val();
-    const markdownTextSanitized = markdownText
+    const markdownTextSanitized = $(this).val()
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
