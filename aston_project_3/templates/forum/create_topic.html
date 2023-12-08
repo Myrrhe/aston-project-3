@@ -41,7 +41,26 @@
                     for="{{ form.content.id }}">
                     {{ form.title.content }}
                 </label>
-                {{form.content}}
+                <p class="w-100 mb-0 text-fore">{% translate "markdown_supported" %}</p>
+                <div class="w-100 d-flex flex-row">
+                    <button
+                        id="button-write"
+                        class="btn navbar-forum text-fore forum-link-selected"
+                        type="button">
+                        {% translate "write" %}
+                    </button>
+                    <button
+                        id="button-preview"
+                        class="btn navbar-forum text-fore"
+                        type="button">
+                        {% translate "preview" %}
+                    </button>
+                </div>
+                <div id="write-answer">
+                    {{form.content}}
+                </div>
+                <div id="preview-answer" class="text-fore d-none textarea-answer p-3" cols="40" rows="10">
+                </div>
             </div>
             <div class="d-flex flex-row">
                 <a
@@ -58,6 +77,11 @@
 
     </div>
 </div>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+    integrity="sha256-iOtvu+DCcN3zOEruDJYg0HDgkKJuB8Z0Ia42yQO11kk="
+    crossorigin="anonymous">
+</script>
 <script src="{% static "js/forum/main.js" %}"></script>
 <script src="{% static "js/forum/forum.js" %}"></script>
 {% endblock %}

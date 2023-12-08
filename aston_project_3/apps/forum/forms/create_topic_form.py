@@ -36,7 +36,7 @@ class CreateTopicForm(ModelForm):
     content = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                "class": "form-control",
+                "class": "form-control textarea-answer",
                 "placeholder": _("topic_post"),
                 "id": "content",
             },

@@ -57,4 +57,4 @@ class TopicSection(TimestampedModel):
     @classmethod
     def get_all(cls: "TopicSection") -> list[tuple[str, ...]]:
         """Get all the sections as an iterable of 2-tuples."""
-        return [(section.code, section.description) for section in cls.objects.all()]
+        return [(section.code, section.name) for section in cls.objects.all()]
