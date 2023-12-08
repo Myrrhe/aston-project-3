@@ -52,7 +52,7 @@ class CreateTopicForm(ModelForm):
         """Clean the form."""
         return self.cleaned_data
 
-    def save(self) -> None:
+    def save(self) -> Topic:
         """Save the data of the form."""
         sections = TopicSection.objects.filter(code=self.cleaned_data["section"])
         topic = Topic.objects.create(
@@ -65,6 +65,7 @@ class CreateTopicForm(ModelForm):
             topic=topic,
             content=self.cleaned_data["content"],
         )
+        return topic
 
     class Meta(object):
         """The meta class."""
