@@ -78,7 +78,7 @@ class Topic(TimestampedModel):
     @property
     def get_replies(self) -> int:
         """Get the number of posts."""
-        return self.posts.count()
+        return self.posts.count() - 1
 
     def increment_view(self) -> None:
         """Increment the views by one."""

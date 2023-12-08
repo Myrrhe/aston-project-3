@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main">
+
+    <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
+        <h1 class="mt-1">{% translate "create_new_topic" %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-2">
+                <label
+                    class="d-none"
+                    for="{{ form.title.id }}">
+                    {{ form.title.label }}
+                </label>
+                {{form.title}}
+            </div>
+
+            <div class="mb-2 d-flex flex-row">
+                <label
+                    class="text-fore me-2 d-flex align-items-center"
+                    for="{{ form.section.id }}">
+                    {{ form.section.label }}
+                </label>
+                {{form.section}}
+            </div>
+
+            <div class="mb-2">
+                <label
+                    class="d-none"
+                    for="{{ form.content.id }}">
+                    {{ form.title.content }}
+                </label>
+                {{form.content}}
+            </div>
+            <div class="d-flex flex-row">
+                <a
+                    href="{% url "forum:forum-spec" type="all" category="new" page="1" %}"
+                    class="btn small_button button-dark me-2">
+                    {% translate "back_to_topics" %}
+                </a>
+                <input
+                    type="submit"
+                    class="btn button button-bright text-uppercase"
+                    value="{% translate "create_the_topic" %}" />
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="{% static "js/forum/main.js" %}"></script>
+<script src="{% static "js/forum/forum.js" %}"></script>
+{% endblock %}

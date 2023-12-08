@@ -46,6 +46,15 @@ class TopicSection(TimestampedModel):
         verbose_name = _("topic_section")
         verbose_name_plural = _("topic_sections")
 
+    def natural_key(self) -> tuple[str, ...]:
+        """Create a natural key."""
+        return (self.code,)
+
     def __str__(self) -> str:
         """Represent the class objects as a string."""
         return f"{self.name} ({self.code})"
+
+    @classmethod
+    def get_all(cls: "TopicSection") -> list[tuple[str, ...]]:
+        """Get all the sections as an iterable of 2-tuples."""
+        return [(section.code, section.description) for section in cls.objects.all()]

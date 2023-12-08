@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 10:24+0100\n"
+"POT-Creation-Date: 2023-12-08 14:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,6 +213,31 @@ msgstr ""
 msgid "answer"
 msgstr ""
 
+#: .\apps\forum\forms\create_topic_form.py:18
+msgid "topic_title"
+msgstr ""
+
+#: .\apps\forum\forms\create_topic_form.py:22
+#: .\apps\forum\models\topic_model.py:35
+msgid "title"
+msgstr ""
+
+#: .\apps\forum\forms\create_topic_form.py:32
+#: .\apps\forum\models\topic_model.py:28
+msgid "section"
+msgstr ""
+
+#: .\apps\forum\forms\create_topic_form.py:40
+#, fuzzy
+#| msgid "username"
+msgid "topic_post"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\forms\create_topic_form.py:44
+#: .\apps\forum\models\post_model.py:37 .\apps\forum\models\topic_model.py:42
+msgid "content"
+msgstr ""
+
 #: .\apps\forum\models\post_model.py:24
 #, fuzzy
 #| msgid "username"
@@ -220,7 +245,7 @@ msgid "user_of_post_help_text"
 msgstr "Nombre de usuario"
 
 #: .\apps\forum\models\post_model.py:29 .\apps\forum\models\topic_model.py:66
-#: .\templates\forum\forum.html:112
+#: .\templates\forum\forum.html:121
 msgid "topic"
 msgstr ""
 
@@ -229,10 +254,6 @@ msgstr ""
 #| msgid "username"
 msgid "topic_of_post_help_text"
 msgstr "Nombre de usuario"
-
-#: .\apps\forum\models\post_model.py:37 .\apps\forum\models\topic_model.py:42
-msgid "content"
-msgstr ""
 
 #: .\apps\forum\models\post_model.py:38 .\apps\forum\models\topic_model.py:43
 #, fuzzy
@@ -264,19 +285,11 @@ msgstr ""
 msgid "user_of_topic_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\forum\models\topic_model.py:28
-msgid "section"
-msgstr ""
-
 #: .\apps\forum\models\topic_model.py:29
 #, fuzzy
 #| msgid "username"
 msgid "topic_section_of_topic_help_text"
 msgstr "Nombre de usuario"
-
-#: .\apps\forum\models\topic_model.py:35
-msgid "title"
-msgstr ""
 
 #: .\apps\forum\models\topic_model.py:36
 #, fuzzy
@@ -284,7 +297,7 @@ msgstr ""
 msgid "title_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\forum\models\topic_model.py:49 .\templates\forum\forum.html:114
+#: .\apps\forum\models\topic_model.py:49 .\templates\forum\forum.html:123
 msgid "views"
 msgstr ""
 
@@ -493,7 +506,7 @@ msgstr ""
 msgid "ranking"
 msgstr ""
 
-#: .\templates\base.html:159 .\templates\forum\forum.html:84
+#: .\templates\base.html:159 .\templates\forum\forum.html:85
 msgid "change"
 msgstr ""
 
@@ -587,36 +600,48 @@ msgstr ""
 msgid "go_to_cookies_policy_page"
 msgstr ""
 
+#: .\templates\forum\create_topic.html:17
+msgid "create_new_topic"
+msgstr ""
+
+#: .\templates\forum\create_topic.html:49
+msgid "create_the_topic"
+msgstr ""
+
 #: .\templates\forum\forum.html:56
 msgid "forum"
 msgstr ""
 
-#: .\templates\forum\forum.html:66
+#: .\templates\forum\forum.html:67
 msgid "all"
 msgstr ""
 
-#: .\templates\forum\forum.html:95
+#: .\templates\forum\forum.html:96
 msgid "new"
 msgstr ""
 
-#: .\templates\forum\forum.html:103
+#: .\templates\forum\forum.html:104
 msgid "old"
 msgstr ""
 
-#: .\templates\forum\forum.html:113
+#: .\templates\forum\forum.html:112
+msgid "create_topic"
+msgstr ""
+
+#: .\templates\forum\forum.html:122
 msgid "replies"
 msgstr ""
 
-#: .\templates\forum\forum.html:115
+#: .\templates\forum\forum.html:124
 msgid "activity"
 msgstr ""
 
-#: .\templates\forum\forum.html:142 .\templates\forum\forum.html:151
+#: .\templates\forum\forum.html:151 .\templates\forum\forum.html:160
 #: .\templates\forum\topic.html:52 .\templates\forum\topic.html:61
 msgid "previous"
 msgstr ""
 
-#: .\templates\forum\forum.html:195 .\templates\forum\forum.html:204
+#: .\templates\forum\forum.html:204 .\templates\forum\forum.html:213
 #: .\templates\forum\topic.html:105 .\templates\forum\topic.html:114
 msgid "next"
 msgstr ""

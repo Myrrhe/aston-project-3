@@ -2,6 +2,7 @@
 from django.urls import path
 from apps.forum.views import (
     AnswerTopicViewSet,
+    CreateTopicViewSet,
     ForumViewSet,
     TopicViewSet,
 )
@@ -28,5 +29,10 @@ urlpatterns = [
         "forum/topic/answer",
         AnswerTopicViewSet.as_view(),
         name="answer_topic",
+    ),
+    path(
+        "forum/topic/create",
+        CreateTopicViewSet.as_view(),
+        name="create_topic",
     ),
 ]
