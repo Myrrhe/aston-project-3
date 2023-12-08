@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 11:13+0100\n"
+"POT-Creation-Date: 2023-12-08 10:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,9 +34,15 @@ msgstr ""
 msgid "informations"
 msgstr ""
 
+#: .\apps\account\apps.py:11
+#, fuzzy
+#| msgid "username"
+msgid "users_management"
+msgstr "Nombre de usuario"
+
 #: .\apps\account\forms\change_email_form.py:20
 #: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:78 .\templates\account\account.html:21
+#: .\apps\account\models\user_model.py:83 .\templates\account\account.html:21
 msgid "email"
 msgstr ""
 
@@ -46,9 +52,9 @@ msgstr ""
 
 #: .\apps\account\forms\change_email_form.py:30
 #: .\apps\account\forms\change_email_form.py:34
-#: .\apps\account\forms\delete_account_form.py:21
-#: .\apps\account\forms\delete_account_form.py:25
-#: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:43
+#: .\apps\account\forms\delete_account_form.py:20
+#: .\apps\account\forms\delete_account_form.py:24
+#: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:34
 #: .\templates\account\account.html:79
 msgid "password"
 msgstr ""
@@ -57,14 +63,15 @@ msgstr ""
 #: .\apps\account\forms\change_email_form.py:46
 #: .\apps\account\forms\change_password_form.py:30
 #: .\apps\account\forms\change_password_form.py:36
-#: .\apps\account\forms\delete_account_form.py:31
-#: .\apps\account\forms\delete_account_form.py:37
-#: .\templates\account\account.html:153 .\templates\admin\login.html:45
+#: .\apps\account\forms\delete_account_form.py:30
+#: .\apps\account\forms\delete_account_form.py:36
+#: .\templates\account\account.html:160 .\templates\admin\login.html:45
 msgid "security_key"
 msgstr ""
 
-#: .\apps\account\forms\change_email_form.py:58
-#: .\apps\account\forms\change_password_form.py:69
+#: .\apps\account\forms\change_email_form.py:60
+#: .\apps\account\forms\change_password_form.py:71
+#: .\apps\account\forms\delete_account_form.py:50
 msgid "invalid_credentials"
 msgstr ""
 
@@ -86,7 +93,7 @@ msgstr ""
 msgid "confirm_new_password"
 msgstr ""
 
-#: .\apps\account\forms\change_password_form.py:71
+#: .\apps\account\forms\change_password_form.py:76
 msgid "password_no_match"
 msgstr ""
 
@@ -97,15 +104,12 @@ msgstr ""
 
 #: .\apps\account\forms\create_security_key_form.py:31
 #: .\apps\account\forms\create_security_key_form.py:37
+#: .\apps\forum\models\topic_section_model.py:20
 msgid "code"
 msgstr ""
 
-#: .\apps\account\forms\create_security_key_form.py:63
+#: .\apps\account\forms\create_security_key_form.py:66
 msgid "code_did_not_work"
-msgstr ""
-
-#: .\apps\account\forms\delete_account_form.py:55
-msgid "authentication_error"
 msgstr ""
 
 #: .\apps\account\forms\login_form.py:36
@@ -119,7 +123,7 @@ msgstr ""
 
 #: .\apps\account\forms\personal_informations_form.py:27
 #: .\apps\account\forms\personal_informations_form.py:31
-#: .\apps\account\models\user_model.py:92
+#: .\apps\account\models\user_model.py:97
 msgid "biography"
 msgstr ""
 
@@ -127,87 +131,222 @@ msgstr ""
 msgid "tou_text"
 msgstr ""
 
-#: .\apps\account\forms\signup_form.py:49
+#: .\apps\account\forms\signup_form.py:40
 msgid "password_repeat"
 msgstr ""
 
-#: .\apps\account\models\user_model.py:79
+#: .\apps\account\models\user_model.py:84
 #, fuzzy
 #| msgid "username"
 msgid "email_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:85
+#: .\apps\account\models\user_model.py:90
 msgid "username"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:86
+#: .\apps\account\models\user_model.py:91
 #, fuzzy
 #| msgid "username"
 msgid "username_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:93
+#: .\apps\account\models\user_model.py:98
 #, fuzzy
 #| msgid "username"
 msgid "biography_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:108
-msgid "is_email_confirmed"
-msgstr ""
-
-#: .\apps\account\models\user_model.py:109
-#, fuzzy
-#| msgid "username"
-msgid "is_email_confirmed_help_text"
-msgstr "Nombre de usuario"
-
 #: .\apps\account\models\user_model.py:113
-msgid "is_tou_accepted"
+msgid "is_email_confirmed"
 msgstr ""
 
 #: .\apps\account\models\user_model.py:114
 #, fuzzy
 #| msgid "username"
-msgid "is_tou_accepted_help_text"
+msgid "is_email_confirmed_help_text"
 msgstr "Nombre de usuario"
 
 #: .\apps\account\models\user_model.py:118
-msgid "is_admin"
+msgid "is_tou_accepted"
 msgstr ""
 
 #: .\apps\account\models\user_model.py:119
 #, fuzzy
 #| msgid "username"
+msgid "is_tou_accepted_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\account\models\user_model.py:123
+msgid "is_admin"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:124
+#, fuzzy
+#| msgid "username"
 msgid "is_admin_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:131
+#: .\apps\account\models\user_model.py:136 .\apps\forum\models\post_model.py:23
+#: .\apps\forum\models\topic_model.py:21
 #, fuzzy
 #| msgid "username"
 msgid "user"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:132
+#: .\apps\account\models\user_model.py:137
 #, fuzzy
 #| msgid "username"
 msgid "users"
 msgstr "Nombre de usuario"
 
-#: .\aston_project_3\settings.py:132
+#: .\apps\forum\apps.py:11
+msgid "discussions_management"
+msgstr ""
+
+#: .\apps\forum\forms\answer_topic_form.py:18
+msgid "your_answer"
+msgstr ""
+
+#: .\apps\forum\forms\answer_topic_form.py:22 .\templates\forum\topic.html:128
+#: .\templates\forum\topic.html:175
+msgid "answer"
+msgstr ""
+
+#: .\apps\forum\models\post_model.py:24
+#, fuzzy
+#| msgid "username"
+msgid "user_of_post_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\post_model.py:29 .\apps\forum\models\topic_model.py:66
+#: .\templates\forum\forum.html:112
+msgid "topic"
+msgstr ""
+
+#: .\apps\forum\models\post_model.py:30
+#, fuzzy
+#| msgid "username"
+msgid "topic_of_post_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\post_model.py:37 .\apps\forum\models\topic_model.py:42
+msgid "content"
+msgstr ""
+
+#: .\apps\forum\models\post_model.py:38 .\apps\forum\models\topic_model.py:43
+#, fuzzy
+#| msgid "username"
+msgid "content_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\post_model.py:44 .\apps\forum\models\topic_model.py:56
+msgid "deleted"
+msgstr ""
+
+#: .\apps\forum\models\post_model.py:45 .\apps\forum\models\topic_model.py:57
+#, fuzzy
+#| msgid "username"
+msgid "deleted_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\post_model.py:54
+msgid "post"
+msgstr ""
+
+#: .\apps\forum\models\post_model.py:55
+msgid "posts"
+msgstr ""
+
+#: .\apps\forum\models\topic_model.py:22
+#, fuzzy
+#| msgid "username"
+msgid "user_of_topic_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_model.py:28
+msgid "section"
+msgstr ""
+
+#: .\apps\forum\models\topic_model.py:29
+#, fuzzy
+#| msgid "username"
+msgid "topic_section_of_topic_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_model.py:35
+msgid "title"
+msgstr ""
+
+#: .\apps\forum\models\topic_model.py:36
+#, fuzzy
+#| msgid "username"
+msgid "title_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_model.py:49 .\templates\forum\forum.html:114
+msgid "views"
+msgstr ""
+
+#: .\apps\forum\models\topic_model.py:50
+#, fuzzy
+#| msgid "username"
+msgid "views_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_model.py:67
+msgid "topics"
+msgstr ""
+
+#: .\apps\forum\models\topic_section_model.py:21
+#, fuzzy
+#| msgid "username"
+msgid "code_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_section_model.py:28
+#, fuzzy
+#| msgid "username"
+msgid "name"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_section_model.py:29
+#, fuzzy
+#| msgid "username"
+msgid "name_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_section_model.py:36
+msgid "description"
+msgstr ""
+
+#: .\apps\forum\models\topic_section_model.py:37
+#, fuzzy
+#| msgid "username"
+msgid "description_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\forum\models\topic_section_model.py:46
+msgid "topic_section"
+msgstr ""
+
+#: .\apps\forum\models\topic_section_model.py:47
+msgid "topic_sections"
+msgstr ""
+
+#: .\aston_project_3\settings.py:133
 msgid "french"
 msgstr "Francés"
 
-#: .\aston_project_3\settings.py:133
+#: .\aston_project_3\settings.py:134
 msgid "english"
 msgstr "Inglés"
 
-#: .\aston_project_3\settings.py:134
+#: .\aston_project_3\settings.py:135
 msgid "spanish"
 msgstr "Español"
 
-#: .\templates\account\account.html:15 .\templates\base.html:102
+#: .\templates\account\account.html:15 .\templates\base.html:182
 msgid "my_account"
 msgstr ""
 
@@ -223,12 +362,12 @@ msgstr ""
 msgid "change_email"
 msgstr ""
 
-#: .\templates\account\account.html:65 .\templates\account\account.html:116
-#: .\templates\account\account.html:146 .\templates\security_key\add.html:47
+#: .\templates\account\account.html:65 .\templates\account\account.html:123
+#: .\templates\account\account.html:153 .\templates\security_key\add.html:54
 msgid "validate"
 msgstr ""
 
-#: .\templates\account\account.html:69 .\templates\account\account.html:120
+#: .\templates\account\account.html:69 .\templates\account\account.html:127
 msgid "cancel"
 msgstr ""
 
@@ -236,33 +375,33 @@ msgstr ""
 msgid "change_password"
 msgstr ""
 
-#: .\templates\account\account.html:130
+#: .\templates\account\account.html:137
 msgid "my_informations"
 msgstr ""
 
-#: .\templates\account\account.html:155 .\templates\security_key\add.html:16
+#: .\templates\account\account.html:163 .\templates\security_key\add.html:17
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "already_security_key"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:157
+#: .\templates\account\account.html:166
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "no_security_key_text"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:161 .\templates\security_key\add.html:13
+#: .\templates\account\account.html:170 .\templates\security_key\add.html:13
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "add_security_key"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\account\account.html:168
+#: .\templates\account\account.html:177
 msgid "danger_zone"
 msgstr ""
 
-#: .\templates\account\account.html:172 .\templates\account\delete.html:41
+#: .\templates\account\account.html:181 .\templates\account\delete.html:48
 msgid "delete_my_account"
 msgstr ""
 
@@ -274,7 +413,8 @@ msgstr ""
 msgid "account_deletion_text"
 msgstr ""
 
-#: .\templates\account\delete.html:36 .\templates\security_key\add.html:42
+#: .\templates\account\delete.html:43 .\templates\security_key\add.html:22
+#: .\templates\security_key\add.html:49
 msgid "back_to_account"
 msgstr ""
 
@@ -286,11 +426,11 @@ msgstr ""
 msgid "account_deleted_text"
 msgstr ""
 
-#: .\templates\account\deleted.html:17
+#: .\templates\account\deleted.html:21
 msgid "connect_to_another_account"
 msgstr ""
 
-#: .\templates\account\deleted.html:18
+#: .\templates\account\deleted.html:24
 msgid "create_another_account"
 msgstr ""
 
@@ -317,75 +457,75 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: .\templates\base.html:46
+#: .\templates\base.html:52
 msgid "my_bots"
 msgstr ""
 
-#: .\templates\base.html:49
+#: .\templates\base.html:59
 msgid "see_my_bots"
 msgstr ""
 
-#: .\templates\base.html:50
+#: .\templates\base.html:66
 msgid "create_new_bot"
 msgstr ""
 
-#: .\templates\base.html:56
+#: .\templates\base.html:81
 msgid "matches"
 msgstr ""
 
-#: .\templates\base.html:59
+#: .\templates\base.html:88
 msgid "see_matches"
 msgstr ""
 
-#: .\templates\base.html:60
+#: .\templates\base.html:95
 msgid "look_for_match"
 msgstr ""
 
-#: .\templates\base.html:66
+#: .\templates\base.html:110
 msgid "community"
 msgstr ""
 
-#: .\templates\base.html:69
+#: .\templates\base.html:117
 msgid "discussions"
 msgstr ""
 
-#: .\templates\base.html:70
+#: .\templates\base.html:124
 msgid "ranking"
 msgstr ""
 
-#: .\templates\base.html:91
+#: .\templates\base.html:159 .\templates\forum\forum.html:84
 msgid "change"
 msgstr ""
 
-#: .\templates\base.html:103
+#: .\templates\base.html:188
 msgid "deconnect"
 msgstr ""
 
-#: .\templates\base.html:110 .\templates\registration\login.html:56
+#: .\templates\base.html:200 .\templates\registration\login.html:56
 msgid "connect"
 msgstr ""
 
-#: .\templates\base.html:111
+#: .\templates\base.html:205
 msgid "signup"
 msgstr ""
 
-#: .\templates\base.html:120
+#: .\templates\base.html:215
 msgid "contact"
 msgstr ""
 
-#: .\templates\base.html:121
+#: .\templates\base.html:216
 msgid "faq"
 msgstr ""
 
-#: .\templates\base.html:122
+#: .\templates\base.html:217
 msgid "about"
 msgstr ""
 
-#: .\templates\base.html:123
+#: .\templates\base.html:218
 msgid "terms_of_use"
 msgstr ""
 
-#: .\templates\base.html:127
+#: .\templates\base.html:222
 msgid "copyright"
 msgstr ""
 
@@ -409,23 +549,23 @@ msgstr ""
 msgid "lang_cookie"
 msgstr ""
 
-#: .\templates\cookies\modal.html:27
+#: .\templates\cookies\modal.html:32
 msgid "required_cookies_only"
 msgstr ""
 
-#: .\templates\cookies\modal.html:28
+#: .\templates\cookies\modal.html:38
 msgid "accept_all"
 msgstr ""
 
-#: .\templates\cookies\modal.html:29 .\templates\cookies\settings.html:47
+#: .\templates\cookies\modal.html:43 .\templates\cookies\settings.html:47
 msgid "save_settings"
 msgstr ""
 
-#: .\templates\cookies\modal.html:30
+#: .\templates\cookies\modal.html:48
 msgid "cookies_settings_page"
 msgstr ""
 
-#: .\templates\cookies\modal.html:31
+#: .\templates\cookies\modal.html:53
 msgid "learn_more"
 msgstr ""
 
@@ -445,6 +585,60 @@ msgstr ""
 
 #: .\templates\cookies\settings.html:48
 msgid "go_to_cookies_policy_page"
+msgstr ""
+
+#: .\templates\forum\forum.html:56
+msgid "forum"
+msgstr ""
+
+#: .\templates\forum\forum.html:66
+msgid "all"
+msgstr ""
+
+#: .\templates\forum\forum.html:95
+msgid "new"
+msgstr ""
+
+#: .\templates\forum\forum.html:103
+msgid "old"
+msgstr ""
+
+#: .\templates\forum\forum.html:113
+msgid "replies"
+msgstr ""
+
+#: .\templates\forum\forum.html:115
+msgid "activity"
+msgstr ""
+
+#: .\templates\forum\forum.html:142 .\templates\forum\forum.html:151
+#: .\templates\forum\topic.html:52 .\templates\forum\topic.html:61
+msgid "previous"
+msgstr ""
+
+#: .\templates\forum\forum.html:195 .\templates\forum\forum.html:204
+#: .\templates\forum\topic.html:105 .\templates\forum\topic.html:114
+msgid "next"
+msgstr ""
+
+#: .\templates\forum\topic.html:26 .\templates\forum\topic.html:123
+msgid "back_to_topics"
+msgstr ""
+
+#: .\templates\forum\topic.html:145
+msgid "markdown_supported"
+msgstr ""
+
+#: .\templates\forum\topic.html:151
+msgid "write"
+msgstr ""
+
+#: .\templates\forum\topic.html:157
+msgid "preview"
+msgstr ""
+
+#: .\templates\forum\topic.html:180
+msgid "close"
 msgstr ""
 
 #: .\templates\registration\account_created.html:15
@@ -485,7 +679,7 @@ msgstr ""
 msgid "security_key_text"
 msgstr "Clave de seguridad (opcional)"
 
-#: .\templates\security_key\add.html:18
+#: .\templates\security_key\add.html:25
 #, fuzzy
 #| msgid "security_key_optional"
 msgid "security_key_method"

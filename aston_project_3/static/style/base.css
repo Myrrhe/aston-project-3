@@ -257,3 +257,7 @@ hr {
     background-color: var(--dark-grey-color);
     color: var(--fore-color);
 }
+
+.empty-space {
+    height: 416px;
+}

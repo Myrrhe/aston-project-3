@@ -70,13 +70,20 @@ class Topic(TimestampedModel):
     def last_activity(self) -> str:
         """Get the date of the last post."""
         return (
-            self.posts.latest("created_at") if self.posts.count() else self.created_at
+            self.posts.latest("created_at").created_at
+            if self.posts.count()
+            else self.created_at
         )
 
     @property
     def get_replies(self) -> int:
         """Get the number of posts."""
         return self.posts.count()
+
+    def increment_view(self) -> None:
+        """Increment the views by one."""
+        self.views += 1
+        self.save()
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""

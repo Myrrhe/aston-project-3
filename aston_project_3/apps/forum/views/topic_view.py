@@ -30,6 +30,8 @@ class TopicViewSet(View):
         elif page == 0 or page > nb_pages:
             page = nb_pages
         posts = topic.posts.order_by("created_at")[(page - 1) * 10 : page * 10]
+        topic.increment_view()
+        print(topic.section)
         return render(
             request,
             "forum/topic.html",

@@ -17,8 +17,17 @@
     data-nb-pages="{{nb_pages}}">
 
     <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
-        <h1 class="mt-1">{{topic.title}}</h1>
-        <p class="text-fore">{{topic.section.name}}</p>
+        <div>
+            <div class="d-flex flex-row justify-content-between">
+                <h1 class="mt-1">{{topic.title}}</h1>
+                <a
+                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    class="btn small_button button-dark mt-2">
+                    {% translate "back_to_topics" %}
+                </a>
+            </div>
+            <p class="text-fore">{{topic.section.name}}</p>
+        </div>
         {% for post in posts %}
             <div>
                 <hr class="hr">
@@ -108,6 +117,11 @@
             </div>
 
             <div>
+                <a
+                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    class="btn small_button button-dark">
+                    {% translate "back_to_topics" %}
+                </a>
                 <button
                     class="btn small_button button-bright"
                     id="button-trigger-answer">
@@ -157,7 +171,7 @@
                 <input
                     type="submit"
                     id="submit-answer"
-                    class="btn button button-bright btn"
+                    class="btn button button-bright btn me-2"
                     value="{% translate "answer" %}">
                 <button
                     type="button"
