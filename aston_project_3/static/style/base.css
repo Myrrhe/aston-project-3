@@ -19,7 +19,7 @@
 }
 
 .text-fore {
-    color: var(--fore-color);
+    color: var(--fore-color) !important;
 }
 
 .link-nav {
@@ -251,4 +251,13 @@ hr {
     color: var(--fore-color) !important;
     opacity: 0.1 !important;
     height: 2px !important;
+}
+
+.bg-dark-grey {
+    background-color: var(--dark-grey-color);
+    color: var(--fore-color);
+}
+
+.empty-space {
+    height: 416px;
 }

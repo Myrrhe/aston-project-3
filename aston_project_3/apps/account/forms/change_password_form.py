@@ -1,4 +1,4 @@
-"""The password change form"""
+"""The password change form."""
 from django.contrib.auth.forms import UsernameField
 from django.forms import ValidationError
 from django.http import HttpRequest
@@ -11,7 +11,7 @@ from apps.core.inputs import NonStickyTextInput
 
 
 class ChangePasswordForm(forms.Form):
-    """The password change form"""
+    """The password change form."""
 
     password1 = UsernameField(
         widget=forms.PasswordInput(
@@ -62,21 +62,29 @@ class ChangePasswordForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:
+        """Clean the form."""
         if not self.user.check_credentials(
             self.cleaned_data["password1"],
             self.cleaned_data["security_key"],
         ):
-            raise ValidationError(_("invalid_credentials"), code="invalid_credentials")
+            raise ValidationError(
+                _("invalid_credentials"),
+                code="invalid_credentials"
+            )
         if self.cleaned_data["password2"] != self.cleaned_data["password3"]:
-            raise ValidationError(_("password_no_match"), code="passwords_no_match")
+            raise ValidationError(
+                _("password_no_match"),
+                code="passwords_no_match"
+            )
         return self.cleaned_data
 
     def save(self, request: HttpRequest) -> None:
+        """Save the data of the form."""
         request.user.set_password(self.cleaned_data["password2"])
         request.user.save()
 
     class Meta(object):
-        """The meta class"""
+        """The meta class."""
 
         model = User
         fields = (

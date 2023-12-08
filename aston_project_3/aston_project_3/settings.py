@@ -45,6 +45,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "apps.core",
     "apps.account",
+    "apps.forum",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -172,3 +173,13 @@ DATABASES = {
         "PORT": env("PORT_DB"),
     }
 }
+
+SECURE_BROWSER_XSS_FILTER = True
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SECURE_REFERRER_POLICY = "same-origin"
+
+# SECURE_HSTS_SECONDS = 31536000
+
+X_FRAME_OPTIONS = "DENY"

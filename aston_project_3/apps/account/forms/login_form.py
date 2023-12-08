@@ -1,4 +1,4 @@
-"""The login form"""
+"""The login form."""
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.utils.translation import gettext_lazy as _
 
@@ -9,7 +9,7 @@ from apps.core.inputs import NonStickyTextInput
 
 
 class LoginForm(AuthenticationForm):
-    """The login form"""
+    """The login form."""
 
     username = UsernameField(
         widget=forms.TextInput(
@@ -45,7 +45,7 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
 
     class Meta(object):
-        """The meta class"""
+        """The meta class."""
 
         model = User
         fields = (

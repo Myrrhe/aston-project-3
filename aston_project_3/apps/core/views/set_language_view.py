@@ -1,4 +1,4 @@
-"""The language view"""
+"""The language view."""
 from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import resolve, Resolver404, reverse
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -11,9 +11,15 @@ from django.views import View
 
 
 class SetLanguageViewSet(View):
-    """The language view"""
+    """The language view."""
 
-    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponseRedirect:
+    def post(
+        self,
+        request: HttpRequest,
+        *args,
+        **kwargs
+    ) -> HttpResponseRedirect:
+        """POST method."""
         next_url = request.POST.get("next", request.GET.get("next"))
         if (
             next_url or request.accepts("text/html")

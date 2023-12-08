@@ -1,4 +1,4 @@
-"""The module file"""
+"""The module file."""
 from .change_email_form import ChangeEmailForm
 from .change_password_form import ChangePasswordForm
 from .create_security_key_form import CreateSecurityKeyForm
@@ -11,7 +11,7 @@ __all__ = [
     "ChangeEmailForm",
     "ChangePasswordForm",
     "CreateSecurityKeyForm",
-    "DeleteAccountFormq",
+    "DeleteAccountForm",
     "LoginForm",
     "PersonalInformationsForm",
     "SignupForm",

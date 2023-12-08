@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/topic.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main"
+    data-page="{{page}}"
+    data-nb-pages="{{nb_pages}}">
+
+    <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
+        <div>
+            <div class="d-flex flex-row justify-content-between">
+                <h1 class="mt-1">{{topic.title}}</h1>
+                <a
+                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    class="btn small_button button-dark mt-2">
+                    {% translate "back_to_topics" %}
+                </a>
+            </div>
+            <p class="text-fore">{{topic.section.name}}</p>
+        </div>
+        {% for post in posts %}
+            <div>
+                <hr class="hr">
+                <div class="d-flex justify-content-between">
+                    <p class="text-fore text-start">{{post.user.get_name}}</p>
+                    <p class="text-fore text-end">{{post.created_at}}</p>
+                </div>
+                <div class="text-fore">
+                    {{post.get_text_html|safe}}
+                </div>
+            </div>
+        {% endfor %}
+        <hr class="hr">
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                {% if page == 1 %}
+                    <button
+                        class="mx-1 btn small_button button-dark"
+                        id="prev-page"
+                        disabled>
+                        {% translate "previous" %}
+                    </button>
+                {% else %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="prev-page"
+                        data-page="prev"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=prev_page %}">
+                        {% translate "previous" %}
+                    </a>
+                {% endif %}
+                {% if not page_first %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="first-page"
+                        data-page="first"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page="1" %}">
+                        1
+                    </a>
+                {% endif %}
+                {% if page_greater_than_two %}
+                    <button class="mx-1 btn small_button button-dark" disabled>
+                        ...
+                    </button>
+                {% endif %}
+                <button
+                    class="mx-1 btn small_button button-bright"
+                    id="current-page"
+                    disabled>
+                    {{page}}
+                </button>
+                {% if page_lesser_than_penultimate %}
+                    <button class="mx-1 btn small_button button-dark" disabled>
+                        ...
+                    </button>
+                {% endif %}
+                {% if not page_last %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="last-page"
+                        data-page="last"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=nb_pages %}">
+                        {{ nb_pages }}
+                    </a>
+                {% endif %}
+                {% if page_last %}
+                    <button
+                        class="mx-1 btn small_button button-dark"
+                        id="next-page"
+                        disabled>
+                        {% translate "next" %}
+                    </button>
+                {% else %}
+                    <a
+                        class="mx-1 btn small_button button-dark update-url"
+                        id="next-page"
+                        data-page="next"
+                        data-category="same"
+                        href="{% url "forum:topic" topic_id=topic.id page=next_page %}">
+                        {% translate "next" %}
+                    </a>
+                {% endif %}
+            </div>
+
+            <div>
+                <a
+                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    class="btn small_button button-dark">
+                    {% translate "back_to_topics" %}
+                </a>
+                <button
+                    class="btn small_button button-bright"
+                    id="button-trigger-answer">
+                    {% translate "answer" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="block-anwer" class="d-none opacity-0 position-fixed fixed-bottom bg-dark-grey">
+    <form method="post" action="{% url "forum:answer_topic" %}">
+        {% csrf_token %}
+        <div class="d-flex flex-column justify-content-center align-items-center m-1">
+            <div class="w-75 mb-2">
+                <label class="d-none" for="{{ answer_form.content.auto_id }}">
+                    {{ answer_form.content.label }}
+                </label>
+                <p class="w-100 mb-0">{% translate "markdown_supported" %}</p>
+                <div class="w-100 d-flex flex-row">
+                    <button
+                        id="button-write"
+                        class="btn navbar-forum text-fore forum-link-selected"
+                        type="button">
+                        {% translate "write" %}
+                    </button>
+                    <button
+                        id="button-preview"
+                        class="btn navbar-forum text-fore"
+                        type="button">
+                        {% translate "preview" %}
+                    </button>
+                </div>
+                <div id="write-answer">
+                    {{ answer_form.content }}
+                </div>
+                <div id="preview-answer" class="text-fore d-none textarea-answer p-3" cols="40" rows="10">
+                </div>
+            </div>
+            <p class="d-none">
+                <label for="{{ answer_form.topic_id.auto_id }}">{{ answer_form.topic_id.label }}</label>
+                {{ answer_form.topic_id }}
+            </p>
+            <div class="d-flex w-75 mb-1">
+                <input
+                    type="submit"
+                    id="submit-answer"
+                    class="btn button button-bright btn me-2"
+                    value="{% translate "answer" %}">
+                <button
+                    type="button"
+                    id="button-close-answer"
+                    class="btn small_button button-dark">
+                    {% translate "close" %}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+    integrity="sha256-iOtvu+DCcN3zOEruDJYg0HDgkKJuB8Z0Ia42yQO11kk="
+    crossorigin="anonymous">
+</script>
+<script src="{% static "js/forum/main.js" %}"></script>
+<script src="{% static "js/forum/topic.js" %}"></script>
+{% endblock %}

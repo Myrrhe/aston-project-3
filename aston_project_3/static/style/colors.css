@@ -7,11 +7,14 @@
     --primary-light-color: rgb(38, 38, 87);
     --primary-light-hover-color: rgb(73, 73, 118);
     --back-color: #111111ff;
+    --dark-grey-color: rgb(4, 64, 106);
     --fore-color: #eeeeeeff;
     --bright-color: #00fea9ff;
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
     --bright-alt-hover-color: #ff56c7ff;
+    --white-veil-5-color: #ffffff11;
+    --white-veil-10-color: #ffffff19;
 }
 
 .light-mode {
@@ -24,4 +27,6 @@
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
     --bright-alt-hover-color: #ff56c7ff;
+    --white-veil-5-color: #ffffff11;
+    --white-veil-10-color: #ffffff19;
 }

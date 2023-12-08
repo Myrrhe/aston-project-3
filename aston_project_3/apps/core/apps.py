@@ -1,4 +1,4 @@
-"""The app file"""
+"""The app file."""
 from django.apps import AppConfig
 
 

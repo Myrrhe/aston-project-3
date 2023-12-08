@@ -1,4 +1,4 @@
-"""The user's model"""
+"""The user's model."""
 from __future__ import annotations
 
 import urllib
@@ -18,12 +18,13 @@ from django.utils.translation import gettext as _
 from django_otp import verify_token
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
-from apps.core.models.timestamped_model import TimestampedModel
+from apps.core.models import TimestampedModel
 
 # from apps.core.tokens import encode_token
 
 
 class UserManager(BaseUserManager):
+
     """
     Django requires that custom users define their own Manager class. By
     inheriting from `BaseUserManager`, we get a lot of the same code used by
@@ -59,9 +60,13 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def get_by_natural_key(self, email: str = "admin@aston.com") -> User:
+        """Get a user by their email."""
+        return self.get(email=email)
+
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
-    """The user's model"""
+    """The user's model."""
 
     DARK_CHOICES = [
         ("DARK", 0),
@@ -81,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     username = models.CharField(
         max_length=50,
         null=True,
-        blank=False,
+        blank=True,
         verbose_name=_("username"),
         help_text=_("username_help_text"),
     )
@@ -125,7 +130,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     objects = UserManager()
 
     class Meta(TimestampedModel.Meta):
-        """The meta class"""
+        """The meta class."""
 
         db_table = "user"
         verbose_name = _("user")
@@ -133,18 +138,28 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     @property
     def is_staff(self) -> bool:
+        """Check if the user is a staff member."""
         return self.is_admin
 
+    @property
+    def get_name(self) -> str:
+        """Get the username ot the email."""
+        return self.username if self.username else self.email
+
     def has_module_perms(self, app_label: str) -> bool:
+        """Needed for the admin part."""
         return self.is_staff
 
     def has_perm(self, perm: str, obj: object = None) -> bool:
+        """Needed for the admin part."""
         return self.is_staff
 
     def has_security_key(self) -> bool:
+        """Check if the user has added a TOTP to their account."""
         return TOTPDevice.objects.filter(user_id=self.id).exists()
 
     def check_security_key(self, security_key: str) -> bool:
+        """Check if a given code is correct."""
         return not self.has_security_key() or verify_token(
             self,
             TOTPDevice.objects.get(user_id=self.id).persistent_id,
@@ -152,6 +167,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         )
 
     def check_credentials(self, password: str, security_key: str) -> bool:
+        """Check if a password as well as a code are correct."""
         return self.check_password(password) and self.check_security_key(security_key)
 
     # def send_email_confirmation(self, template, path, email):
@@ -181,5 +197,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     #         },
     #     )
 
+    def natural_key(self) -> tuple[str, ...]:
+        """Create a natural key."""
+        return (self.email,)
+
     def __str__(self) -> str:
+        """Represent the class objects as a string."""
         return f"{self.email}"

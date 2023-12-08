@@ -1,0 +1,24 @@
+[
+    {
+        "model": "forum.topicsection",
+        "pk": "00000000-0000-0000-0000-000000000001",
+        "fields": {
+            "code": "bug",
+            "name": "Feedback & Bugs",
+            "description": "Describe your user experience and report bugs",
+            "created_at": "2022-06-28 12:25:24.925726 +00:00",
+            "updated_at": "2022-06-28 12:25:24.925726 +00:00"
+        }
+    },
+    {
+        "model": "forum.topicsection",
+        "pk": "00000000-0000-0000-0000-000000000002",
+        "fields": {
+            "code": "bot",
+            "name": "Bot programming",
+            "description": "Discuss the various strategies about creating the best bot",
+            "created_at": "2022-06-28 12:25:24.925726 +00:00",
+            "updated_at": "2022-06-28 12:25:24.925726 +00:00"
+        }
+    }
+]

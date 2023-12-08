@@ -8,7 +8,7 @@ from django.http import HttpRequest
 
 
 class PersonalInformationsForm(forms.Form):
-    """The personnal informations change form"""
+    """The personnal informations change form."""
 
     username = forms.CharField(
         widget=forms.TextInput(
@@ -35,17 +35,19 @@ class PersonalInformationsForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def is_valid(self) -> bool:
+        """Check if the form is valid."""
         res = True
         res = res and super().is_valid()
         return res
 
     def save(self, request: HttpRequest) -> None:
+        """Save the data of the form."""
         request.user.username = self.cleaned_data["username"]
         request.user.biography = self.cleaned_data["biography"]
         request.user.save()
 
     class Meta(object):
-        """The meta class"""
+        """The meta class."""
 
         model = User
         fields = (

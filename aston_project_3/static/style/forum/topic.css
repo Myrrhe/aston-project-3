@@ -1,0 +1,13 @@
+.custom-modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.answer-modal .modal-open .modal {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.modal-open {
+    overflow-y: auto;
+}

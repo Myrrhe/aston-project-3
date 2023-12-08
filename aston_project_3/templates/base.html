@@ -30,8 +30,7 @@
                             alt="Le logo du site"
                             height="50px"
                             width="auto"
-                            class="ms-5 me-2"
-                            />
+                            class="ms-5 me-2">
                     </a>
                     <ul class="navbar-nav align-items-stretch">
                         <li class="d-flex align-items-center no-bar">
@@ -41,32 +40,89 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a
+                                class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
+                                href="#"
+                                id="navbarDropdown-bot"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                                 {% translate "my_bots" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "see_my_bots" %}</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "create_new_bot" %}</a></li>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-bot">
+                                <li>
+                                    <a
+                                        class="dropdown-item link-light dropdown-nav-item"
+                                        href="/bots">
+                                        {% translate "see_my_bots" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                    class="dropdown-item link-light dropdown-nav-item"
+                                    href="/bots-create">
+                                    {% translate "create_new_bot" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a
+                                class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
+                                href="#"
+                                id="navbarDropdown-match"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                                 {% translate "matches" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "see_matches" %}</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "look_for_match" %}</a></li>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-match">
+                                <li>
+                                    <a
+                                        class="dropdown-item link-light dropdown-nav-item"
+                                        href="/bots">
+                                        {% translate "see_matches" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        class="dropdown-item link-light dropdown-nav-item"
+                                        href="/bots-create">
+                                        {% translate "look_for_match" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a
+                                class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
+                                href="#"
+                                id="navbarDropdown-community"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                                 {% translate "community" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots">{% translate "discussions" %}</a></li>
-                                <li><a class="dropdown-item link-light dropdown-nav-item" href="/bots-create">{% translate "ranking" %}</a></li>
+                            <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-community">
+                                <li>
+                                    <a
+                                        class="dropdown-item link-light dropdown-nav-item"
+                                        href="{% url "forum:forum-start" %}">
+                                        {% translate "discussions" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        class="dropdown-item link-light dropdown-nav-item"
+                                        href="/bots-create">
+                                        {% translate "ranking" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -74,40 +130,79 @@
                 <div class="d-flex align-items-stretch mx-1">
                     <button id="night-button" class="darklight fa-lg"></button>
                     {% load flag_templatetag %}
-                    <form action="{% if False %}{% url "set_language" %}{% else %}{% url "set-language" %}{% endif%}" method="post" class="ms-2 d-flex">
+                    <form
+                        action="{% if False %}{% url "set_language" %}{% else %}{% url "set-language" %}{% endif%}"
+                        method="post"
+                        class="ms-2 d-flex">
                         {% csrf_token %}
-                        <input name="next" id="next" class="d-none" value="{{ request.path }}" hidden></input>
-                        <select class="form-select" aria-label="Language selection" id="language-select" name="language">
+                        <input name="next" id="next" class="d-none" value="{{ request.path }}" hidden>
+                        <select
+                            class="form-select"
+                            aria-label="Language selection"
+                            id="language-select"
+                            name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} class="option-capitalize">
+                                <option
+                                    value="{{ language.code }}"
+                                    {% if language.code == LANGUAGE_CODE %} selected{% endif %}
+                                    class="option-capitalize">
                                     {{ language.name_local }} ({{ language.code }}) {{ language.code|flag }}
                                 </option>
                             {% endfor %}
                         </select>
-                        <input type="submit" value="{% translate "change" %}" class="mx-1 btn small_button button-dark" id="submit-language">
+                        <input
+                            type="submit"
+                            value="{% translate "change" %}"
+                            class="mx-1 btn small_button button-dark"
+                            id="submit-language">
                     </form>
                 </div>
                 {% if request.user.is_authenticated %}
                     <div class="d-flex auth-block ms-auto me-5 align-self-stretch">
                         <ul class="navbar-nav align-items-stretch">
                             <li class="nav-item dropdown align-items-stretch">
-                                <a class="nav-link dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a
+                                    class="dropdown-toggle nav-link link-light link-nav h-100 d-flex align-items-center"
+                                    href="#"
+                                    id="navbarDropdown-account"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
                                     {{request.user.email}}
                                 </a>
-                                <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "account:account" %}">{% translate "my_account" %}</a></li>
-                                    <li><a class="dropdown-item link-light dropdown-nav-item" href="{% url "logout" %}">{% translate "deconnect" %}</a></li>
+                                <ul class="dropdown-menu dropdown-nav" aria-labelledby="navbarDropdown-account">
+                                    <li>
+                                        <a
+                                            class="dropdown-item link-light dropdown-nav-item"
+                                            href="{% url "account:account" %}">{% translate "my_account" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item link-light dropdown-nav-item"
+                                            href="{% url "logout" %}">{% translate "deconnect" %}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 {% else %}
                     <div class="d-flex auth-block ms-auto me-5">
-                        <a class="btn button button-dark link-nav me-2" href="{% url "account:login" message="" %}">{% translate "connect" %}</a>
-                        <a class="btn button button-bright link-nav" href="{% url "account:signup" %}">{% translate "signup" %}</a>
+                        <a
+                            class="btn button button-dark link-nav me-2"
+                            href="{% url "account:login" message="" %}">
+                            {% translate "connect" %}
+                        </a>
+                        <a
+                            class="btn button button-bright link-nav"
+                            href="{% url "account:signup" %}">
+                            {% translate "signup" %}
+                        </a>
                     </div>
                 {% endif %}
             </nav>
@@ -128,6 +223,7 @@
                 </div>
             </div>
         </div>
+        <div id="empty-space" class="empty-space d-none"></div>
 
         {% include "cookies/modal.html" %}
         <script src="{% static "js/base.js" %}"></script>
