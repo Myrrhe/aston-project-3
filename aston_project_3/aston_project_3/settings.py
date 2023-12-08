@@ -184,4 +184,4 @@ SECURE_REFERRER_POLICY = "same-origin"
 
 X_FRAME_OPTIONS = "DENY"
 
-TEST_RUNNER = "apps.tests.test_custom_test_runner.CustomTestRunner"
+TEST_RUNNER = "tests.test_custom_test_runner.CustomTestRunner"
