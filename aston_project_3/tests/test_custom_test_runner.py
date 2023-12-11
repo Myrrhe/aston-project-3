@@ -6,6 +6,8 @@ from django.test.runner import DiscoverRunner
 
 from unittest import TestSuite, TextTestResult
 
+from apps.account.models import User
+
 
 class CustomTestRunner(DiscoverRunner):
     """Custom test runner."""
