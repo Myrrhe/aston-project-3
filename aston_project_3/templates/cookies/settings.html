@@ -11,7 +11,6 @@
 <div class="toast position-fixed" role="alert" aria-live="assertive" aria-atomic="true" id="toast-cookies">
     <div class="toast-header">
         <strong class="mr-auto">{% translate "settings_saved" %}</strong>
-        {% comment %} <small>11 mins ago</small> {% endcomment %}
         <button type="button" class="ml-2 mb-1 close" data-bs-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -31,20 +30,53 @@
             <p class="text-fore">{% translate "cookies_text_page" %}</p>
 
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="switch-cookie-required-page" checked disabled>
-                <label class="form-check-label text-fore" for="switch-cookie-required">{% translate "required_cookies" %}</label>
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="switch-cookie-required-page"
+                    checked disabled>
+                <label
+                    class="form-check-label text-fore"
+                    for="switch-cookie-required-page">
+                    {% translate "required_cookies" %}
+                </label>
             </div>
             <div class="form-check form-switch">
-                <input class="form-check-input switch-cookie-page" type="checkbox" id="switch-cookie-theme-page" {% if request.COOKIES.theme_save == "1" %}checked{% endif %}>
-                <label class="form-check-label text-fore" for="switch-cookie-theme">{% translate "theme_cookie" %}</label>
+                <input
+                    class="form-check-input switch-cookie-page"
+                    type="checkbox"
+                    id="switch-cookie-theme-page" {% if request.COOKIES.theme_save == "1" %}checked{% endif %}>
+                <label
+                    class="form-check-label text-fore"
+                    for="switch-cookie-theme-page">
+                    {% translate "theme_cookie" %}
+                </label>
             </div>
             <div class="form-check form-switch">
-                <input class="form-check-input switch-cookie-page" type="checkbox" id="switch-cookie-lang-page" {% if request.COOKIES.lang_save == "1" %}checked{% endif %}>
-                <label class="form-check-label text-fore" for="switch-cookie-lang">{% translate "lang_cookie" %}</label>
+                <input
+                    class="form-check-input switch-cookie-page"
+                    type="checkbox"
+                    id="switch-cookie-lang-page" {% if request.COOKIES.lang_save == "1" %}checked{% endif %}>
+                <label
+                    class="form-check-label text-fore"
+                    for="switch-cookie-lang-page">
+                    {% translate "lang_cookie" %}
+                </label>
             </div>
         </div>
-        <button id="save-cookies-settings" type="button" class="btn button button-bright mb-3">{% translate "save_settings" %}</button>
-        <p><a href="{% url "cookies-policy" %}" class="link-light mb-1">{% translate "go_to_cookies_policy_page" %}</a></p>
+        <button
+            id="save-cookies-settings"
+            type="button"
+            class="btn button button-bright mb-3">
+            {% translate "save_settings" %}
+        </button>
+        <p>
+            <a
+                href="{% url "account:cookies-policy" %}"
+                class="link-light mb-1">
+                {% translate "go_to_cookies_policy_page" %}
+            </a>
+        </p>
     </div>
 </div>
 

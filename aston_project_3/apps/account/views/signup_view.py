@@ -1,7 +1,8 @@
 """The signup view."""
 from django.urls import reverse_lazy
-from apps.account.forms import SignupForm
 from django.views import generic
+
+from apps.account.forms import SignupForm
 
 
 class SignupViewSet(generic.CreateView):

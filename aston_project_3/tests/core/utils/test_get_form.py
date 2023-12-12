@@ -15,15 +15,11 @@ class TestGetForm(TransactionTestCase):
         self.user = User.objects.create_superuser("get_form@test.com", "123456")
         self.request = HttpRequest()
         self.request.method = "GET"
-        # self.request.path = (
-        #     f"/admin/account/user/{self.user.pk}/change/"
-        # )
-        # self.request.add_form = forms.Form()
-        # self.request.user = self.user
         super().setUp()
 
     def test_standard(self) -> None:
         """Run the tests"""
-        # self.assertEqual(
-        #     get_form(self.request, ChangeEmailForm, "email_form", self.user), ""
-        # )
+        self.assertEqual(
+            type(get_form(self.request, ChangeEmailForm, "email_form", user=self.user)),
+            ChangeEmailForm,
+        )
