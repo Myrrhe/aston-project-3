@@ -45,7 +45,7 @@ class CreateTopicForm(ModelForm):
     )
 
     def __init__(self, *args, **kwargs) -> None:
-        self.request = kwargs.pop("request")
+        self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:
@@ -56,12 +56,12 @@ class CreateTopicForm(ModelForm):
         """Save the data of the form."""
         sections = TopicSection.objects.filter(code=self.cleaned_data["section"])
         topic = Topic.objects.create(
-            user=self.request.user,
+            user=self.user,
             title=self.cleaned_data["title"],
             section=sections[0],
         )
         Post.objects.create(
-            user=self.request.user,
+            user=self.user,
             topic=topic,
             content=self.cleaned_data["content"],
         )

@@ -46,17 +46,14 @@ class DeleteAccountForm(forms.Form):
             self.cleaned_data["password"],
             self.cleaned_data["security_key"],
         ):
-            raise ValidationError(
-                _("invalid_credentials"),
-                code="invalid_credentials"
-            )
+            raise ValidationError(_("invalid_credentials"), code="invalid_credentials")
         return self.cleaned_data
 
     def delete_account(self) -> None:
         """Delete the account as well as the TOTP associated with it."""
-        if self.request.user.has_security_key():
-            TOTPDevice.objects.filter(user_id=self.request.user.id).delete()
-        self.request.user.delete()
+        if self.user.has_security_key():
+            TOTPDevice.objects.filter(user_id=self.user.id).delete()
+        self.user.delete()
 
     class Meta(object):
         """The meta class."""

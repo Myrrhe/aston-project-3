@@ -22,9 +22,7 @@ class TopicViewSet(View):
     ) -> HttpResponse:
         """GET method."""
         topic = Topic.objects.get(pk=topic_id)
-        nb_pages = ceil(topic.get_replies / 10)
-        if nb_pages < 1:
-            nb_pages = 1
+        nb_pages = max(ceil(topic.get_replies / 10), 1)
         if page < 0:
             page = 1
         elif page == 0 or page > nb_pages:

@@ -1,6 +1,6 @@
 """The forum view."""
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 
 from math import ceil
@@ -30,12 +30,10 @@ class ForumViewSet(View):
             case "old":
                 topics = topics.order_by("created_at")
             case _:
-                print("error")
+                return redirect("forum:forum-start")
         sections = TopicSection.objects.all()
         nb_topics = topics.count()
-        nb_pages = ceil(nb_topics / 10)
-        if nb_pages < 1:
-            nb_pages = 1
+        nb_pages = max(ceil(nb_topics / 10), 1)
         if page < 1:
             page = 1
         elif page > nb_pages:

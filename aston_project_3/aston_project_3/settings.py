@@ -183,3 +183,5 @@ SECURE_REFERRER_POLICY = "same-origin"
 # SECURE_HSTS_SECONDS = 31536000
 
 X_FRAME_OPTIONS = "DENY"
+
+TEST_RUNNER = "tests.test_custom_test_runner.CustomTestRunner"

@@ -25,7 +25,7 @@ class CreateTopicViewSet(CreateView):
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""
         kwargs = super().get_form_kwargs()
-        kwargs["request"] = self.request
+        kwargs["user"] = self.request.user
         return kwargs
 
     def form_valid(self, form: CreateTopicForm) -> HttpResponse:
