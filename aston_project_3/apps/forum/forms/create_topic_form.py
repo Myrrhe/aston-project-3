@@ -1,6 +1,5 @@
 """The topic creation form."""
-from django.forms import ModelForm, ValidationError
-from django.http import HttpRequest
+from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from django import forms
@@ -30,7 +29,8 @@ class CreateTopicForm(ModelForm):
             },
         ),
         label=_("section"),
-        choices=TopicSection.get_all(),
+        # choices=TopicSection.get_all(),
+        choices=TopicSection.SECTION_CHOICES
     )
 
     content = forms.CharField(
