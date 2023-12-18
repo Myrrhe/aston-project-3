@@ -10,6 +10,7 @@ from apps.forum.models import (
     Topic,
     TopicSection,
 )
+from apps.game.models import Bot
 
 
 class Command(BaseCommand):
@@ -50,6 +51,7 @@ class Command(BaseCommand):
         self.loading_model(TopicSection, True)
         self.loading_model(Topic, True)
         self.loading_model(Post, True)
+        self.loading_model(Bot, True)
         if Command.is_working:
             self.log(self.style.SUCCESS("Fixtures loading terminated without errors"))
         else:

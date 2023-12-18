@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.account",
     "apps.forum",
+    "apps.game",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

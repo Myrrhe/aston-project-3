@@ -34,6 +34,13 @@ class Bot(TimestampedModel):
         verbose_name=_("posted"),
         help_text=_("posted_help_text"),
     )
+    score = models.IntegerField(
+        null=False,
+        blank=False,
+        default=0,
+        verbose_name=_("score"),
+        help_text=_("score_help_text"),
+    )
 
     REQUIRED_FIELDS = []
 
