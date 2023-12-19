@@ -1,6 +1,7 @@
 """The bot deletion form."""
 from django import forms
 import os
+from werkzeug.utils import secure_filename
 
 from apps.game.models import Bot
 
@@ -27,8 +28,8 @@ class DeleteBotForm(forms.Form):
 
     def delete_bot(self) -> None:
         """Delete the bot."""
-        if os.path.exists(f"{self.cleaned_data['bot_id']}.py"):
-            os.remove(f"{self.cleaned_data['bot_id']}.py")
+        if os.path.exists(secure_filename(f"{self.cleaned_data['bot_id']}.py")):
+            os.remove(secure_filename(f"{self.cleaned_data['bot_id']}.py"))
         Bot.objects.get(id=self.cleaned_data["bot_id"]).delete()
 
     class Meta(object):

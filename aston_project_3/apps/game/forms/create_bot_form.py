@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django import forms
 from djangocodemirror.fields import CodeMirrorField
 from djangocodemirror.widgets import CodeMirrorWidget
+from werkzeug.utils import secure_filename
 
 from apps.game.models import Bot
 
@@ -56,7 +57,7 @@ class CreateBotForm(ModelForm):
                 posted=False,
                 score=0,
             )
-        with open(f"{bot.id}.py", "w", newline="", encoding="utf-8") as file:
+        with open(secure_filename(f"{bot.id}.py"), "w", newline="", encoding="utf-8") as file:
             file.write(self.cleaned_data["code"])
         return bot
 
