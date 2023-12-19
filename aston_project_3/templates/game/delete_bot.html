@@ -35,9 +35,14 @@
             </div>
             <div>
                 <a
-                    class="btn button button-dark link-nav me-2"
+                    class="btn button button-dark link-nav me-1"
                     href="{% url "game:my-bots" %}">
                     {% translate "back_to_my_bots" %}
+                </a>
+                <a
+                    class="btn button button-bright link-nav me-1"
+                    href="{% url "game:edit-bot" bot_id=bot_id %}">
+                    {% translate "edit_this_bot" %}
                 </a>
                 <input
                     type="submit"

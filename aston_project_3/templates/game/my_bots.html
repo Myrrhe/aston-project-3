@@ -24,7 +24,7 @@
             <div class="d-flex flex-column">
                 <a
                     class="btn small_button button-bright align-self-end"
-                    href="{% url "forum:create_topic" %}">
+                    href="{% url "game:create-bot" %}">
                     {% translate "create_new_bot" %}
                 </a>
             </div>
@@ -55,7 +55,7 @@
                         <td class="align-middle text-end">
                             <a
                                 class="btn small_button button-dark"
-                                href="#">
+                                href="{% url "game:edit-bot" bot_id=bot.id %}">
                                 {% translate "edit" %}
                             </a>
                             <a
@@ -70,7 +70,7 @@
             <div class="d-flex flex-column">
                 <a
                     class="btn small_button button-bright align-self-end"
-                    href="{% url "forum:create_topic" %}">
+                    href="{% url "game:create-bot" %}">
                     {% translate "create_new_bot" %}
                 </a>
             </div>
@@ -81,7 +81,7 @@
             <div class="d-flex flex-column">
                 <a
                     class="btn small_button button-bright align-self-end"
-                    href="{% url "forum:create_topic" %}">
+                    href="{% url "game:create-bot" %}">
                     {% translate "create_new_bot" %}
                 </a>
             </div>

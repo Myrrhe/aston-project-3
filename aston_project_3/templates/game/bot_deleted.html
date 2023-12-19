@@ -16,9 +16,14 @@
 
         <p>
             <a
-            href="{% url "game:my-bots" %}"
-            class="link-light">
+                class="btn button button-dark link-nav me-1"
+                href="{% url "game:my-bots" %}">
                 {% translate "back_to_my_bots" %}
+            </a>
+            <a
+                class="btn button button-bright link-nav me-1"
+                href="{% url "game:create-bot" %}">
+                {% translate "create_new_bot" %}
             </a>
         </p>
     </div>

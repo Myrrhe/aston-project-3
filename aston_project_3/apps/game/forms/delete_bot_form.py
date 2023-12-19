@@ -1,7 +1,6 @@
 """The bot deletion form."""
-from django.utils.translation import gettext_lazy as _
-
 from django import forms
+import os
 
 from apps.game.models import Bot
 
@@ -28,6 +27,8 @@ class DeleteBotForm(forms.Form):
 
     def delete_bot(self) -> None:
         """Delete the bot."""
+        if os.path.exists(f"{self.cleaned_data['bot_id']}.py"):
+            os.remove(f"{self.cleaned_data['bot_id']}.py")
         Bot.objects.get(id=self.cleaned_data["bot_id"]).delete()
 
     class Meta(object):

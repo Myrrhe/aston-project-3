@@ -51,6 +51,11 @@ class Bot(TimestampedModel):
         verbose_name = _("bot")
         verbose_name_plural = _("bots")
 
+    @property
+    def get_code(self) -> str:
+        with open(f"{self.id}.py") as f: res = f.read()
+        return res
+
     def __str__(self) -> str:
         """Represent the class objects as a string."""
         return f"{self.user} : {self.name}"
