@@ -11,6 +11,11 @@ from apps.core.models import TimestampedModel
 class TopicSection(TimestampedModel):
     """The topic section's model."""
 
+    SECTION_CHOICES = [
+        ("bug", "Feedback & Bugs"),
+        ("bot", "Bot programming"),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(
         max_length=64,
@@ -57,4 +62,5 @@ class TopicSection(TimestampedModel):
     @classmethod
     def get_all(cls: "TopicSection") -> list[tuple[str, ...]]:
         """Get all the sections as an iterable of 2-tuples."""
+        # Warning : This bit of code may cause an error during migrations
         return [(section.code, section.name) for section in cls.objects.all()]

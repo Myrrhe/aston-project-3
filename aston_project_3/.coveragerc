@@ -2,7 +2,8 @@
 # run 'coverage run manage.py test | coverage html' to run tests + cover
 [run]
 branch=True
-timid=True
+# A False value for timid can infortunately cause issues
+timid=False
 omit =
     */tests/*
     */migrations/*

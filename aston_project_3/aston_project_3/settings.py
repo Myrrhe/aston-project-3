@@ -16,6 +16,9 @@ import os
 import environ
 from django.utils.translation import gettext_lazy as _
 
+from djangocodemirror.settings import *
+from djangocodemirror.helper import codemirror_settings_update
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.account",
     "apps.forum",
+    "apps.game",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
     "django_otp.plugins.otp_totp",
     "bootstrap5",
     "fontawesomefree",
+    "djangocodemirror",
 ]
 
 MIDDLEWARE = [
@@ -185,3 +190,8 @@ SECURE_REFERRER_POLICY = "same-origin"
 X_FRAME_OPTIONS = "DENY"
 
 TEST_RUNNER = "tests.test_custom_test_runner.CustomTestRunner"
+
+CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
+    "lineNumbers": True,
+    "indent": 4
+})

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+
+        <h1 class="mt-1">{% translate "bot_deleted" %}</h1>
+        <p class="text-fore">{% translate "bot_deleted_text" %}</p>
+
+        <p>
+            <a
+                class="btn button button-dark link-nav me-1"
+                href="{% url "game:my-bots" %}">
+                {% translate "back_to_my_bots" %}
+            </a>
+            <a
+                class="btn button button-bright link-nav me-1"
+                href="{% url "game:create-bot" %}">
+                {% translate "create_new_bot" %}
+            </a>
+        </p>
+    </div>
+
+</div>
+{% endblock %}

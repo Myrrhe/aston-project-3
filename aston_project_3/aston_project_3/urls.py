@@ -28,6 +28,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("", include("apps.account.urls", namespace="account")),
     path("", include("apps.forum.urls", namespace="forum")),
+    path("", include("apps.game.urls", namespace="game")),
     path(
         "logout/",
         auth_views.LogoutView.as_view(next_page="/login"),

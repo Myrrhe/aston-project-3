@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main">
+
+    <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
+        <div>
+            <div class="d-flex flex-row justify-content-between">
+                <h1 class="mt-1">{% translate "my_bots" %}</h1>
+            </div>
+            <p class="text-fore">{{topic.section.name}}</p>
+        </div>
+        {% if bots %}
+            <div class="d-flex flex-column">
+                <a
+                    class="btn small_button button-bright align-self-end"
+                    href="{% url "game:create-bot" %}">
+                    {% translate "create_new_bot" %}
+                </a>
+            </div>
+            <table class="table text-fore table-topic mt-2">
+                <caption>The bots this page</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "name" %}</th>
+                        <th class="text-center">{% translate "score" %}</th>
+                        <th class="text-center">{% translate "posted" %}</th>
+                        <th class="text-center">{% translate "last_updated" %}</th>
+                    </tr>
+                </thead>
+                {% for bot in bots %}
+                    <tr class="align-middle row-topic">
+                        <td>
+                            {{bot.name}}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{bot.score}}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{bot.posted}}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{bot.updated_at}}
+                        </td>
+                        <td class="align-middle text-end">
+                            <a
+                                class="btn small_button button-dark"
+                                href="{% url "game:edit-bot" bot_id=bot.id %}">
+                                {% translate "edit" %}
+                            </a>
+                            <a
+                                class="btn small_button button-bright-alt"
+                                href="{% url "game:delete-bot" bot_id=bot.id %}">
+                                {% translate "delete" %}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="d-flex flex-column">
+                <a
+                    class="btn small_button button-bright align-self-end"
+                    href="{% url "game:create-bot" %}">
+                    {% translate "create_new_bot" %}
+                </a>
+            </div>
+        {% else %}
+            <p class="text-fore">
+                {% translate "no_bots" %}
+            </p>
+            <div class="d-flex flex-column">
+                <a
+                    class="btn small_button button-bright align-self-end"
+                    href="{% url "game:create-bot" %}">
+                    {% translate "create_new_bot" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

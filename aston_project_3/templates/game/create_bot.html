@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load djangocodemirror_tags %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+
+        <h1 class="mt-1">{% translate "create_bot" %}</h1>
+        <div class="d-flex flex-row-reverse mb-2">
+            {% if bot_id %}
+                <a
+                    href="{% url "game:delete-bot" bot_id=bot_id %}"
+                    class="btn small_button button-bright-alt align-self-end me-2">
+                    {% translate "delete" %}
+                </a>
+            {% endif %}
+            <a
+                href="{% url "game:my-bots" %}"
+                class="btn small_button button-dark align-self-end me-2">
+                {% translate "back_to_my_bots" %}
+            </a>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column w-50">
+            </div>
+            <div class="d-flex flex-column w-50">
+                <form action="" method="post" class="d-flex flex-column">
+                    {% csrf_token %}
+                    <label class="d-none" for={{create_bot_form.name.id_for_label}}>
+                    </label>
+                    {{create_bot_form.name}}
+                    <label class="d-none" for={{create_bot_form.code.id_for_label}}></label>
+                    {{create_bot_form.code}}
+                    <input
+                        type="submit"
+                        name="{{create_bot_form.prefix}}"
+                        value="{% translate "create_bot" %}"
+                        class="btn small_button button-bright mt-1">
+                    <p class="mt-1 text-fore">
+                        {% translate "create_bot_text" %}
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% codemirror_field_css_assets create_bot_form.code %}
+{% codemirror_field_js_assets create_bot_form.code %}
+<script>
+    var foo_codemirror = CodeMirror.fromTextArea(
+        document.getElementById("{{create_bot_form.code.auto_id}}"),
+        {{ create_bot_form.code|codemirror_parameters }}
+    );
+
+    {% comment %} document.addEventListener("DOMContentLoaded", function () {
+        var codeTextarea = document.getElementById("{{create_bot_form.code.auto_id}}");
+        var editor = CodeMirror.fromTextArea(codeTextarea, {
+                "mode": {
+                    "name": "python",
+                    "version": 3,
+                    "singleLineStringErrors": false
+                },
+                "matchBrackets": true,
+                "lineNumbers": true,
+                "indent": 4,
+            }
+        );
+      }); {% endcomment %}
+</script>
+{% endblock %}

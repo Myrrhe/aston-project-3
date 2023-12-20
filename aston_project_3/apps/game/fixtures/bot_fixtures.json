@@ -1,0 +1,16 @@
+[
+    {
+        "model": "game.bot",
+        "pk": "00000000-0000-0000-0000-000000000001",
+        "fields": {
+            "name": "Bot 1",
+            "score": "0",
+            "posted": true,
+            "user_id": [
+                "admin@aston.com"
+            ],
+            "created_at": "2023-01-01 00:00:00 +00:00",
+            "updated_at": "2023-01-01 00:00:00 +00:00"
+        }
+    }
+]
