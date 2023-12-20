@@ -28,8 +28,8 @@ class DeleteBotForm(forms.Form):
 
     def delete_bot(self) -> None:
         """Delete the bot."""
-        if os.path.exists(secure_filename(f"{self.cleaned_data['bot_id']}.py")):
-            os.remove(secure_filename(f"{self.cleaned_data['bot_id']}.py"))
+        if os.path.exists("storage/bot/" + secure_filename(f"{self.cleaned_data['bot_id']}.py")):
+            os.remove("storage/bot/" + secure_filename(f"{self.cleaned_data['bot_id']}.py"))
         Bot.objects.get(id=self.cleaned_data["bot_id"]).delete()
 
     class Meta(object):

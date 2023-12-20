@@ -1,9 +1,9 @@
 """The bot's model."""
-
 import uuid
 
 from django.db import models
 from django.utils.translation import gettext as _
+from werkzeug.utils import secure_filename
 
 from apps.account.models import User
 from apps.core.models import TimestampedModel
@@ -53,7 +53,7 @@ class Bot(TimestampedModel):
 
     @property
     def get_code(self) -> str:
-        with open(f"{self.id}.py") as f: res = f.read()
+        with open("storage/bot/" + secure_filename(f"{self.id}.py")) as f: res = f.read()
         return res
 
     def __str__(self) -> str:

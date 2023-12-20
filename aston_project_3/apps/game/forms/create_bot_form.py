@@ -57,7 +57,7 @@ class CreateBotForm(ModelForm):
                 posted=False,
                 score=0,
             )
-        with open(secure_filename(f"{bot.id}.py"), "w", newline="", encoding="utf-8") as file:
+        with open("storage/bot/" + secure_filename(f"{bot.id}.py"), "w", newline="", encoding="utf-8") as file:
             file.write(self.cleaned_data["code"])
         return bot
 
