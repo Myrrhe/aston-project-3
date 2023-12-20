@@ -20,6 +20,20 @@
                     class="btn small_button button-bright-alt align-self-end me-2">
                     {% translate "delete" %}
                 </a>
+                <form method="post" action="{% url "game:duplicate-bot" %}">
+                    {% csrf_token %}
+                    <div class="d-none">
+                        <label for={{duplicate_bot_form.bot_id.id_for_label}}>
+                        </label>
+                        {{duplicate_bot_form.bot_id}}
+                    </div>
+                    <input
+                        type="submit"
+                        name="{{duplicate_bot_form.prefix}}"
+                        value="{% translate "duplicate_bot" %}"
+                        class="btn small_button button-bright align-self-end me-2"
+                        data-bot-id="{{bot_id}}">
+                </form>
             {% endif %}
             <a
                 href="{% url "game:my-bots" %}"
@@ -47,6 +61,32 @@
                         {% translate "create_bot_text" %}
                     </p>
                 </form>
+                {% if bot_id %}
+                    <form
+                        method="post"
+                        action="{% url "game:bot-toggle-publish" bot_id=bot_id %}"
+                        id="form-toggle-publish">
+                        {% csrf_token %}
+                        <div class="d-none">
+                            <label for={{toggle_publish_bot_form.bot_id.id_for_label}}>
+                            </label>
+                            {{toggle_publish_bot_form.bot_id}}
+                        </div>
+                        <input
+                            type="submit"
+                            id="button-duplicate"
+                            name="{{toggle_publish_bot_form.prefix}}"
+                            value={% if posted %}"{% translate "bot_published" %}"{% else %}"{% translate "bot_unpublished" %}"{% endif %}
+                            class="btn small_button button-dark align-self-end me-2"
+                            data-bot-id="{{bot_id}}"
+                            data-url="{% url "game:bot-toggle-publish" bot_id=bot_id %}"
+                            data-message-published="{% translate "bot_published" %}"
+                            data-message-unpublished="{% translate "bot_unpublished" %}">
+                        <p class="mt-1 text-fore">
+                            {% translate "publish_bot_text" %}
+                        </p>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -74,4 +114,5 @@
         );
       }); {% endcomment %}
 </script>
+<script src="{% static "js/game/create_bot.js" %}"></script>
 {% endblock %}

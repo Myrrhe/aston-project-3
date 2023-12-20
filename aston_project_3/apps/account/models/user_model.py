@@ -170,6 +170,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         """Check if a password as well as a code are correct."""
         return self.check_password(password) and self.check_security_key(security_key)
 
+    def is_bot_name_available(self, bot_name: str) -> bool:
+        """Check if a bot name is already taken or not."""
+        return bot_name not in [bot.name for bot in self.bot_set.all()]
+
     # def send_email_confirmation(self, template, path, email):
     #     email_key = "newEmail" if email is not None else "email"
     #     email = email if email is not None else self.email
