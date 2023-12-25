@@ -18,7 +18,7 @@
 
         <div class="mb-3">
             <div id="block-email" class="{% if email_form.errors %}d-none{% endif %}">
-                <label for="email_disabled" class="text-fore">{% translate "email" %}</label>
+                <label for="email_disabled" class="text-color-fore">{% translate "email" %}</label>
                 <div class="d-flex flex-row">
                     <input
                         type="text"
@@ -50,7 +50,7 @@
                         {% if field.auto_id != "id_email_form-security_key" or has_security_key %}
                             <p>
                                 <label
-                                    class="text-fore d-none"
+                                    class="text-color-fore d-none"
                                     for="{{ field.auto_id }}">{{ field.label }}
                                 </label>
                                 {{ field }}
@@ -76,7 +76,7 @@
 
         <div>
             <div id="block-password" class="{% if password_form.errors %}d-none{% endif %}">
-                <label for="password_disabled" class="text-fore">{% translate "password" %}</label>
+                <label for="password_disabled" class="text-color-fore">{% translate "password" %}</label>
                 <div class="d-flex flex-row">
                     <input
                         type="password"
@@ -108,7 +108,7 @@
                         {% if field.auto_id != "id_password_form-security_key" or has_security_key %}
                             <p>
                                 <label
-                                    class="text-fore d-none"
+                                    class="text-color-fore d-none"
                                     for="{{ field.auto_id }}">{{ field.label }}
                                 </label>
                                 {{ field }}
@@ -141,7 +141,7 @@
                 {% csrf_token %}
                 {% for field in personal_informations_form %}
                     <p>
-                        <label class="text-fore" for="{{ field.auto_id }}">{{ field.label }}</label>
+                        <label class="text-color-fore" for="{{ field.auto_id }}">{{ field.label }}</label>
                         {{ field }}
                     </p>
                 {% endfor %}
@@ -159,11 +159,11 @@
 
         <h2>{% translate "security_key" %}</h2>
         {% if has_security_key %}
-            <p class="text-fore">
+            <p class="text-color-fore">
                 {% translate "already_security_key" %}
             </p>
         {% else %}
-            <p class="text-fore">{% translate "no_security_key_text" %}</p>
+            <p class="text-color-fore">{% translate "no_security_key_text" %}</p>
             <a
                 class="btn button button-dark link-nav me-2"
                 href="{% url "account:add-security-key" %}">

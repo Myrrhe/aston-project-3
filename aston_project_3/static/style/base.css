@@ -1,3 +1,10 @@
+/* TEXT COLOR */
+.text-color-fore {
+    color: var(--fore-color);
+}
+
+/* BACKGROUND COLOR */
+
 .icon::before {
     display: inline-block;
     text-rendering: auto;
@@ -12,14 +19,6 @@
     background-color: var(--main-color);
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-}
-
-.fore-front {
-    color: var(--fore-color);
-}
-
-.text-fore {
-    color: var(--fore-color) !important;
 }
 
 .link-nav {
@@ -84,18 +83,6 @@
 .back-bright {
     background-color: var(--bright-color) !important;
 } */
-
-/* .fore-light {
-    color: var(--fore-color) !important;
-} */
-
-/* .fore-dark {
-    color: var(--back-color) !important;
-} */
-
-.text-light {
-    color: var(--fore-color) !important;
-}
 
 .text-alert {
     color: var(--alert-color) !important;

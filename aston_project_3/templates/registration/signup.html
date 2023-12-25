@@ -12,7 +12,7 @@
 
     <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-        <p class="fore-front title-login mt-1">{% translate "create_account" %}</p>
+        <p class="text-color-fore title-login mt-1">{% translate "create_account" %}</p>
 
         <form method="post" class="w-75">
             {% csrf_token %}
@@ -46,7 +46,7 @@
                 {{ form.password1 }}
             </div>
 
-            <div class="text-light">
+            <div class="text-color-fore">
                 {{ form.password1.help_text }}
             </div class="input-group mb-3">
 
@@ -56,7 +56,7 @@
 
             <div class="input-group mb-3 d-flex align-items-center">
                 {{ form.is_tou_accepted }}
-                <span class="text-light ps-3">{{ form.is_tou_accepted.help_text }}</span>
+                <span class="text-color-fore ps-3">{{ form.is_tou_accepted.help_text }}</span>
             </div>
 
             <input type="submit"

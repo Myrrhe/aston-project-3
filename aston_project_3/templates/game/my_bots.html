@@ -18,7 +18,7 @@
             <div class="d-flex flex-row justify-content-between">
                 <h1 class="mt-1">{% translate "my_bots" %}</h1>
             </div>
-            <p class="text-fore">{{topic.section.name}}</p>
+            <p class="text-color-fore">{{topic.section.name}}</p>
         </div>
         {% if bots %}
             <div class="d-flex flex-column">
@@ -28,7 +28,7 @@
                     {% translate "create_new_bot" %}
                 </a>
             </div>
-            <table class="table text-fore table-topic mt-2">
+            <table class="table text-color-fore table-topic mt-2">
                 <caption>All my bots</caption>
                 <thead>
                     <tr>
@@ -75,7 +75,7 @@
                 </a>
             </div>
         {% else %}
-            <p class="text-fore">
+            <p class="text-color-fore">
                 {% translate "no_bots" %}
             </p>
             <div class="d-flex flex-column">

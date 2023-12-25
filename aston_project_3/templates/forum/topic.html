@@ -26,16 +26,16 @@
                     {% translate "back_to_topics" %}
                 </a>
             </div>
-            <p class="text-fore">{{topic.section.name}}</p>
+            <p class="text-color-fore">{{topic.section.name}}</p>
         </div>
         {% for post in posts %}
             <div>
                 <hr class="hr">
                 <div class="d-flex justify-content-between">
-                    <p class="text-fore text-start">{{post.user.get_name}}</p>
-                    <p class="text-fore text-end">{{post.created_at}}</p>
+                    <p class="text-color-fore text-start">{{post.user.get_name}}</p>
+                    <p class="text-color-fore text-end">{{post.created_at}}</p>
                 </div>
-                <div class="text-fore">
+                <div class="text-color-fore">
                     {{post.get_text_html|safe}}
                 </div>
             </div>
@@ -144,13 +144,13 @@
                 <div class="w-100 d-flex flex-row">
                     <button
                         id="button-write"
-                        class="btn navbar-forum text-fore forum-link-selected"
+                        class="btn navbar-forum text-color-fore forum-link-selected"
                         type="button">
                         {% translate "write" %}
                     </button>
                     <button
                         id="button-preview"
-                        class="btn navbar-forum text-fore"
+                        class="btn navbar-forum text-color-fore"
                         type="button">
                         {% translate "preview" %}
                     </button>
@@ -158,7 +158,7 @@
                 <div id="write-answer">
                     {{ answer_form.content }}
                 </div>
-                <div id="preview-answer" class="text-fore d-none textarea-answer p-3" cols="40" rows="10">
+                <div id="preview-answer" class="text-color-fore d-none textarea-answer p-3" cols="40" rows="10">
                 </div>
             </div>
             <p class="d-none">

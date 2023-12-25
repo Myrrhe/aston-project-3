@@ -27,7 +27,7 @@
 
     <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-        <p class="fore-front title-login mt-1">{% translate "connect_existing_account" %}</p>
+        <p class="text-color-fore title-login mt-1">{% translate "connect_existing_account" %}</p>
 
         <form method="post" action="{% url "account:login" message="" %}" class="w-75">
             {% csrf_token %}
