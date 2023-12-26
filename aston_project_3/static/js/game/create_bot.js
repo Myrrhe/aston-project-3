@@ -1,27 +1,39 @@
-"use strict";
-
 $(document).ready(function() {
-    $('#button-duplicate').click(function(event) {
+    $('#button-publish').click(function(event) {
         event.preventDefault();
         const csrfTokenElement = $('#form-toggle-publish [name="csrfmiddlewaretoken"]');
         const button = $(this);
         $.ajax({
-            url: $(this).attr("data-url"),
+            url: $(this).attr('data-url'),
             type: 'POST',
             dataType: 'json',
             data: {
                 csrfmiddlewaretoken: csrfTokenElement.val(),
-                "toggle_publish_bot_form-bot_id": $(this).attr("data-bot-id"),
-                toggle_publish_bot_form: "toggle_publish_bot"
+                'toggle_publish_bot_form-bot_id': $(this).attr('data-bot-id'),
+                toggle_publish_bot_form: 'toggle_publish_bot',
             },
-            success: function(data) {
+            success(data) {
+                const brightClass = 'button-bright';
+                const darkClass = 'button-dark';
                 if (data.posted) {
-                    button.val(button.attr("data-message-published"));
+                    button.val(button.attr('data-message-published'));
+                    if (button.hasClass(brightClass)) {
+                        button.removeClass(brightClass);
+                    }
+                    if (!button.hasClass(darkClass)) {
+                        button.addClass(darkClass);
+                    }
                 } else {
-                    button.val(button.attr("data-message-unpublished"));
+                    button.val(button.attr('data-message-unpublished'));
+                    if (button.hasClass(darkClass)) {
+                        button.removeClass(darkClass);
+                    }
+                    if (!button.hasClass(brightClass)) {
+                        button.addClass(brightClass);
+                    }
                 }
             },
-            error: function(error) {
+            error(error) {
                 console.log('Une erreur s\'est produite:', error);
             },
         });

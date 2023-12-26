@@ -74,10 +74,10 @@
                         </div>
                         <input
                             type="submit"
-                            id="button-duplicate"
+                            id="button-publish"
                             name="{{toggle_publish_bot_form.prefix}}"
                             value={% if posted %}"{% translate "bot_published" %}"{% else %}"{% translate "bot_unpublished" %}"{% endif %}
-                            class="btn small_button button-dark align-self-end me-2"
+                            class="btn small_button align-self-end me-2 {% if posted %}button-dark{% else %}button-bright{% endif %}"
                             data-bot-id="{{bot_id}}"
                             data-url="{% url "game:bot-toggle-publish" bot_id=bot_id %}"
                             data-message-published="{% translate "bot_published" %}"

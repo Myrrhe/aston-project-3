@@ -1,12 +1,10 @@
 """Custom test runner."""
 import sys
-from test.support.os_helper import EnvironmentVarGuard
+# from test.support.os_helper import EnvironmentVarGuard
 
 from django.test.runner import DiscoverRunner
 
 from unittest import TestSuite, TextTestResult
-
-from apps.account.models import User
 
 
 class CustomTestRunner(DiscoverRunner):
@@ -28,10 +26,11 @@ class CustomTestRunner(DiscoverRunner):
 
     def run_tests(self, *args, **kwargs) -> int:
         """Run the test suite."""
-        with EnvironmentVarGuard() as environ:
-            print(
-                "Starting the unit tests (this may take some minutes...)",
-                file=sys.stderr,
-            )
-            environ["UNIT_TEST"] = "True"
-            return super(CustomTestRunner, self).run_tests(*args, **kwargs)
+        # with EnvironmentVarGuard() as environ:
+        #     print(
+        #         "Starting the unit tests (this may take some minutes...)",
+        #         file=sys.stderr,
+        #     )
+        #     environ["UNIT_TEST"] = "True"
+        #     return super(CustomTestRunner, self).run_tests(*args, **kwargs)
+        return super(CustomTestRunner, self).run_tests(*args, **kwargs)

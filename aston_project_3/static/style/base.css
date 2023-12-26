@@ -1,6 +1,30 @@
 /* TEXT COLOR */
 .text-color-fore {
-    color: var(--fore-color);
+    color: var(--fore-color) !important;
+}
+
+.text-color-back {
+    color: var(--back-color) !important;
+}
+
+.text-color-alert {
+    color: var(--alert-color) !important;
+}
+
+.text-color-bright {
+    color: var(--bright-color) !important;
+}
+
+.text-color-grey {
+    color: var(--grey-color) !important;
+}
+
+.text-color-black {
+    color: var(--black-color) !important;
+}
+
+.text-color-transparent {
+    color: var(--black-color) !important;
 }
 
 /* BACKGROUND COLOR */
@@ -100,13 +124,13 @@
 
 @media screen and (min-width: 768px) {
 
+    .dropdown-menu {
+        margin-top: 0;
+    }
+
     .dropdown:hover .dropdown-menu,
     .btn-group:hover .dropdown-menu {
         display: block;
-    }
-
-    .dropdown-menu {
-        margin-top: 0;
     }
 
     .dropdown-toggle {
