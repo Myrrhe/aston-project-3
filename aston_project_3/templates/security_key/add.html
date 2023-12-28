@@ -11,9 +11,9 @@
 <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
         <h1 class="mt-1">{% translate "add_security_key" %}</h1>
-        <p class="text-fore">{% translate "security_key_text" %}</p>
+        <p class="text-color-fore">{% translate "security_key_text" %}</p>
         {% if has_security_key %}
-            <p class="text-fore">
+            <p class="text-color-fore">
                 {% translate "already_security_key" %}
             </p>
             <a
@@ -22,7 +22,7 @@
                 {% translate "back_to_account" %}
             </a>
         {% else %}
-            <p class="text-fore">{% translate "security_key_method" %}</p>
+            <p class="text-color-fore">{% translate "security_key_method" %}</p>
             <form action="" method="post">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
@@ -35,7 +35,7 @@
                 {% for field in form %}
                     <p>
                         <label
-                            class="text-fore{% if field.auto_id == "id_key_init" %} d-none{% endif%}"
+                            class="text-color-fore{% if field.auto_id == "id_key_init" %} d-none{% endif%}"
                             for="{{ field.auto_id }}">
                             {{ field.label }}
                         </label>

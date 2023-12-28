@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.views.generic.edit import UpdateView
 
 from apps.core.utils.get_form_util import get_form
-from apps.game.forms import CreateBotForm
+from apps.game.forms import CreateBotForm, DuplicateBotForm, TogglePublishBotForm
 from apps.game.models import Bot
 
 
@@ -39,6 +39,7 @@ class EditBotViewSet(UpdateView):
             self.template_name,
             context={
                 "bot_id": bot_id,
+                "posted": bot.posted,
                 "create_bot_form": CreateBotForm(
                     prefix="create_bot_form",
                     user=request.user,
@@ -46,6 +47,21 @@ class EditBotViewSet(UpdateView):
                     initial={
                         "name": bot.name,
                         "code": code,
+                    }
+                ),
+                "duplicate_bot_form": DuplicateBotForm(
+                    prefix="duplicate_bot_form",
+                    user=request.user,
+                    initial={
+                        "bot_id": bot_id,
+                    }
+                ),
+                "toggle_publish_bot_form": TogglePublishBotForm(
+                    prefix="toggle_publish_bot_form",
+                    user=request.user,
+                    bot_id=bot_id,
+                    initial={
+                        "bot_id": bot_id,
                     }
                 ),
             },

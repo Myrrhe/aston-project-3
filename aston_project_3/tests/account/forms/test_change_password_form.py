@@ -47,4 +47,4 @@ class TestChangePasswordForm(TransactionTestCase):
             },
         )
         self.form1.save(self.request)
-        self.assertNotEquals(self.user.password, self.old_password)
+        self.assertNotEqual(self.user.password, self.old_password)

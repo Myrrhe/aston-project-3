@@ -4,8 +4,10 @@ from apps.game.views import (
     BotDeletedViewSet,
     CreateBotViewSet,
     DeleteBotViewSet,
+    DuplicateBotViewSet,
     EditBotViewSet,
     MyBotsViewSet,
+    TogglePublishBotViewSet,
 )
 
 app_name = "game"
@@ -27,6 +29,11 @@ urlpatterns = [
         name="edit-bot",
     ),
     path(
+        "bots/duplicate",
+        DuplicateBotViewSet.as_view(),
+        name="duplicate-bot",
+    ),
+    path(
         "bots/delete/<uuid:bot_id>",
         DeleteBotViewSet.as_view(),
         name="delete-bot",
@@ -35,5 +42,10 @@ urlpatterns = [
         "bots/deleted",
         BotDeletedViewSet.as_view(),
         name="bot-deleted",
+    ),
+    path(
+        "bots/toggle-publish/<uuid:bot_id>",
+        TogglePublishBotViewSet.as_view(),
+        name="bot-toggle-publish",
     ),
 ]

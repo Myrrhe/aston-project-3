@@ -28,7 +28,7 @@
 
             <div class="mb-2 d-flex flex-row">
                 <label
-                    class="text-fore me-2 d-flex align-items-center"
+                    class="text-color-fore me-2 d-flex align-items-center"
                     for="{{ form.section.id }}">
                     {{ form.section.label }}
                 </label>
@@ -41,17 +41,17 @@
                     for="{{ form.content.id }}">
                     {{ form.title.content }}
                 </label>
-                <p class="w-100 mb-0 text-fore">{% translate "markdown_supported" %}</p>
+                <p class="w-100 mb-0 text-color-fore">{% translate "markdown_supported" %}</p>
                 <div class="w-100 d-flex flex-row">
                     <button
                         id="button-write"
-                        class="btn navbar-forum text-fore forum-link-selected"
+                        class="btn navbar-forum text-color-fore forum-link-selected"
                         type="button">
                         {% translate "write" %}
                     </button>
                     <button
                         id="button-preview"
-                        class="btn navbar-forum text-fore"
+                        class="btn navbar-forum text-color-fore"
                         type="button">
                         {% translate "preview" %}
                     </button>
@@ -59,7 +59,7 @@
                 <div id="write-answer">
                     {{form.content}}
                 </div>
-                <div id="preview-answer" class="text-fore d-none textarea-answer p-3" cols="40" rows="10">
+                <div id="preview-answer" class="text-color-fore d-none textarea-answer p-3" cols="40" rows="10">
                 </div>
             </div>
             <div class="d-flex flex-row">

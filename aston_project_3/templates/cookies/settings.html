@@ -24,10 +24,10 @@
 
     <div class="form-login my-5 p-2 d-flex flex-column align-items-center justify-content-center w-50">
 
-        <p class="fore-front title-login mt-1">{% translate "cookies_settings" %}</p>
+        <p class="text-color-fore title-login mt-1">{% translate "cookies_settings" %}</p>
 
         <div class="mb-3 mx-5">
-            <p class="text-fore">{% translate "cookies_text_page" %}</p>
+            <p class="text-color-fore">{% translate "cookies_text_page" %}</p>
 
             <div class="form-check form-switch">
                 <input
@@ -36,7 +36,7 @@
                     id="switch-cookie-required-page"
                     checked disabled>
                 <label
-                    class="form-check-label text-fore"
+                    class="form-check-label text-color-fore"
                     for="switch-cookie-required-page">
                     {% translate "required_cookies" %}
                 </label>
@@ -47,7 +47,7 @@
                     type="checkbox"
                     id="switch-cookie-theme-page" {% if request.COOKIES.theme_save == "1" %}checked{% endif %}>
                 <label
-                    class="form-check-label text-fore"
+                    class="form-check-label text-color-fore"
                     for="switch-cookie-theme-page">
                     {% translate "theme_cookie" %}
                 </label>
@@ -58,7 +58,7 @@
                     type="checkbox"
                     id="switch-cookie-lang-page" {% if request.COOKIES.lang_save == "1" %}checked{% endif %}>
                 <label
-                    class="form-check-label text-fore"
+                    class="form-check-label text-color-fore"
                     for="switch-cookie-lang-page">
                     {% translate "lang_cookie" %}
                 </label>
