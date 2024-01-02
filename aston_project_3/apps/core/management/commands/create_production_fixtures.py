@@ -25,6 +25,7 @@ class Command(BaseCommand):
     requires_migrations_checks = True
     verbosity = 0
     add = False
+    prod = False
     test = False
     is_working = True
 
@@ -34,6 +35,11 @@ class Command(BaseCommand):
             "--add",
             action="store_true",
             help="Add objects even if some of the same type already exist",
+        )
+        parser.add_argument(
+            "--prod",
+            action="store_true",
+            help="Don't add some objects (like the test topics)",
         )
         parser.add_argument(
             "--test",
@@ -46,12 +52,14 @@ class Command(BaseCommand):
         self.log("Loading fixtures")
         Command.verbosity = options["verbosity"]
         Command.add = options["add"]
+        Command.prod = options["prod"]
         Command.test = options["test"]
 
         self.loading_model(TopicSection, True)
-        self.loading_model(Topic, True)
-        self.loading_model(Post, True)
-        self.loading_model(Bot, True)
+        if not Command.prod:
+            self.loading_model(Topic, True)
+            self.loading_model(Post, True)
+            self.loading_model(Bot, True)
         if Command.is_working:
             self.log(self.style.SUCCESS("Fixtures loading terminated without errors"))
         else:

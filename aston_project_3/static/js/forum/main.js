@@ -1,44 +1,48 @@
-"use strict";
+const previewAnswerId = '#preview-answer';
+const buttonWriteId = '#button-write';
+const writeAnswerId = '#write-answer';
+const buttonPreviewId = '#button-preview';
+const forumLinkSelectedClass = 'forum-link-selected';
+const dNoneClass = 'd-none';
 
-
-$("#content").on("change", function () {
-    const converter = new showdown.Converter();
+$('#content').on('change', function () {
+    const converter = new window.showdown.Converter();
     const markdownTextSanitized = $(this).val()
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    $("#preview-answer").html(converter.makeHtml(markdownTextSanitized));
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    $(previewAnswerId).html(converter.makeHtml(markdownTextSanitized));
 });
 
 
-$("#button-write").on("click", function () {
-    if ($("#write-answer").hasClass("d-none")) {
-        $("#write-answer").removeClass("d-none");
+$(buttonWriteId).on('click', function () {
+    if ($(writeAnswerId).hasClass(dNoneClass)) {
+        $(writeAnswerId).removeClass(dNoneClass);
     }
-    if (!$("#preview-answer").hasClass("d-none")) {
-        $("#preview-answer").addClass("d-none");
+    if (!$(previewAnswerId).hasClass(dNoneClass)) {
+        $(previewAnswerId).addClass(dNoneClass);
     }
-    if (!$("#button-write").hasClass("forum-link-selected")) {
-        $("#button-write").addClass("forum-link-selected");
+    if (!$(buttonWriteId).hasClass(forumLinkSelectedClass)) {
+        $(buttonWriteId).addClass(forumLinkSelectedClass);
     }
-    if ($("#button-preview").hasClass("forum-link-selected")) {
-        $("#button-preview").removeClass("forum-link-selected");
+    if ($(buttonPreviewId).hasClass(forumLinkSelectedClass)) {
+        $(buttonPreviewId).removeClass(forumLinkSelectedClass);
     }
 });
 
-$("#button-preview").on("click", function () {
-    if (!$("#write-answer").hasClass("d-none")) {
-        $("#write-answer").addClass("d-none");
+$('#button-preview').on('click', function () {
+    if (!$(writeAnswerId).hasClass(dNoneClass)) {
+        $(writeAnswerId).addClass(dNoneClass);
     }
-    if ($("#preview-answer").hasClass("d-none")) {
-        $("#preview-answer").removeClass("d-none");
+    if ($(previewAnswerId).hasClass(dNoneClass)) {
+        $(previewAnswerId).removeClass(dNoneClass);
     }
-    if ($("#button-write").hasClass("forum-link-selected")) {
-        $("#button-write").removeClass("forum-link-selected");
+    if ($(buttonWriteId).hasClass(forumLinkSelectedClass)) {
+        $(buttonWriteId).removeClass(forumLinkSelectedClass);
     }
-    if (!$("#button-preview").hasClass("forum-link-selected")) {
-        $("#button-preview").addClass("forum-link-selected");
+    if (!$(buttonPreviewId).hasClass(forumLinkSelectedClass)) {
+        $(buttonPreviewId).addClass(forumLinkSelectedClass);
     }
 });
