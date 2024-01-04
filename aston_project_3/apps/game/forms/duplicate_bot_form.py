@@ -38,7 +38,9 @@ class DuplicateBotForm(forms.Form):
             posted=False,
             score=0,
         )
-        with open("storage/bot/" + secure_filename(f"{bot.id}.py"), "w", newline="", encoding="utf-8") as file:
+        with open("storage/bot/" + secure_filename(
+            f"{bot.id}.py"), "w", newline="", encoding="utf-8"
+        ) as file:
             file.write(duplicated_bot.get_code)
         return bot
 

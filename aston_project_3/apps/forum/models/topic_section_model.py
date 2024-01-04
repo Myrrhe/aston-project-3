@@ -1,5 +1,4 @@
 """The topic section's model."""
-
 import uuid
 
 from django.db import models

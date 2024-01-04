@@ -1,10 +1,10 @@
 """The command to create a superuser."""
+from base64 import b32encode
+
 from django.core.management.base import BaseCommand
 
 from apps.account.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
-
-from base64 import b32encode
 
 
 class Command(BaseCommand):

@@ -13,7 +13,11 @@ class CreateTopicViewSet(CreateView):
     form_class = CreateTopicForm
     template_name = "forum/create_topic.html"
 
-    def get_success_url(self, **kwargs) -> any:
+    def __init__(self, *args, **kwargs) -> None:
+        self.topic_id = ""
+        super().__init__(*args, **kwargs)
+
+    def get_success_url(self) -> any:
         """Determine where the user is redirected on success."""
         return reverse_lazy("forum:topic", args=[self.topic_id, 1])
 

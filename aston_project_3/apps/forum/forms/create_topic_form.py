@@ -52,19 +52,21 @@ class CreateTopicForm(ModelForm):
         """Clean the form."""
         return self.cleaned_data
 
-    def save(self) -> Topic:
+    def save(self, commit: bool = True) -> Topic:
         """Save the data of the form."""
         sections = TopicSection.objects.filter(code=self.cleaned_data["section"])
-        topic = Topic.objects.create(
+        topic = Topic(
             user=self.user,
             title=self.cleaned_data["title"],
             section=sections[0],
         )
-        Post.objects.create(
-            user=self.user,
-            topic=topic,
-            content=self.cleaned_data["content"],
-        )
+        if commit:
+            topic.save(force_insert=True)
+            Post.objects.create(
+                user=self.user,
+                topic=topic,
+                content=self.cleaned_data["content"],
+            )
         return topic
 
     class Meta(object):

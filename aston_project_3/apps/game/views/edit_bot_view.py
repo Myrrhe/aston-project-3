@@ -16,7 +16,11 @@ class EditBotViewSet(UpdateView):
     form_class = CreateBotForm
     template_name = "game/create_bot.html"
 
-    def get_success_url(self, **kwargs) -> any:
+    def __init__(self, *args, **kwargs) -> None:
+        self.bot_id = ""
+        super().__init__(*args, **kwargs)
+
+    def get_success_url(self) -> any:
         """Determine where the user is redirected on success."""
         return reverse_lazy("game:edit-bot", args=[self.bot_id])
 
@@ -24,8 +28,6 @@ class EditBotViewSet(UpdateView):
         self,
         request: HttpRequest,
         bot_id: str,
-        *args,
-        **kwargs
     ) -> HttpResponse:
         """GET method."""
         if not request.user.is_authenticated:
@@ -67,7 +69,7 @@ class EditBotViewSet(UpdateView):
             },
         )
 
-    def post(self, request: HttpRequest, bot_id: str, *args, **kwargs) -> HttpResponse:
+    def post(self, request: HttpRequest, bot_id: str) -> HttpResponse:
         """POST method."""
         create_bot_form = get_form(
             request, CreateBotForm, "create_bot_form", user=request.user, bot_id=bot_id,

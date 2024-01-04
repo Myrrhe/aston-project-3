@@ -1,9 +1,10 @@
 """The signup form."""
 from django import forms
 
-from apps.account.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
+
+from apps.account.models import User
 
 
 class SignupForm(UserCreationForm):

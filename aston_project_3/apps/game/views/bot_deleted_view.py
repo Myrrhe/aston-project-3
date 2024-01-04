@@ -9,6 +9,6 @@ class BotDeletedViewSet(View):
 
     template_name = "game/bot_deleted.html"
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         return render(request, self.template_name)

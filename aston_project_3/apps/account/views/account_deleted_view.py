@@ -9,6 +9,6 @@ class AccountDeletedViewSet(View):
 
     template_name = "account/deleted.html"
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         return render(request, self.template_name)

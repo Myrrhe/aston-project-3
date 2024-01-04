@@ -9,7 +9,7 @@ def get_form(
         prefix: str,
         *args,
         **kwargs
-    ) -> Form:
+) -> Form:
     """Get a form with a prefix."""
     data = request.POST if prefix in request.POST else None
     return formcls(data, *args, prefix=prefix, **kwargs)

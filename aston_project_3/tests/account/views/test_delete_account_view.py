@@ -2,7 +2,6 @@
 from django.http import HttpRequest
 from django.test import TransactionTestCase
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
 
 from apps.account.models import User
 from apps.account.views import DeleteAccountViewSet

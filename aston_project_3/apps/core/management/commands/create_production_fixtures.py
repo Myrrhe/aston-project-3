@@ -69,8 +69,7 @@ class Command(BaseCommand):
         """Load one model's fixture file."""
         if Command.is_working:
             path = (
-                model.__module__.replace(".", "/").replace("model", "fixture")
-                + "s.json"
+                model.__module__.replace(".", "/").replace("model", "fixture") + "s.json"
             )
             if model.objects.all().count() <= 0:
                 # The table for this model is empty
@@ -122,12 +121,12 @@ class Command(BaseCommand):
                 Command.is_working = False
                 self.log_err(self.style.ERROR_OUTPUT("IntegrityError:"), e)
 
-    def log(self, *string, importance: int = 1, **kwargs) -> None:
+    def log(self, *string, importance: int = 1) -> None:
         """Log a message."""
         if Command.verbosity >= importance:
             self.stdout.write(" ".join(string))
 
-    def log_err(self, *string, importance: int = 1, **kwargs) -> None:
+    def log_err(self, *string, importance: int = 1) -> None:
         """Log an error message."""
         if Command.verbosity >= importance:
             self.stderr.write(" ".join(string))

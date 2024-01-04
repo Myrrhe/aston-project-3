@@ -16,7 +16,11 @@ class CreateBotViewSet(CreateView):
     form_class = CreateBotForm
     template_name = "game/create_bot.html"
 
-    def get_success_url(self, **kwargs) -> any:
+    def __init__(self, *args, **kwargs) -> None:
+        self.bot_id = ""
+        super().__init__(*args, **kwargs)
+
+    def get_success_url(self) -> any:
         """Determine where the user is redirected on success."""
         return reverse_lazy("game:edit-bot", args=[self.bot_id])
 

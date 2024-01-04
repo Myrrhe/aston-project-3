@@ -21,7 +21,7 @@
             <div class="d-flex flex-row justify-content-between">
                 <h1 class="mt-1">{{topic.title}}</h1>
                 <a
-                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    href="{% url "forum:forum-spec" type_topic=topic.section.code category="new" page="1" %}"
                     class="btn small_button button-dark mt-2">
                     {% translate "back_to_topics" %}
                 </a>
@@ -118,7 +118,7 @@
 
             <div>
                 <a
-                    href="{% url "forum:forum-spec" type=topic.section.code category="new" page="1" %}"
+                    href="{% url "forum:forum-spec" type_topic=topic.section.code category="new" page="1" %}"
                     class="btn small_button button-dark">
                     {% translate "back_to_topics" %}
                 </a>

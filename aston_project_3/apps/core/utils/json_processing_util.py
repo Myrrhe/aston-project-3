@@ -7,7 +7,7 @@ from django.db.models import Model
 
 def count_instance(path: str) -> int:
     """Count the number of objects in a json file."""
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         obj_json = json.load(f)
         res = len(obj_json)
     f.close()
@@ -34,9 +34,8 @@ def fk_exists(field: any, value_fk: any, obj_json: any) -> bool:
         fk_found = True
     else:
         for fk_obj in obj_json:
-            if (
-                get_model_from_str(fk_obj["model"]) == field.related_model
-                and fk_obj["pk"] == value_fk
-            ):
+            if get_model_from_str(
+                fk_obj["model"],
+            ) == field.related_model and fk_obj["pk"] == value_fk:
                 fk_found = True
     return fk_found

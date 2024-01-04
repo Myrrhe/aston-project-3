@@ -1,10 +1,9 @@
 """Custom test runner."""
-import sys
 # from test.support.os_helper import EnvironmentVarGuard
 
-from django.test.runner import DiscoverRunner
-
 from unittest import TestSuite, TextTestResult
+
+from django.test.runner import DiscoverRunner
 
 
 class CustomTestRunner(DiscoverRunner):
