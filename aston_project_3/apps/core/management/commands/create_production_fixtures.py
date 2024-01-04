@@ -76,10 +76,16 @@ class Command(BaseCommand):
                 # The table for this model is empty
                 self.log("Creating", self.style.SQL_TABLE(model.__name__), "...")
                 self.load_fixture_file(path)
+                if model.__module__ == "apps.game.models.bot_model":
+                    for bot in Bot.objects.all():
+                        bot.load_script()
             elif Command.add or not strict:
                 # The table is not empty, but we added "--add" to bypass it
                 self.log("Updating", self.style.SQL_TABLE(model.__name__), "...")
                 self.load_fixture_file(path)
+                if model.__module__ == "apps.game.models.bot_model":
+                    for bot in Bot.objects.all():
+                        bot.load_script()
             elif count_instance(path) > model.objects.all().count():
                 # The table is half-created
                 self.log_err(

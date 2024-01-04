@@ -1,8 +1,10 @@
 """The bot's model."""
+import shutil
 import uuid
 
 from django.db import models
 from django.utils.translation import gettext as _
+from pathlib import Path
 from werkzeug.utils import secure_filename
 
 from apps.account.models import User
@@ -53,8 +55,16 @@ class Bot(TimestampedModel):
 
     @property
     def get_code(self) -> str:
-        with open("storage/bot/" + secure_filename(f"{self.id}.py")) as f: res = f.read()
+        with open("storage/bot/" + secure_filename(f"{self.id}.py")) as f:
+            res = f.read()
         return res
+
+    def load_script(self) -> None:
+        if Path(f"apps/game/bot_scripts/{self.id}/script.py").is_file():
+            shutil.copy(
+                f"apps/game/bot_scripts/{self.id}/script.py",
+                f"storage/bot/{self.id}.py",
+            )
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""
