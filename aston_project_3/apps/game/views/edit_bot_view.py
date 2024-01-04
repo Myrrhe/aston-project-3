@@ -1,5 +1,4 @@
 """The bot edition view."""
-from django.core import serializers
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
@@ -75,6 +74,7 @@ class EditBotViewSet(UpdateView):
         create_bot_form = get_form(
             request, CreateBotForm, "create_bot_form", user=request.user, bot_id=bot_id,
         )
+        match = None
         if create_bot_form.is_bound and create_bot_form.is_valid():
             # Create bot
             bot = create_bot_form.save()
@@ -85,7 +85,9 @@ class EditBotViewSet(UpdateView):
             self.bot_id = bot_id
         return JsonResponse({
             "message": "Bot saved",
-            "match": serializers.serialize("json", [match]),
+            "match_movements": match.movements if match else "",
+            "match_result": match.result if match else "",
+            "match_even": match.bot_left.id == bot.id if match else "",
         }, status="200", content_type="text/json")
 
     def get_form_kwargs(self) -> any:
