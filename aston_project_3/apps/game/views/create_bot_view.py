@@ -57,8 +57,7 @@ while True:\n\
                     ),
                 },
             )
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """POST method."""

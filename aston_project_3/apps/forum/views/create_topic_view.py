@@ -13,13 +13,9 @@ class CreateTopicViewSet(CreateView):
     form_class = CreateTopicForm
     template_name = "forum/create_topic.html"
 
-    def __init__(self, *args, **kwargs) -> None:
-        self.topic_id = ""
-        super().__init__(*args, **kwargs)
-
     def get_success_url(self) -> any:
         """Determine where the user is redirected on success."""
-        return reverse_lazy("forum:topic", args=[self.topic_id, 1])
+        return reverse_lazy("forum:topic", args=[self.object.id, 1])
 
     def get_context_data(self, **kwargs) -> any:
         """Send additionnal data to the template."""
@@ -34,5 +30,5 @@ class CreateTopicViewSet(CreateView):
 
     def form_valid(self, form: CreateTopicForm) -> HttpResponse:
         """Call the form's save method when the form is valid."""
-        self.topic_id = form.save().id
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        return response
