@@ -1,4 +1,5 @@
 """The bot's model."""
+from __future__ import annotations
 import shutil
 import uuid
 from pathlib import Path
@@ -9,6 +10,14 @@ from werkzeug.utils import secure_filename
 
 from apps.account.models import User
 from apps.core.models import TimestampedModel
+
+
+class BotManager(models.Manager):
+    """Custom manager for the bot model."""
+
+    def get_by_natural_key(self, user_mail: str, name: str) -> Bot:
+        """Get a bot by their creator's mail and name."""
+        return self.get(name=name, user__email=user_mail)
 
 
 class Bot(TimestampedModel):
@@ -46,6 +55,8 @@ class Bot(TimestampedModel):
 
     REQUIRED_FIELDS = []
 
+    objects = BotManager()
+
     class Meta(TimestampedModel.Meta):
         """The meta class."""
 
@@ -67,6 +78,10 @@ class Bot(TimestampedModel):
                 f"apps/game/bot_scripts/{self.id}/script.py",
                 f"storage/bot/{self.id}.py",
             )
+
+    def natural_key(self) -> tuple[str, ...]:
+        """Create a natural key."""
+        return self.user, self.name
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""

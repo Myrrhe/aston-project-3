@@ -1,4 +1,5 @@
 """The bot edition view."""
+from django.core import serializers
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
@@ -6,7 +7,7 @@ from django.views.generic.edit import UpdateView
 
 from apps.core.utils.get_form_util import get_form
 from apps.game.forms import CreateBotForm, DuplicateBotForm, TogglePublishBotForm
-from apps.game.models import Bot
+from apps.game.models import Bot, Match
 
 
 class EditBotViewSet(UpdateView):
@@ -76,11 +77,15 @@ class EditBotViewSet(UpdateView):
         )
         if create_bot_form.is_bound and create_bot_form.is_valid():
             # Create bot
-            self.bot_id = create_bot_form.save().id
+            bot = create_bot_form.save()
+            self.bot_id = bot.id
+            opponent_bot = Bot.objects.get_by_natural_key("admin@aston.com", "Bot 1")
+            match = Match.objects.bot_fight(bot, opponent_bot)
         else:
             self.bot_id = bot_id
         return JsonResponse({
             "message": "Bot saved",
+            "match": serializers.serialize("json", [match]),
         }, status="200", content_type="text/json")
 
     def get_form_kwargs(self) -> any:
