@@ -1,37 +1,40 @@
-"use strict";
+const idBlockEmail = '#block-email';
+const idFormEmail = '#form-email';
+const idBlockPassword = '#block-password';
+const idFormPassword = '#form-password';
 
-$("#button-email").on("click", function () {
-    if (!$("#block-email").hasClass("d-none")) {
-        $("#block-email").addClass("d-none");
+$('#button-email').on('click', function () {
+    if (!$(idBlockEmail).hasClass('d-none')) {
+        $(idBlockEmail).addClass('d-none');
     }
-    if ($("#form-email").hasClass("d-none")) {
-        $("#form-email").removeClass("d-none");
+    if ($(idFormEmail).hasClass('d-none')) {
+        $(idFormEmail).removeClass('d-none');
     }
 });
 
-$("#cancel-email").on("click", function () {
-    if ($("#block-email").hasClass("d-none")) {
-        $("#block-email").removeClass("d-none");
+$('#cancel-email').on('click', function () {
+    if ($(idBlockEmail).hasClass('d-none')) {
+        $(idBlockEmail).removeClass('d-none');
     }
-    if (!$("#form-email").hasClass("d-none")) {
-        $("#form-email").addClass("d-none");
-    }
-});
-
-$("#button-password").on("click", function () {
-    if (!$("#block-password").hasClass("d-none")) {
-        $("#block-password").addClass("d-none");
-    }
-    if ($("#form-password").hasClass("d-none")) {
-        $("#form-password").removeClass("d-none");
+    if (!$(idFormEmail).hasClass('d-none')) {
+        $(idFormEmail).addClass('d-none');
     }
 });
 
-$("#cancel-password").on("click", function () {
-    if ($("#block-password").hasClass("d-none")) {
-        $("#block-password").removeClass("d-none");
+$('#button-password').on('click', function () {
+    if (!$(idBlockPassword).hasClass('d-none')) {
+        $(idBlockPassword).addClass('d-none');
     }
-    if (!$("#form-password").hasClass("d-none")) {
-        $("#form-password").addClass("d-none");
+    if ($(idFormPassword).hasClass('d-none')) {
+        $(idFormPassword).removeClass('d-none');
+    }
+});
+
+$('#cancel-password').on('click', function () {
+    if ($(idBlockPassword).hasClass('d-none')) {
+        $(idBlockPassword).removeClass('d-none');
+    }
+    if (!$(idFormPassword).hasClass('d-none')) {
+        $(idFormPassword).addClass('d-none');
     }
 });

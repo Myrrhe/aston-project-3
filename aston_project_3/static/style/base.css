@@ -29,6 +29,13 @@
 
 /* BACKGROUND COLOR */
 
+/* HIDE */
+.hide {
+    display: block !important;
+    opacity: 0;
+    height: 0px;
+}
+
 .icon::before {
     display: inline-block;
     text-rendering: auto;

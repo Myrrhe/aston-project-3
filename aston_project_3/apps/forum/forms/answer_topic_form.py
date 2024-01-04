@@ -1,6 +1,6 @@
 """The answer topic form."""
-from django.forms import ValidationError
 from django.http import HttpRequest
+from django.utils.html import escape
 from django.utils.translation import gettext_lazy as _
 
 from django import forms
@@ -35,6 +35,7 @@ class AnswerTopicForm(forms.Form):
 
     def clean(self) -> dict[str]:
         """Clean the form."""
+        self.cleaned_data["content"] = escape(self.cleaned_data["content"])
         return self.cleaned_data
 
     def save(self, request: HttpRequest) -> None:
