@@ -1,5 +1,5 @@
 """The bot edition view."""
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.views.generic.edit import UpdateView
@@ -69,7 +69,7 @@ class EditBotViewSet(UpdateView):
             },
         )
 
-    def post(self, request: HttpRequest, bot_id: str) -> HttpResponse:
+    def post(self, request: HttpRequest, bot_id: str) -> JsonResponse:
         """POST method."""
         create_bot_form = get_form(
             request, CreateBotForm, "create_bot_form", user=request.user, bot_id=bot_id,
@@ -77,7 +77,11 @@ class EditBotViewSet(UpdateView):
         if create_bot_form.is_bound and create_bot_form.is_valid():
             # Create bot
             self.bot_id = create_bot_form.save().id
-        return redirect(self.get_success_url())
+        else:
+            self.bot_id = bot_id
+        return JsonResponse({
+            "message": "Bot saved",
+        }, status="200", content_type="text/json")
 
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""

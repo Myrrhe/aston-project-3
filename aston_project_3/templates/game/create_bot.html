@@ -46,7 +46,7 @@
                 <canvas id="canvas-match"></canvas> 
             </div>
             <div class="d-flex flex-column w-50">
-                <form action="" method="post" class="d-flex flex-column">
+                <form action="" method="post" class="d-flex flex-column" id="form-create-bot">
                     {% csrf_token %}
                     <label class="d-none" for={{create_bot_form.name.id_for_label}}>
                     </label>
@@ -55,9 +55,12 @@
                     {{create_bot_form.code}}
                     <input
                         type="submit"
+                        id="{% if bot_id %}submit-edit-bot{% else %}submit-create-bot{% endif %}"
                         name="{{create_bot_form.prefix}}"
                         value="{% translate "create_bot" %}"
-                        class="btn small_button button-bright mt-1">
+                        class="btn small_button button-bright mt-1"
+                        data-url="{% url "game:edit-bot" bot_id=bot_id %}"
+                        data-bot-id="{{bot_id}}">
                     <p class="mt-1 text-color-fore">
                         {% translate "create_bot_text" %}
                     </p>
