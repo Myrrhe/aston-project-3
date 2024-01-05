@@ -5,8 +5,9 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext as _
 
-from apps.game.models import Bot
 from apps.core.models import TimestampedModel
+from apps.game.models import Bot
+from apps.game.utils.bot_fight_util import main_fight
 
 
 class MatchManager(models.Manager):
@@ -14,10 +15,11 @@ class MatchManager(models.Manager):
 
     def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
         """Create a match between two bots."""
+        res = main_fight(bot_left.id, bot_right.id)
         match = self.create(
             bot_left=bot_left,
             bot_right=bot_right,
-            movements="0,0;1,0;1,1;1,2;2,2|29,19;28,19;28,18;28,17;27,17",
+            movements=res,
             result=False,
         )
         return match

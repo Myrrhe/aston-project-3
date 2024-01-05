@@ -60,6 +60,7 @@ for (let j = 0; j < gridHeight; j++) {
 
 app.stage.addChild(gridGraphics);
 
+// The player class
 
 class Player {
     constructor(color, positions, index) {
@@ -86,31 +87,28 @@ class Player {
         this.blurFilter.blur = 5;
         this.graphicsBack.filters = [this.blurFilter];
 
-        const posX1 = this.positions[0]['x'] * cellSize + Player.width - 1;
-        const posY1 = this.positions[0]['y'] * cellSize + Player.width;
-        const posX2 = posX1 + 1;
-        const posY2 = posY1;
+        // const posX1 = this.positions[0]['x'] * cellSize + Player.width - 1;
+        // const posY1 = this.positions[0]['y'] * cellSize + Player.width;
+        // const posX2 = posX1 + 1;
+        // const posY2 = posY1;
 
-        this.graphicsBack.moveTo(
-            posX1,
-            posY1,
-        );
-        this.graphicsFront.moveTo(
-            posX1,
-            posY1,
-        );
+        // this.graphicsBack.moveTo(
+        //     posX1,
+        //     posY1,
+        // );
+        // this.graphicsFront.moveTo(
+        //     posX1,
+        //     posY1,
+        // );
 
-        this.graphicsBack.lineTo(
-            posX2,
-            posY2,
-        );
-        this.graphicsFront.lineTo(
-            posX2,
-            posY2,
-        );
-
-        app.stage.addChild(this.graphicsBack);
-        app.stage.addChild(this.graphicsFront);
+        // this.graphicsBack.lineTo(
+        //     posX2,
+        //     posY2,
+        // );
+        // this.graphicsFront.lineTo(
+        //     posX2,
+        //     posY2,
+        // );
     }
 
     update(t) {
@@ -184,38 +182,40 @@ class Player {
         }
     }
 
+    show() {
+        app.stage.addChild(this.graphicsBack);
+        app.stage.addChild(this.graphicsFront);
+    }
+
+    hide() {
+        app.stage.removeChild(this.graphicsBack);
+        app.stage.removeChild(this.graphicsFront);
+    }
+
+    setPositions(positions) {
+        this.positions = positions;
+    }
+
     static width = 5;
 }
 
-const positions1 = [
-    {'x': 0, 'y': 0},
-    {'x': 1, 'y': 0},
-    {'x': 1, 'y': 1},
-    {'x': 1, 'y': 2},
-    {'x': 2, 'y': 2},
-];
-
-const positions2 = [
-    {'x': 29, 'y': 19},
-    {'x': 28, 'y': 19},
-    {'x': 28, 'y': 18},
-    {'x': 28, 'y': 17},
-    {'x': 27, 'y': 17},
-];
-
 const player1 = new Player(
     colorPlayer1,
-    positions1,
+    [],
     0,
 );
 
 const player2 = new Player(
     colorPlayer2,
-    positions2,
+    [],
     1,
 );
 
-const startMachTime = new Date().getTime();
+const framePerSecond = 30;
+const millisecondPerFrame = Math.floor(1000 / cellSize);
+
+let startMachTime = null;
+let intervalId = null;
 
 const updateMatch = function() {
     const currentTime = new Date().getTime();
@@ -224,11 +224,17 @@ const updateMatch = function() {
     player2.update(t);
 };
 
-const framePerSecond = 30;
-const millisecondPerFrame = Math.floor(1000 / cellSize);
+const triggerMatch = function(positions1, positions2) {
+    player1.setPositions(positions1);
+    player2.setPositions(positions2);
+    player1.show();
+    player2.show();
 
-const intervalId = setInterval(updateMatch, millisecondPerFrame);
+    startMachTime = new Date().getTime();
 
-setTimeout(function() {
-    clearInterval(intervalId);
-}, positions1.length * 1000);
+    intervalId = setInterval(updateMatch, millisecondPerFrame);
+
+    setTimeout(function() {
+        clearInterval(intervalId);
+    }, Math.min(positions1.length, positions2.length) * 1000);
+};

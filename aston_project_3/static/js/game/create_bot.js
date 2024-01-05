@@ -13,7 +13,13 @@ $(document).ready(function() {
                 'create_bot_form-code': $('#id_create_bot_form-code').val(),
                 create_bot_form: 'create_bot',
             },
-            success(_data) {
+            success(data) {
+                const positions = data['match_movements'].split('|').map(s =>
+                    s.split(';').map(function(p) {
+                        const [x, y] = p.split(',');
+                        return {'x': parseInt(x, 10), 'y': parseInt(y, 10)};
+                }));
+                triggerMatch(positions[0], positions[1]);
             },
             error(error) {
                 console.log('Une erreur s\'est produite:', error);
