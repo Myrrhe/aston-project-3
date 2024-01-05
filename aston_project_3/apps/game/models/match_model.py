@@ -15,7 +15,7 @@ class MatchManager(models.Manager):
 
     def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
         """Create a match between two bots."""
-        res = main_fight(bot_left.id, bot_right.id)
+        res = main_fight([bot_left.id, bot_right.id])
         match = self.create(
             bot_left=bot_left,
             bot_right=bot_right,
