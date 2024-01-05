@@ -10,6 +10,7 @@ import subprocess
 import threading
 from random import randint
 from typing import IO
+from contextlib import ExitStack
 
 # Ce programme envoi des nombre à deux autres programmes : A et B
 # A et B renvoient une réponse différente selon les nombres envoyés
@@ -39,25 +40,6 @@ def read_output(output: IO[str], output_queue: queue) -> None:
 def main_fight(bots_id: list[str]) -> str:
     """The main method"""
 
-    # Créez une file pour stocker la sortie du sous-programme
-    output_queue = [queue.Queue() for _ in range(NB_BOTS)]
-
-    # Lancez les sous-programmes en tant que processus enfants
-    processes = [subprocess.Popen(
-        ["python", f"storage/bot/{bot_id}.py"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        text=True
-    ) for bot_id in bots_id]
-
-    # Créez des threads pour lire la sortie des sous-programmes de manière asynchrone
-    output_threads = [threading.Thread(
-        target=read_output, args=(processes[i].stdout, output_queue[i])
-    ) for i in range(NB_BOTS)]
-    for output_thread in output_threads:
-        output_thread.daemon = True
-        output_thread.start()
-
     field = [[0 for _ in range(FIELD_WIDTH)] for _ in range(FIELD_HEIGHT)]
 
     pos = {"init": [{
@@ -79,65 +61,90 @@ def main_fight(bots_id: list[str]) -> str:
 
     health = [1 for _ in range(NB_BOTS)]
 
-    try:
-        # Game loop
-        while health[0] > 0 and health[1] > 0:
-            # Envoyez des données au sous-programmes via l'entrée standard
-            # On peut envoyer des mots séparés par des expaces, ou un mot unique
+    # Créez une file pour stocker la sortie du sous-programme
+    output_queue = [queue.Queue() for _ in range(NB_BOTS)]
 
-            for i in range(NB_BOTS):
-                processes[i].stdin.write("0\n")
-                processes[i].stdin.flush()
-                processes[i].stdin.write(
-                    f"{pos["init"][0]["x"]} {pos["init"][0]["y"]} {pos["current"][0]["x"]} {pos["current"][0]["y"]}\n"
-                )
-                processes[i].stdin.flush()
-                processes[i].stdin.write(
-                    f"{pos["init"][1]["x"]} {pos["init"][1]["y"]} {pos["current"][1]["x"]} {pos["current"][1]["y"]}\n"
-                )
-                processes[i].stdin.flush()
+    with ExitStack() as stack:
+        processes = [
+            stack.enter_context(subprocess.Popen(
+                ["python", f"storage/bot/{bot_id}.py"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                text=True
+            )) for bot_id in bots_id
+        ]
 
-                pos["next"][i] = pos["current"][i].copy()
+        # Créez des threads pour lire la sortie des sous-programmes de manière asynchrone
+        output_threads = [threading.Thread(
+            target=read_output, args=(processes[i].stdout, output_queue[i])
+        ) for i in range(NB_BOTS)]
+        for output_thread in output_threads:
+            output_thread.daemon = True
+            output_thread.start()
 
-                # Attendez une réponse du sous-programme avec un timeout
-                try:
-                    # Définissez le timeout en secondes
-                    response = output_queue[i].get(timeout=10)
-                    match response:
-                        case "LEFT\n":
-                            pos["next"][i]["x"] -= 1
-                        case "RIGHT\n":
-                            pos["next"][i]["x"] += 1
-                        case "UP\n":
-                            pos["next"][i]["y"] -= 1
-                        case "DOWN\n":
-                            pos["next"][i]["y"] += 1
-                        case _:
-                            print(f"Error: Invalid response for {i}")
-                            health[i] = 0
-                    if (
-                        pos["next"][i]["x"] < 0
-                        or pos["next"][i]["x"] >= FIELD_WIDTH
-                        or pos["next"][i]["y"] < 0
-                        or pos["next"][i]["y"] >= FIELD_HEIGHT
-                        or field[pos["next"][i]["y"]][pos["next"][i]["x"]] != 0
-                    ):
-                        health[i] = 0
-                    else:
-                        pos["current"][i] = pos["next"][i].copy()
-                        field[pos["current"][i]["y"]][pos["current"][i]["x"]] = 1
-                        res[i].append(f"{pos["current"][i]["x"]},{pos["current"][i]["y"]}")
-                except queue.Empty:
-                    print(
-                        f"Timeout : Le sous-programme {i} n'a pas répondu dans le délai spécifié."
+        try:
+            # Game loop
+            while health[0] > 0 and health[1] > 0:
+                # Envoyez des données au sous-programmes via l'entrée standard
+                # On peut envoyer des mots séparés par des espaces, ou un mot unique
+
+                for i in range(NB_BOTS):
+                    processes[i].stdin.write("0\n")
+                    processes[i].stdin.flush()
+                    processes[i].stdin.write(
+                        f"{pos["init"][0]["x"]} {pos["init"][0]["y"]} {pos["current"][0]["x"]} {pos["current"][0]["y"]}\n"
                     )
-    except KeyboardInterrupt:
-        pass
+                    processes[i].stdin.flush()
+                    processes[i].stdin.write(
+                        f"{pos["init"][1]["x"]} {pos["init"][1]["y"]} {pos["current"][1]["x"]} {pos["current"][1]["y"]}\n"
+                    )
+                    processes[i].stdin.flush()
 
-    for process in processes:
-        process.terminate()
+                    pos["next"][i] = pos["current"][i].copy()
 
-    return "|".join(";".join(pos_player) for pos_player in res)
+                    # Attendez une réponse du sous-programme avec un timeout
+                    try:
+                        # Définissez le timeout en secondes
+                        response = output_queue[i].get(timeout=10)
+                        match response:
+                            case "LEFT\n":
+                                pos["next"][i]["x"] -= 1
+                            case "RIGHT\n":
+                                pos["next"][i]["x"] += 1
+                            case "UP\n":
+                                pos["next"][i]["y"] -= 1
+                            case "DOWN\n":
+                                pos["next"][i]["y"] += 1
+                            case _:
+                                print(f"Error: Invalid response for {i}")
+                                health[i] = 0
+                                break
+                        if (
+                            pos["next"][i]["x"] < 0
+                            or pos["next"][i]["x"] >= FIELD_WIDTH
+                            or pos["next"][i]["y"] < 0
+                            or pos["next"][i]["y"] >= FIELD_HEIGHT
+                            or field[pos["next"][i]["y"]][pos["next"][i]["x"]] != 0
+                        ):
+                            health[i] = 0
+                            break
+                        else:
+                            pos["current"][i] = pos["next"][i].copy()
+                            field[pos["current"][i]["y"]][pos["current"][i]["x"]] = 1
+                            res[i].append(f"{pos["current"][i]["x"]},{pos["current"][i]["y"]}")
+                    except queue.Empty:
+                        health[i] = 0
+                        print(
+                            f"Timeout : Le sous-programme {i} n'a pas répondu dans le délai spécifié."
+                        )
+                        break
+        except KeyboardInterrupt:
+            pass
+
+        for process in processes:
+            process.terminate()
+
+    return f"{"|".join(";".join(pos_player) for pos_player in res)}:{1 if health[0] == 1 else 0}"
 
 
 # if __name__ == "__main__":

@@ -19,6 +19,18 @@ $(document).ready(function() {
                         const [x, y] = p.split(',');
                         return {'x': parseInt(x, 10), 'y': parseInt(y, 10)};
                 }));
+
+                const len1 = positions[0].length;
+                const len2 = positions[1].length;
+
+                if (len1 > len2) {
+                    positions[0].splice(len2 - len1);
+                } else if (len2 > len1) {
+                    positions[1].splice(len1 - len2);
+                } else {
+                    // The arrays are already the same size
+                }
+
                 triggerMatch(positions[0], positions[1]);
             },
             error(error) {
