@@ -38,9 +38,9 @@ console.log($(canvasId)[0].width, $(canvasId)[0].height);
 
 const app = new window.PIXI.Application(
     {
-        background: 0x000000,
         width,
         height,
+        background: 0x000000,
         // resizeTo: $(canvasId)[0],
         view: $(canvasId)[0],
         // forceCanvas: false,
@@ -234,3 +234,43 @@ const triggerMatch = function(positions1, positions2) {
         clearInterval(intervalId);
     }, Math.min(positions1.length, positions2.length) * 1000);
 };
+
+let isDragging = false;
+let initialX;
+let initialY;
+
+const progressContainerId = '#progress-container';
+
+const updateProgress = function(e) {
+    const newX = e.clientX - initialX;
+    const coeff = Math.max(Math.min(newX, e.target.clientWidth), 0) / e.target.clientWidth;
+    // Bug : e.target.clientWidth == 20 sometimes
+    $('#progress-bar-match')[0].style.width = `${coeff * e.target.clientWidth}px`;
+};
+
+const startDrag = function(e) {
+    isDragging = true;
+    initialX = $(progressContainerId)[0].getBoundingClientRect().left;
+    initialY = $(progressContainerId)[0].getBoundingClientRect().top;
+    $(progressContainerId)[0].style.cursor = 'grabbing';
+    updateProgress(e);
+};
+
+const drag = function(e) {
+    if (isDragging) {
+        updateProgress(e);
+    }
+};
+
+const stopDrag = function() {
+    isDragging = false;
+    $(progressContainerId)[0].style.cursor = 'grab';
+};
+
+$(document).ready(function() {
+    $(progressContainerId)[0].addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
+    $(progressContainerId)[0].style.cursor = 'grab';
+});
+
