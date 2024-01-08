@@ -36,6 +36,11 @@
     height: 0px;
 }
 
+/* SIZE */
+.w-90 {
+    width: 90% !important;
+}
+
 .icon::before {
     display: inline-block;
     text-rendering: auto;

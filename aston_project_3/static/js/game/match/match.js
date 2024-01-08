@@ -25,22 +25,41 @@ const interpolate = function(a, b, coeff, interpolationFunction = InterpolationF
 
 const canvasId = '#canvas-match';
 
-const {width, height} = $(canvasId)[0];
+const gridWidth = 30;
+const gridHeight = 20;
 
-const app = new window.PIXI.Application({
-    background: 0x000000,
-    resizeTo: $(canvasId)[0],
-    view: $(canvasId)[0],
+const width = $(canvasId).parent().width();
+const height = gridHeight * width / gridWidth;
+
+$(canvasId)[0].width = width;
+$(canvasId)[0].height = height;
+
+console.log($(canvasId)[0].width, $(canvasId)[0].height);
+
+const app = new window.PIXI.Application(
+    {
+        background: 0x000000,
+        width,
+        height,
+        // resizeTo: $(canvasId)[0],
+        view: $(canvasId)[0],
+        // forceCanvas: false,
+        // autoResize: true,
+        // resolution: 1,
 });
 
-app.renderer.resize(width, width);
+// const {width, height} = app.renderer;
+// console.log(app.renderer.width);
+// console.log(app.renderer.height);
+
+// app.renderer.resize(width, height);
+// app.renderer.view.width = width;
+// app.renderer.view.height = gridHeight * width / gridWidth;
 
 // Grid
 const gridGraphics = new window.PIXI.Graphics();
 
-const gridWidth = 30;
-const gridHeight = 20;
-const cellSize = 10;
+const cellSize = width / gridWidth;
 const gridColor = 0xffffff;
 
 const colorPlayer1 = 0x00ff88;
@@ -84,31 +103,8 @@ class Player {
         });
 
         this.blurFilter = new window.PIXI.BlurFilter();
-        this.blurFilter.blur = 5;
+        this.blurFilter.blur = cellSize / 2;
         this.graphicsBack.filters = [this.blurFilter];
-
-        // const posX1 = this.positions[0]['x'] * cellSize + Player.width - 1;
-        // const posY1 = this.positions[0]['y'] * cellSize + Player.width;
-        // const posX2 = posX1 + 1;
-        // const posY2 = posY1;
-
-        // this.graphicsBack.moveTo(
-        //     posX1,
-        //     posY1,
-        // );
-        // this.graphicsFront.moveTo(
-        //     posX1,
-        //     posY1,
-        // );
-
-        // this.graphicsBack.lineTo(
-        //     posX2,
-        //     posY2,
-        // );
-        // this.graphicsFront.lineTo(
-        //     posX2,
-        //     posY2,
-        // );
     }
 
     update(t) {
@@ -196,7 +192,7 @@ class Player {
         this.positions = positions;
     }
 
-    static width = 5;
+    static width = cellSize / 2;
 }
 
 const player1 = new Player(

@@ -1,5 +1,109 @@
 #canvas-match {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: block;
 }
+
+.control-panel {
+    /* position: relative; */
+}
+
+.progress-container {
+    height: 10px;
+    /* position: absolute; */
+    /* z-index: 1; */
+}
+
+.progress-back {
+    background-color: var(--grey-color);
+    height: 4px;
+    transition: all 0.3s ease;
+}
+
+.progress-container:hover .progress-back {
+    height: 10px;
+}
+
+.progress-bar-match {
+    background-color: var(--bright-color);
+    width: 50%;
+    position: relative;
+}
+
+.progress-end {
+    background-color: var(--bright-color);
+    height: 0px;
+    width: 0px;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    right: -0px;
+    transition: all 0.3s ease;
+}
+
+.progress-back:hover .progress-end {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -10px;
+}
+
+/* .progress-back .progress-bar-match::before {
+    content: "";
+    background-color: var(--bright-color);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    position: absolute;
+    top: -9px;
+    right: -9px;
+} */
+
+/* .progress-back {
+    height: 20px;
+    background: #f0f0f0;
+    border-width: 8px 0;
+    border-style: solid none;
+    border-color: #000;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    box-shadow: none;
+    overflow: visible;
+    position: relative;
+}
+.progress-back:hover {
+    border-width: 0 0;
+}
+.progress-back .progress-bar-match{
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+    position: relative;
+    animation: animate-positive 1s;
+}
+.progress-back .progress-bar-match:before{
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #f0f0f0;
+    position: absolute;
+    top: -14px;
+    right: 0;
+}
+.progress-bar {
+    height: 100%;
+    width: 50%;
+    background-color: var(--bright-color);
+}
+@-webkit-keyframes animate-positive{
+    0%{ width: 0; }
+}
+@keyframes animate-positive{
+    0%{ width: 0; }
+} */
