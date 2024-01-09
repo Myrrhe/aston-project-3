@@ -5,7 +5,7 @@
 }
 
 .control-panel {
-    /* position: relative; */
+    background-color: var(--light-grey-color);
 }
 
 #progress-container {
