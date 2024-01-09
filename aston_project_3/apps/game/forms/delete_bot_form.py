@@ -1,6 +1,8 @@
 """The bot deletion form."""
-from django import forms
 import os
+
+from django import forms
+
 from werkzeug.utils import secure_filename
 
 from apps.game.models import Bot

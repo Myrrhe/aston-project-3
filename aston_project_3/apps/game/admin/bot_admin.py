@@ -1,6 +1,5 @@
 """The bot's admin."""
 from django.contrib import admin
-from django.utils.translation import gettext as _
 
 from apps.game.models import Bot
 

@@ -1,7 +1,6 @@
 """The user's model."""
 from __future__ import annotations
 
-import urllib
 import uuid
 
 from django.conf import settings
@@ -60,9 +59,9 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def get_by_natural_key(self, email: str = "admin@aston.com") -> User:
+    def get_by_natural_key(self, username: str = "admin@aston.com") -> User:
         """Get a user by their email."""
-        return self.get(email=email)
+        return self.get(email=username)
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
@@ -168,7 +167,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     def check_credentials(self, password: str, security_key: str) -> bool:
         """Check if a password as well as a code are correct."""
-        return self.check_password(password) and self.check_security_key(security_key)
+        return (
+            self.check_password(password) and
+            self.check_security_key(security_key)
+        )
 
     def is_bot_name_available(self, bot_name: str) -> bool:
         """Check if a bot name is already taken or not."""

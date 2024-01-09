@@ -8,10 +8,6 @@ from apps.account.models import User
 class TestUserModel(TransactionTestCase):
     """The tests for the user model"""
 
-    def setUp(self) -> None:
-        """Set up the data for the tests"""
-        super().setUp()
-
     def test_standard(self) -> None:
         """Run the tests"""
         with self.assertRaises(TypeError, msg="Users must have an email address."):
@@ -33,5 +29,6 @@ class TestUserModel(TransactionTestCase):
         self.assertFalse(user.has_security_key())
         self.assertTrue(user.check_security_key("123456"))
         self.assertTrue(user.check_credentials("123456", "123456"))
+        self.assertTrue(user.is_bot_name_available("Bot 1"))
         self.assertEqual(user.natural_key(), (user.email,))
         self.assertEqual(str(user), user.email)

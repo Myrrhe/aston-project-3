@@ -16,17 +16,16 @@ class TestAnswerTopicView(TransactionTestCase):
         User.objects.create_superuser("admin@aston.com", "123456")
         call_command("loaddata", "topic_section_fixtures")
         self.view = AnswerTopicViewSet()
-        self.request = HttpRequest()
-        self.request.method = "POST"
-        self.request.user = User.objects.create_user(
-            "create_topic_view@test.com", "123456"
-        )
         self.view.object = None
+        user = User.objects.create_user("create_topic_view@test.com", "123456")
         self.topic_1 = Topic.objects.create(
             title="Titre 1",
             section=TopicSection.objects.first(),
-            user=self.request.user,
+            user=user
         )
+        self.request = HttpRequest()
+        self.request.method = "POST"
+        self.request.user = user
         super().setUp()
 
     def test_standard(self) -> None:

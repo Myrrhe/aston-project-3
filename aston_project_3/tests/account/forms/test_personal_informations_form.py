@@ -1,5 +1,4 @@
 """The tests for the personal informations form"""
-from django.core.management import call_command
 from django.http import HttpRequest
 from django.test import TransactionTestCase
 

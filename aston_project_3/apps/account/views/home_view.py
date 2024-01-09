@@ -7,7 +7,7 @@ from django.views import View
 class HomeViewSet(View):
     """The home view."""
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         if request.user.is_authenticated:
             return render(request, "home/home.html")

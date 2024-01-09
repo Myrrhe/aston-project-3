@@ -19,37 +19,37 @@
     <a
         id="link-first-page-same-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page="1" %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category=category page="1" %}">
     </a>
     <a
         id="link-prev-page-same-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=prev_page %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category=category page=prev_page %}">
     </a>
     <a
         id="link-same-page-old-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="old" page=page %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="old" page=page %}">
     </a>
     <a
         id="link-same-page-new-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="new" page=page %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="new" page=page %}">
     </a>
     <a
         id="link-same-page-same-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=page %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category=category page=page %}">
     </a>
     <a
         id="link-next-page-same-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=next_page %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category=category page=next_page %}">
     </a>
     <a
         id="link-last-page-same-category"
         class="d-none"
-        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category=category page=nb_pages %}">
+        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category=category page=nb_pages %}">
     </a>
 
     <div class="form-login my-5 px-4 d-flex flex-column align-items-left justify-content-center w-75">
@@ -63,14 +63,14 @@
                         <option
                             value="all"
                             class="option-capitalize"
-                            {% if type == "all" %}selected{% endif %}>
+                            {% if type_topic == "all" %}selected{% endif %}>
                             {% translate "all" %}
                         </option>
                         {% for section in sections %}
                             <option
                                 value="{{ section.code }}"
                                 class="option-capitalize"
-                                {% if type == section.code %}selected{% endif %}>
+                                {% if type_topic == section.code %}selected{% endif %}>
                                 {{ section.name }}
                             </option>
                         {% endfor %}
@@ -81,7 +81,7 @@
                         id="link-section"
                         data-page="same"
                         data-category="same"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
                         {% translate "change" %}
                     </a>
 
@@ -92,7 +92,7 @@
                         class="update-url link-nav link-light navbar-forum{% if category == "new" %} forum-link-selected{% endif %}"
                         data-page="same"
                         data-category="new"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="new" page="1" %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="new" page="1" %}">
                         {% translate "new" %}
                     </a>
 
@@ -100,7 +100,7 @@
                         class="update-url link-nav link-light navbar-forum{% if category == "old" %} forum-link-selected{% endif %}"
                         data-page="same"
                         data-category="old"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="old" page="1" %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="old" page="1" %}">
                         {% translate "old" %}
                     </a>
                 </div>
@@ -157,7 +157,7 @@
                         id="prev-page"
                         data-page="prev"
                         data-category="same"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=prev_page %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=prev_page %}">
                         {% translate "previous" %}
                     </a>
                 {% endif %}
@@ -167,7 +167,7 @@
                         id="first-page"
                         data-page="first"
                         data-category="same"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page="1" %}">
                         1
                     </a>
                 {% endif %}
@@ -193,7 +193,7 @@
                         id="last-page"
                         data-page="last"
                         data-category="same"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=page %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=page %}">
                         {{ nb_pages }}
                     </a>
                 {% endif %}
@@ -210,7 +210,7 @@
                         id="next-page"
                         data-page="next"
                         data-category="same"
-                        href="{% url "forum:forum-spec" type="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=next_page %}">
+                        href="{% url "forum:forum-spec" type_topic="PLACEHOLDER_TYPE" category="PLACEHOLDER_CATEGORY" page=next_page %}">
                         {% translate "next" %}
                     </a>
                 {% endif %}

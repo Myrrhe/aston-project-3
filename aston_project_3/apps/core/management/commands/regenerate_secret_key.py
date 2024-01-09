@@ -23,12 +23,12 @@ class Command(BaseCommand):
         if options["auto"]:
             django_key = create_django_key()
             new_env = []
-            with open("aston_project_3/.env", "r") as file:
+            with open("aston_project_3/.env", "r", encoding="utf-8") as file:
                 for line in file:
                     if line.startswith("SECRET_KEY="):
                         line = f"SECRET_KEY={django_key}"
                     new_env.append(line)
-            with open("aston_project_3/.env", "w") as file:
+            with open("aston_project_3/.env", "w", encoding="utf-8") as file:
                 for line in new_env:
                     file.write(line)
                 file.write("\n")

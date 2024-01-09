@@ -69,17 +69,22 @@ class Command(BaseCommand):
         """Load one model's fixture file."""
         if Command.is_working:
             path = (
-                model.__module__.replace(".", "/").replace("model", "fixture")
-                + "s.json"
+                model.__module__.replace(".", "/").replace("model", "fixture") + "s.json"
             )
             if model.objects.all().count() <= 0:
                 # The table for this model is empty
                 self.log("Creating", self.style.SQL_TABLE(model.__name__), "...")
                 self.load_fixture_file(path)
+                if model.__module__ == "apps.game.models.bot_model":
+                    for bot in Bot.objects.all():
+                        bot.load_script()
             elif Command.add or not strict:
                 # The table is not empty, but we added "--add" to bypass it
                 self.log("Updating", self.style.SQL_TABLE(model.__name__), "...")
                 self.load_fixture_file(path)
+                if model.__module__ == "apps.game.models.bot_model":
+                    for bot in Bot.objects.all():
+                        bot.load_script()
             elif count_instance(path) > model.objects.all().count():
                 # The table is half-created
                 self.log_err(
@@ -116,12 +121,12 @@ class Command(BaseCommand):
                 Command.is_working = False
                 self.log_err(self.style.ERROR_OUTPUT("IntegrityError:"), e)
 
-    def log(self, *string, importance: int = 1, **kwargs) -> None:
+    def log(self, *string, importance: int = 1) -> None:
         """Log a message."""
         if Command.verbosity >= importance:
             self.stdout.write(" ".join(string))
 
-    def log_err(self, *string, importance: int = 1, **kwargs) -> None:
+    def log_err(self, *string, importance: int = 1) -> None:
         """Log an error message."""
         if Command.verbosity >= importance:
             self.stderr.write(" ".join(string))

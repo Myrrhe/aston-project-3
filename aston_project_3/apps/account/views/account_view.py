@@ -14,7 +14,7 @@ from apps.core.utils.get_form_util import get_form
 class AccountViewSet(View):
     """The account view."""
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         if request.user.is_authenticated:
             return render(
@@ -42,7 +42,7 @@ class AccountViewSet(View):
         else:
             return redirect("account:login", "")
 
-    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def post(self, request: HttpRequest) -> HttpResponse:
         """POST method."""
         change_email_form = get_form(
             request, ChangeEmailForm, "email_form", user=request.user

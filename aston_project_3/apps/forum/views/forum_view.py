@@ -1,9 +1,9 @@
 """The forum view."""
+from math import ceil
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
-
-from math import ceil
 
 from apps.forum.models import Topic, TopicSection
 
@@ -14,16 +14,14 @@ class ForumViewSet(View):
     def get(
         self,
         request: HttpRequest,
-        type: str = "all",
+        type_topic: str = "all",
         category: str = "new",
         page: int = 1,
-        *args,
-        **kwargs,
     ) -> HttpResponse:
         """GET method."""
         topics = Topic.objects.filter(deleted=False)
-        if type != "all":
-            topics = topics.filter(section__code=type)
+        if type_topic != "all":
+            topics = topics.filter(section__code=type_topic)
         match category:
             case "new":
                 topics = topics.order_by("-created_at")
@@ -38,13 +36,13 @@ class ForumViewSet(View):
             page = 1
         elif page > nb_pages:
             page = nb_pages
-        topics = topics[(page - 1) * 10 : page * 10]
+        topics = topics[(page - 1) * 10:page * 10]
         return render(
             request,
             "forum/forum.html",
             context={
                 "topics": topics,
-                "type": type,
+                "type_topic": type_topic,
                 "sections": sections,
                 "category": category,
                 "page": page,

@@ -44,23 +44,29 @@ class CreateBotForm(ModelForm):
         """Clean the form."""
         return self.cleaned_data
 
-    def save(self) -> Bot:
+    def save(self, commit: bool = True) -> Bot:
         """Save the data of the form."""
         bot = None
         if self.bot_id:
             bot = Bot.objects.get(pk=self.bot_id)
             bot.name = self.cleaned_data["name"]
-            bot.save()
+            if commit:
+                bot.save()
         else:
-            bot = Bot.objects.create(
+            bot = Bot(
                 user=self.user,
                 name=self.cleaned_data["name"],
                 posted=False,
                 score=0,
             )
-        ensure_storage()
-        with open("storage/bot/" + secure_filename(f"{bot.id}.py"), "w", newline="", encoding="utf-8") as file:
-            file.write(self.cleaned_data["code"])
+            if commit:
+                bot.save(force_insert=True)
+        if commit:
+            ensure_storage()
+            with open("storage/bot/" + secure_filename(
+                f"{bot.id}.py"), "w", newline="", encoding="utf-8"
+            ) as file:
+                file.write(self.cleaned_data["code"])
         return bot
 
     class Meta(object):

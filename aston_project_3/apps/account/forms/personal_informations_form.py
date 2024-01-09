@@ -1,10 +1,10 @@
 """The personnal informations change form"""
-from django.utils.translation import gettext_lazy as _
-
 from django import forms
 
-from apps.account.models import User
 from django.http import HttpRequest
+from django.utils.translation import gettext_lazy as _
+
+from apps.account.models import User
 
 
 class PersonalInformationsForm(forms.Form):

@@ -7,6 +7,6 @@ from django.views import View
 class CookiesSettingsViewSet(View):
     """The cookies settings view."""
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         return render(request, "cookies/settings.html")

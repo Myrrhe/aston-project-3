@@ -1,8 +1,7 @@
 """The post's model."""
+import uuid
 
 import markdown2
-
-import uuid
 
 from django.db import models
 from django.utils.translation import gettext as _

@@ -1,10 +1,9 @@
 """Custom test runner."""
-import sys
 # from test.support.os_helper import EnvironmentVarGuard
 
-from django.test.runner import DiscoverRunner
-
 from unittest import TestSuite, TextTestResult
+
+from django.test.runner import DiscoverRunner
 
 
 class CustomTestRunner(DiscoverRunner):
@@ -16,7 +15,10 @@ class CustomTestRunner(DiscoverRunner):
         return result
 
     def suite_result(self, suite: TestSuite, result: TextTestResult, **kwargs) -> int:
-        """Computes and returns a return code based on a test suite, and the result from that test suite."""
+        """
+        Computes and returns a return code based on a test suite,
+        and the result from that test suite.
+        """
         if result is not None:
             # Django unit tests were run
             result = super().suite_result(suite, result, **kwargs)
@@ -32,5 +34,5 @@ class CustomTestRunner(DiscoverRunner):
         #         file=sys.stderr,
         #     )
         #     environ["UNIT_TEST"] = "True"
-        #     return super(CustomTestRunner, self).run_tests(*args, **kwargs)
-        return super(CustomTestRunner, self).run_tests(*args, **kwargs)
+        #     return super().run_tests(*args, **kwargs)
+        return super().run_tests(*args, **kwargs)

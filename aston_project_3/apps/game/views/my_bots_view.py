@@ -12,18 +12,16 @@ class MyBotsViewSet(View):
     def get(
         self,
         request: HttpRequest,
-        *args,
-        **kwargs,
     ) -> HttpResponse:
         """GET method."""
         if request.user.is_authenticated:
             bots = Bot.objects.filter(user=request.user)
             return render(
-            request,
-            "game/my_bots.html",
-            context={
-                "bots": bots,
-            },
-        )
+                request,
+                "game/my_bots.html",
+                context={
+                    "bots": bots,
+                },
+            )
         else:
             return redirect("account:login", "")

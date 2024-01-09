@@ -1,12 +1,29 @@
 """The match's model."""
-
+from __future__ import annotations
 import uuid
 
 from django.db import models
 from django.utils.translation import gettext as _
 
-from apps.game.models import Bot
 from apps.core.models import TimestampedModel
+from apps.game.models import Bot
+from apps.game.utils.bot_fight_util import main_fight
+
+
+class MatchManager(models.Manager):
+    """Custom manager for the bot model."""
+
+    def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
+        """Create a match between two bots."""
+        res = main_fight([bot_left.id, bot_right.id])
+        match_data = res.split(":")
+        match = self.create(
+            bot_left=bot_left,
+            bot_right=bot_right,
+            movements=match_data[0],
+            result=match_data[1] == "1",
+        )
+        return match
 
 
 class Match(TimestampedModel):
@@ -45,6 +62,8 @@ class Match(TimestampedModel):
     )
 
     REQUIRED_FIELDS = []
+
+    objects = MatchManager()
 
     class Meta(TimestampedModel.Meta):
         """The meta class."""

@@ -7,6 +7,6 @@ from django.views import View
 class CookiesPolicyViewSet(View):
     """The cookies policy view."""
 
-    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
         return render(request, "cookies/policy.html")
