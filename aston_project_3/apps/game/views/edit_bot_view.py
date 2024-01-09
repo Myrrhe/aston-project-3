@@ -85,6 +85,7 @@ class EditBotViewSet(UpdateView):
             self.bot_id = bot_id
         return JsonResponse({
             "message": "Bot saved",
+            "bot_name": bot.name,
             "match_movements": match.movements if match else "",
             "match_result": match.result if match else "",
             "match_even": match.bot_left.id == bot.id if match else "",

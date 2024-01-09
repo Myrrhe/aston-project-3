@@ -31,6 +31,14 @@ $(document).ready(function() {
                     // The arrays are already the same size
                 }
 
+                if (data['match_result'] !== '') {
+                    if (data['match_result']) {
+                        $('#fight-result').html(`${data['bot_name']} a gagné !`);
+                    } else {
+                        $('#fight-result').html(`${data['bot_name']} a perdu :(`);
+                    }
+                }
+
                 triggerMatch(positions[0], positions[1]);
             },
             error(error) {

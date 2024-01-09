@@ -46,14 +46,6 @@ const app = new window.PIXI.Application(
         // resolution: 1,
 });
 
-// const {width, height} = app.renderer;
-// console.log(app.renderer.width);
-// console.log(app.renderer.height);
-
-// app.renderer.resize(width, height);
-// app.renderer.view.width = width;
-// app.renderer.view.height = gridHeight * width / gridWidth;
-
 // Grid
 const gridGraphics = new window.PIXI.Graphics();
 
@@ -136,7 +128,7 @@ class Player {
 
         const nbPoints = Math.floor(coeff * (this.positions.length - 1));
 
-        const coeffDraw = (coeff - nbPoints/(this.positions.length - 1.0))/(1.0 / (this.positions.length - 1.0));
+        const coeffDraw = coeff * (this.positions.length - 1) - nbPoints;
 
         for (let i = 1; i <= nbPoints; i++) {
             posX = this.positions[i]['x'] * cellSize + Player.width - 1;
@@ -213,12 +205,14 @@ const millisecondPerFrame = Math.floor(1000 / framePerSecond);
 let startMachTime = null;
 let intervalId = null;
 let durationMatch = null;
+let nbIterMatch = null;
 let matchStarted = false;
-let machEnded = false;
+let matchEnded = false;
 let pause = false;
 let coeffSaved = 0;
 
 const buttonPlayId = '#button-play';
+const fightResultId = '#fight-result';
 const buttonMatchPlayClass = 'button-match-play';
 const buttonMatchPauseClass = 'button-match-pause';
 const buttonMatchReplayClass = 'button-match-replay';
@@ -232,6 +226,37 @@ const removeClassesButtonPlay = function() {
     }
     if ($(buttonPlayId).hasClass(buttonMatchReplayClass)) {
         $(buttonPlayId).removeClass(buttonMatchReplayClass);
+    }
+};
+
+const setMatchEnd = function(coeff) {
+    removeClassesButtonPlay();
+    if (coeff >= 1) {
+        matchEnded = true;
+        if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+            $(buttonPlayId).addClass(buttonMatchReplayClass);
+        }
+        if ($(fightResultId).hasClass('d-none')) {
+            $(fightResultId).removeClass('d-none');
+        }
+    } else {
+        matchEnded = false;
+        setPauseButton();
+        if (!$(fightResultId).hasClass('d-none')) {
+            $(fightResultId).addClass('d-none');
+        }
+    }
+};
+
+const setPauseButton = function() {
+    if (pause) {
+        if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+            $(buttonPlayId).addClass(buttonMatchPlayClass);
+        }
+    } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+        $(buttonPlayId).addClass(buttonMatchPauseClass);
+    } else {
+        // Nothing to do
     }
 };
 
@@ -252,15 +277,7 @@ const updateMatch = function() {
     const coeff = getCurrentCoeff();
     setProgress(coeff);
     setPlayerTime(coeff);
-    if (coeff >= 1) {
-        machEnded = true;
-        removeClassesButtonPlay();
-        if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
-            $(buttonPlayId).addClass(buttonMatchReplayClass);
-        }
-    } else {
-        machEnded = false;
-    }
+    setMatchEnd(coeff);
 };
 
 const setTimeMatch = function(coeff) {
@@ -278,7 +295,9 @@ const triggerMatch = function(positions1, positions2) {
 
     setContainerSize();
 
-    durationMatch = Math.min(positions1.length, positions2.length) * 1000;
+    nbIterMatch = Math.min(positions1.length, positions2.length);
+
+    durationMatch = nbIterMatch * 1000;
 
     startMachTime = new Date().getTime();
 
@@ -293,13 +312,9 @@ const triggerMatch = function(positions1, positions2) {
     $('#button-next').prop('disabled', false);
     $('#button-end').prop('disabled', false);
 
-    removeClassesButtonPlay();
-    if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-        $(buttonPlayId).addClass(buttonMatchPauseClass);
-    }
+    setMatchEnd(0);
 
     matchStarted = true;
-    machEnded = false;
     pause = false;
     coeffSaved = 0;
 };
@@ -335,25 +350,7 @@ const startDrag = function(e) {
     if (matchStarted) {
         const coeff = (e.clientX - initialX) / containerSize;
         updateProgress(coeff);
-        if (coeff >= 1) {
-            machEnded = true;
-            removeClassesButtonPlay();
-            if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
-                $(buttonPlayId).addClass(buttonMatchReplayClass);
-            }
-        } else {
-            machEnded = false;
-            removeClassesButtonPlay();
-            if (pause) {
-                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
-                    $(buttonPlayId).addClass(buttonMatchPlayClass);
-                }
-            } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-                $(buttonPlayId).addClass(buttonMatchPauseClass);
-            } else {
-                // Nothing to do
-            }
-        }
+        setMatchEnd(coeff);
     }
 };
 
@@ -361,25 +358,7 @@ const drag = function(e) {
     if (isDragging && matchStarted) {
         const coeff = Math.min(Math.max((e.clientX - initialX) / containerSize, 0), 1);
         updateProgress(coeff);
-        if (coeff >= 1) {
-            machEnded = true;
-            removeClassesButtonPlay();
-            if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
-                $(buttonPlayId).addClass(buttonMatchReplayClass);
-            }
-        } else {
-            machEnded = false;
-            removeClassesButtonPlay();
-            if (pause) {
-                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
-                    $(buttonPlayId).addClass(buttonMatchPlayClass);
-                }
-            } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-                $(buttonPlayId).addClass(buttonMatchPauseClass);
-            } else {
-                // Nothing to do
-            }
-        }
+        setMatchEnd(coeff);
     }
 };
 
@@ -401,49 +380,52 @@ $(document).ready(function() {
         coeffSaved = 0;
         setTimeMatch(coeffSaved);
         setProgress(coeffSaved);
-        removeClassesButtonPlay();
+        setMatchEnd(0);
+    });
+
+    $('#button-prev').on('click', function() {
         if (pause) {
-            if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
-                $(buttonPlayId).addClass(buttonMatchPlayClass);
-            }
-        } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-            $(buttonPlayId).addClass(buttonMatchPauseClass);
+            coeffSaved = Math.max(coeffSaved - 1.0/(nbIterMatch - 1), 0);
         } else {
-            // Nothing to do
+            coeffSaved = Math.max(getCurrentCoeff() - 1.0/(nbIterMatch - 1), 0);
         }
-        machEnded = false;
+        pause = true;
+        updateProgress(coeffSaved);
+        removeClassesButtonPlay();
+        setPauseButton();
     });
     $(buttonPlayId).on('click', function() {
-        if (machEnded) {
-            machEnded = false;
+        removeClassesButtonPlay();
+        if (matchEnded) {
+            setMatchEnd(0);
             pause = false;
             updateProgress(0);
-            removeClassesButtonPlay();
-            if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-                $(buttonPlayId).addClass(buttonMatchPauseClass);
-            }
         } else {
             pause = !pause;
-            removeClassesButtonPlay();
             if (pause) {
-                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
-                    $(buttonPlayId).addClass(buttonMatchPlayClass);
-                }
                 coeffSaved = getCurrentCoeff();
             } else {
-                if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
-                    $(buttonPlayId).addClass(buttonMatchPauseClass);
-                }
                 updateProgress(coeffSaved);
             }
         }
+        setPauseButton();
+    });
+    $('#button-next').on('click', function() {
+        if (pause) {
+            coeffSaved = Math.min(coeffSaved + 1.0/(nbIterMatch - 1), 1);
+        } else {
+            coeffSaved = Math.min(getCurrentCoeff() + 1.0/(nbIterMatch - 1), 1);
+        }
+        pause = true;
+        updateProgress(coeffSaved);
+        removeClassesButtonPlay();
+        setPauseButton();
+        setMatchEnd(coeffSaved);
     });
     $('#button-end').on('click', function() {
         coeffSaved = 1;
         setTimeMatch(coeffSaved);
         setProgress(coeffSaved);
-        removeClassesButtonPlay();
-        $(buttonPlayId).addClass(buttonMatchReplayClass);
-        machEnded = true;
+        setMatchEnd(1);
     });
 });
