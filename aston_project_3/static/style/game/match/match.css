@@ -26,7 +26,6 @@
 
 #progress-bar-match {
     background-color: var(--bright-color);
-    width: 50%;
     position: relative;
 }
 

@@ -34,8 +34,6 @@ const height = gridHeight * width / gridWidth;
 $(canvasId)[0].width = width;
 $(canvasId)[0].height = height;
 
-console.log($(canvasId)[0].width, $(canvasId)[0].height);
-
 const app = new window.PIXI.Application(
     {
         width,
@@ -208,16 +206,34 @@ const player2 = new Player(
 );
 
 const framePerSecond = 30;
-const millisecondPerFrame = Math.floor(1000 / cellSize);
+const millisecondPerFrame = Math.floor(1000 / framePerSecond);
 
 let startMachTime = null;
 let intervalId = null;
+let durationMatch = null;
+let matchStarted = false;
 
-const updateMatch = function() {
-    const currentTime = new Date().getTime();
-    const t = currentTime - startMachTime;
+const setPlayerTime = function(t) {
     player1.update(t);
     player2.update(t);
+};
+
+const updateMatch = function() {
+    if (isDragging) {
+        return;
+    }
+    const currentTime = new Date().getTime();
+    const t = Math.min(currentTime - startMachTime, durationMatch);
+    const coeff = t / (durationMatch - 1000);
+    setProgress(coeff);
+    setPlayerTime(t);
+};
+
+const setTimeMatch = function(coeff) {
+    const currentTime = new Date().getTime();
+    const t = Math.min(Math.max(coeff, 0), 1) * durationMatch;
+    startMachTime = currentTime - t;
+    setPlayerTime(t);
 };
 
 const triggerMatch = function(positions1, positions2) {
@@ -226,45 +242,71 @@ const triggerMatch = function(positions1, positions2) {
     player1.show();
     player2.show();
 
+    setContainerSize();
+
+    durationMatch = Math.min(positions1.length, positions2.length) * 1000;
+
     startMachTime = new Date().getTime();
 
+    if (intervalId !== null) {
+        clearInterval(intervalId);
+    }
     intervalId = setInterval(updateMatch, millisecondPerFrame);
 
-    setTimeout(function() {
-        clearInterval(intervalId);
-    }, Math.min(positions1.length, positions2.length) * 1000);
+    matchStarted = true;
+
+    // setTimeout(function() {
+    //     clearInterval(intervalId);
+    //     setProgress(1);
+    // }, durationMatch);
 };
 
+// PROGRESS BAR
+
 let isDragging = false;
-let initialX;
-let initialY;
+let initialX = null;
+let initialY = null;
+let containerSize = null;
 
 const progressContainerId = '#progress-container';
 
-const updateProgress = function(e) {
-    const newX = e.clientX - initialX;
-    const coeff = Math.max(Math.min(newX, e.target.clientWidth), 0) / e.target.clientWidth;
-    // Bug : e.target.clientWidth == 20 sometimes
-    $('#progress-bar-match')[0].style.width = `${coeff * e.target.clientWidth}px`;
+const setContainerSize = function() {
+    containerSize = $(progressContainerId).width();
 };
+
+const setProgress = function(coeff) {
+    $('#progress-bar-match')[0].style.width = `${Math.min(Math.max(coeff, 0), 1) * containerSize}px`;
+};
+
+const updateProgress = function(e) {
+    const coeff = (e.clientX - initialX) / containerSize;
+    setProgress(coeff);
+    setTimeMatch(coeff);
+}
 
 const startDrag = function(e) {
     isDragging = true;
     initialX = $(progressContainerId)[0].getBoundingClientRect().left;
     initialY = $(progressContainerId)[0].getBoundingClientRect().top;
+    setContainerSize();
     $(progressContainerId)[0].style.cursor = 'grabbing';
-    updateProgress(e);
-};
-
-const drag = function(e) {
-    if (isDragging) {
+    if (matchStarted) {
         updateProgress(e);
     }
 };
 
-const stopDrag = function() {
-    isDragging = false;
+const drag = function(e) {
+    if (isDragging && matchStarted) {
+        updateProgress(e);
+    }
+};
+
+const stopDrag = function(e) {
+    if (isDragging && matchStarted) {
+        updateProgress(e);
+    }
     $(progressContainerId)[0].style.cursor = 'grab';
+    isDragging = false;
 };
 
 $(document).ready(function() {
@@ -273,4 +315,3 @@ $(document).ready(function() {
     document.addEventListener('mouseup', stopDrag);
     $(progressContainerId)[0].style.cursor = 'grab';
 });
-
