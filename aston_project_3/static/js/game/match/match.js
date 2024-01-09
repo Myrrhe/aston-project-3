@@ -105,7 +105,7 @@ class Player {
         this.graphicsBack.filters = [this.blurFilter];
     }
 
-    update(t) {
+    update(coeff) {
         this.graphicsBack.clear();
         this.graphicsFront.clear();
 
@@ -134,7 +134,9 @@ class Player {
             posY,
         );
 
-        const nbPoints = Math.min(Math.floor(t / 1000), this.positions.length - 1);
+        const nbPoints = Math.floor(coeff * (this.positions.length - 1));
+
+        const coeffDraw = (coeff - nbPoints/(this.positions.length - 1.0))/(1.0 / (this.positions.length - 1.0));
 
         for (let i = 1; i <= nbPoints; i++) {
             posX = this.positions[i]['x'] * cellSize + Player.width - 1;
@@ -155,13 +157,13 @@ class Player {
             posX = interpolate(
                 this.positions[nbPoints]['x'],
                 this.positions[nbPoints + 1]['x'],
-                (t - nbPoints * 1000)/1000,
+                coeffDraw,
             ) * cellSize + Player.width - 1;
 
             posY = interpolate(
                 this.positions[nbPoints]['y'],
                 this.positions[nbPoints + 1]['y'],
-                (t - nbPoints * 1000)/1000,
+                coeffDraw,
             ) * cellSize + Player.width;
 
             this.graphicsBack.lineTo(
@@ -212,28 +214,60 @@ let startMachTime = null;
 let intervalId = null;
 let durationMatch = null;
 let matchStarted = false;
+let machEnded = false;
+let pause = false;
+let coeffSaved = 0;
 
-const setPlayerTime = function(t) {
-    player1.update(t);
-    player2.update(t);
+const buttonPlayId = '#button-play';
+const buttonMatchPlayClass = 'button-match-play';
+const buttonMatchPauseClass = 'button-match-pause';
+const buttonMatchReplayClass = 'button-match-replay';
+
+const removeClassesButtonPlay = function() {
+    if ($(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+        $(buttonPlayId).removeClass(buttonMatchPlayClass);
+    }
+    if ($(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+        $(buttonPlayId).removeClass(buttonMatchPauseClass);
+    }
+    if ($(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+        $(buttonPlayId).removeClass(buttonMatchReplayClass);
+    }
+};
+
+const setPlayerTime = function(coeff) {
+    player1.update(coeff);
+    player2.update(coeff);
+};
+
+const getCurrentCoeff = function() {
+    const currentTime = new Date().getTime();
+    return Math.min(Math.max((currentTime - startMachTime) / durationMatch, 0), 1);
 };
 
 const updateMatch = function() {
-    if (isDragging) {
+    if (isDragging || pause) {
         return;
     }
-    const currentTime = new Date().getTime();
-    const t = Math.min(currentTime - startMachTime, durationMatch);
-    const coeff = t / (durationMatch - 1000);
+    const coeff = getCurrentCoeff();
     setProgress(coeff);
-    setPlayerTime(t);
+    setPlayerTime(coeff);
+    if (coeff >= 1) {
+        machEnded = true;
+        removeClassesButtonPlay();
+        if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+            $(buttonPlayId).addClass(buttonMatchReplayClass);
+        }
+    } else {
+        machEnded = false;
+    }
 };
 
 const setTimeMatch = function(coeff) {
     const currentTime = new Date().getTime();
     const t = Math.min(Math.max(coeff, 0), 1) * durationMatch;
     startMachTime = currentTime - t;
-    setPlayerTime(t);
+    setPlayerTime(coeff);
 };
 
 const triggerMatch = function(positions1, positions2) {
@@ -253,12 +287,21 @@ const triggerMatch = function(positions1, positions2) {
     }
     intervalId = setInterval(updateMatch, millisecondPerFrame);
 
-    matchStarted = true;
+    $('#button-beginning').prop('disabled', false);
+    $('#button-prev').prop('disabled', false);
+    $(buttonPlayId).prop('disabled', false);
+    $('#button-next').prop('disabled', false);
+    $('#button-end').prop('disabled', false);
 
-    // setTimeout(function() {
-    //     clearInterval(intervalId);
-    //     setProgress(1);
-    // }, durationMatch);
+    removeClassesButtonPlay();
+    if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+        $(buttonPlayId).addClass(buttonMatchPauseClass);
+    }
+
+    matchStarted = true;
+    machEnded = false;
+    pause = false;
+    coeffSaved = 0;
 };
 
 // PROGRESS BAR
@@ -278,11 +321,10 @@ const setProgress = function(coeff) {
     $('#progress-bar-match')[0].style.width = `${Math.min(Math.max(coeff, 0), 1) * containerSize}px`;
 };
 
-const updateProgress = function(e) {
-    const coeff = (e.clientX - initialX) / containerSize;
+const updateProgress = function(coeff) {
     setProgress(coeff);
     setTimeMatch(coeff);
-}
+};
 
 const startDrag = function(e) {
     isDragging = true;
@@ -291,19 +333,60 @@ const startDrag = function(e) {
     setContainerSize();
     $(progressContainerId)[0].style.cursor = 'grabbing';
     if (matchStarted) {
-        updateProgress(e);
+        const coeff = (e.clientX - initialX) / containerSize;
+        updateProgress(coeff);
+        if (coeff >= 1) {
+            machEnded = true;
+            removeClassesButtonPlay();
+            if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+                $(buttonPlayId).addClass(buttonMatchReplayClass);
+            }
+        } else {
+            machEnded = false;
+            removeClassesButtonPlay();
+            if (pause) {
+                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+                    $(buttonPlayId).addClass(buttonMatchPlayClass);
+                }
+            } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+                $(buttonPlayId).addClass(buttonMatchPauseClass);
+            } else {
+                // Nothing to do
+            }
+        }
     }
 };
 
 const drag = function(e) {
     if (isDragging && matchStarted) {
-        updateProgress(e);
+        const coeff = Math.min(Math.max((e.clientX - initialX) / containerSize, 0), 1);
+        updateProgress(coeff);
+        if (coeff >= 1) {
+            machEnded = true;
+            removeClassesButtonPlay();
+            if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+                $(buttonPlayId).addClass(buttonMatchReplayClass);
+            }
+        } else {
+            machEnded = false;
+            removeClassesButtonPlay();
+            if (pause) {
+                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+                    $(buttonPlayId).addClass(buttonMatchPlayClass);
+                }
+            } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+                $(buttonPlayId).addClass(buttonMatchPauseClass);
+            } else {
+                // Nothing to do
+            }
+        }
     }
 };
 
 const stopDrag = function(e) {
     if (isDragging && matchStarted) {
-        updateProgress(e);
+        coeffSaved = (e.clientX - initialX) / containerSize;
+        updateProgress(coeffSaved);
     }
     $(progressContainerId)[0].style.cursor = 'grab';
     isDragging = false;
@@ -314,4 +397,53 @@ $(document).ready(function() {
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
     $(progressContainerId)[0].style.cursor = 'grab';
+    $('#button-beginning').on('click', function() {
+        coeffSaved = 0;
+        setTimeMatch(coeffSaved);
+        setProgress(coeffSaved);
+        removeClassesButtonPlay();
+        if (pause) {
+            if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+                $(buttonPlayId).addClass(buttonMatchPlayClass);
+            }
+        } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+            $(buttonPlayId).addClass(buttonMatchPauseClass);
+        } else {
+            // Nothing to do
+        }
+        machEnded = false;
+    });
+    $(buttonPlayId).on('click', function() {
+        if (machEnded) {
+            machEnded = false;
+            pause = false;
+            updateProgress(0);
+            removeClassesButtonPlay();
+            if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+                $(buttonPlayId).addClass(buttonMatchPauseClass);
+            }
+        } else {
+            pause = !pause;
+            removeClassesButtonPlay();
+            if (pause) {
+                if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+                    $(buttonPlayId).addClass(buttonMatchPlayClass);
+                }
+                coeffSaved = getCurrentCoeff();
+            } else {
+                if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+                    $(buttonPlayId).addClass(buttonMatchPauseClass);
+                }
+                updateProgress(coeffSaved);
+            }
+        }
+    });
+    $('#button-end').on('click', function() {
+        coeffSaved = 1;
+        setTimeMatch(coeffSaved);
+        setProgress(coeffSaved);
+        removeClassesButtonPlay();
+        $(buttonPlayId).addClass(buttonMatchReplayClass);
+        machEnded = true;
+    });
 });

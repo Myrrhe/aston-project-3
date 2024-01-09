@@ -5,13 +5,21 @@
 }
 
 .control-panel {
-    background-color: var(--light-grey-color);
+    position: relative;
+    background-color: var(--primary-light-color);
 }
 
 #progress-container {
+    z-index: 1;
+    position: absolute;
+    top: -5px;
     height: 10px;
-    /* position: absolute; */
-    /* z-index: 1; */
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#progress-container:hover {
+    height: 4px;
 }
 
 .progress-back {
@@ -47,6 +55,38 @@
     position: absolute;
     top: -6px;
     right: -10px;
+}
+
+.button-match {
+    background-color: var(--transparent-color);
+    color: var(--fore-color);
+    border-width: 0;
+}
+
+.button-match[disabled] {
+    color: var(--grey-color);
+}
+
+.button-match::before {
+    font: var(--fa-font-solid);
+    color: var(--fore-color);
+}
+
+.button-match[disabled]::before {
+    /* font: var(--fa-font-solid); */
+    color: var(--grey-color) !important;
+}
+
+.button-match-play::before {
+    content: "\f04b";
+}
+
+.button-match-pause::before {
+    content: "\f04c";
+}
+
+.button-match-replay::before {
+    content: "\f2f9";
 }
 
 /* .progress-back #progress-bar-match::before {
