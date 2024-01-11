@@ -59,6 +59,9 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
     res = [
         [f"{pos["init"][i]["x"]},{pos["init"][i]["y"]}"] for i in range(NB_BOTS)
     ]
+    res_stdout = [
+        [] for _ in range(NB_BOTS)
+    ]
     res_stderr = [
         [] for _ in range(NB_BOTS)
     ]
@@ -128,6 +131,7 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
                         # STDOUT
                         # Définissez le timeout en secondes
                         response = output_queue[i].get(timeout=10)
+                        res_stdout[i].append(response)
                         match response:
                             case "LEFT\n":
                                 pos["next"][i]["x"] -= 1
@@ -169,6 +173,7 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
     return {
         "movements": f"{"|".join(";".join(pos_player) for pos_player in res)}",
         "result": "1" if health[0] == 1 else "0",
+        "stdout": res_stdout,
         "stderr": res_stderr,
     }
 

@@ -88,7 +88,10 @@ class EditBotViewSet(UpdateView):
             "message": "Bot saved",
             "bot_name": escape(bot.name),
             "match_movements": match.movements if match else "",
-            "stderr": ["a", "b"],
+            "stdout_left": match.output_left,
+            "stdout_right": match.output_right,
+            "stderr_left": match.error_messages_left,
+            "stderr_right": match.error_messages_right,
             "match_result": match.result if match else "",
             "match_even": match.bot_left.id == bot.id if match else "",
         }, status="200", content_type="text/json")
