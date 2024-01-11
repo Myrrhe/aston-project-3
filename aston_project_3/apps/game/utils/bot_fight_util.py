@@ -11,6 +11,7 @@ import threading
 from random import randint
 from typing import IO
 from contextlib import ExitStack
+import time
 
 # Ce programme envoi des nombre à deux autres programmes : A et B
 # A et B renvoient une réponse différente selon les nombres envoyés
@@ -37,7 +38,7 @@ def read_output(output: IO[str], output_queue: queue) -> None:
     output.close()
 
 
-def main_fight(bots_id: list[str]) -> str:
+def main_fight(bots_id: list[str]) -> dict[str | dict]:
     """The main method"""
 
     field = [[0 for _ in range(FIELD_WIDTH)] for _ in range(FIELD_HEIGHT)]
@@ -58,11 +59,15 @@ def main_fight(bots_id: list[str]) -> str:
     res = [
         [f"{pos["init"][i]["x"]},{pos["init"][i]["y"]}"] for i in range(NB_BOTS)
     ]
+    res_stderr = [
+        [] for _ in range(NB_BOTS)
+    ]
 
     health = [1 for _ in range(NB_BOTS)]
 
     # Créez une file pour stocker la sortie du sous-programme
     output_queue = [queue.Queue() for _ in range(NB_BOTS)]
+    error_queues = [queue.Queue() for _ in range(NB_BOTS)]
 
     with ExitStack() as stack:
         processes = [
@@ -70,6 +75,7 @@ def main_fight(bots_id: list[str]) -> str:
                 ["python", f"storage/bot/{bot_id}.py"],
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True
             )) for bot_id in bots_id
         ]
@@ -78,9 +84,18 @@ def main_fight(bots_id: list[str]) -> str:
         output_threads = [threading.Thread(
             target=read_output, args=(processes[i].stdout, output_queue[i])
         ) for i in range(NB_BOTS)]
+        error_threads = [threading.Thread(
+            target=read_output, args=(processes[i].stderr, error_queues[i])
+        ) for i in range(NB_BOTS)]
+
+        time.sleep(0.5)
+
         for output_thread in output_threads:
             output_thread.daemon = True
             output_thread.start()
+        for error_thread in error_threads:
+            error_thread.daemon = True
+            error_thread.start()
 
         try:
             # Game loop
@@ -89,6 +104,12 @@ def main_fight(bots_id: list[str]) -> str:
                 # On peut envoyer des mots séparés par des espaces, ou un mot unique
 
                 for i in range(NB_BOTS):
+                    # STDERR
+                    current_stderr = []
+                    while not error_queues[i].empty():
+                        current_stderr.append(error_queues[i].get_nowait())
+                    res_stderr[i].append(current_stderr)
+
                     processes[i].stdin.write("0\n")
                     processes[i].stdin.flush()
                     processes[i].stdin.write(
@@ -104,6 +125,7 @@ def main_fight(bots_id: list[str]) -> str:
 
                     # Attendez une réponse du sous-programme avec un timeout
                     try:
+                        # STDOUT
                         # Définissez le timeout en secondes
                         response = output_queue[i].get(timeout=10)
                         match response:
@@ -144,7 +166,11 @@ def main_fight(bots_id: list[str]) -> str:
         for process in processes:
             process.terminate()
 
-    return f"{"|".join(";".join(pos_player) for pos_player in res)}:{1 if health[0] == 1 else 0}"
+    return {
+        "movements": f"{"|".join(";".join(pos_player) for pos_player in res)}",
+        "result": "1" if health[0] == 1 else "0",
+        "stderr": res_stderr,
+    }
 
 
 # if __name__ == "__main__":

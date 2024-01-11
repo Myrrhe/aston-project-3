@@ -1,7 +1,8 @@
 """The bot edition view."""
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.utils.html import escape
 from django.views.generic.edit import UpdateView
 
 from apps.core.utils.get_form_util import get_form
@@ -85,8 +86,9 @@ class EditBotViewSet(UpdateView):
             self.bot_id = bot_id
         return JsonResponse({
             "message": "Bot saved",
-            "bot_name": bot.name,
+            "bot_name": escape(bot.name),
             "match_movements": match.movements if match else "",
+            "stderr": ["a", "b"],
             "match_result": match.result if match else "",
             "match_even": match.bot_left.id == bot.id if match else "",
         }, status="200", content_type="text/json")
