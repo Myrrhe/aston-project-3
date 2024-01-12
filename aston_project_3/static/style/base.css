@@ -15,6 +15,10 @@
     color: var(--bright-color) !important;
 }
 
+.text-color-bright-alt {
+    color: var(--bright-alt-color) !important;
+}
+
 .text-color-grey {
     color: var(--grey-color) !important;
 }
@@ -28,6 +32,10 @@
 }
 
 /* BACKGROUND COLOR */
+
+.back-color-white-veil-5 {
+    background-color: var(--white-veil-5-color);
+}
 
 /* HIDE */
 .hide {
