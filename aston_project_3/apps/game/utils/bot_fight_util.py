@@ -44,13 +44,15 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
     field = [[0 for _ in range(FIELD_WIDTH)] for _ in range(FIELD_HEIGHT)]
 
     pos = {"init": [{
-        "x": randint(0, FIELD_WIDTH - 1),
+        #"x": randint(0, FIELD_WIDTH - 1),
+        "x": 0,
         "y": randint(0, FIELD_HEIGHT // 2 - 1),
     }]}
     pos["init"].append({
         "x": FIELD_WIDTH - 1 - pos["init"][0]["x"],
         "y": FIELD_HEIGHT - 1 - pos["init"][0]["y"],
     })
+    print(pos["init"])
     pos["current"] = pos["init"].copy()
     pos["next"] = pos["current"].copy()
     field[pos["init"][0]["y"]][pos["init"][0]["x"]] = 1

@@ -1,6 +1,20 @@
 $(document).ready(function() {
     const blockOutputId = '#block-output';
 
+    const codeEditor = window.CodeMirror.fromTextArea(
+        document.getElementById('id_create_bot_form-code'),
+        {
+            'mode': {
+                'name': 'python',
+                'version': 3,
+                'singleLineStringErrors': false,
+            },
+            'matchBrackets': true,
+            'lineNumbers': true,
+            'indent': 4,
+        },
+    );
+
     $('#submit-edit-bot').click(function(event) {
         event.preventDefault();
         const csrfTokenElement = $('#form-create-bot [name="csrfmiddlewaretoken"]');
@@ -12,7 +26,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: csrfTokenElement.val(),
                 'create_bot_form-bot_id': $(this).attr('data-bot-id'),
                 'create_bot_form-name': $('#name').val(),
-                'create_bot_form-code': $('#id_create_bot_form-code').val(),
+                'create_bot_form-code': codeEditor.getValue(),
                 create_bot_form: 'create_bot',
             },
             success(data) {
@@ -49,6 +63,11 @@ $(document).ready(function() {
                     $(blockOutputId).removeClass('d-none');
                 }
 
+                // TODO bugfix : in some cases, data['stderr'][0] === [[]] and
+                // data['stderr'][0] === []
+                // Another bug when x === 0 (nothing is drawed)
+                // They are the same bug, except the first one need to have the
+                // page just reloaded
                 const firstErrPlayer1 = data['stderr'][0].shift();
                 const firstErrPlayer2 = data['stderr'][1].shift();
 
