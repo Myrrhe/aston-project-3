@@ -1,5 +1,6 @@
 """The topic creation form."""
 from django.forms import ModelForm
+from django.utils.html import escape
 from django.utils.translation import gettext_lazy as _
 
 from django import forms
@@ -50,21 +51,24 @@ class CreateTopicForm(ModelForm):
 
     def clean(self) -> dict[str]:
         """Clean the form."""
+        self.cleaned_data["content"] = escape(self.cleaned_data["content"])
         return self.cleaned_data
 
-    def save(self) -> Topic:
+    def save(self, commit: bool = True) -> Topic:
         """Save the data of the form."""
         sections = TopicSection.objects.filter(code=self.cleaned_data["section"])
-        topic = Topic.objects.create(
+        topic = Topic(
             user=self.user,
             title=self.cleaned_data["title"],
             section=sections[0],
         )
-        Post.objects.create(
-            user=self.user,
-            topic=topic,
-            content=self.cleaned_data["content"],
-        )
+        if commit:
+            topic.save(force_insert=True)
+            Post.objects.create(
+                user=self.user,
+                topic=topic,
+                content=self.cleaned_data["content"],
+            )
         return topic
 
     class Meta(object):

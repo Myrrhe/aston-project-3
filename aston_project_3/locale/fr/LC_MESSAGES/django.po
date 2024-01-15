@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 14:21+0100\n"
+"POT-Creation-Date: 2024-01-15 10:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "users_management"
 msgstr "Gestion des utilisateurs"
 
 #: .\apps\account\forms\change_email_form.py:20
-#: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:16
-#: .\apps\account\models\user_model.py:83 .\templates\account\account.html:21
+#: .\apps\account\forms\login_form.py:18 .\apps\account\forms\signup_form.py:17
+#: .\apps\account\models\user_model.py:82 .\templates\account\account.html:21
 msgid "email"
 msgstr "Email"
 
@@ -52,7 +52,7 @@ msgstr "Nouvel email"
 #: .\apps\account\forms\change_email_form.py:34
 #: .\apps\account\forms\delete_account_form.py:20
 #: .\apps\account\forms\delete_account_form.py:24
-#: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:34
+#: .\apps\account\forms\login_form.py:27 .\apps\account\forms\signup_form.py:35
 #: .\templates\account\account.html:79
 msgid "password"
 msgstr "Mot de passe"
@@ -70,6 +70,9 @@ msgstr "Clef de sécurité"
 #: .\apps\account\forms\change_email_form.py:60
 #: .\apps\account\forms\change_password_form.py:71
 #: .\apps\account\forms\delete_account_form.py:50
+#: .\tests\account\forms\test_change_email_form.py:31
+#: .\tests\account\forms\test_change_password_form.py:34
+#: .\tests\account\forms\test_delete_account_form.py:36
 msgid "invalid_credentials"
 msgstr "Identifiants invalides"
 
@@ -92,6 +95,7 @@ msgid "confirm_new_password"
 msgstr "Confirmez le mot de passe"
 
 #: .\apps\account\forms\change_password_form.py:76
+#: .\tests\account\forms\test_change_password_form.py:37
 msgid "password_no_match"
 msgstr "Les deux mots de passes ne sont pas identiques"
 
@@ -102,7 +106,8 @@ msgstr "Clef"
 
 #: .\apps\account\forms\create_security_key_form.py:31
 #: .\apps\account\forms\create_security_key_form.py:37
-#: .\apps\forum\models\topic_section_model.py:20
+#: .\apps\forum\models\topic_section_model.py:24
+#: .\apps\game\forms\create_bot_form.py:32
 msgid "code"
 msgstr "Code"
 
@@ -121,67 +126,67 @@ msgstr "Pseudonyme"
 
 #: .\apps\account\forms\personal_informations_form.py:27
 #: .\apps\account\forms\personal_informations_form.py:31
-#: .\apps\account\models\user_model.py:97
+#: .\apps\account\models\user_model.py:96
 msgid "biography"
 msgstr "Biographie"
 
-#: .\apps\account\forms\signup_form.py:26
+#: .\apps\account\forms\signup_form.py:27
 msgid "tou_text"
 msgstr ""
 "J'accepte la Politique de confidentialité et la Politique de cookies. "
 "(requis)"
 
-#: .\apps\account\forms\signup_form.py:40
+#: .\apps\account\forms\signup_form.py:41
 msgid "password_repeat"
 msgstr "Répétez le mot de passe"
 
-#: .\apps\account\models\user_model.py:84
+#: .\apps\account\models\user_model.py:83
 msgid "email_help_text"
 msgstr "L'email de l'utilisateur"
 
-#: .\apps\account\models\user_model.py:90
+#: .\apps\account\models\user_model.py:89
 msgid "username"
 msgstr "Nom d'utilisateur"
 
-#: .\apps\account\models\user_model.py:91
+#: .\apps\account\models\user_model.py:90
 msgid "username_help_text"
 msgstr "Le nom utilisé par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:98
+#: .\apps\account\models\user_model.py:97
 msgid "biography_help_text"
 msgstr "Un message de présentation de l'utilisateur"
 
-#: .\apps\account\models\user_model.py:113
+#: .\apps\account\models\user_model.py:112
 msgid "is_email_confirmed"
 msgstr "Email confirmé"
 
-#: .\apps\account\models\user_model.py:114
+#: .\apps\account\models\user_model.py:113
 msgid "is_email_confirmed_help_text"
 msgstr "L'adresse email a-t-elle été vérifiée"
 
-#: .\apps\account\models\user_model.py:118
+#: .\apps\account\models\user_model.py:117
 msgid "is_tou_accepted"
 msgstr "Conditions d'utilisations"
 
-#: .\apps\account\models\user_model.py:119
+#: .\apps\account\models\user_model.py:118
 msgid "is_tou_accepted_help_text"
 msgstr ""
 "Les conditions d'utilisations ont-elles été acceptées par l'utilisateur"
 
-#: .\apps\account\models\user_model.py:123
+#: .\apps\account\models\user_model.py:122
 msgid "is_admin"
 msgstr "Admin"
 
-#: .\apps\account\models\user_model.py:124
+#: .\apps\account\models\user_model.py:123
 msgid "is_admin_help_text"
 msgstr "L'utilisateur est-il un administrateur"
 
-#: .\apps\account\models\user_model.py:136 .\apps\forum\models\post_model.py:23
-#: .\apps\forum\models\topic_model.py:21
+#: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
+#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:31
 msgid "user"
 msgstr "Utilisateur"
 
-#: .\apps\account\models\user_model.py:137
+#: .\apps\account\models\user_model.py:136
 msgid "users"
 msgstr "Utilisateurs"
 
@@ -189,136 +194,251 @@ msgstr "Utilisateurs"
 msgid "discussions_management"
 msgstr "Gestion du forum"
 
-#: .\apps\forum\forms\answer_topic_form.py:18
+#: .\apps\forum\forms\answer_topic_form.py:19
 msgid "your_answer"
 msgstr "Votre réponse"
 
-#: .\apps\forum\forms\answer_topic_form.py:22 .\templates\forum\topic.html:128
-#: .\templates\forum\topic.html:175
+#: .\apps\forum\forms\answer_topic_form.py:23 .\templates\forum\topic.html:128
+#: .\templates\forum\topic.html:173
 msgid "answer"
 msgstr "Réponse"
+
+#: .\apps\forum\forms\answer_topic_form.py:41
+msgid "missing_field"
+msgstr "Champ manquant"
 
 #: .\apps\forum\forms\create_topic_form.py:18
 msgid "topic_title"
 msgstr "Titre du topic"
 
 #: .\apps\forum\forms\create_topic_form.py:22
-#: .\apps\forum\models\topic_model.py:35
+#: .\apps\forum\models\topic_model.py:34
 msgid "title"
 msgstr "Titre"
 
 #: .\apps\forum\forms\create_topic_form.py:32
-#: .\apps\forum\models\topic_model.py:28
+#: .\apps\forum\models\topic_model.py:27
 msgid "section"
 msgstr "Section"
 
-#: .\apps\forum\forms\create_topic_form.py:40
+#: .\apps\forum\forms\create_topic_form.py:41
 msgid "topic_post"
 msgstr "Contenu du topic"
 
-#: .\apps\forum\forms\create_topic_form.py:44
-#: .\apps\forum\models\post_model.py:37 .\apps\forum\models\topic_model.py:42
+#: .\apps\forum\forms\create_topic_form.py:45
+#: .\apps\forum\models\post_model.py:36 .\apps\forum\models\topic_model.py:41
 msgid "content"
 msgstr "Contenu"
 
-#: .\apps\forum\models\post_model.py:24
+#: .\apps\forum\models\post_model.py:23
 msgid "user_of_post_help_text"
 msgstr "L'auteur du poste"
 
-#: .\apps\forum\models\post_model.py:29 .\apps\forum\models\topic_model.py:66
+#: .\apps\forum\models\post_model.py:28 .\apps\forum\models\topic_model.py:65
 #: .\templates\forum\forum.html:121
 msgid "topic"
 msgstr "Topic"
 
-#: .\apps\forum\models\post_model.py:30
+#: .\apps\forum\models\post_model.py:29
 msgid "topic_of_post_help_text"
 msgstr "Le topic du post"
 
-#: .\apps\forum\models\post_model.py:38 .\apps\forum\models\topic_model.py:43
+#: .\apps\forum\models\post_model.py:37 .\apps\forum\models\topic_model.py:42
 msgid "content_help_text"
 msgstr "Le contenu du post"
 
-#: .\apps\forum\models\post_model.py:44 .\apps\forum\models\topic_model.py:56
+#: .\apps\forum\models\post_model.py:43 .\apps\forum\models\topic_model.py:55
 msgid "deleted"
 msgstr "Supprimé"
 
-#: .\apps\forum\models\post_model.py:45 .\apps\forum\models\topic_model.py:57
+#: .\apps\forum\models\post_model.py:44 .\apps\forum\models\topic_model.py:56
 msgid "deleted_help_text"
 msgstr "Le post a-t-il été supprimé"
 
-#: .\apps\forum\models\post_model.py:54
+#: .\apps\forum\models\post_model.py:53
 msgid "post"
 msgstr "Post"
 
-#: .\apps\forum\models\post_model.py:55
+#: .\apps\forum\models\post_model.py:54
 msgid "posts"
 msgstr "Posts"
 
-#: .\apps\forum\models\topic_model.py:22
+#: .\apps\forum\models\topic_model.py:21
 msgid "user_of_topic_help_text"
 msgstr "L'auteur du topic'"
 
-#: .\apps\forum\models\topic_model.py:29
+#: .\apps\forum\models\topic_model.py:28
 msgid "topic_section_of_topic_help_text"
 msgstr "La section du topic"
 
-#: .\apps\forum\models\topic_model.py:36
+#: .\apps\forum\models\topic_model.py:35
 msgid "title_help_text"
 msgstr "Le titre du topic"
 
-#: .\apps\forum\models\topic_model.py:49 .\templates\forum\forum.html:123
+#: .\apps\forum\models\topic_model.py:48 .\templates\forum\forum.html:123
 msgid "views"
 msgstr "Vues"
 
-#: .\apps\forum\models\topic_model.py:50
+#: .\apps\forum\models\topic_model.py:49
 msgid "views_help_text"
 msgstr "Le nombre de vues du topic"
 
-#: .\apps\forum\models\topic_model.py:67
+#: .\apps\forum\models\topic_model.py:66
 msgid "topics"
 msgstr "Topics"
 
-#: .\apps\forum\models\topic_section_model.py:21
+#: .\apps\forum\models\topic_section_model.py:25
 msgid "code_help_text"
 msgstr "Le code de la section"
 
-#: .\apps\forum\models\topic_section_model.py:28
+#: .\apps\forum\models\topic_section_model.py:32
+#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:38
+#: .\templates\game\my_bots.html:35
 msgid "name"
 msgstr "Nom"
 
-#: .\apps\forum\models\topic_section_model.py:29
+#: .\apps\forum\models\topic_section_model.py:33
+#: .\apps\game\models\bot_model.py:39
 msgid "name_help_text"
 msgstr "Le nom de la section"
 
-#: .\apps\forum\models\topic_section_model.py:36
+#: .\apps\forum\models\topic_section_model.py:40
 msgid "description"
 msgstr "Description"
 
-#: .\apps\forum\models\topic_section_model.py:37
+#: .\apps\forum\models\topic_section_model.py:41
 msgid "description_help_text"
 msgstr "La description de la section"
 
-#: .\apps\forum\models\topic_section_model.py:46
+#: .\apps\forum\models\topic_section_model.py:50
 msgid "topic_section"
 msgstr "Section de topic"
 
-#: .\apps\forum\models\topic_section_model.py:47
+#: .\apps\forum\models\topic_section_model.py:51
 msgid "topic_sections"
 msgstr "Sections de topic"
 
-#: .\aston_project_3\settings.py:133
+#: .\apps\game\apps.py:11
+msgid "bot_management"
+msgstr "Gestion des bots"
+
+#: .\apps\game\forms\create_bot_form.py:20
+msgid "bot_name"
+msgstr "Nom"
+
+#: .\apps\game\models\bot_model.py:32
+msgid "user_of_bot_help_text"
+msgstr "Le créateur du bot"
+
+#: .\apps\game\models\bot_model.py:45 .\templates\game\my_bots.html:37
+msgid "posted"
+msgstr "Publié"
+
+#: .\apps\game\models\bot_model.py:46
+msgid "posted_help_text"
+msgstr "Le bot est-il public ou non"
+
+#: .\apps\game\models\bot_model.py:52 .\templates\game\my_bots.html:36
+msgid "score"
+msgstr "Score"
+
+#: .\apps\game\models\bot_model.py:53
+msgid "score_help_text"
+msgstr "Le score du bot"
+
+#: .\apps\game\models\bot_model.py:64
+msgid "bot"
+msgstr "Bot"
+
+#: .\apps\game\models\bot_model.py:65
+msgid "bots"
+msgstr "Bots"
+
+#: .\apps\game\models\match_model.py:41
+msgid "bot_left"
+msgstr "Bot gauche"
+
+#: .\apps\game\models\match_model.py:42
+msgid "bot_left_of_match_help_text"
+msgstr "L'un des bots d l'affrontement"
+
+#: .\apps\game\models\match_model.py:49
+msgid "bot_right"
+msgstr "Bot droit"
+
+#: .\apps\game\models\match_model.py:50
+msgid "bot_right_of_match_help_text"
+msgstr "L'autre bot de l'affrontement"
+
+#: .\apps\game\models\match_model.py:57
+msgid "movements"
+msgstr "Mouvements"
+
+#: .\apps\game\models\match_model.py:58
+msgid "movements_help_text"
+msgstr "Les mouvements des bots"
+
+#: .\apps\game\models\match_model.py:64
+msgid "result"
+msgstr "Résultat"
+
+#: .\apps\game\models\match_model.py:65
+msgid "result_help_text"
+msgstr "L'issue du match'"
+
+#: .\apps\game\models\match_model.py:71
+msgid "output_left"
+msgstr "Output gauche"
+
+#: .\apps\game\models\match_model.py:72
+msgid "output_left_help_text"
+msgstr "L'output du bot de gauche"
+
+#: .\apps\game\models\match_model.py:78
+msgid "output_right"
+msgstr "Output droit"
+
+#: .\apps\game\models\match_model.py:79
+msgid "output_right_help_text"
+msgstr "L'output du bot de droite"
+
+#: .\apps\game\models\match_model.py:88
+msgid "stderr_left"
+msgstr "Sortie d'erreur gauche"
+
+#: .\apps\game\models\match_model.py:89
+msgid "stderr_left_help_text"
+msgstr "La sortie d'erreur du bot de gauche"
+
+#: .\apps\game\models\match_model.py:99
+msgid "stderr_right"
+msgstr "Sortie d'erreur droite"
+
+#: .\apps\game\models\match_model.py:100
+msgid "stderr_right_help_text"
+msgstr "La sortie d'erreur du bot de droite"
+
+#: .\apps\game\models\match_model.py:121
+msgid "match"
+msgstr "Match"
+
+#: .\apps\game\models\match_model.py:122
+msgid "matchs"
+msgstr "Matchs"
+
+#: .\aston_project_3\settings.py:138
 msgid "french"
 msgstr "Français"
 
-#: .\aston_project_3\settings.py:134
+#: .\aston_project_3\settings.py:139
 msgid "english"
 msgstr "Anglais"
 
-#: .\aston_project_3\settings.py:135
+#: .\aston_project_3\settings.py:140
 msgid "spanish"
 msgstr "Espagnol"
 
-#: .\templates\account\account.html:15 .\templates\base.html:182
+#: .\templates\account\account.html:15 .\templates\base.html:186
 msgid "my_account"
 msgstr "Mon compte"
 
@@ -327,6 +447,7 @@ msgid "connection"
 msgstr "Se connecter"
 
 #: .\templates\account\account.html:32 .\templates\account\account.html:90
+#: .\templates\game\my_bots.html:59
 msgid "edit"
 msgstr "Éditer"
 
@@ -425,81 +546,83 @@ msgstr "Mot de passe oublié ?"
 msgid "Log in"
 msgstr "Se connecter"
 
-#: .\templates\base.html:52
+#: .\templates\base.html:56 .\templates\game\my_bots.html:19
 msgid "my_bots"
 msgstr "Mes bots"
 
-#: .\templates\base.html:59
+#: .\templates\base.html:63
 msgid "see_my_bots"
 msgstr "Voir mes bots"
 
-#: .\templates\base.html:66
+#: .\templates\base.html:70 .\templates\game\bot_deleted.html:26
+#: .\templates\game\my_bots.html:28 .\templates\game\my_bots.html:74
+#: .\templates\game\my_bots.html:85
 msgid "create_new_bot"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\base.html:81
+#: .\templates\base.html:85
 msgid "matches"
 msgstr "Matchs"
 
-#: .\templates\base.html:88
+#: .\templates\base.html:92
 msgid "see_matches"
 msgstr "Voir mes matchs"
 
-#: .\templates\base.html:95
+#: .\templates\base.html:99
 msgid "look_for_match"
 msgstr "Rechercher un match"
 
-#: .\templates\base.html:110
+#: .\templates\base.html:114
 msgid "community"
 msgstr "Communauté"
 
-#: .\templates\base.html:117
+#: .\templates\base.html:121
 msgid "discussions"
 msgstr "Discussions"
 
-#: .\templates\base.html:124
+#: .\templates\base.html:128
 msgid "ranking"
 msgstr "Classement"
 
-#: .\templates\base.html:159 .\templates\forum\forum.html:85
+#: .\templates\base.html:163 .\templates\forum\forum.html:85
 msgid "change"
 msgstr "Modifier"
 
-#: .\templates\base.html:188
+#: .\templates\base.html:192
 msgid "deconnect"
 msgstr "Se déconnecter"
 
-#: .\templates\base.html:200 .\templates\registration\login.html:56
+#: .\templates\base.html:204 .\templates\registration\login.html:56
 msgid "connect"
 msgstr "Se connecter"
 
-#: .\templates\base.html:205
+#: .\templates\base.html:209
 msgid "signup"
 msgstr "S'inscrire"
 
-#: .\templates\base.html:215
+#: .\templates\base.html:219
 msgid "contact"
 msgstr "Me contacter"
 
-#: .\templates\base.html:216
+#: .\templates\base.html:220
 msgid "faq"
 msgstr "FAQ"
 
-#: .\templates\base.html:217
+#: .\templates\base.html:221
 msgid "about"
 msgstr "À propos"
 
-#: .\templates\base.html:218
+#: .\templates\base.html:222
 msgid "terms_of_use"
 msgstr "Mentions légales"
 
-#: .\templates\base.html:222
+#: .\templates\base.html:226
 msgid "copyright"
 msgstr ""
 "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some "
 "features may be missing."
 
-#: .\templates\cookies\modal.html:6 .\templates\cookies\settings.html:29
+#: .\templates\cookies\modal.html:6 .\templates\cookies\settings.html:27
 msgid "cookies_settings"
 msgstr "Gestion des cookies"
 
@@ -509,15 +632,15 @@ msgstr ""
 "Ce site utilise des cookies. Veuillez sélectionner vos préférences. Sachez "
 "que vos données ne seront jamais communiquées à un tiers."
 
-#: .\templates\cookies\modal.html:15 .\templates\cookies\settings.html:36
+#: .\templates\cookies\modal.html:15 .\templates\cookies\settings.html:41
 msgid "required_cookies"
 msgstr "Cookies nécessaires"
 
-#: .\templates\cookies\modal.html:19 .\templates\cookies\settings.html:40
+#: .\templates\cookies\modal.html:19 .\templates\cookies\settings.html:52
 msgid "theme_cookie"
 msgstr "Cookie du thème visuel"
 
-#: .\templates\cookies\modal.html:23 .\templates\cookies\settings.html:44
+#: .\templates\cookies\modal.html:23 .\templates\cookies\settings.html:63
 msgid "lang_cookie"
 msgstr "Cookie de langue"
 
@@ -529,7 +652,7 @@ msgstr "Nécessaires uniquement"
 msgid "accept_all"
 msgstr "Accepter tous"
 
-#: .\templates\cookies\modal.html:43 .\templates\cookies\settings.html:47
+#: .\templates\cookies\modal.html:43 .\templates\cookies\settings.html:71
 msgid "save_settings"
 msgstr "Enregistrer les préférences"
 
@@ -545,17 +668,17 @@ msgstr "En savoir plus"
 msgid "settings_saved"
 msgstr "Préférences enregistrées"
 
-#: .\templates\cookies\settings.html:21
+#: .\templates\cookies\settings.html:19
 msgid "settings_saved_text"
 msgstr "Vos préférences ont bien été enregistrées"
 
-#: .\templates\cookies\settings.html:32
+#: .\templates\cookies\settings.html:30
 msgid "cookies_text_page"
 msgstr ""
 "Ce site utilise des cookies. Veuillez sélectionner vos préférences. Sachez "
 "que vos données ne seront jamais communiquées à un tiers."
 
-#: .\templates\cookies\settings.html:48
+#: .\templates\cookies\settings.html:77
 msgid "go_to_cookies_policy_page"
 msgstr "Voir la politique des cookies"
 
@@ -563,7 +686,24 @@ msgstr "Voir la politique des cookies"
 msgid "create_new_topic"
 msgstr "Créer un nouveau topic"
 
-#: .\templates\forum\create_topic.html:49
+#: .\templates\forum\create_topic.html:44 .\templates\forum\topic.html:143
+msgid "markdown_supported"
+msgstr "Markdown supporté"
+
+#: .\templates\forum\create_topic.html:50 .\templates\forum\topic.html:149
+msgid "write"
+msgstr "Écrire"
+
+#: .\templates\forum\create_topic.html:56 .\templates\forum\topic.html:155
+msgid "preview"
+msgstr "Aperçu"
+
+#: .\templates\forum\create_topic.html:69 .\templates\forum\topic.html:26
+#: .\templates\forum\topic.html:123
+msgid "back_to_topics"
+msgstr "Revenir aux topics"
+
+#: .\templates\forum\create_topic.html:74
 msgid "create_the_topic"
 msgstr "Créer le topic"
 
@@ -583,7 +723,7 @@ msgstr "Nouveaux"
 msgid "old"
 msgstr "Anciens"
 
-#: .\templates\forum\forum.html:112
+#: .\templates\forum\forum.html:112 .\templates\forum\forum.html:222
 msgid "create_topic"
 msgstr "Créer un topic"
 
@@ -595,35 +735,84 @@ msgstr "Réponses"
 msgid "activity"
 msgstr "Activité"
 
-#: .\templates\forum\forum.html:151 .\templates\forum\forum.html:160
+#: .\templates\forum\forum.html:152 .\templates\forum\forum.html:161
 #: .\templates\forum\topic.html:52 .\templates\forum\topic.html:61
 msgid "previous"
 msgstr "Précédent"
 
-#: .\templates\forum\forum.html:204 .\templates\forum\forum.html:213
+#: .\templates\forum\forum.html:205 .\templates\forum\forum.html:214
 #: .\templates\forum\topic.html:105 .\templates\forum\topic.html:114
 msgid "next"
 msgstr "Suivant"
 
-#: .\templates\forum\topic.html:26 .\templates\forum\topic.html:123
-msgid "back_to_topics"
-msgstr "Revenir aux topics"
-
-#: .\templates\forum\topic.html:145
-msgid "markdown_supported"
-msgstr "Markdown supporté"
-
-#: .\templates\forum\topic.html:151
-msgid "write"
-msgstr "Écrire"
-
-#: .\templates\forum\topic.html:157
-msgid "preview"
-msgstr "Aperçu"
-
-#: .\templates\forum\topic.html:180
+#: .\templates\forum\topic.html:178
 msgid "close"
 msgstr "Fermer"
+
+#: .\templates\game\bot_deleted.html:14
+msgid "bot_deleted"
+msgstr "Bot supprimé"
+
+#: .\templates\game\bot_deleted.html:15
+msgid "bot_deleted_text"
+msgstr "Le bot a été supprimé avec succès."
+
+#: .\templates\game\bot_deleted.html:21 .\templates\game\create_bot.html:42
+#: .\templates\game\delete_bot.html:41
+msgid "back_to_my_bots"
+msgstr "Revenir à mes bots"
+
+#: .\templates\game\create_bot.html:16 .\templates\game\create_bot.html:97
+msgid "create_bot"
+msgstr "Créer un nouveau bot"
+
+#: .\templates\game\create_bot.html:22 .\templates\game\my_bots.html:64
+msgid "delete"
+msgstr "Supprimer"
+
+#: .\templates\game\create_bot.html:34
+msgid "duplicate_bot"
+msgstr "Dupliquer le bot"
+
+#: .\templates\game\create_bot.html:102
+msgid "create_bot_text"
+msgstr "Créer un nouveau bot"
+
+#: .\templates\game\create_bot.html:120 .\templates\game\create_bot.html:124
+msgid "bot_published"
+msgstr "Publié"
+
+#: .\templates\game\create_bot.html:120 .\templates\game\create_bot.html:125
+msgid "bot_unpublished"
+msgstr "Non-publié"
+
+#: .\templates\game\create_bot.html:127
+msgid "publish_bot_text"
+msgstr "Votre bot n'affrontera aucun autre bot tant qu'il ne sera pas publié"
+
+#: .\templates\game\delete_bot.html:15
+msgid "bot_deletion"
+msgstr "Suppression du bot"
+
+#: .\templates\game\delete_bot.html:17
+msgid "bot_deletion_text"
+msgstr "Votre bot sera supprimé. Cette action est DÉFINITIVE."
+
+#: .\templates\game\delete_bot.html:46
+msgid "edit_this_bot"
+msgstr "Modifier ce bot"
+
+#: .\templates\game\delete_bot.html:51
+msgid "delete_bot"
+msgstr "Supprimer le bot"
+
+#: .\templates\game\my_bots.html:38
+msgid "last_updated"
+msgstr "Dernière modification"
+
+#: .\templates\game\my_bots.html:79
+msgid "no_bots"
+msgstr "Aucun bot"
 
 #: .\templates\registration\account_created.html:15
 msgid "account_created"

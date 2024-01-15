@@ -26,8 +26,6 @@ class DeleteBotViewSet(FormView):
         self,
         request: HttpRequest,
         bot_id: str,
-        *args,
-        **kwargs,
     ) -> HttpResponse:
         """GET method."""
         return render(

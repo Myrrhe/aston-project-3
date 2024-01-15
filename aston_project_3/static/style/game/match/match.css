@@ -1,5 +1,104 @@
 #canvas-match {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: block;
+}
+
+.control-panel {
+    position: relative;
+    background-color: var(--primary-light-color);
+    border-radius: 0px 0px 10px 10px;
+}
+
+#progress-container {
+    z-index: 1;
+    position: absolute;
+    top: -5px;
+    height: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#progress-container:hover {
+    height: 4px;
+}
+
+.progress-back {
+    background-color: var(--grey-color);
+    height: 4px;
+    transition: all 0.3s ease;
+}
+
+#progress-container:hover .progress-back {
+    height: 10px;
+}
+
+#progress-bar-match {
+    background-color: var(--bright-color);
+    position: relative;
+}
+
+.progress-end {
+    background-color: var(--bright-color);
+    height: 0px;
+    width: 0px;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    right: -0px;
+    transition: all 0.3s ease;
+}
+
+#progress-container:hover .progress-end {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -10px;
+}
+
+.button-match {
+    background-color: var(--transparent-color);
+    color: var(--fore-color);
+    border-width: 0;
+}
+
+.button-match[disabled] {
+    color: var(--grey-color);
+}
+
+.button-match::before {
+    font: var(--fa-font-solid);
+    color: var(--fore-color);
+}
+
+.button-match[disabled]::before {
+    /* font: var(--fa-font-solid); */
+    color: var(--grey-color) !important;
+}
+
+.button-match-play::before {
+    content: "\f04b";
+}
+
+.button-match-pause::before {
+    content: "\f04c";
+}
+
+.button-match-replay::before {
+    content: "\f2f9";
+}
+
+#block-output {
+    border: 1px solid var(--grey-color);
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.output-line::before {
+    content: ">";
+    color: var(--fore-color);
+    padding-right: 7px;
 }

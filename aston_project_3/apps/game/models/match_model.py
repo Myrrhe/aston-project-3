@@ -1,12 +1,33 @@
 """The match's model."""
-
+from __future__ import annotations
 import uuid
 
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils.translation import gettext as _
 
-from apps.game.models import Bot
 from apps.core.models import TimestampedModel
+from apps.game.models import Bot
+from apps.game.utils.bot_fight_util import main_fight
+
+
+class MatchManager(models.Manager):
+    """Custom manager for the bot model."""
+
+    def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
+        """Create a match between two bots."""
+        res = main_fight([bot_left.id, bot_right.id])
+        match = self.create(
+            bot_left=bot_left,
+            bot_right=bot_right,
+            movements=res["movements"],
+            result=res["result"] == "1",
+            output_left=res["stdout"][0],
+            output_right=res["stdout"][1],
+            error_messages_left=res["stderr"][0],
+            error_messages_right=res["stderr"][1],
+        )
+        return match
 
 
 class Match(TimestampedModel):
@@ -43,8 +64,55 @@ class Match(TimestampedModel):
         verbose_name=_("result"),
         help_text=_("result_help_text"),
     )
+    output_left = ArrayField(
+        models.CharField(max_length=1024, blank=True, null=True),
+        null=True,
+        size=None,
+        verbose_name=_("output_left"),
+        help_text=_("output_left_help_text"),
+    )
+    output_right = ArrayField(
+        models.CharField(max_length=1024, blank=True, null=True),
+        null=True,
+        size=None,
+        verbose_name=_("output_right"),
+        help_text=_("output_right_help_text"),
+    )
+    error_messages_left = ArrayField(
+        ArrayField(
+            models.CharField(max_length=1024, blank=True, null=True),
+            null=True,
+            size=None,
+        ),
+        null=True,
+        verbose_name=_("stderr_left"),
+        help_text=_("stderr_left_help_text"),
+    )
+    error_messages_right = ArrayField(
+        ArrayField(
+            models.CharField(max_length=1024, blank=True, null=True),
+            null=True,
+            size=None,
+        ),
+        null=True,
+        size=None,
+        verbose_name=_("stderr_right"),
+        help_text=_("stderr_right_help_text"),
+    )
+
+    def save(self, *args, **kwargs):
+        """Save the model in the database (overidden to pad the arrays)."""
+        if self.error_messages_left:
+            max_length_left = max(len(row) for row in self.error_messages_left)
+            self.error_messages_left = [row + [None] * (max_length_left - len(row)) for row in self.error_messages_left]
+        if self.error_messages_right:
+            max_length_right = max(len(row) for row in self.error_messages_right)
+            self.error_messages_right = [row + [None] * (max_length_right - len(row)) for row in self.error_messages_right]
+        super().save(*args, **kwargs)
 
     REQUIRED_FIELDS = []
+
+    objects = MatchManager()
 
     class Meta(TimestampedModel.Meta):
         """The meta class."""

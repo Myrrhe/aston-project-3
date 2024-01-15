@@ -16,7 +16,7 @@ urlpatterns = [
         name="forum-start",
     ),
     path(
-        "forum/main/<str:type>/<str:category>/<int:page>",
+        "forum/main/<str:type_topic>/<str:category>/<int:page>",
         ForumViewSet.as_view(),
         name="forum-spec",
     ),

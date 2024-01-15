@@ -1,9 +1,9 @@
 """The topic view."""
+from math import ceil
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
-
-from math import ceil
 
 from apps.forum.forms import AnswerTopicForm
 from apps.forum.models import Topic
@@ -17,8 +17,6 @@ class TopicViewSet(View):
         request: HttpRequest,
         topic_id: str,
         page: int = 1,
-        *args,
-        **kwargs,
     ) -> HttpResponse:
         """GET method."""
         topic = Topic.objects.get(pk=topic_id)
@@ -27,7 +25,7 @@ class TopicViewSet(View):
             page = 1
         elif page == 0 or page > nb_pages:
             page = nb_pages
-        posts = topic.posts.order_by("created_at")[(page - 1) * 10 : page * 10]
+        posts = topic.posts.order_by("created_at")[(page - 1) * 10:page * 10]
         topic.increment_view()
         return render(
             request,

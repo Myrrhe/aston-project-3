@@ -5,12 +5,13 @@
 {% block head_css_site %}
 {{ block.super }}
     <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/game/match/match.css" %}">
 {% endblock head_css_site %}
 
 {% block content %}
 
 <div class="h-100 d-flex align-items-center justify-content-center">
-    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-75">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-90">
 
         <h1 class="mt-1">{% translate "create_bot" %}</h1>
         <div class="d-flex flex-row-reverse mb-2">
@@ -42,11 +43,46 @@
             </a>
         </div>
         <div class="d-flex flex-row">
-            <div class="d-flex flex-column w-50">
-                <canvas id="canvas-match"></canvas> 
+            <div class="d-flex flex-column w-50 me-1">
+                <canvas id="canvas-match"></canvas>
+                <div class="control-panel w-100">
+                    <div id="progress-container" class="w-100 d-flex align-items-center justify-content-center">
+                        <div class="progress-back w-100 d-flex">
+                            <div id="progress-bar-match" class="h-100">
+                                <div class="progress-end"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-control py-1 d-flex flex-row align-items-center">
+                        <button id="button-beginning" disabled class="button-match ps-2 pe-1">
+                            <em class="fas fa-backward-fast fa-lg"></em>
+                        </button>
+                        <button id="button-prev" disabled class="button-match px-1">
+                            <em class="fas fa-backward fa-lg"></em>
+                        </button>
+                        <button id="button-play" disabled class="fa-2x button-match button-match-play px-1"></button>
+                        <button id="button-next" disabled class="button-match px-1">
+                            <em class="fas fa-forward fa-lg"></em>
+                        </button>
+                        <button id="button-end" disabled class="button-match px-1">
+                            <em class="fas fa-forward-fast fa-lg"></em>
+                        </button>
+                    </div>
+                    {% comment %} <div class="progress">
+                        <div
+                            class="progress-bar"
+                            role="progressbar"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100">
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+                <div id="fight-result" class="d-none text-color-fore"></div>
+                <div id="block-output" class="p-3 mt-1 back-color-white-veil-5 d-none"></div>
             </div>
-            <div class="d-flex flex-column w-50">
-                <form action="" method="post" class="d-flex flex-column">
+            <div class="d-flex flex-column w-50 ms-1">
+                <form action="" method="post" class="d-flex flex-column" id="form-create-bot">
                     {% csrf_token %}
                     <label class="d-none" for={{create_bot_form.name.id_for_label}}>
                     </label>
@@ -55,9 +91,12 @@
                     {{create_bot_form.code}}
                     <input
                         type="submit"
+                        id="{% if bot_id %}submit-edit-bot{% else %}submit-create-bot{% endif %}"
                         name="{{create_bot_form.prefix}}"
                         value="{% translate "create_bot" %}"
-                        class="btn small_button button-bright mt-1">
+                        class="btn small_button button-bright mt-1"
+                        data-url="{% if bot_id %}{% url "game:edit-bot" bot_id=bot_id %}{% endif %}"
+                        data-bot-id="{{bot_id}}">
                     <p class="mt-1 text-color-fore">
                         {% translate "create_bot_text" %}
                     </p>
@@ -77,7 +116,7 @@
                             type="submit"
                             id="button-publish"
                             name="{{toggle_publish_bot_form.prefix}}"
-                            value={% if posted %}"{% translate "bot_published" %}"{% else %}"{% translate "bot_unpublished" %}"{% endif %}
+                            value="{% if posted %}{% translate "bot_published" %}{% else %}{% translate "bot_unpublished" %}{% endif %}"
                             class="btn small_button align-self-end me-2 {% if posted %}button-dark{% else %}button-bright{% endif %}"
                             data-bot-id="{{bot_id}}"
                             data-url="{% url "game:bot-toggle-publish" bot_id=bot_id %}"
@@ -94,28 +133,11 @@
 </div>
 {% codemirror_field_css_assets create_bot_form.code %}
 {% codemirror_field_js_assets create_bot_form.code %}
-<script>
-    var foo_codemirror = CodeMirror.fromTextArea(
-        document.getElementById("{{create_bot_form.code.auto_id}}"),
-        {{ create_bot_form.code|codemirror_parameters }}
-    );
-
-    {% comment %} document.addEventListener("DOMContentLoaded", function () {
-        var codeTextarea = document.getElementById("{{create_bot_form.code.auto_id}}");
-        var editor = CodeMirror.fromTextArea(codeTextarea, {
-                "mode": {
-                    "name": "python",
-                    "version": 3,
-                    "singleLineStringErrors": false
-                },
-                "matchBrackets": true,
-                "lineNumbers": true,
-                "indent": 4,
-            }
-        );
-      }); {% endcomment %}
+<script
+    src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"
+    integrity="sha256-l/g591WzABd9b8YZA9G7UMDxAWh8iMSzqelPaAWSht8="
+    crossorigin="anonymous">
 </script>
+<script src="{% static "js/game/match/match.js" %}"></script>
 <script src="{% static "js/game/create_bot.js" %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
-<script type="module" src="{% static "js/game/match/match.js" %}"></script>
 {% endblock %}

@@ -12,13 +12,10 @@ class AnswerTopicViewSet(View):
     def post(
         self,
         request: HttpRequest,
-        *args,
-        **kwargs,
     ) -> HttpResponse:
         """POST method."""
         answer_form = AnswerTopicForm(request.POST)
         if answer_form.is_valid():
             answer_form.save(request)
             return redirect("forum:topic", topic_id=request.POST["topic_id"], page="0")
-        else:
-            return redirect("forum:forum-start")
+        return redirect("forum:forum-start")

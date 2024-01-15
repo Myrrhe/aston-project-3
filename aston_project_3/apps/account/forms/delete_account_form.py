@@ -1,10 +1,10 @@
 """The account deletion form."""
+from django import forms
+
 from django.contrib.auth.forms import UsernameField
 from django.forms import ValidationError
-from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.utils.translation import gettext_lazy as _
-
-from django import forms
+from django_otp.plugins.otp_totp.models import TOTPDevice
 
 from apps.account.models import User
 from apps.core.inputs import NonStickyTextInput
@@ -46,7 +46,10 @@ class DeleteAccountForm(forms.Form):
             self.cleaned_data["password"],
             self.cleaned_data["security_key"],
         ):
-            raise ValidationError(_("invalid_credentials"), code="invalid_credentials")
+            raise ValidationError(
+                _("invalid_credentials"),
+                code="invalid_credentials"
+            )
         return self.cleaned_data
 
     def delete_account(self) -> None:

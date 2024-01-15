@@ -25,24 +25,33 @@ const interpolate = function(a, b, coeff, interpolationFunction = InterpolationF
 
 const canvasId = '#canvas-match';
 
-const {width, height} = $(canvasId)[0];
+const gridWidth = 30;
+const gridHeight = 20;
 
-const app = new window.PIXI.Application({
-    background: 0x000000,
-    resizeTo: $(canvasId)[0],
-    view: $(canvasId)[0],
+const width = $(canvasId).parent().width();
+const height = gridHeight * width / gridWidth;
+
+$(canvasId)[0].width = width;
+$(canvasId)[0].height = height;
+
+const app = new window.PIXI.Application(
+    {
+        width,
+        height,
+        background: 0x000000,
+        // resizeTo: $(canvasId)[0],
+        view: $(canvasId)[0],
+        // forceCanvas: false,
+        // autoResize: true,
+        // resolution: 1,
 });
-
-app.renderer.resize(width, width);
 
 // Grid
 const gridGraphics = new window.PIXI.Graphics();
 
-const gridWidth = 30;
-const gridHeight = 20;
-const cellSize = 10;
+const cellSize = width / gridWidth;
 const gridColor = 0xffffff;
-
+// ffd2e9
 const colorPlayer1 = 0x00ff88;
 const colorPlayer2 = 0xff0088;
 
@@ -60,6 +69,7 @@ for (let j = 0; j < gridHeight; j++) {
 
 app.stage.addChild(gridGraphics);
 
+// The player class
 
 class Player {
     constructor(color, positions, index) {
@@ -83,37 +93,11 @@ class Player {
         });
 
         this.blurFilter = new window.PIXI.BlurFilter();
-        this.blurFilter.blur = 5;
+        this.blurFilter.blur = cellSize / 2;
         this.graphicsBack.filters = [this.blurFilter];
-
-        const posX1 = this.positions[0]['x'] * cellSize + Player.width - 1;
-        const posY1 = this.positions[0]['y'] * cellSize + Player.width;
-        const posX2 = posX1 + 1;
-        const posY2 = posY1;
-
-        this.graphicsBack.moveTo(
-            posX1,
-            posY1,
-        );
-        this.graphicsFront.moveTo(
-            posX1,
-            posY1,
-        );
-
-        this.graphicsBack.lineTo(
-            posX2,
-            posY2,
-        );
-        this.graphicsFront.lineTo(
-            posX2,
-            posY2,
-        );
-
-        app.stage.addChild(this.graphicsBack);
-        app.stage.addChild(this.graphicsFront);
     }
 
-    update(t) {
+    update(coeff) {
         this.graphicsBack.clear();
         this.graphicsFront.clear();
 
@@ -133,6 +117,7 @@ class Player {
         let posX = this.positions[0]['x'] * cellSize + Player.width - 1;
         let posY = this.positions[0]['y'] * cellSize + Player.width;
 
+        // Initial position
         this.graphicsBack.moveTo(
             posX,
             posY,
@@ -142,93 +127,319 @@ class Player {
             posY,
         );
 
-        const nbPoints = Math.min(Math.floor(t / 1000), this.positions.length - 1);
+        const nbPoints = Math.floor(coeff * (this.positions.length - 1));
 
-        for (let i = 1; i <= nbPoints; i++) {
-            posX = this.positions[i]['x'] * cellSize + Player.width - 1;
-            posY = this.positions[i]['y'] * cellSize + Player.width;
+        const coeffDraw = coeff * (this.positions.length - 1) - nbPoints;
 
+        if (this.positions.length > 1) {
+            // We add the points completely passed
+            for (let i = 1; i <= nbPoints; i++) {
+                posX = this.positions[i]['x'] * cellSize + Player.width - 1;
+                posY = this.positions[i]['y'] * cellSize + Player.width;
+
+                this.graphicsBack.lineTo(
+                    posX,
+                    posY,
+                );
+
+                this.graphicsFront.lineTo(
+                    posX,
+                    posY,
+                );
+            }
+
+            // We add one last point half passed
+            if (nbPoints < this.positions.length - 1) {
+                posX = interpolate(
+                    this.positions[nbPoints]['x'],
+                    this.positions[nbPoints + 1]['x'],
+                    coeffDraw,
+                ) * cellSize + Player.width - 1;
+
+                posY = interpolate(
+                    this.positions[nbPoints]['y'],
+                    this.positions[nbPoints + 1]['y'],
+                    coeffDraw,
+                ) * cellSize + Player.width;
+
+                this.graphicsBack.lineTo(
+                    posX,
+                    posY,
+                );
+
+                this.graphicsFront.lineTo(
+                    posX,
+                    posY,
+                );
+            }
+        } else {
             this.graphicsBack.lineTo(
-                posX,
+                posX - 1,
                 posY,
             );
-
             this.graphicsFront.lineTo(
-                posX,
-                posY,
-            );
-        }
-
-        if (nbPoints < this.positions.length - 1) {
-            posX = interpolate(
-                this.positions[nbPoints]['x'],
-                this.positions[nbPoints + 1]['x'],
-                (t - nbPoints * 1000)/1000,
-            ) * cellSize + Player.width - 1;
-
-            posY = interpolate(
-                this.positions[nbPoints]['y'],
-                this.positions[nbPoints + 1]['y'],
-                (t - nbPoints * 1000)/1000,
-            ) * cellSize + Player.width;
-
-            this.graphicsBack.lineTo(
-                posX,
-                posY,
-            );
-
-            this.graphicsFront.lineTo(
-                posX,
+                posX - 1,
                 posY,
             );
         }
     }
 
-    static width = 5;
+    show() {
+        app.stage.addChild(this.graphicsBack);
+        app.stage.addChild(this.graphicsFront);
+    }
+
+    hide() {
+        app.stage.removeChild(this.graphicsBack);
+        app.stage.removeChild(this.graphicsFront);
+    }
+
+    setPositions(positions) {
+        this.positions = positions;
+    }
+
+    static width = cellSize / 2;
 }
-
-const positions1 = [
-    {'x': 0, 'y': 0},
-    {'x': 1, 'y': 0},
-    {'x': 1, 'y': 1},
-    {'x': 1, 'y': 2},
-    {'x': 2, 'y': 2},
-];
-
-const positions2 = [
-    {'x': 29, 'y': 19},
-    {'x': 28, 'y': 19},
-    {'x': 28, 'y': 18},
-    {'x': 28, 'y': 17},
-    {'x': 27, 'y': 17},
-];
 
 const player1 = new Player(
     colorPlayer1,
-    positions1,
+    [],
     0,
 );
 
 const player2 = new Player(
     colorPlayer2,
-    positions2,
+    [],
     1,
 );
 
-const startMachTime = new Date().getTime();
+const framePerSecond = 30;
+const millisecondPerFrame = Math.floor(1000 / framePerSecond);
 
-const updateMatch = function() {
-    const currentTime = new Date().getTime();
-    const t = currentTime - startMachTime;
-    player1.update(t);
-    player2.update(t);
+let startMachTime = null;
+let intervalId = null;
+let durationMatch = null;
+let nbIterMatch = null;
+let matchStarted = false;
+let matchEnded = false;
+let pause = false;
+let coeffSaved = 0;
+
+const buttonPlayId = '#button-play';
+const fightResultId = '#fight-result';
+const buttonMatchPlayClass = 'button-match-play';
+const buttonMatchPauseClass = 'button-match-pause';
+const buttonMatchReplayClass = 'button-match-replay';
+
+const removeClassesButtonPlay = function() {
+    if ($(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+        $(buttonPlayId).removeClass(buttonMatchPlayClass);
+    }
+    if ($(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+        $(buttonPlayId).removeClass(buttonMatchPauseClass);
+    }
+    if ($(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+        $(buttonPlayId).removeClass(buttonMatchReplayClass);
+    }
 };
 
-const framePerSecond = 30;
-const millisecondPerFrame = Math.floor(1000 / cellSize);
+const setMatchEnd = function(coeff) {
+    removeClassesButtonPlay();
+    if (coeff >= 1) {
+        matchEnded = true;
+        if (!$(buttonPlayId).hasClass(buttonMatchReplayClass)) {
+            $(buttonPlayId).addClass(buttonMatchReplayClass);
+        }
+        if ($(fightResultId).hasClass('d-none')) {
+            $(fightResultId).removeClass('d-none');
+        }
+    } else {
+        matchEnded = false;
+        setPauseButton();
+        if (!$(fightResultId).hasClass('d-none')) {
+            $(fightResultId).addClass('d-none');
+        }
+    }
+};
 
-const intervalId = setInterval(updateMatch, millisecondPerFrame);
+const setPauseButton = function() {
+    if (pause) {
+        if (!$(buttonPlayId).hasClass(buttonMatchPlayClass)) {
+            $(buttonPlayId).addClass(buttonMatchPlayClass);
+        }
+    } else if (!$(buttonPlayId).hasClass(buttonMatchPauseClass)) {
+        $(buttonPlayId).addClass(buttonMatchPauseClass);
+    } else {
+        // Nothing to do
+    }
+};
 
-setTimeout(function() {
-    clearInterval(intervalId);
-}, positions1.length * 1000);
+const setPlayerTime = function(coeff) {
+    player1.update(coeff);
+    player2.update(coeff);
+};
+
+const getCurrentCoeff = function() {
+    const currentTime = new Date().getTime();
+    return Math.min(Math.max((currentTime - startMachTime) / durationMatch, 0), 1);
+};
+
+const updateMatch = function() {
+    if (isDragging || pause) {
+        return;
+    }
+    const coeff = getCurrentCoeff();
+    setProgress(coeff);
+    setPlayerTime(coeff);
+    setMatchEnd(coeff);
+};
+
+const setTimeMatch = function(coeff) {
+    const currentTime = new Date().getTime();
+    const t = Math.min(Math.max(coeff, 0), 1) * durationMatch;
+    startMachTime = currentTime - t;
+    setPlayerTime(coeff);
+};
+
+const triggerMatch = function(positions1, positions2) {
+    player1.setPositions(positions1);
+    player2.setPositions(positions2);
+    player1.show();
+    player2.show();
+
+    setContainerSize();
+
+    nbIterMatch = Math.min(positions1.length, positions2.length);
+
+    durationMatch = nbIterMatch * 1000;
+
+    startMachTime = new Date().getTime();
+
+    if (intervalId !== null) {
+        clearInterval(intervalId);
+    }
+    intervalId = setInterval(updateMatch, millisecondPerFrame);
+
+    $('#button-beginning').prop('disabled', false);
+    $('#button-prev').prop('disabled', false);
+    $(buttonPlayId).prop('disabled', false);
+    $('#button-next').prop('disabled', false);
+    $('#button-end').prop('disabled', false);
+
+    setMatchEnd(0);
+
+    matchStarted = true;
+    pause = false;
+    coeffSaved = 0;
+};
+
+// PROGRESS BAR
+
+let isDragging = false;
+let initialX = null;
+let initialY = null;
+let containerSize = null;
+
+const progressContainerId = '#progress-container';
+
+const setContainerSize = function() {
+    containerSize = $(progressContainerId).width();
+};
+
+const setProgress = function(coeff) {
+    $('#progress-bar-match')[0].style.width = `${Math.min(Math.max(coeff, 0), 1) * containerSize}px`;
+};
+
+const updateProgress = function(coeff) {
+    setProgress(coeff);
+    setTimeMatch(coeff);
+};
+
+const startDrag = function(e) {
+    isDragging = true;
+    initialX = $(progressContainerId)[0].getBoundingClientRect().left;
+    initialY = $(progressContainerId)[0].getBoundingClientRect().top;
+    setContainerSize();
+    $(progressContainerId)[0].style.cursor = 'grabbing';
+    if (matchStarted) {
+        const coeff = (e.clientX - initialX) / containerSize;
+        updateProgress(coeff);
+        setMatchEnd(coeff);
+    }
+};
+
+const drag = function(e) {
+    if (isDragging && matchStarted) {
+        const coeff = Math.min(Math.max((e.clientX - initialX) / containerSize, 0), 1);
+        updateProgress(coeff);
+        setMatchEnd(coeff);
+    }
+};
+
+const stopDrag = function(e) {
+    if (isDragging && matchStarted) {
+        coeffSaved = (e.clientX - initialX) / containerSize;
+        updateProgress(coeffSaved);
+    }
+    $(progressContainerId)[0].style.cursor = 'grab';
+    isDragging = false;
+};
+
+$(document).ready(function() {
+    $(progressContainerId)[0].addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
+    $(progressContainerId)[0].style.cursor = 'grab';
+    $('#button-beginning').on('click', function() {
+        coeffSaved = 0;
+        setTimeMatch(coeffSaved);
+        setProgress(coeffSaved);
+        setMatchEnd(0);
+    });
+
+    $('#button-prev').on('click', function() {
+        if (pause) {
+            coeffSaved = Math.max(coeffSaved - 1.0/(nbIterMatch - 1), 0);
+        } else {
+            coeffSaved = Math.max(getCurrentCoeff() - 1.0/(nbIterMatch - 1), 0);
+        }
+        pause = true;
+        updateProgress(coeffSaved);
+        removeClassesButtonPlay();
+        setPauseButton();
+    });
+    $(buttonPlayId).on('click', function() {
+        removeClassesButtonPlay();
+        if (matchEnded) {
+            setMatchEnd(0);
+            pause = false;
+            updateProgress(0);
+        } else {
+            pause = !pause;
+            if (pause) {
+                coeffSaved = getCurrentCoeff();
+            } else {
+                updateProgress(coeffSaved);
+            }
+        }
+        setPauseButton();
+    });
+    $('#button-next').on('click', function() {
+        if (pause) {
+            coeffSaved = Math.min(coeffSaved + 1.0/(nbIterMatch - 1), 1);
+        } else {
+            coeffSaved = Math.min(getCurrentCoeff() + 1.0/(nbIterMatch - 1), 1);
+        }
+        pause = true;
+        updateProgress(coeffSaved);
+        removeClassesButtonPlay();
+        setPauseButton();
+        setMatchEnd(coeffSaved);
+    });
+    $('#button-end').on('click', function() {
+        coeffSaved = 1;
+        setTimeMatch(coeffSaved);
+        setProgress(coeffSaved);
+        setMatchEnd(1);
+    });
+});

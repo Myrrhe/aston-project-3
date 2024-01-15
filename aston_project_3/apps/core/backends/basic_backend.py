@@ -2,11 +2,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
+from django.urls import resolve
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp import verify_token
-from django.urls import resolve
-
-from apps.account.models import User
 
 UserModel = get_user_model()
 
@@ -27,7 +25,7 @@ class BasicBackend(BaseBackend):
         if username is None or password is None:
             return
         try:
-            user = UserModel._default_manager.get_by_natural_key(username)
+            user = UserModel.objects.get_by_natural_key(username)
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a nonexistent user.
@@ -79,12 +77,12 @@ class BasicBackend(BaseBackend):
     def get_user(self, user_id: str) -> any:
         """Get the user from their PK if they can be authenticated."""
         try:
-            user = UserModel._default_manager.get(pk=user_id)
+            user = UserModel.objects.get(pk=user_id)
         except UserModel.DoesNotExist:
             return None
         return user if self.user_can_authenticate(user) else None
 
-    def user_can_authenticate(self, user: User) -> any:
+    def user_can_authenticate(self, user: UserModel) -> any:
         """
         Reject users with is_active=False.
 

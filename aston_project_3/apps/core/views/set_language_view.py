@@ -15,9 +15,7 @@ class SetLanguageViewSet(View):
 
     def post(
         self,
-        request: HttpRequest,
-        *args,
-        **kwargs
+        request: HttpRequest
     ) -> HttpResponseRedirect:
         """POST method."""
         next_url = request.POST.get("next", request.GET.get("next"))

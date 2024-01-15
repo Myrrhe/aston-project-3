@@ -1,12 +1,13 @@
 """The bot edition view."""
-from django.http import HttpRequest, HttpResponse
-from django.urls import reverse_lazy
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.utils.html import escape
 from django.views.generic.edit import UpdateView
 
 from apps.core.utils.get_form_util import get_form
 from apps.game.forms import CreateBotForm, DuplicateBotForm, TogglePublishBotForm
-from apps.game.models import Bot
+from apps.game.models import Bot, Match
 
 
 class EditBotViewSet(UpdateView):
@@ -16,7 +17,11 @@ class EditBotViewSet(UpdateView):
     form_class = CreateBotForm
     template_name = "game/create_bot.html"
 
-    def get_success_url(self, **kwargs) -> any:
+    def __init__(self, *args, **kwargs) -> None:
+        self.bot_id = ""
+        super().__init__(*args, **kwargs)
+
+    def get_success_url(self) -> any:
         """Determine where the user is redirected on success."""
         return reverse_lazy("game:edit-bot", args=[self.bot_id])
 
@@ -24,8 +29,6 @@ class EditBotViewSet(UpdateView):
         self,
         request: HttpRequest,
         bot_id: str,
-        *args,
-        **kwargs
     ) -> HttpResponse:
         """GET method."""
         if not request.user.is_authenticated:
@@ -67,15 +70,29 @@ class EditBotViewSet(UpdateView):
             },
         )
 
-    def post(self, request: HttpRequest, bot_id: str, *args, **kwargs) -> HttpResponse:
+    def post(self, request: HttpRequest, bot_id: str) -> JsonResponse:
         """POST method."""
         create_bot_form = get_form(
             request, CreateBotForm, "create_bot_form", user=request.user, bot_id=bot_id,
         )
+        match = None
         if create_bot_form.is_bound and create_bot_form.is_valid():
             # Create bot
-            self.bot_id = create_bot_form.save().id
-        return redirect(self.get_success_url())
+            bot = create_bot_form.save()
+            self.bot_id = bot.id
+            opponent_bot = Bot.objects.get_by_natural_key("admin@aston.com", "Bot 1")
+            match = Match.objects.bot_fight(bot, opponent_bot)
+        else:
+            self.bot_id = bot_id
+        return JsonResponse({
+            "message": "Bot saved",
+            "bot_name": escape(bot.name),
+            "match_movements": match.movements if match else "",
+            "stdout": [match.output_left, match.output_right],
+            "stderr": [match.error_messages_left, match.error_messages_right],
+            "match_result": match.result if match else "",
+            "match_even": match.bot_left.id == bot.id if match else "",
+        }, status="200", content_type="text/json")
 
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""
