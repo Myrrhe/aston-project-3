@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="form-login my-5 py-2 px-4 d-flex flex-column align-items-left justify-content-center w-50">
+        <h1 class="mt-1 text-center">{% translate "page_not_found" %} (404)</h1>
+    </div>
+</div>
+
+{% endblock %}
