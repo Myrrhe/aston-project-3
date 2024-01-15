@@ -17,10 +17,6 @@ class MatchManager(models.Manager):
     def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
         """Create a match between two bots."""
         res = main_fight([bot_left.id, bot_right.id])
-        # print(res["stderr"][0])
-        # print(res["stderr"][1])
-        # print(res["stdout"][0])
-        # print(res["stdout"][1])
         match = self.create(
             bot_left=bot_left,
             bot_right=bot_right,
@@ -31,7 +27,6 @@ class MatchManager(models.Manager):
             error_messages_left=res["stderr"][0],
             error_messages_right=res["stderr"][1],
         )
-        # print(res["stderr"])
         return match
 
 

@@ -44,22 +44,21 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
     field = [[0 for _ in range(FIELD_WIDTH)] for _ in range(FIELD_HEIGHT)]
 
     pos = {"init": [{
-        #"x": randint(0, FIELD_WIDTH - 1),
-        "x": 0,
+        "x": randint(0, FIELD_WIDTH - 1),
+        # "x": 0,
         "y": randint(0, FIELD_HEIGHT // 2 - 1),
     }]}
     pos["init"].append({
         "x": FIELD_WIDTH - 1 - pos["init"][0]["x"],
         "y": FIELD_HEIGHT - 1 - pos["init"][0]["y"],
     })
-    print(pos["init"])
     pos["current"] = pos["init"].copy()
     pos["next"] = pos["current"].copy()
     field[pos["init"][0]["y"]][pos["init"][0]["x"]] = 1
     field[pos["init"][1]["y"]][pos["init"][1]["x"]] = 2
 
     res = [
-        [f"{pos["init"][i]["x"]},{pos["init"][i]["y"]}"] for i in range(NB_BOTS)
+        [f"{pos['init'][i]['x']},{pos['init'][i]['y']}"] for i in range(NB_BOTS)
     ]
     res_stdout = [
         [] for _ in range(NB_BOTS)
@@ -118,11 +117,11 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
                     processes[i].stdin.write("0\n")
                     processes[i].stdin.flush()
                     processes[i].stdin.write(
-                        f"{pos["init"][0]["x"]} {pos["init"][0]["y"]} {pos["current"][0]["x"]} {pos["current"][0]["y"]}\n"
+                        f"{pos['init'][0]['x']} {pos['init'][0]['y']} {pos['current'][0]['x']} {pos['current'][0]['y']}\n"
                     )
                     processes[i].stdin.flush()
                     processes[i].stdin.write(
-                        f"{pos["init"][1]["x"]} {pos["init"][1]["y"]} {pos["current"][1]["x"]} {pos["current"][1]["y"]}\n"
+                        f"{pos['init'][1]['x']} {pos['init'][1]['y']} {pos['current'][1]['x']} {pos['current'][1]['y']}\n"
                     )
                     processes[i].stdin.flush()
 
@@ -159,7 +158,7 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
                         else:
                             pos["current"][i] = pos["next"][i].copy()
                             field[pos["current"][i]["y"]][pos["current"][i]["x"]] = 1
-                            res[i].append(f"{pos["current"][i]["x"]},{pos["current"][i]["y"]}")
+                            res[i].append(f"{pos['current'][i]['x']},{pos['current'][i]['y']}")
                     except queue.Empty:
                         health[i] = 0
                         print(
@@ -173,7 +172,7 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
             process.terminate()
 
     return {
-        "movements": f"{"|".join(";".join(pos_player) for pos_player in res)}",
+        "movements": f"{'|'.join(';'.join(pos_player) for pos_player in res)}",
         "result": "1" if health[0] == 1 else "0",
         "stdout": res_stdout,
         "stderr": res_stderr,

@@ -79,7 +79,7 @@
                     </div> {% endcomment %}
                 </div>
                 <div id="fight-result" class="d-none text-color-fore"></div>
-                <div id="block-output" class="p-3 back-color-white-veil-5 d-none"></div>
+                <div id="block-output" class="p-3 mt-1 back-color-white-veil-5 d-none"></div>
             </div>
             <div class="d-flex flex-column w-50 ms-1">
                 <form action="" method="post" class="d-flex flex-column" id="form-create-bot">
@@ -95,7 +95,7 @@
                         name="{{create_bot_form.prefix}}"
                         value="{% translate "create_bot" %}"
                         class="btn small_button button-bright mt-1"
-                        data-url="{% url "game:edit-bot" bot_id=bot_id %}"
+                        data-url="{% if bot_id %}{% url "game:edit-bot" bot_id=bot_id %}{% endif %}"
                         data-bot-id="{{bot_id}}">
                     <p class="mt-1 text-color-fore">
                         {% translate "create_bot_text" %}

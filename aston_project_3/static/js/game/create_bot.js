@@ -63,13 +63,8 @@ $(document).ready(function() {
                     $(blockOutputId).removeClass('d-none');
                 }
 
-                // TODO bugfix : in some cases, data['stderr'][0] === [[]] and
-                // data['stderr'][0] === []
-                // Another bug when x === 0 (nothing is drawed)
-                // They are the same bug, except the first one need to have the
-                // page just reloaded
-                const firstErrPlayer1 = data['stderr'][0].shift();
-                const firstErrPlayer2 = data['stderr'][1].shift();
+                const firstErrPlayer1 = data['stderr'][0].shift() ?? [];
+                const firstErrPlayer2 = data['stderr'][1].shift() ?? [];
 
                 let startWrite = false;
 

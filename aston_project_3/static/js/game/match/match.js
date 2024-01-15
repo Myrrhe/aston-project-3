@@ -51,7 +51,7 @@ const gridGraphics = new window.PIXI.Graphics();
 
 const cellSize = width / gridWidth;
 const gridColor = 0xffffff;
-
+// ffd2e9
 const colorPlayer1 = 0x00ff88;
 const colorPlayer2 = 0xff0088;
 
@@ -117,6 +117,7 @@ class Player {
         let posX = this.positions[0]['x'] * cellSize + Player.width - 1;
         let posY = this.positions[0]['y'] * cellSize + Player.width;
 
+        // Initial position
         this.graphicsBack.moveTo(
             posX,
             posY,
@@ -130,41 +131,54 @@ class Player {
 
         const coeffDraw = coeff * (this.positions.length - 1) - nbPoints;
 
-        for (let i = 1; i <= nbPoints; i++) {
-            posX = this.positions[i]['x'] * cellSize + Player.width - 1;
-            posY = this.positions[i]['y'] * cellSize + Player.width;
+        if (this.positions.length > 1) {
+            // We add the points completely passed
+            for (let i = 1; i <= nbPoints; i++) {
+                posX = this.positions[i]['x'] * cellSize + Player.width - 1;
+                posY = this.positions[i]['y'] * cellSize + Player.width;
 
+                this.graphicsBack.lineTo(
+                    posX,
+                    posY,
+                );
+
+                this.graphicsFront.lineTo(
+                    posX,
+                    posY,
+                );
+            }
+
+            // We add one last point half passed
+            if (nbPoints < this.positions.length - 1) {
+                posX = interpolate(
+                    this.positions[nbPoints]['x'],
+                    this.positions[nbPoints + 1]['x'],
+                    coeffDraw,
+                ) * cellSize + Player.width - 1;
+
+                posY = interpolate(
+                    this.positions[nbPoints]['y'],
+                    this.positions[nbPoints + 1]['y'],
+                    coeffDraw,
+                ) * cellSize + Player.width;
+
+                this.graphicsBack.lineTo(
+                    posX,
+                    posY,
+                );
+
+                this.graphicsFront.lineTo(
+                    posX,
+                    posY,
+                );
+            }
+        } else {
             this.graphicsBack.lineTo(
-                posX,
+                posX - 1,
                 posY,
             );
-
             this.graphicsFront.lineTo(
-                posX,
-                posY,
-            );
-        }
-
-        if (nbPoints < this.positions.length - 1) {
-            posX = interpolate(
-                this.positions[nbPoints]['x'],
-                this.positions[nbPoints + 1]['x'],
-                coeffDraw,
-            ) * cellSize + Player.width - 1;
-
-            posY = interpolate(
-                this.positions[nbPoints]['y'],
-                this.positions[nbPoints + 1]['y'],
-                coeffDraw,
-            ) * cellSize + Player.width;
-
-            this.graphicsBack.lineTo(
-                posX,
-                posY,
-            );
-
-            this.graphicsFront.lineTo(
-                posX,
+                posX - 1,
                 posY,
             );
         }
