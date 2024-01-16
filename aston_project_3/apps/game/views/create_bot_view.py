@@ -35,24 +35,7 @@ class CreateBotViewSet(CreateView):
                         prefix="create_bot_form",
                         user=request.user,
                         initial={
-                            "code": "\
-import sys\n\
-import math\n\
-\n\
-\n\
-# game loop\n\
-while True:\n\
-    # p: your player number (0 to 1).\n\
-    p = int(input())\n\
-    for i in range(2):\n\
-        # x0: starting X coordinate of lightcycle (or -1)\n\
-        # y0: starting Y coordinate of lightcycle (or -1)\n\
-        # x1: starting X coordinate of lightcycle (can be the same as X0 if you play before this player)\n\
-        # y1: starting Y coordinate of lightcycle (can be the same as Y0 if you play before this player)\n\
-        x0, y0, x1, y1 = [int(j) for j in input().split()]\n\
-\n\
-    # A single line with UP, DOWN, LEFT or RIGHT\n\
-    print(\"LEFT\")\n",
+                            "code": Bot.objects.get_default_code,
                         }
                     ),
                 },

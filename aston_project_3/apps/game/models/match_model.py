@@ -135,7 +135,7 @@ class Match(TimestampedModel):
         verbose_name = _("match")
         verbose_name_plural = _("matchs")
 
-    def amITheBadGuy(self, bot: Bot) -> bool:
+    def am_i_the_bad_guy(self, bot: Bot) -> bool:
         if bot.id == self.bot_left.id:
             return True
         elif bot.id == self.bot_right.id:
@@ -143,14 +143,14 @@ class Match(TimestampedModel):
         else:
             raise ValueError("This bot didn't fought in this match")
 
-    def getOpponent(self, bot: Bot) -> Bot:
-        return self.bot_right if self.amITheBadGuy(bot) else self.bot_left
+    def get_opponent(self, bot: Bot) -> Bot:
+        return self.bot_right if self.am_i_the_bad_guy(bot) else self.bot_left
 
-    def getResult(self, bot: Bot) -> bool:
-        return self.result == self.amITheBadGuy(bot)
+    def get_result(self, bot: Bot) -> bool:
+        return self.result == self.am_i_the_bad_guy(bot)
 
-    def getScoreChange(self, bot: Bot) -> int:
-        return self.score_change_right if self.amITheBadGuy(bot) else self.score_change_left
+    def get_score_change(self, bot: Bot) -> int:
+        return self.score_change_right if self.am_i_the_bad_guy(bot) else self.score_change_left
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""
