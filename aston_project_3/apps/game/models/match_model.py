@@ -64,6 +64,20 @@ class Match(TimestampedModel):
         verbose_name=_("result"),
         help_text=_("result_help_text"),
     )
+    score_change_left = models.IntegerField(
+        null=False,
+        blank=False,
+        default=0,
+        verbose_name=_("score_change_left"),
+        help_text=_("score_change_left_help_text"),
+    )
+    score_change_right = models.IntegerField(
+        null=False,
+        blank=False,
+        default=0,
+        verbose_name=_("score_change_right"),
+        help_text=_("score_change_right_help_text"),
+    )
     output_left = ArrayField(
         models.CharField(max_length=1024, blank=True, null=True),
         null=True,
@@ -120,6 +134,23 @@ class Match(TimestampedModel):
         db_table = "match"
         verbose_name = _("match")
         verbose_name_plural = _("matchs")
+
+    def amITheBadGuy(self, bot: Bot) -> bool:
+        if bot.id == self.bot_left.id:
+            return True
+        elif bot.id == self.bot_right.id:
+            return False
+        else:
+            raise ValueError("This bot didn't fought in this match")
+
+    def getOpponent(self, bot: Bot) -> Bot:
+        return self.bot_right if self.amITheBadGuy(bot) else self.bot_left
+
+    def getResult(self, bot: Bot) -> bool:
+        return self.result == self.amITheBadGuy(bot)
+
+    def getScoreChange(self, bot: Bot) -> int:
+        return self.score_change_right if self.amITheBadGuy(bot) else self.score_change_left
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""

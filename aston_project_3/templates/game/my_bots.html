@@ -18,7 +18,6 @@
             <div class="d-flex flex-row justify-content-between">
                 <h1 class="mt-1">{% translate "my_bots" %}</h1>
             </div>
-            <p class="text-color-fore">{{topic.section.name}}</p>
         </div>
         {% if bots %}
             <div class="d-flex flex-column">
@@ -55,6 +54,11 @@
                         <td class="align-middle text-end">
                             <a
                                 class="btn small_button button-dark"
+                                href="{% url "game:bot-matches" bot_id=bot.id %}">
+                                {% translate "see_matches" %}
+                            </a>
+                            <a
+                                class="btn small_button button-bright"
                                 href="{% url "game:edit-bot" bot_id=bot.id %}">
                                 {% translate "edit" %}
                             </a>

@@ -85,4 +85,4 @@ class Bot(TimestampedModel):
 
     def __str__(self) -> str:
         """Represent the class objects as a string."""
-        return f"{self.user} : {self.name}"
+        return f"{self.name} [{self.user}]"
