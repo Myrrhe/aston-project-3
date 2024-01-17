@@ -19,6 +19,8 @@ class TogglePublishBotForm(forms.Form):
         self.user = kwargs.pop("user")
         if "bot_id" in kwargs:
             self.bot_id = kwargs.pop("bot_id")
+        else:
+            self.bot_id = None
         super().__init__(*args, **kwargs)
 
     def clean(self) -> dict[str]:

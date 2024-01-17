@@ -4,6 +4,7 @@ from django.http import HttpRequest
 from django.test import TransactionTestCase
 
 from apps.account.models import User
+from apps.core.utils.silence_stdout_util import silence_stdout
 from apps.forum.models import Topic, TopicSection
 from apps.forum.views import TopicViewSet
 
@@ -14,7 +15,8 @@ class TestTopicView(TransactionTestCase):
     def setUp(self) -> None:
         """Set up the data for the tests"""
         User.objects.create_superuser("admin@aston.com", "123456")
-        call_command("loaddata", "topic_section_fixtures")
+        with silence_stdout(django_stdout=True):
+            call_command("loaddata", "topic_section_fixtures")
         user = User.objects.create_user("topic_view@test.com", "123456")
         self.topic_1_id = Topic.objects.create(
             title="Titre 1",

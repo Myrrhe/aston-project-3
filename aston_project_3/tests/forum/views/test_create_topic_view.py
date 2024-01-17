@@ -5,6 +5,7 @@ from django.test import TransactionTestCase
 from django.urls import reverse_lazy
 
 from apps.account.models import User
+from apps.core.utils.silence_stdout_util import silence_stdout
 from apps.forum.models import TopicSection
 from apps.forum.views import CreateTopicViewSet
 
@@ -15,7 +16,8 @@ class TestCreateTopicView(TransactionTestCase):
     def setUp(self) -> None:
         """Set up the data for the tests"""
         User.objects.create_superuser("admin@aston.com", "123456")
-        call_command("loaddata", "topic_section_fixtures")
+        with silence_stdout(django_stdout=True):
+            call_command("loaddata", "topic_section_fixtures")
         self.view = CreateTopicViewSet()
         self.view.request = HttpRequest()
         self.view.request.method = "GET"

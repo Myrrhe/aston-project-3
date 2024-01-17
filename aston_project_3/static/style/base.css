@@ -11,6 +11,10 @@
     color: var(--alert-color) !important;
 }
 
+.text-color-blue {
+    color: var(--blue-color) !important;
+}
+
 .text-color-bright {
     color: var(--bright-color) !important;
 }

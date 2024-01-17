@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-15 10:47+0100\n"
+"POT-Creation-Date: 2024-01-17 11:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgid "is_admin_help_text"
 msgstr "The name displayed by the user"
 
 #: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
-#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:31
+#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:53
 #, fuzzy
 #| msgid "username"
 msgid "user"
@@ -325,15 +325,15 @@ msgid "code_help_text"
 msgstr "The name displayed by the user"
 
 #: .\apps\forum\models\topic_section_model.py:32
-#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:38
-#: .\templates\game\my_bots.html:35
+#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:60
+#: .\templates\game\my_bots.html:34
 #, fuzzy
 #| msgid "username"
 msgid "name"
 msgstr "User name"
 
 #: .\apps\forum\models\topic_section_model.py:33
-#: .\apps\game\models\bot_model.py:39
+#: .\apps\game\models\bot_model.py:61
 #, fuzzy
 #| msgid "username_help_text"
 msgid "name_help_text"
@@ -369,37 +369,37 @@ msgstr "User name"
 msgid "bot_name"
 msgstr "User name"
 
-#: .\apps\game\models\bot_model.py:32
+#: .\apps\game\models\bot_model.py:54
 #, fuzzy
 #| msgid "username_help_text"
 msgid "user_of_bot_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:45 .\templates\game\my_bots.html:37
+#: .\apps\game\models\bot_model.py:67 .\templates\game\my_bots.html:36
 msgid "posted"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:46
+#: .\apps\game\models\bot_model.py:68
 #, fuzzy
 #| msgid "username_help_text"
 msgid "posted_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:52 .\templates\game\my_bots.html:36
+#: .\apps\game\models\bot_model.py:74 .\templates\game\my_bots.html:35
 msgid "score"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:53
+#: .\apps\game\models\bot_model.py:75
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:64
+#: .\apps\game\models\bot_model.py:86
 msgid "bot"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:65
+#: .\apps\game\models\bot_model.py:87
 msgid "bots"
 msgstr ""
 
@@ -444,66 +444,106 @@ msgid "result_help_text"
 msgstr "The name displayed by the user"
 
 #: .\apps\game\models\match_model.py:71
+#, fuzzy
+#| msgid "username_help_text"
+msgid "score_change_left"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:72
+#, fuzzy
+#| msgid "username_help_text"
+msgid "score_change_left_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:78
+#, fuzzy
+#| msgid "username_help_text"
+msgid "score_change_right"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:79
+#, fuzzy
+#| msgid "username_help_text"
+msgid "score_change_right_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:85
 msgid "output_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:72
+#: .\apps\game\models\match_model.py:86
 #, fuzzy
 #| msgid "username_help_text"
 msgid "output_left_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:78
+#: .\apps\game\models\match_model.py:92
 msgid "output_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:79
+#: .\apps\game\models\match_model.py:93
 #, fuzzy
 #| msgid "username_help_text"
 msgid "output_right_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:88
+#: .\apps\game\models\match_model.py:102
 msgid "stderr_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:89
+#: .\apps\game\models\match_model.py:103
 #, fuzzy
 #| msgid "username_help_text"
 msgid "stderr_left_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:99
+#: .\apps\game\models\match_model.py:113
 msgid "stderr_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:100
+#: .\apps\game\models\match_model.py:114
 #, fuzzy
 #| msgid "username_help_text"
 msgid "stderr_right_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:121
+#: .\apps\game\models\match_model.py:135
 msgid "match"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:122
+#: .\apps\game\models\match_model.py:136
 msgid "matchs"
 msgstr ""
 
-#: .\aston_project_3\settings.py:138
+#: .\aston_project_3\settings.py:139
 msgid "french"
 msgstr "French"
 
-#: .\aston_project_3\settings.py:139
+#: .\aston_project_3\settings.py:140
 msgid "english"
 msgstr "English"
 
-#: .\aston_project_3\settings.py:140
+#: .\aston_project_3\settings.py:141
 msgid "spanish"
 msgstr "Spanish"
 
-#: .\templates\account\account.html:15 .\templates\base.html:186
+#: .\templates\400.html:14
+msgid "bad_request"
+msgstr ""
+
+#: .\templates\403.html:14
+msgid "http_forbidden"
+msgstr ""
+
+#: .\templates\404.html:14
+msgid "page_not_found"
+msgstr ""
+
+#: .\templates\500.html:14
+msgid "server_error"
+msgstr ""
+
+#: .\templates\account\account.html:15 .\templates\base.html:195
 msgid "my_account"
 msgstr ""
 
@@ -512,7 +552,9 @@ msgid "connection"
 msgstr ""
 
 #: .\templates\account\account.html:32 .\templates\account\account.html:90
-#: .\templates\game\my_bots.html:59
+#: .\templates\game\bot_match.html:39 .\templates\game\bot_matches.html:28
+#: .\templates\game\bot_matches.html:84 .\templates\game\bot_matches.html:100
+#: .\templates\game\my_bots.html:63
 msgid "edit"
 msgstr ""
 
@@ -615,77 +657,77 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: .\templates\base.html:56 .\templates\game\my_bots.html:19
+#: .\templates\base.html:65 .\templates\game\my_bots.html:19
 msgid "my_bots"
 msgstr ""
 
-#: .\templates\base.html:63
+#: .\templates\base.html:72
 msgid "see_my_bots"
 msgstr ""
 
-#: .\templates\base.html:70 .\templates\game\bot_deleted.html:26
-#: .\templates\game\my_bots.html:28 .\templates\game\my_bots.html:74
-#: .\templates\game\my_bots.html:85
+#: .\templates\base.html:79 .\templates\game\bot_deleted.html:26
+#: .\templates\game\my_bots.html:27 .\templates\game\my_bots.html:78
+#: .\templates\game\my_bots.html:89
 msgid "create_new_bot"
 msgstr ""
 
-#: .\templates\base.html:85
+#: .\templates\base.html:94
 msgid "matches"
 msgstr ""
 
-#: .\templates\base.html:92
-msgid "see_matches"
+#: .\templates\base.html:101
+msgid "see_my_matches"
 msgstr ""
 
-#: .\templates\base.html:99
+#: .\templates\base.html:108
 msgid "look_for_match"
 msgstr ""
 
-#: .\templates\base.html:114
+#: .\templates\base.html:123
 msgid "community"
 msgstr ""
 
-#: .\templates\base.html:121
+#: .\templates\base.html:130
 msgid "discussions"
 msgstr ""
 
-#: .\templates\base.html:128
+#: .\templates\base.html:137
 msgid "ranking"
 msgstr ""
 
-#: .\templates\base.html:163 .\templates\forum\forum.html:85
+#: .\templates\base.html:172 .\templates\forum\forum.html:85
 msgid "change"
 msgstr ""
 
-#: .\templates\base.html:192
+#: .\templates\base.html:201
 msgid "deconnect"
 msgstr ""
 
-#: .\templates\base.html:204 .\templates\registration\login.html:56
+#: .\templates\base.html:213 .\templates\registration\login.html:56
 msgid "connect"
 msgstr ""
 
-#: .\templates\base.html:209
+#: .\templates\base.html:218
 msgid "signup"
 msgstr ""
 
-#: .\templates\base.html:219
+#: .\templates\base.html:228
 msgid "contact"
 msgstr ""
 
-#: .\templates\base.html:220
+#: .\templates\base.html:229
 msgid "faq"
 msgstr ""
 
-#: .\templates\base.html:221
+#: .\templates\base.html:230
 msgid "about"
 msgstr ""
 
-#: .\templates\base.html:222
+#: .\templates\base.html:231
 msgid "terms_of_use"
 msgstr ""
 
-#: .\templates\base.html:226
+#: .\templates\base.html:235
 msgid "copyright"
 msgstr ""
 
@@ -824,16 +866,58 @@ msgstr ""
 msgid "bot_deleted_text"
 msgstr "The name displayed by the user"
 
-#: .\templates\game\bot_deleted.html:21 .\templates\game\create_bot.html:42
+#: .\templates\game\bot_deleted.html:21 .\templates\game\bot_match.html:34
+#: .\templates\game\bot_matches.html:33 .\templates\game\bot_matches.html:89
+#: .\templates\game\bot_matches.html:105 .\templates\game\create_bot.html:42
 #: .\templates\game\delete_bot.html:41
 msgid "back_to_my_bots"
 msgstr ""
 
-#: .\templates\game\create_bot.html:16 .\templates\game\create_bot.html:97
+#: .\templates\game\bot_match.html:29
+msgid "back_to_the_matchs"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:20
+msgid "the_matches_of"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:40
+msgid "opponent"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:41
+msgid "issue"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:42
+msgid "score_change"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:43
+msgid "date"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:56
+msgid "victory"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:58
+msgid "defeat"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:74
+msgid "see_match"
+msgstr ""
+
+#: .\templates\game\bot_matches.html:94
+msgid "no_matches"
+msgstr ""
+
+#: .\templates\game\create_bot.html:16 .\templates\game\create_bot.html:87
 msgid "create_bot"
 msgstr ""
 
-#: .\templates\game\create_bot.html:22 .\templates\game\my_bots.html:64
+#: .\templates\game\create_bot.html:22 .\templates\game\my_bots.html:68
 msgid "delete"
 msgstr ""
 
@@ -841,19 +925,19 @@ msgstr ""
 msgid "duplicate_bot"
 msgstr ""
 
-#: .\templates\game\create_bot.html:102
+#: .\templates\game\create_bot.html:92
 msgid "create_bot_text"
 msgstr ""
 
-#: .\templates\game\create_bot.html:120 .\templates\game\create_bot.html:124
+#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:114
 msgid "bot_published"
 msgstr ""
 
-#: .\templates\game\create_bot.html:120 .\templates\game\create_bot.html:125
+#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:115
 msgid "bot_unpublished"
 msgstr ""
 
-#: .\templates\game\create_bot.html:127
+#: .\templates\game\create_bot.html:117
 msgid "publish_bot_text"
 msgstr ""
 
@@ -873,11 +957,15 @@ msgstr ""
 msgid "delete_bot"
 msgstr ""
 
-#: .\templates\game\my_bots.html:38
+#: .\templates\game\my_bots.html:37
 msgid "last_updated"
 msgstr ""
 
-#: .\templates\game\my_bots.html:79
+#: .\templates\game\my_bots.html:58
+msgid "see_matches"
+msgstr ""
+
+#: .\templates\game\my_bots.html:83
 msgid "no_bots"
 msgstr ""
 

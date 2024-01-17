@@ -2,6 +2,9 @@
 from django.urls import path
 from apps.game.views import (
     BotDeletedViewSet,
+    BotMatchDataViewSet,
+    BotMatchesViewSet,
+    BotMatchViewSet,
     CreateBotViewSet,
     DeleteBotViewSet,
     DuplicateBotViewSet,
@@ -17,6 +20,21 @@ urlpatterns = [
         "bots/my-bots",
         MyBotsViewSet.as_view(),
         name="my-bots",
+    ),
+    path(
+        "bots/bot-matches/<uuid:bot_id>",
+        BotMatchesViewSet.as_view(),
+        name="bot-matches",
+    ),
+    path(
+        "bots/bot-matches/<uuid:bot_id>/<uuid:match_id>",
+        BotMatchViewSet.as_view(),
+        name="bot-match",
+    ),
+    path(
+        "bots/bot-matches-data/<uuid:bot_id>/<uuid:match_id>",
+        BotMatchDataViewSet.as_view(),
+        name="bot-match-data",
     ),
     path(
         "bots/new",

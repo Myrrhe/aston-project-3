@@ -4,6 +4,7 @@ from django.http import HttpRequest
 from django.test import TransactionTestCase
 
 from apps.account.models import User
+from apps.core.utils.silence_stdout_util import silence_stdout
 from apps.forum.forms import CreateTopicForm
 from apps.forum.models import Post
 
@@ -17,7 +18,8 @@ class TestCreateTopicForm(TransactionTestCase):
             "create_topic_form@test.com", "123456"
         )
         User.objects.create_superuser("admin@aston.com", "123456")
-        call_command("loaddata", "topic_section_fixtures")
+        with silence_stdout(django_stdout=True):
+            call_command("loaddata", "topic_section_fixtures")
         self.request = HttpRequest()
         self.request.user = self.user
         self.form = CreateTopicForm(

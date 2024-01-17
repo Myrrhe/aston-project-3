@@ -3,6 +3,7 @@ from django.core.management import call_command
 from django.test import TransactionTestCase
 
 from apps.account.models import User
+from apps.core.utils.silence_stdout_util import silence_stdout
 from apps.forum.models import TopicSection
 
 
@@ -14,7 +15,8 @@ class TestTopicSectionModel(TransactionTestCase):
     def setUp(self) -> None:
         """Set up the data for the tests"""
         User.objects.create_superuser("admin@aston.com", "123456")
-        call_command("loaddata", "topic_section_fixtures")
+        with silence_stdout(django_stdout=True):
+            call_command("loaddata", "topic_section_fixtures")
         super().setUp()
 
     def test_standard(self) -> None:

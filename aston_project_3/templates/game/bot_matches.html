@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load bot_match_templatetag %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/forum/main.css" %}">
+{% endblock head_css_site %}
+
+{% block content %}
+
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main">
+
+    <div class="form-login my-5 px-4 pb-2 d-flex flex-column align-items-left justify-content-center w-75">
+        <div>
+            <div class="d-flex flex-row justify-content-between">
+                <h1 class="mt-1">{% translate "the_matches_of" %} {{bot}}</h1>
+            </div>
+        </div>
+        {% if matches %}
+            <div class="d-flex flex-row-reverse mb-2">
+                <a
+                    href="{% url "game:edit-bot" bot_id=bot.id %}"
+                    class="btn small_button button-bright align-self-end me-2">
+                    {% translate "edit" %}
+                </a>
+                <a
+                    href="{% url "game:my-bots" %}"
+                    class="btn small_button button-dark align-self-end me-2">
+                    {% translate "back_to_my_bots" %}
+                </a>
+            </div>
+            <table class="table text-color-fore table-topic mt-2">
+                <caption>The matches played by this bot</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "opponent" %}</th>
+                        <th class="text-center">{% translate "issue" %}</th>
+                        <th class="text-center">{% translate "score_change" %}</th>
+                        <th class="text-center">{% translate "date" %}</th>
+                    </tr>
+                </thead>
+                {% for match in matches %}
+                    <tr class="align-middle row-topic">
+                        <td>
+                            {% with match|opponent:bot as opponent %}
+                                {{ opponent }}
+                            {% endwith %}
+                        </td>
+                        <td class="align-middle text-center">
+                            {% with match|issue:bot as issue %}
+                                {% if issue %}
+                                    <div class="text-color-blue">{% translate "victory" %}</div>
+                                {% else %}
+                                    <div class="text-color-alert">{% translate "defeat" %}</div>
+                                {% endif %}
+                            {% endwith %}
+                        </td>
+                        <td class="align-middle text-center">
+                            {% with match|score_change:bot as score_change %}
+                                {{ score_change }}
+                            {% endwith %}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{match.created_at}}
+                        </td>
+                        <td class="align-middle text-end">
+                            <a
+                                class="btn small_button button-dark"
+                                href="{% url "game:bot-match" bot_id=bot.id match_id=match.id %}">
+                                {% translate "see_match" %}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="d-flex flex-row-reverse mb-2">
+                <a
+                    href="{% url "game:edit-bot" bot_id=bot.id %}"
+                    class="btn small_button button-bright align-self-end me-2">
+                    {% translate "edit" %}
+                </a>
+                <a
+                    href="{% url "game:my-bots" %}"
+                    class="btn small_button button-dark align-self-end me-2">
+                    {% translate "back_to_my_bots" %}
+                </a>
+            </div>
+        {% else %}
+            <p class="text-color-fore">
+                {% translate "no_matches" %}
+            </p>
+            <div class="d-flex flex-row-reverse mb-2">
+                <a
+                    href="{% url "game:edit-bot" bot_id=bot.id %}"
+                    class="btn small_button button-bright align-self-end me-2">
+                    {% translate "edit" %}
+                </a>
+                <a
+                    href="{% url "game:my-bots" %}"
+                    class="btn small_button button-dark align-self-end me-2">
+                    {% translate "back_to_my_bots" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
