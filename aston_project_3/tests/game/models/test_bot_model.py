@@ -7,7 +7,7 @@ from apps.account.models import User
 from apps.game.models import Bot
 
 
-class TestTopicSectionModel(TransactionTestCase):
+class TestBotModel(TransactionTestCase):
     """The tests for the bot model"""
 
     def setUp(self) -> None:

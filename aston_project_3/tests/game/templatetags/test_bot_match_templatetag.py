@@ -6,7 +6,7 @@ from apps.game.models import Bot, Match
 from apps.game.templatetags.bot_match_templatetag import opponent, issue, score_change
 
 
-class TestTopicSectionModel(TransactionTestCase):
+class TestBotMatchTemplatetag(TransactionTestCase):
     """The tests for the bot match templatetag."""
 
     def setUp(self) -> None:
