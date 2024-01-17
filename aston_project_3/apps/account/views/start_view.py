@@ -1,7 +1,9 @@
 """The starting view."""
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.views import View
+
+from apps.game.models import Bot, Match
 
 
 class StartViewSet(View):
@@ -9,7 +11,14 @@ class StartViewSet(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """GET method."""
-        if request.user.is_authenticated:
-            return redirect("account:home")
-        else:
+        if not Match.objects.exists():
             return render(request, "home/start.html")
+        match = Match.objects.order_by("?").first()
+        return render(
+            request,
+            "home/start.html",
+            context={
+                "match": match,
+                "bot": match.bot_left,
+            }
+        )
