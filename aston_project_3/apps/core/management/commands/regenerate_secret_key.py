@@ -6,7 +6,7 @@ from apps.core.utils.create_secret_key_util import create_django_key
 
 
 class Command(BaseCommand):
-    """The command toregenerate the secret key."""
+    """The command to regenerate the secret key."""
 
     help = "Regenerate a secret key"
 

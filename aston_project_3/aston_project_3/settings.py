@@ -200,3 +200,5 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
     "lineNumbers": True,
     "indent": 4
 })
+
+SONAR_TOKEN = env("SONAR_TOKEN")
