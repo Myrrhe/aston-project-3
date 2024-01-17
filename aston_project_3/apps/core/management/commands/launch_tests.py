@@ -28,6 +28,7 @@ class Command(BaseCommand):
         if not options["notests"]:
             subprocess.run("coverage run manage.py test", shell=False)
             subprocess.run("coverage html", shell=False)
+            subprocess.run("coverage xml", shell=False)
         if options["open"]:
             webbrowser.register(
                 "firefox",
