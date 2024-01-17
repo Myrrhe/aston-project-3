@@ -4,10 +4,54 @@
 {% block head_css_site %}
 {{ block.super }}
     <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
+    <link rel="stylesheet" href="{% static "style/game/match/match.css" %}">
 {% endblock head_css_site %}
 
 {% block content %}
 
-L'aventure commence ici !
-
+<div
+    class="h-100 d-flex align-items-center justify-content-center"
+    id="main">
+    <div class="form-login my-5 px-4 pb-2 pt-4 d-flex flex-column align-items-left justify-content-center w-75">
+        <div
+            id="block-request"
+            data-url="{% url "game:bot-match-data" bot_id=bot.id match_id=match.id %}">
+            {% csrf_token %}
+        </div>
+        <canvas id="canvas-match"></canvas>
+        <div class="control-panel w-100">
+            <div id="progress-container" class="w-100 d-flex align-items-center justify-content-center">
+                <div class="progress-back w-100 d-flex">
+                    <div id="progress-bar-match" class="h-100">
+                        <div class="progress-end"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-control py-1 d-flex flex-row align-items-center">
+                <button id="button-beginning" disabled class="button-match ps-2 pe-1">
+                    <em class="fas fa-backward-fast fa-lg"></em>
+                </button>
+                <button id="button-prev" disabled class="button-match px-1">
+                    <em class="fas fa-backward fa-lg"></em>
+                </button>
+                <button id="button-play" disabled class="fa-2x button-match button-match-play px-1"></button>
+                <button id="button-next" disabled class="button-match px-1">
+                    <em class="fas fa-forward fa-lg"></em>
+                </button>
+                <button id="button-end" disabled class="button-match px-1">
+                    <em class="fas fa-forward-fast fa-lg"></em>
+                </button>
+            </div>
+        </div>
+        <div id="fight-result" class="d-none text-color-fore py-1"></div>
+        <div id="block-output" class="p-3 mt-1 back-color-white-veil-5 d-none"></div>
+    </div>
+</div>
+<script
+    src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"
+    integrity="sha256-l/g591WzABd9b8YZA9G7UMDxAWh8iMSzqelPaAWSht8="
+    crossorigin="anonymous">
+</script>
+<script src="{% static "js/game/match/match.js" %}"></script>
+<script src="{% static "js/game/bot_match.js" %}"></script>
 {% endblock %}
