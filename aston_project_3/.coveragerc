@@ -1,5 +1,5 @@
 # .coveragerc to control coverage.py
-# run 'coverage run manage.py test | coverage html' to run tests + cover
+# run 'coverage run manage.py test | coverage html | coverage xml' to run tests + cover
 [run]
 branch=True
 # A False value for timid can infortunately cause issues
