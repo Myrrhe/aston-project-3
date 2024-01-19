@@ -6,7 +6,7 @@ from apps.game.models import Bot
 
 @admin.register(Bot)
 class BotAdmin(admin.ModelAdmin):
-    """The user's admin."""
+    """The bot's admin."""
 
     list_display = (
         "user",

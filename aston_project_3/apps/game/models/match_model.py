@@ -29,6 +29,11 @@ class MatchManager(models.Manager):
         )
         return match
 
+    def start_match(self) -> None:
+        """Start a match between two random bots."""
+        bot_left = Bot.objects.order_by("?").first()
+        bot_right = Bot.objects.exclude(id=bot_left.id).order_by("?").first()
+        self.bot_fight(bot_left, bot_right)
 
 class Match(TimestampedModel):
     """The match's model."""

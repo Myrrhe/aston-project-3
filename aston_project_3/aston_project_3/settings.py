@@ -202,3 +202,5 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
 })
 
 SONAR_TOKEN = env("SONAR_TOKEN")
+
+MATCH_AUTO = env("MATCH_AUTO")

@@ -1,4 +1,4 @@
-"""The command to regenerate the secret key."""
+"""The command to launch the tests."""
 import subprocess
 import webbrowser
 from django.conf import settings
@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandParser
 
 
 class Command(BaseCommand):
-    """The command toregenerate the secret key."""
+    """The command to launch the tests."""
 
     help = "Regenerate a secret key"
 
