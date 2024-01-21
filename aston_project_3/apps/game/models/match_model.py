@@ -14,10 +14,11 @@ from apps.game.utils.bot_fight_util import main_fight
 class MatchManager(models.Manager):
     """Custom manager for the bot model."""
 
-    def bot_fight(self, bot_left: Bot, bot_right: Bot) -> Match:
+    def bot_fight(self, bot_left: Bot, bot_right: Bot, friendly=True) -> Match:
         """Create a match between two bots."""
         res = main_fight([bot_left.id, bot_right.id])
-        match = self.create(
+        win = res["result"] == "1"
+        match = Match(
             bot_left=bot_left,
             bot_right=bot_right,
             movements=res["movements"],
@@ -27,6 +28,14 @@ class MatchManager(models.Manager):
             error_messages_left=res["stderr"][0],
             error_messages_right=res["stderr"][1],
         )
+        if not friendly:
+            match.score_change_left = 1 if win else -1
+            match.score_change_right = -1 if win else 1
+        match.save()
+        bot_left.score += match.score_change_left
+        bot_left.save()
+        bot_right.score += match.score_change_right
+        bot_right.save()
         return match
 
     def start_match(self) -> None:
