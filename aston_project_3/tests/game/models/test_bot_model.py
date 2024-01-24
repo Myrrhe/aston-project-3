@@ -73,4 +73,3 @@ while True:\n\
             print(f"Le fichier storage/bot/{self.bot.id}.py n'a pas été trouvé.")
         except Exception as e:
             print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")
-

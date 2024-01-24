@@ -5,6 +5,7 @@ from typing import Generator
 
 from apps.core.utils.none_return_util import return_none
 
+
 @contextmanager
 def silence_stdout(
     stdout: bool = False,
@@ -24,9 +25,17 @@ def silence_stdout(
     original_django_stderr_write = sys.stderr.write
     try:
         if stdout:
-            sys.stdout = open("nul" if sys.platform.startswith("win") else "/dev/null", "w")
+            sys.stdout = open(
+                "nul" if sys.platform.startswith("win") else "/dev/null",
+                "w",
+                encoding="utf-8"
+            )
         if stderr:
-            sys.stderr = open("nul" if sys.platform.startswith("win") else "/dev/null", "w")
+            sys.stderr = open(
+                "nul" if sys.platform.startswith("win") else "/dev/null",
+                "w",
+                encoding="utf-8"
+            )
         if django_stdout:
             sys.stdout.write = return_none
         if django_stderr:

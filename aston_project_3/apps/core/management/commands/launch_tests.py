@@ -26,9 +26,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options) -> None:
         """Execute the code when the command is called."""
         if not options["notests"]:
-            subprocess.run("coverage run manage.py test", shell=False)
-            subprocess.run("coverage html", shell=False)
-            subprocess.run("coverage xml", shell=False)
+            subprocess.run("coverage run manage.py test", shell=False, check=True)
+            subprocess.run("coverage html", shell=False, check=True)
+            subprocess.run("coverage xml", shell=False, check=True)
         if options["open"]:
             webbrowser.register(
                 "firefox",

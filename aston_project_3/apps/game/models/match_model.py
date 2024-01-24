@@ -14,7 +14,7 @@ from apps.game.utils.bot_fight_util import main_fight
 class MatchManager(models.Manager):
     """Custom manager for the bot model."""
 
-    def bot_fight(self, bot_left: Bot, bot_right: Bot, friendly=True) -> Match:
+    def bot_fight(self, bot_left: Bot, bot_right: Bot, friendly: bool = True) -> Match:
         """Create a match between two bots."""
         res = main_fight([bot_left.id, bot_right.id])
         win = res["result"] == "1"
@@ -43,6 +43,7 @@ class MatchManager(models.Manager):
         bot_left = Bot.objects.order_by("?").first()
         bot_right = Bot.objects.exclude(id=bot_left.id).order_by("?").first()
         self.bot_fight(bot_left, bot_right)
+
 
 class Match(TimestampedModel):
     """The match's model."""
@@ -128,7 +129,7 @@ class Match(TimestampedModel):
         help_text=_("stderr_right_help_text"),
     )
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         """Save the model in the database (overidden to pad the arrays)."""
         if self.error_messages_left:
             max_length_left = max(len(row) for row in self.error_messages_left)
@@ -150,6 +151,7 @@ class Match(TimestampedModel):
         verbose_name_plural = _("matchs")
 
     def am_i_the_bad_guy(self, bot: Bot) -> bool:
+        """Check if the bot is left or right."""
         if bot.id == self.bot_left.id:
             return True
         elif bot.id == self.bot_right.id:
@@ -158,12 +160,15 @@ class Match(TimestampedModel):
             raise ValueError("This bot didn't fought in this match")
 
     def get_opponent(self, bot: Bot) -> Bot:
+        """Get the opponent of the bot."""
         return self.bot_right if self.am_i_the_bad_guy(bot) else self.bot_left
 
     def get_result(self, bot: Bot) -> bool:
+        """Check the result from the bot point of view."""
         return self.result == self.am_i_the_bad_guy(bot)
 
     def get_score_change(self, bot: Bot) -> int:
+        """Check the score change of the bot."""
         return self.score_change_right if self.am_i_the_bad_guy(bot) else self.score_change_left
 
     def __str__(self) -> str:

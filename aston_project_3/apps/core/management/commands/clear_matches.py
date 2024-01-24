@@ -17,14 +17,3 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options) -> None:
         """Execute the code when the command is called."""
-        if not options["notests"]:
-            subprocess.run("coverage run manage.py test", shell=False)
-            subprocess.run("coverage html", shell=False)
-            subprocess.run("coverage xml", shell=False)
-        if options["open"]:
-            webbrowser.register(
-                "firefox",
-                None,
-                webbrowser.BackgroundBrowser("C:/Program Files/Mozilla Firefox/firefox.exe")
-            )
-            webbrowser.get("firefox").open_new_tab(f"file://{settings.BASE_DIR}/htmlcov/index.html")

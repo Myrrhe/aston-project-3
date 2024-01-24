@@ -12,4 +12,3 @@ class Command(BaseCommand):
     def handle(self, *args, **options) -> None:
         """Execute the code when the command is called."""
         Match.objects.start_match()
-
