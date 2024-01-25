@@ -1,4 +1,6 @@
 """The tests for the password change form"""
+import os
+
 from django.test import TransactionTestCase
 
 from apps.account.models import User
@@ -51,3 +53,8 @@ class TestCreateBotForm(TransactionTestCase):
         self.assertEqual(Bot.objects.all()[0].name, "new_name_1")
         form.save(True)
         self.assertEqual(Bot.objects.all()[0].name, "new_name_2")
+
+        try:
+            os.remove(f"storage/bot/{bot.id}.py")
+        except FileNotFoundError:
+            print(f"Le fichier storage/bot/{bot.id}.py n'a pas été trouvé.")

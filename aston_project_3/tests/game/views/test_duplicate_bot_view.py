@@ -36,6 +36,7 @@ class TestDuplicateBotView(TransactionTestCase):
 
     def test_standard(self) -> None:
         """Run the tests"""
+        self.assertEqual(self.view.bot_id, "")
         self.assertEqual(
             self.view.get_form_kwargs(),
             {
@@ -55,7 +56,6 @@ class TestDuplicateBotView(TransactionTestCase):
             self.view.get_success_url(),
             reverse_lazy("game:edit-bot", args=[self.view.bot_id])
         )
-        self.view.request.method = "POST"
         self.view.request.POST = {
             "duplicate_bot_form-bot_id": self.bot.id,
             "duplicate_bot_form": "duplicate_bot",

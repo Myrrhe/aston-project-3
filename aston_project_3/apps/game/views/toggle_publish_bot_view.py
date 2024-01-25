@@ -35,10 +35,14 @@ class TogglePublishBotViewSet(UpdateView):
             # Toggle publish bot
             bot = toggle_publish_bot_form.toggle_publish()
             self.bot_id = bot.id
+            return JsonResponse({
+                "message": "Posted status changed",
+                "posted": bot.posted,
+            }, status="200", content_type="text/json")
         return JsonResponse({
-            "message": "Posted status changed",
-            "posted": bot.posted,
-        }, status="200", content_type="text/json")
+            "message": "Posted status not changed due to an error",
+            "posted": False,
+        }, status="500", content_type="text/json")
 
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""
