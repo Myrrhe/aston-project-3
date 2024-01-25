@@ -6,7 +6,7 @@ from django.test import TransactionTestCase
 from apps.account.models import User
 from apps.core.utils.silence_stdout_util import silence_stdout
 from apps.forum.forms import CreateTopicForm
-from apps.forum.models import Post
+from apps.forum.models import Post, Topic
 
 
 class TestCreateTopicForm(TransactionTestCase):
@@ -31,5 +31,9 @@ class TestCreateTopicForm(TransactionTestCase):
 
     def test_standard(self) -> None:
         """Run the tests"""
-        self.assertEqual(self.form.save().title, "Premier topic")
+        self.form.save(commit=False)
+        self.assertEqual(Topic.objects.count(), 0)
+        self.assertEqual(Post.objects.count(), 0)
+        self.form.save()
+        self.assertEqual(Topic.objects.count(), 1)
         self.assertEqual(Post.objects.count(), 1)
