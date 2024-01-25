@@ -45,13 +45,20 @@ while True:\n\
     print(\"LEFT\")\n\
 ")
 
-        self.assertEqual(Bot.objects.get_by_natural_key(self.user.email, self.bot.name).id, self.bot.id)
+        self.assertEqual(
+            Bot.objects.get_by_natural_key(self.user.email, self.bot.name).id,
+            self.bot.id
+        )
         self.assertEqual(self.bot.natural_key(), (self.user, self.bot.name,))
         self.assertEqual(str(self.bot), f"{self.bot.name} [{self.user}]")
         self.assertFalse(self.bot.load_script())
         if not os.path.exists(f"apps/game/bot_scripts/{self.bot.id}"):
             os.makedirs(f"apps/game/bot_scripts/{self.bot.id}")
-        with open(f"apps/game/bot_scripts/{self.bot.id}/script.py", "w") as file_code_bot:
+        with open(
+            f"apps/game/bot_scripts/{self.bot.id}/script.py",
+            "w",
+            encoding="utf-8"
+        ) as file_code_bot:
             file_code_bot.write(Bot.objects.get_default_code)
         self.assertTrue(self.bot.load_script())
         self.assertEqual(self.bot.get_code, Bot.objects.get_default_code)
@@ -59,8 +66,6 @@ while True:\n\
             os.remove(f"apps/game/bot_scripts/{self.bot.id}/script.py")
         except FileNotFoundError:
             print(f"Le fichier apps/game/bot_scripts/{self.bot.id}/script.py n'a pas été trouvé.")
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")
         try:
             os.rmdir(f"apps/game/bot_scripts/{self.bot.id}")
         except FileNotFoundError:
@@ -71,5 +76,3 @@ while True:\n\
             os.remove(f"storage/bot/{self.bot.id}.py")
         except FileNotFoundError:
             print(f"Le fichier storage/bot/{self.bot.id}.py n'a pas été trouvé.")
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")

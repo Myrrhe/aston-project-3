@@ -29,7 +29,6 @@ class TestDeleteBotView(TransactionTestCase):
     def test_standard(self) -> None:
         """Run the tests"""
         self.assertEqual(self.view.get(self.view.request, self.bot.id).status_code, 200)
-        self.view.get_form_kwargs()
         self.assertEqual(
             self.view.get_form_kwargs(),
             {

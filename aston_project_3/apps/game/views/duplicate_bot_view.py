@@ -31,7 +31,8 @@ class DuplicateBotViewSet(CreateView):
         if duplicate_bot_form.is_bound and duplicate_bot_form.is_valid():
             # duplicate bot
             self.bot_id = duplicate_bot_form.duplicate_bot().id
-        return redirect(self.get_success_url())
+            return redirect(self.get_success_url())
+        return redirect("game:my-bots")
 
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""

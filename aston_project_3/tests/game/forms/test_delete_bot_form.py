@@ -32,20 +32,20 @@ class TestDeleteBotForm(TransactionTestCase):
 
     def test_standard(self) -> None:
         """Run the tests"""
-        form = self.form = DeleteBotForm(
+        form = DeleteBotForm(
             {
                 "bot_id": self.bot_1.id,
             },
             user=self.user
         )
         self.assertEqual(form.user.email, self.user.email)
-        with open(f"storage/bot/{self.bot_2.id}.py", "w") as file_code_bot:
+        with open(f"storage/bot/{self.bot_2.id}.py", "w", encoding="utf-8") as file_code_bot:
             file_code_bot.write(Bot.objects.get_default_code)
         form.is_valid()
         self.assertEqual(form.clean(), {"bot_id": self.bot_1.id})
         form.delete_bot()
         self.assertEqual(Bot.objects.count(), 1)
-        form = self.form = DeleteBotForm(
+        form = DeleteBotForm(
             {
                 "bot_id": self.bot_2.id,
             },
