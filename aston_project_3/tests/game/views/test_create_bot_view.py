@@ -1,8 +1,8 @@
 """The tests for the bot creation view."""
 import os
-import random
 import uuid
 from importlib import import_module
+from secrets import randbelow
 
 from django.conf import settings
 from django.contrib.auth import logout
@@ -44,8 +44,7 @@ class TestCreateBotView(TransactionTestCase):
         )
         self.assertEqual(self.view.post(self.view.request).status_code, 302)
         self.assertEqual(Bot.objects.count(), 0)
-        uuid.uuid1(random.randint(0, 2 ** 48 - 1))
-        self.view.bot_id = uuid.uuid1(random.randint(0, 2 ** 48 - 1))
+        self.view.bot_id = uuid.uuid1(randbelow(2 ** 48 - 1))
         self.assertEqual(
             self.view.get_success_url(),
             reverse_lazy("game:edit-bot", args=[self.view.bot_id]),
