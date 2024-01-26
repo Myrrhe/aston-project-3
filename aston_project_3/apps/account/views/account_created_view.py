@@ -11,5 +11,4 @@ class AccountCreatedViewSet(View):
         """GET method."""
         if request.user.is_authenticated:
             return redirect("account:home")
-        else:
-            return render(request, "registration/account_created.html")
+        return render(request, "registration/account_created.html")

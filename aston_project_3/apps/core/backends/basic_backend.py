@@ -1,4 +1,5 @@
 """The backend authentication."""
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
@@ -32,7 +33,7 @@ class BasicBackend(BaseBackend):
             UserModel().set_password(password)
         else:
             if user.check_password(password) and self.user_can_authenticate(user):
-                resolved = resolve(request.path)
+                resolved = resolve(request.path, settings.ROOT_URLCONF)
                 if resolved.url_name == "login" and resolved.namespace == "account":
                     print("Logging via non-admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():

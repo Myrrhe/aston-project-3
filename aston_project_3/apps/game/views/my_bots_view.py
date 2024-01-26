@@ -23,5 +23,4 @@ class MyBotsViewSet(View):
                     "bots": bots,
                 },
             )
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")
