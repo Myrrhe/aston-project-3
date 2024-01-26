@@ -133,10 +133,14 @@ class Match(TimestampedModel):
         """Save the model in the database (overidden to pad the arrays)."""
         if self.error_messages_left:
             max_length_left = max(len(row) for row in self.error_messages_left)
-            self.error_messages_left = [row + [None] * (max_length_left - len(row)) for row in self.error_messages_left]
+            self.error_messages_left = [
+                row + [None] * (max_length_left - len(row)) for row in self.error_messages_left
+            ]
         if self.error_messages_right:
             max_length_right = max(len(row) for row in self.error_messages_right)
-            self.error_messages_right = [row + [None] * (max_length_right - len(row)) for row in self.error_messages_right]
+            self.error_messages_right = [
+                row + [None] * (max_length_right - len(row)) for row in self.error_messages_right
+            ]
         super().save(*args, **kwargs)
 
     REQUIRED_FIELDS = []
