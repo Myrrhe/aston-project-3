@@ -50,6 +50,7 @@ class TestCreateBotView(TransactionTestCase):
             self.view.get_success_url(),
             reverse_lazy("game:edit-bot", args=[self.view.bot_id]),
         )
+        self.view.request.method = "POST"
         self.view.request.POST = {
             "create_bot_form-name": "bot_name",
             "create_bot_form-code": Bot.objects.get_default_code,
@@ -58,6 +59,7 @@ class TestCreateBotView(TransactionTestCase):
         self.assertEqual(self.view.post(self.view.request).status_code, 302)
         self.assertEqual(Bot.objects.count(), 1)
         logout(self.view.request)
+        self.view.request.method = "GET"
         self.assertEqual(self.view.get(self.view.request).status_code, 302)
 
         try:

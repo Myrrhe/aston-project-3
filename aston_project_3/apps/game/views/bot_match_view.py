@@ -21,7 +21,7 @@ class BotMatchViewSet(View):
             if bot.user.id != request.user.id:
                 return redirect("game:my-bots")
             match = Match.objects.get(pk=match_id)
-            if match.bot_left.id != bot_id and match.bot_right.id != bot_id:
+            if bot_id not in {match.bot_left.id, match.bot_right.id}:
                 return redirect("game:bot-matches", bot_id)
             return render(
                 request,
@@ -31,5 +31,4 @@ class BotMatchViewSet(View):
                     "match": match,
                 },
             )
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")

@@ -22,7 +22,7 @@ class BotMatchDataViewSet(View):
             if bot.user.id != request.user.id:
                 return JsonResponse({}, status="403", content_type=content_type)
             match = Match.objects.get(pk=match_id)
-            if match.bot_left.id != bot_id and match.bot_right.id != bot_id:
+            if bot_id not in {match.bot_left.id, match.bot_right.id}:
                 return JsonResponse({}, status="403", content_type=content_type)
             return JsonResponse({
                 "bot_name": escape(bot.name),
@@ -31,6 +31,5 @@ class BotMatchDataViewSet(View):
                 "stderr": [match.error_messages_left, match.error_messages_right],
                 "match_result": match.result if match else "",
                 "match_even": match.bot_left.id == bot.id if match else "",
-            }, status="200", content_type="text/json")
-        else:
-            return JsonResponse({}, status="403", content_type="text/json")
+            }, status="200", content_type=content_type)
+        return JsonResponse({}, status="403", content_type=content_type)
