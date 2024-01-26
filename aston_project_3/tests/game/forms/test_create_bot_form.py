@@ -1,4 +1,6 @@
 """The tests for the password change form"""
+import os
+
 from django.test import TransactionTestCase
 
 from apps.account.models import User
@@ -18,25 +20,25 @@ class TestCreateBotForm(TransactionTestCase):
 
     def test_standard(self) -> None:
         """Run the tests"""
-        self.form = CreateBotForm(
+        form = CreateBotForm(
             {
                 "name": "new_name_1",
                 "code": "# Some code",
             },
             user=self.user
         )
-        self.assertIsNone(self.form.bot_id)
-        self.form.is_valid()
-        self.assertEqual(self.form.clean(), {
+        self.assertIsNone(form.bot_id)
+        form.is_valid()
+        self.assertEqual(form.clean(), {
             "name": "new_name_1",
             "code": "# Some code",
         })
-        self.form.save(False)
+        form.save(False)
         self.assertEqual(Bot.objects.count(), 0)
-        bot = self.form.save(True)
+        bot = form.save(True)
         self.assertEqual(Bot.objects.count(), 1)
 
-        self.form = CreateBotForm(
+        form = CreateBotForm(
             {
                 "name": "new_name_2",
                 "code": "# Some other code",
@@ -44,10 +46,15 @@ class TestCreateBotForm(TransactionTestCase):
             user=self.user,
             bot_id=bot.id
         )
-        self.assertEqual(self.form.bot_id, bot.id)
-        self.form.is_valid()
-        self.form.clean()
-        self.form.save(False)
+        self.assertEqual(form.bot_id, bot.id)
+        form.is_valid()
+        form.clean()
+        form.save(False)
         self.assertEqual(Bot.objects.all()[0].name, "new_name_1")
-        self.form.save(True)
+        form.save(True)
         self.assertEqual(Bot.objects.all()[0].name, "new_name_2")
+
+        try:
+            os.remove(f"storage/bot/{bot.id}.py")
+        except FileNotFoundError:
+            print(f"Le fichier storage/bot/{bot.id}.py n'a pas été trouvé.")

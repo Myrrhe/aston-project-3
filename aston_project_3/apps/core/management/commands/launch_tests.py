@@ -1,4 +1,4 @@
-"""The command to regenerate the secret key."""
+"""The command to launch the tests."""
 import subprocess
 import webbrowser
 from django.conf import settings
@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandParser
 
 
 class Command(BaseCommand):
-    """The command toregenerate the secret key."""
+    """The command to launch the tests."""
 
     help = "Regenerate a secret key"
 
@@ -22,13 +22,25 @@ class Command(BaseCommand):
             action="store_true",
             help="Make that tests aren't executed",
         )
+        parser.add_argument(
+            "--module",
+            type=str,
+            help="Specify a module to test alone",
+        )
 
     def handle(self, *args, **options) -> None:
         """Execute the code when the command is called."""
         if not options["notests"]:
-            subprocess.run("coverage run manage.py test", shell=False)
-            subprocess.run("coverage html", shell=False)
-            subprocess.run("coverage xml", shell=False)
+            if options["module"] is None:
+                subprocess.run("coverage run manage.py test", shell=False, check=False)
+            else:
+                subprocess.run(
+                    f"coverage run manage.py test {options["module"]}",
+                    shell=False,
+                    check=False
+                )
+            subprocess.run("coverage html", shell=False, check=True)
+            subprocess.run("coverage xml", shell=False, check=True)
         if options["open"]:
             webbrowser.register(
                 "firefox",

@@ -28,7 +28,7 @@ $(document).ready(function() {
                 create_bot_form: 'create_bot',
             },
             success(data) {
-                positions = setupMatch(data);
+                const positions = setupMatch(data);
 
                 triggerMatch(positions[0], positions[1]);
             },

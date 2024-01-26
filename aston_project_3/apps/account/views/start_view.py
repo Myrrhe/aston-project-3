@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 
-from apps.game.models import Bot, Match
+from apps.game.models import Match
 
 
 class StartViewSet(View):

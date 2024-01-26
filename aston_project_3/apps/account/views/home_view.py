@@ -11,5 +11,4 @@ class HomeViewSet(View):
         """GET method."""
         if request.user.is_authenticated:
             return render(request, "home/home.html")
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")

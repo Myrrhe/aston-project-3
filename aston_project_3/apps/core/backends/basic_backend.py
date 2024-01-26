@@ -1,4 +1,5 @@
 """The backend authentication."""
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.http import HttpRequest
@@ -32,7 +33,7 @@ class BasicBackend(BaseBackend):
             UserModel().set_password(password)
         else:
             if user.check_password(password) and self.user_can_authenticate(user):
-                resolved = resolve(request.path)
+                resolved = resolve(request.path, settings.ROOT_URLCONF)
                 if resolved.url_name == "login" and resolved.namespace == "account":
                     print("Logging via non-admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():
@@ -45,13 +46,11 @@ class BasicBackend(BaseBackend):
                             request.POST["security_key"],
                         ):
                             return user
-                        else:
-                            print("Wrong code")
-                            return
-                    else:
-                        # The user don't have a security key
-                        return user
-                elif resolved.url_name == "login" and resolved.namespace == "admin":
+                        print("Wrong code")
+                        return
+                    # The user don't have a security key
+                    return user
+                if resolved.url_name == "login" and resolved.namespace == "admin":
                     print("Logging via admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():
                         # The user have a security key
@@ -63,16 +62,13 @@ class BasicBackend(BaseBackend):
                             request.POST["security_key"],
                         ):
                             return user
-                        else:
-                            print("Wrong code")
-                            return
-                    else:
-                        # The user don't have a security key
-                        print("No security key")
+                        print("Wrong code")
                         return
-                else:
-                    print("Logging via unknown")
+                    # The user don't have a security key
+                    print("No security key")
                     return
+                print("Logging via unknown")
+                return
 
     def get_user(self, user_id: str) -> any:
         """Get the user from their PK if they can be authenticated."""

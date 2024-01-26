@@ -12,4 +12,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options) -> None:
         """Execute the code when the command is called."""
-        subprocess.run(["sonar-scanner", f"-Dtoken={settings.SONAR_TOKEN}"], shell=True, cwd="..")
+        subprocess.run(
+            ["sonar-scanner", f"-Dtoken={settings.SONAR_TOKEN}"],
+            shell=True,
+            cwd="..",
+            check=True
+        )

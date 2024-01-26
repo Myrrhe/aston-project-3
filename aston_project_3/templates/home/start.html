@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 {% block head_css_site %}
 {{ block.super }}
@@ -13,11 +13,17 @@
     class="h-100 d-flex align-items-center justify-content-center"
     id="main">
     <div class="form-login my-5 px-4 pb-2 pt-4 d-flex flex-column align-items-left justify-content-center w-75">
-        <div
-            id="block-request"
-            data-url="{% url "game:bot-match-data" bot_id=bot.id match_id=match.id %}">
-            {% csrf_token %}
-        </div>
+        {% if match %}
+            <div
+                id="block-request"
+                data-url="{% url "game:bot-match-data" bot_id=bot.id match_id=match.id %}">
+                {% csrf_token %}
+            </div>
+        {% else %}
+            <div>
+                {% translate "no_matches" %}
+            </div>
+        {% endif %}
         <canvas id="canvas-match"></canvas>
         <div class="control-panel w-100">
             <div id="progress-container" class="w-100 d-flex align-items-center justify-content-center">

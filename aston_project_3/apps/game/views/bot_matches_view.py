@@ -30,5 +30,4 @@ class BotMatchesViewSet(View):
                     "matches": matches,
                 },
             )
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")

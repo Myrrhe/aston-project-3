@@ -21,6 +21,7 @@ class BotManager(models.Manager):
 
     @property
     def get_default_code(self) -> Bot:
+        """Get the start code of the bot."""
         return "\
 import sys\n\
 import math\n\

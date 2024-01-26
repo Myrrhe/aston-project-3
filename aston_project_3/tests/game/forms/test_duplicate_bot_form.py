@@ -23,13 +23,13 @@ class TestDuplicateBotForm(TransactionTestCase):
             posted=False,
             score=0,
         )
-        with open(f"storage/bot/{self.bot.id}.py", "w") as file_code_bot:
+        with open(f"storage/bot/{self.bot.id}.py", "w", encoding="utf-8") as file_code_bot:
             file_code_bot.write(Bot.objects.get_default_code)
         super().setUp()
 
     def test_standard(self) -> None:
         """Run the tests"""
-        form = self.form = DuplicateBotForm({"bot_id": self.bot.id}, user=self.user)
+        form = DuplicateBotForm({"bot_id": self.bot.id}, user=self.user)
         self.assertEqual(form.user.email, self.user.email)
         form.is_valid()
         self.assertEqual(form.clean(), {"bot_id": self.bot.id})
@@ -43,17 +43,11 @@ class TestDuplicateBotForm(TransactionTestCase):
             os.remove(f"storage/bot/{self.bot.id}.py")
         except FileNotFoundError:
             print(f"Le fichier storage/bot/{self.bot.id}.py n'a pas été trouvé.")
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")
         try:
             os.remove(f"storage/bot/{new_bot_1.id}.py")
         except FileNotFoundError:
             print(f"Le fichier storage/bot/{new_bot_1.id}.py n'a pas été trouvé.")
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")
         try:
             os.remove(f"storage/bot/{new_bot_2.id}.py")
         except FileNotFoundError:
             print(f"Le fichier storage/bot/{new_bot_2.id}.py n'a pas été trouvé.")
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de la suppression du fichier : {e}")

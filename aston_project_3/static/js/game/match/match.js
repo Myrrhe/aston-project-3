@@ -324,9 +324,9 @@ const setupMatch = function(data) {
 
     if (data['match_result'] !== '') {
         if (data['match_result']) {
-            $('#fight-result').html(`${data['bot_name']} a gagné !`);
+            $(fightResultId).html(`${data['bot_name']} a gagné !`);
         } else {
-            $('#fight-result').html(`${data['bot_name']} a perdu :(`);
+            $(fightResultId).html(`${data['bot_name']} a perdu :(`);
         }
     }
 
@@ -467,9 +467,9 @@ const setupMatch = function(data) {
 
         startWrite = true;
     }
-    
+
     return positions;
-}
+};
 
 const triggerMatch = function(positions1, positions2) {
     player1.setPositions(positions1);
