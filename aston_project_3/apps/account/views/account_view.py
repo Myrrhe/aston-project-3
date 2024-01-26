@@ -39,8 +39,7 @@ class AccountViewSet(View):
                     "has_security_key": request.user.has_security_key(),
                 },
             )
-        else:
-            return redirect("account:login", "")
+        return redirect("account:login", "")
 
     def post(self, request: HttpRequest) -> HttpResponse:
         """POST method."""

@@ -154,10 +154,9 @@ class Match(TimestampedModel):
         """Check if the bot is left or right."""
         if bot.id == self.bot_left.id:
             return True
-        elif bot.id == self.bot_right.id:
+        if bot.id == self.bot_right.id:
             return False
-        else:
-            raise ValueError("This bot didn't fought in this match")
+        raise ValueError("This bot didn't fought in this match")
 
     def get_opponent(self, bot: Bot) -> Bot:
         """Get the opponent of the bot."""

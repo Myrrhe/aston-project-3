@@ -46,13 +46,11 @@ class BasicBackend(BaseBackend):
                             request.POST["security_key"],
                         ):
                             return user
-                        else:
-                            print("Wrong code")
-                            return
-                    else:
-                        # The user don't have a security key
-                        return user
-                elif resolved.url_name == "login" and resolved.namespace == "admin":
+                        print("Wrong code")
+                        return
+                    # The user don't have a security key
+                    return user
+                if resolved.url_name == "login" and resolved.namespace == "admin":
                     print("Logging via admin")
                     if TOTPDevice.objects.filter(user_id=user.id).exists():
                         # The user have a security key
@@ -64,16 +62,13 @@ class BasicBackend(BaseBackend):
                             request.POST["security_key"],
                         ):
                             return user
-                        else:
-                            print("Wrong code")
-                            return
-                    else:
-                        # The user don't have a security key
-                        print("No security key")
+                        print("Wrong code")
                         return
-                else:
-                    print("Logging via unknown")
+                    # The user don't have a security key
+                    print("No security key")
                     return
+                print("Logging via unknown")
+                return
 
     def get_user(self, user_id: str) -> any:
         """Get the user from their PK if they can be authenticated."""

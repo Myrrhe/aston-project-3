@@ -19,7 +19,7 @@ class Command(BaseRunServerCommand):
 
     def _exit(self) -> None:
         """Called at the end of the server."""
-        if settings.MATCH_AUTO == "1" and os.environ.get("RUN_MAIN") is None:
+        if settings.MATCH_AUTO == "1" and os.environ.get("RUN_MAIN") is None and "runserver" in sys.argv:
             ScriptManager.stop_external_script()
 
     def _handle_SIGINT(self, signal, frame) -> None:
