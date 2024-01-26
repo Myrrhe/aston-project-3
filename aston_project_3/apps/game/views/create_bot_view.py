@@ -50,7 +50,8 @@ class CreateBotViewSet(CreateView):
         if create_bot_form.is_bound and create_bot_form.is_valid():
             # Create bot
             self.bot_id = create_bot_form.save().id
-        return redirect(self.get_success_url())
+            return redirect(self.get_success_url())
+        return redirect("game:create-bot")
 
     def get_form_kwargs(self) -> any:
         """Add additionnal kwargs to the form."""
