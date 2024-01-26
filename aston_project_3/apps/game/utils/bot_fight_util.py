@@ -8,10 +8,10 @@ Created on Tue Sep 26 10:12:19 2023
 import queue
 import subprocess
 import threading
-from random import randint
-from typing import IO
-from contextlib import ExitStack
 import time
+from contextlib import ExitStack
+from secrets import randbelow
+from typing import IO
 
 # Ce programme envoi des nombre à deux autres programmes : A et B
 # A et B renvoient une réponse différente selon les nombres envoyés
@@ -44,9 +44,9 @@ def main_fight(bots_id: list[str]) -> dict[str | dict]:
     field = [[0 for _ in range(FIELD_WIDTH)] for _ in range(FIELD_HEIGHT)]
 
     pos = {"init": [{
-        "x": randint(0, FIELD_WIDTH - 1),
+        "x": randbelow(FIELD_WIDTH - 1),
         # "x": 0,
-        "y": randint(0, FIELD_HEIGHT // 2 - 1),
+        "y": randbelow(FIELD_HEIGHT // 2 - 1),
     }]}
     pos["init"].append({
         "x": FIELD_WIDTH - 1 - pos["init"][0]["x"],
