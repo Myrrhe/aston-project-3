@@ -4,6 +4,7 @@
         {% load i18n %}
         {% load static %}
         {% load bootstrap5 %}
+        {% load external_script_templatetag %}
 
         <title>{% block title %}{% endblock %}</title>
 
@@ -29,8 +30,8 @@
         <script src="{% static "fontawesomefree/js/fontawesome.js" %}"></script>
         <script src="{% static "fontawesomefree/js/solid.js" %}"></script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-            integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+            src="{{EXTERNAL_SCRIPTS.jquery.url}}"
+            integrity="{{EXTERNAL_SCRIPTS.jquery|external_script}}"
             crossorigin="anonymous">
         </script>
     </head>
