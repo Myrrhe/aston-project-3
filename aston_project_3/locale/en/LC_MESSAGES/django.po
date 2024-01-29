@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-17 11:54+0100\n"
+"POT-Creation-Date: 2024-01-26 16:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgid "is_admin_help_text"
 msgstr "The name displayed by the user"
 
 #: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
-#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:53
+#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:54
 #, fuzzy
 #| msgid "username"
 msgid "user"
@@ -325,7 +325,7 @@ msgid "code_help_text"
 msgstr "The name displayed by the user"
 
 #: .\apps\forum\models\topic_section_model.py:32
-#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:60
+#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:61
 #: .\templates\game\my_bots.html:34
 #, fuzzy
 #| msgid "username"
@@ -333,7 +333,7 @@ msgid "name"
 msgstr "User name"
 
 #: .\apps\forum\models\topic_section_model.py:33
-#: .\apps\game\models\bot_model.py:61
+#: .\apps\game\models\bot_model.py:62
 #, fuzzy
 #| msgid "username_help_text"
 msgid "name_help_text"
@@ -357,7 +357,7 @@ msgstr ""
 msgid "topic_sections"
 msgstr ""
 
-#: .\apps\game\apps.py:11
+#: .\apps\game\apps.py:16
 #, fuzzy
 #| msgid "username"
 msgid "bot_management"
@@ -369,149 +369,149 @@ msgstr "User name"
 msgid "bot_name"
 msgstr "User name"
 
-#: .\apps\game\models\bot_model.py:54
+#: .\apps\game\models\bot_model.py:55
 #, fuzzy
 #| msgid "username_help_text"
 msgid "user_of_bot_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:67 .\templates\game\my_bots.html:36
+#: .\apps\game\models\bot_model.py:68 .\templates\game\my_bots.html:36
 msgid "posted"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:68
+#: .\apps\game\models\bot_model.py:69
 #, fuzzy
 #| msgid "username_help_text"
 msgid "posted_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:74 .\templates\game\my_bots.html:35
+#: .\apps\game\models\bot_model.py:75 .\templates\game\my_bots.html:35
 msgid "score"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:75
+#: .\apps\game\models\bot_model.py:76
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\bot_model.py:86
+#: .\apps\game\models\bot_model.py:87
 msgid "bot"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:87
+#: .\apps\game\models\bot_model.py:88
 msgid "bots"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:41
+#: .\apps\game\models\match_model.py:56
 msgid "bot_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:42
+#: .\apps\game\models\match_model.py:57
 #, fuzzy
 #| msgid "username_help_text"
 msgid "bot_left_of_match_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:49
-msgid "bot_right"
-msgstr ""
-
-#: .\apps\game\models\match_model.py:50
-#, fuzzy
-#| msgid "username_help_text"
-msgid "bot_right_of_match_help_text"
-msgstr "The name displayed by the user"
-
-#: .\apps\game\models\match_model.py:57
-msgid "movements"
-msgstr ""
-
-#: .\apps\game\models\match_model.py:58
-#, fuzzy
-#| msgid "username_help_text"
-msgid "movements_help_text"
-msgstr "The name displayed by the user"
-
 #: .\apps\game\models\match_model.py:64
-msgid "result"
+msgid "bot_right"
 msgstr ""
 
 #: .\apps\game\models\match_model.py:65
 #, fuzzy
 #| msgid "username_help_text"
+msgid "bot_right_of_match_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:72
+msgid "movements"
+msgstr ""
+
+#: .\apps\game\models\match_model.py:73
+#, fuzzy
+#| msgid "username_help_text"
+msgid "movements_help_text"
+msgstr "The name displayed by the user"
+
+#: .\apps\game\models\match_model.py:79
+msgid "result"
+msgstr ""
+
+#: .\apps\game\models\match_model.py:80
+#, fuzzy
+#| msgid "username_help_text"
 msgid "result_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:71
+#: .\apps\game\models\match_model.py:86
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_change_left"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:72
+#: .\apps\game\models\match_model.py:87
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_change_left_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:78
+#: .\apps\game\models\match_model.py:93
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_change_right"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:79
+#: .\apps\game\models\match_model.py:94
 #, fuzzy
 #| msgid "username_help_text"
 msgid "score_change_right_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:85
+#: .\apps\game\models\match_model.py:100
 msgid "output_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:86
+#: .\apps\game\models\match_model.py:101
 #, fuzzy
 #| msgid "username_help_text"
 msgid "output_left_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:92
+#: .\apps\game\models\match_model.py:107
 msgid "output_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:93
+#: .\apps\game\models\match_model.py:108
 #, fuzzy
 #| msgid "username_help_text"
 msgid "output_right_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:102
+#: .\apps\game\models\match_model.py:117
 msgid "stderr_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:103
+#: .\apps\game\models\match_model.py:118
 #, fuzzy
 #| msgid "username_help_text"
 msgid "stderr_left_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:113
+#: .\apps\game\models\match_model.py:128
 msgid "stderr_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:114
+#: .\apps\game\models\match_model.py:129
 #, fuzzy
 #| msgid "username_help_text"
 msgid "stderr_right_help_text"
 msgstr "The name displayed by the user"
 
-#: .\apps\game\models\match_model.py:135
+#: .\apps\game\models\match_model.py:154
 msgid "match"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:136
+#: .\apps\game\models\match_model.py:155
 msgid "matchs"
 msgstr ""
 
@@ -909,7 +909,7 @@ msgstr ""
 msgid "see_match"
 msgstr ""
 
-#: .\templates\game\bot_matches.html:94
+#: .\templates\game\bot_matches.html:94 .\templates\home\start.html:24
 msgid "no_matches"
 msgstr ""
 

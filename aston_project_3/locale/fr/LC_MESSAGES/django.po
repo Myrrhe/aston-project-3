@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-17 11:54+0100\n"
+"POT-Creation-Date: 2024-01-26 16:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,7 +182,7 @@ msgid "is_admin_help_text"
 msgstr "L'utilisateur est-il un administrateur"
 
 #: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
-#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:53
+#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:54
 msgid "user"
 msgstr "Utilisateur"
 
@@ -292,13 +292,13 @@ msgid "code_help_text"
 msgstr "Le code de la section"
 
 #: .\apps\forum\models\topic_section_model.py:32
-#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:60
+#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:61
 #: .\templates\game\my_bots.html:34
 msgid "name"
 msgstr "Nom"
 
 #: .\apps\forum\models\topic_section_model.py:33
-#: .\apps\game\models\bot_model.py:61
+#: .\apps\game\models\bot_model.py:62
 msgid "name_help_text"
 msgstr "Le nom de la section"
 
@@ -318,7 +318,7 @@ msgstr "Section de topic"
 msgid "topic_sections"
 msgstr "Sections de topic"
 
-#: .\apps\game\apps.py:11
+#: .\apps\game\apps.py:16
 msgid "bot_management"
 msgstr "Gestion des bots"
 
@@ -326,119 +326,119 @@ msgstr "Gestion des bots"
 msgid "bot_name"
 msgstr "Nom"
 
-#: .\apps\game\models\bot_model.py:54
+#: .\apps\game\models\bot_model.py:55
 msgid "user_of_bot_help_text"
 msgstr "Le créateur du bot"
 
-#: .\apps\game\models\bot_model.py:67 .\templates\game\my_bots.html:36
+#: .\apps\game\models\bot_model.py:68 .\templates\game\my_bots.html:36
 msgid "posted"
 msgstr "Publié"
 
-#: .\apps\game\models\bot_model.py:68
+#: .\apps\game\models\bot_model.py:69
 msgid "posted_help_text"
 msgstr "Le bot est-il public ou non"
 
-#: .\apps\game\models\bot_model.py:74 .\templates\game\my_bots.html:35
+#: .\apps\game\models\bot_model.py:75 .\templates\game\my_bots.html:35
 msgid "score"
 msgstr "Score"
 
-#: .\apps\game\models\bot_model.py:75
+#: .\apps\game\models\bot_model.py:76
 msgid "score_help_text"
 msgstr "Le score du bot"
 
-#: .\apps\game\models\bot_model.py:86
+#: .\apps\game\models\bot_model.py:87
 msgid "bot"
 msgstr "Bot"
 
-#: .\apps\game\models\bot_model.py:87
+#: .\apps\game\models\bot_model.py:88
 msgid "bots"
 msgstr "Bots"
 
-#: .\apps\game\models\match_model.py:41
+#: .\apps\game\models\match_model.py:56
 msgid "bot_left"
 msgstr "Bot gauche"
 
-#: .\apps\game\models\match_model.py:42
+#: .\apps\game\models\match_model.py:57
 msgid "bot_left_of_match_help_text"
 msgstr "L'un des bots d l'affrontement"
 
-#: .\apps\game\models\match_model.py:49
+#: .\apps\game\models\match_model.py:64
 msgid "bot_right"
 msgstr "Bot droit"
 
-#: .\apps\game\models\match_model.py:50
+#: .\apps\game\models\match_model.py:65
 msgid "bot_right_of_match_help_text"
 msgstr "L'autre bot de l'affrontement"
 
-#: .\apps\game\models\match_model.py:57
+#: .\apps\game\models\match_model.py:72
 msgid "movements"
 msgstr "Mouvements"
 
-#: .\apps\game\models\match_model.py:58
+#: .\apps\game\models\match_model.py:73
 msgid "movements_help_text"
 msgstr "Les mouvements des bots"
 
-#: .\apps\game\models\match_model.py:64
+#: .\apps\game\models\match_model.py:79
 msgid "result"
 msgstr "Résultat"
 
-#: .\apps\game\models\match_model.py:65
+#: .\apps\game\models\match_model.py:80
 msgid "result_help_text"
 msgstr "L'issue du match'"
 
-#: .\apps\game\models\match_model.py:71
+#: .\apps\game\models\match_model.py:86
 msgid "score_change_left"
 msgstr "Changement de score gauche"
 
-#: .\apps\game\models\match_model.py:72
+#: .\apps\game\models\match_model.py:87
 msgid "score_change_left_help_text"
 msgstr "Le changement de score du bot de gauche"
 
-#: .\apps\game\models\match_model.py:78
+#: .\apps\game\models\match_model.py:93
 msgid "score_change_right"
 msgstr "Changement de score droite"
 
-#: .\apps\game\models\match_model.py:79
+#: .\apps\game\models\match_model.py:94
 msgid "score_change_right_help_text"
 msgstr "Le changement de score du bot de droite"
 
-#: .\apps\game\models\match_model.py:85
+#: .\apps\game\models\match_model.py:100
 msgid "output_left"
 msgstr "Output gauche"
 
-#: .\apps\game\models\match_model.py:86
+#: .\apps\game\models\match_model.py:101
 msgid "output_left_help_text"
 msgstr "L'output du bot de gauche"
 
-#: .\apps\game\models\match_model.py:92
+#: .\apps\game\models\match_model.py:107
 msgid "output_right"
 msgstr "Output droit"
 
-#: .\apps\game\models\match_model.py:93
+#: .\apps\game\models\match_model.py:108
 msgid "output_right_help_text"
 msgstr "L'output du bot de droite"
 
-#: .\apps\game\models\match_model.py:102
+#: .\apps\game\models\match_model.py:117
 msgid "stderr_left"
 msgstr "Sortie d'erreur gauche"
 
-#: .\apps\game\models\match_model.py:103
+#: .\apps\game\models\match_model.py:118
 msgid "stderr_left_help_text"
 msgstr "La sortie d'erreur du bot de gauche"
 
-#: .\apps\game\models\match_model.py:113
+#: .\apps\game\models\match_model.py:128
 msgid "stderr_right"
 msgstr "Sortie d'erreur droite"
 
-#: .\apps\game\models\match_model.py:114
+#: .\apps\game\models\match_model.py:129
 msgid "stderr_right_help_text"
 msgstr "La sortie d'erreur du bot de droite"
 
-#: .\apps\game\models\match_model.py:135
+#: .\apps\game\models\match_model.py:154
 msgid "match"
 msgstr "Match"
 
-#: .\apps\game\models\match_model.py:136
+#: .\apps\game\models\match_model.py:155
 msgid "matchs"
 msgstr "Matchs"
 
@@ -834,7 +834,7 @@ msgstr "Défaite"
 msgid "see_match"
 msgstr "Voir le match"
 
-#: .\templates\game\bot_matches.html:94
+#: .\templates\game\bot_matches.html:94 .\templates\home\start.html:24
 msgid "no_matches"
 msgstr "Pas de matches"
 
