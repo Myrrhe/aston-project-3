@@ -23,6 +23,8 @@
     --transparent-color: #00000000;
     --white-veil-5-color: #ffffff11;
     --white-veil-10-color: #ffffff19;
+    --dim-veil-5-color: #ffffff11;
+    --dim-veil-10-color: #ffffff19;
 }
 
 .light-mode {
@@ -46,4 +48,6 @@
     --transparent-color: #00000000;
     --white-veil-5-color: #ffffff11;
     --white-veil-10-color: #ffffff19;
+    --dim-veil-5-color: #00000011;
+    --dim-veil-10-color: #00000019;
 }
