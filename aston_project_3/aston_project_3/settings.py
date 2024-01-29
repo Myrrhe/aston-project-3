@@ -204,3 +204,18 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
 SONAR_TOKEN = env("SONAR_TOKEN")
 
 MATCH_AUTO = env("MATCH_AUTO")
+
+EXTERNAL_SCRIPTS_URL = {
+    "pixijs": {
+        "url": "https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js",
+        "sha": "sha512-NVWPDocxwt9T3NhwBzx3c8vhg2WqGVgehZ100xOySkvbfdhqQDJbvzlSBWyFkFJEPwta89jdpldx2BlggNURVQ==",
+    },
+    "jquery": {
+        "url": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js",
+        "sha": "sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=",
+    },
+    "showdown": {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js",
+        "sha": "sha256-iOtvu+DCcN3zOEruDJYg0HDgkKJuB8Z0Ia42yQO11kk=",
+    },
+}
