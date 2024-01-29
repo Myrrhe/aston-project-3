@@ -3,8 +3,8 @@
     color: var(--fore-color) !important;
 }
 
-.text-color-back {
-    color: var(--back-color) !important;
+.text-color-fore-inv {
+    color: var(--fore-inv-color) !important;
 }
 
 .text-color-alert {
@@ -91,7 +91,7 @@
 
 .button-bright {
     background-color: var(--bright-color) !important;
-    color: var(--back-color) !important;
+    color: var(--fore-inv-nochange-color) !important;
 }
 
 .button-bright:hover {
@@ -100,7 +100,7 @@
 
 .button-bright-alt {
     background-color: var(--bright-alt-color) !important;
-    color: var(--back-color) !important;
+    color: var(--fore-nochange-color) !important;
 }
 
 .button-bright-alt:hover {
@@ -109,7 +109,7 @@
 
 .button-dark {
     background-color: var(--primary-light-color) !important;
-    color: var(--fore-color) !important;
+    color: var(--fore-nochange-color) !important;
 }
 
 .button-dark:hover {
