@@ -126,9 +126,14 @@
 {% codemirror_field_js_assets create_bot_form.code %}
 <script
     src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"
-    integrity="sha256-l/g591WzABd9b8YZA9G7UMDxAWh8iMSzqelPaAWSht8="
+    integrity="sha512-NVWPDocxwt9T3NhwBzx3c8vhg2WqGVgehZ100xOySkvbfdhqQDJbvzlSBWyFkFJEPwta89jdpldx2BlggNURVQ=="
     crossorigin="anonymous">
 </script>
+{% comment %} <script
+    src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"
+    integrity="sha256-l/g591WzABd9b8YZA9G7UMDxAWh8iMSzqelPaAWSht8="
+    crossorigin="anonymous">
+</script> {% endcomment %}
 <script src="{% static "js/game/match/match.js" %}"></script>
 <script src="{% static "js/game/create_bot.js" %}"></script>
 {% endblock %}
