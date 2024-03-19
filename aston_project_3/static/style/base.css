@@ -3,8 +3,8 @@
     color: var(--fore-color) !important;
 }
 
-.text-color-back {
-    color: var(--back-color) !important;
+.text-color-fore-inv {
+    color: var(--fore-inv-color) !important;
 }
 
 .text-color-alert {
@@ -38,7 +38,7 @@
 /* BACKGROUND COLOR */
 
 .back-color-white-veil-5 {
-    background-color: var(--white-veil-5-color);
+    background-color: var(--dim-veil-5-color);
 }
 
 /* HIDE */
@@ -91,7 +91,7 @@
 
 .button-bright {
     background-color: var(--bright-color) !important;
-    color: var(--back-color) !important;
+    color: var(--fore-inv-nochange-color) !important;
 }
 
 .button-bright:hover {
@@ -100,7 +100,7 @@
 
 .button-bright-alt {
     background-color: var(--bright-alt-color) !important;
-    color: var(--back-color) !important;
+    color: var(--fore-nochange-color) !important;
 }
 
 .button-bright-alt:hover {
@@ -109,7 +109,7 @@
 
 .button-dark {
     background-color: var(--primary-light-color) !important;
-    color: var(--fore-color) !important;
+    color: var(--fore-nochange-color) !important;
 }
 
 .button-dark:hover {
@@ -122,6 +122,7 @@
 
 .link-footer {
     margin-top: 1rem;
+    color: var(--fore-color);
 }
 
 /* .back-primary-light {
@@ -140,10 +141,14 @@
     background-color: var(--main-color) !important;
     padding: 0 !important;
     border-width: 0 !important;
+    border-radius: 0px 0px 1rem 1rem !important;
+    overflow: hidden;
 }
 
 .dropdown-nav-item:hover {
-    background-color: var(--primary-light-color) !important;
+    /* background-color: var(--primary-light-color) !important; */
+    background-color: transparent !important;
+    position: relative;
 }
 
 @media screen and (min-width: 768px) {
@@ -179,7 +184,18 @@
 
 .navbar-nav li:hover>a {
     color: var(--bright-color) !important;
-    background-color: var(--primary-light-color) !important;
+    /* background-color: var(--primary-light-color) !important; */
+}
+
+.navbar-nav li:hover>a::before {
+    content: "";
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    /* display: block; */
+    top: 0;
+    left: 0;
+    background-color: var(--dim-veil-5-color) !important;
 }
 
 .navbar-nav li:not(.no-bar):hover>a {
@@ -195,7 +211,9 @@
 }
 
 .navbar-nav ul.dropdown-menu a:hover {
-    border-bottom: 5px solid transparent;
+    border-bottom: 0px solid transparent;
+    /* margin-bottom: 4.5px; */
+    padding-bottom: 16.5px;
 }
 
 
@@ -230,6 +248,7 @@ button.close {
 #night-button {
     background-color: #00000000;
     border-style: none;
+    min-width: 2rem;
 }
 
 #night-button::before {

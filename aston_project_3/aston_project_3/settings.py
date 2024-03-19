@@ -88,6 +88,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "apps.core.context_processors.external_scripts_context_processor.external_scripts",
             ],
         },
     },
@@ -177,9 +178,7 @@ DATABASES = {
         "NAME": env("NAME_DB"),
         "USER": env("USER_DB"),
         "PASSWORD": env("PASSWORD_DB"),
-        # Ou l'adresse IP de votre serveur PostgreSQL
         "HOST": env("HOST_DB"),
-        # Port par défaut de PostgreSQL
         "PORT": env("PORT_DB"),
     }
 }
@@ -204,3 +203,21 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
 SONAR_TOKEN = env("SONAR_TOKEN")
 
 MATCH_AUTO = env("MATCH_AUTO")
+
+EXTERNAL_SCRIPTS = {
+    "pixijs": {
+        "url": "https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js",
+        "sha": "NVWPDocxwt9T3NhwBzx3c8vhg2WqGVgehZ100xOySkvbfdhqQDJbvzlSBWyFkFJEPwta89jdpldx2BlggNURVQ==",
+        "algorithm": "sha512",
+    },
+    "jquery": {
+        "url": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js",
+        "sha": "nhY06wKras39lb9lRO76J4397CH1XpRSLfLJSftTeo3+q2vP7PaebILH9TqH+GRpnOhfAGjuYMVmVTOZJ+682w==",
+        "algorithm": "sha512",
+    },
+    "showdown": {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js",
+        "sha": "LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA==",
+        "algorithm": "sha512",
+    },
+}

@@ -65,18 +65,22 @@
     border-width: 0;
 }
 
+.button-match:hover {
+    color: var(--bright-color);
+}
+
 .button-match[disabled] {
     color: var(--grey-color);
 }
 
 .button-match::before {
     font: var(--fa-font-solid);
-    color: var(--fore-color);
+    /* color: var(--fore-color); */
 }
 
 .button-match[disabled]::before {
     /* font: var(--fa-font-solid); */
-    color: var(--grey-color) !important;
+    /* color: var(--grey-color) !important; */
 }
 
 .button-match-play::before {
