@@ -22,8 +22,10 @@ class TestTopicSectionModel(TransactionTestCase):
     def test_standard(self) -> None:
         """Run the tests"""
         topic_section_bug = TopicSection.objects.get(code="bug")
-        self.assertEqual(set(TopicSection.get_all()), {("bot", "Bot programming"), ("bug", "Feedback & Bugs")})
-        self.assertEqual(topic_section_bug.natural_key(), (topic_section_bug.code,))
+        self.assertEqual(set(TopicSection.get_all()),
+            {("bot", "Bot programming"), ("bug", "Feedback & Bugs")})
+        self.assertEqual(topic_section_bug.natural_key(),
+            (topic_section_bug.code,))
         self.assertEqual(
             str(topic_section_bug),
             f"{topic_section_bug.name} ({topic_section_bug.code})",

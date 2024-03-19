@@ -178,9 +178,7 @@ DATABASES = {
         "NAME": env("NAME_DB"),
         "USER": env("USER_DB"),
         "PASSWORD": env("PASSWORD_DB"),
-        # Ou l'adresse IP de votre serveur PostgreSQL
         "HOST": env("HOST_DB"),
-        # Port par défaut de PostgreSQL
         "PORT": env("PORT_DB"),
     }
 }

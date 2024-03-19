@@ -12,9 +12,14 @@ from apps.game.utils.bot_fight_util import main_fight
 
 
 class MatchManager(models.Manager):
-    """Custom manager for the bot model."""
+    """Custom manager for the match model."""
 
-    def bot_fight(self, bot_left: Bot, bot_right: Bot, friendly: bool = True) -> Match:
+    def bot_fight(
+            self,
+            bot_left: Bot,
+            bot_right: Bot,
+            friendly: bool = True
+        ) -> Match:
         """Create a match between two bots."""
         res = main_fight([bot_left.id, bot_right.id])
         win = res["result"] == "1"
