@@ -27,8 +27,14 @@ class BotMatchDataViewSet(View):
             return JsonResponse({
                 "bot_name": escape(bot.name),
                 "match_movements": match.movements if match else "",
-                "stdout": [match.output_left, match.output_right],
-                "stderr": [match.error_messages_left, match.error_messages_right],
+                "stdout": [
+                    [escape(output_left) for output_left in match.output_left],
+                    [escape(output_right) for output_right in match.output_right],
+                ],
+                "stderr": [
+                    [[escape(one_error) for one_error in error_messages_left] for error_messages_left in match.error_messages_left],
+                    [[escape(one_error) for one_error in error_messages_right] for error_messages_right in match.error_messages_right],
+                ],
                 "match_result": match.result if match else "",
                 "match_even": match.bot_left.id == bot.id if match else "",
             }, status="200", content_type=content_type)

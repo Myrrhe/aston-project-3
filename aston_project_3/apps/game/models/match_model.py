@@ -4,6 +4,7 @@ import uuid
 
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.utils.html import escape
 from django.utils.translation import gettext as _
 
 from apps.core.models import TimestampedModel
@@ -28,10 +29,10 @@ class MatchManager(models.Manager):
             bot_right=bot_right,
             movements=res["movements"],
             result=res["result"] == "1",
-            output_left=res["stdout"][0],
-            output_right=res["stdout"][1],
-            error_messages_left=res["stderr"][0],
-            error_messages_right=res["stderr"][1],
+            output_left=[escape(out_left) for out_left in res["stdout"][0]],
+            output_right=[escape(out_left) for out_left in res["stdout"][1]],
+            error_messages_left=[[escape(one_err_left) for one_err_left in err_left] for err_left in res["stderr"][0]],
+            error_messages_right=[[escape(one_err_left) for one_err_left in err_left] for err_left in res["stderr"][1]],
         )
         if not friendly:
             match.score_change_left = 1 if win else -1

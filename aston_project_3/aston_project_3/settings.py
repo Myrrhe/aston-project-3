@@ -207,7 +207,7 @@ MATCH_AUTO = env("MATCH_AUTO")
 EXTERNAL_SCRIPTS = {
     "pixijs": {
         "url": "https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js",
-        "sha": "NVWPDocxwt9T3NhwBzx3c8vhg2WqGVgehZ100xOySkvbfdhqQDJbvzlSBWyFkFJEPwta89jdpldx2BlggNURVQ==",
+        "sha": "PaaQR/Kf0+ItZTMVjdgJRUcrktec2B3m6XM+TiflUXy5hAF7eVys9dETQO4UX3/A/0H6KJf+e3D2VMVMlywAdA==",
         "algorithm": "sha512",
     },
     "jquery": {
