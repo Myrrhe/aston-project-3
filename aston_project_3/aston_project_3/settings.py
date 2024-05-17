@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "django_otp",
     "django_otp.plugins.otp_totp",
     "bootstrap5",
@@ -221,3 +222,7 @@ EXTERNAL_SCRIPTS = {
         "algorithm": "sha512",
     },
 }
+
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
