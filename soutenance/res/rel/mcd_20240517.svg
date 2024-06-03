@@ -27,9 +27,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.087256"
-     inkscape:cx="492.98416"
-     inkscape:cy="481.02745"
+     inkscape:zoom="0.76880609"
+     inkscape:cx="312.8227"
+     inkscape:cy="425.33482"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -45,6 +45,11 @@
   </sodipodi:namedview>
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect628"
+       is_visible="true"
+       lpeversion="1" />
     <inkscape:path-effect
        effect="spiro"
        id="path-effect20885"
@@ -1026,5 +1031,11 @@
          style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="61.402111"
          y="127.2743">0, 1</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583;stroke-linecap:round"
+       d="m 59.695182,104.38405 v 24.51134"
+       id="path626"
+       inkscape:path-effect="#path-effect628"
+       inkscape:original-d="m 59.695182,104.38405 v 24.51134" />
   </g>
 </svg>
