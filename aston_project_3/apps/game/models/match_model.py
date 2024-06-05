@@ -46,10 +46,25 @@ class MatchManager(models.Manager):
 
     def start_match(self) -> None:
         """Start a match between two random bots."""
-        bot_left = Bot.objects.order_by("?").first()
-        bot_right = Bot.objects.exclude(id=bot_left.id).order_by("?").first()
-        self.bot_fight(bot_left, bot_right)
+        bot_left = Bot.objects.filter(posted=True, user__is_active=True).order_by("?").first()
+        if bot_left:
+            bot_right = Bot.objects.filter(posted=True, user__is_active=True).exclude(user=bot_left.user).order_by("?").first()
+            if bot_right:
+                self.bot_fight(bot_left, bot_right)
 
+# SELECT "bot"."created_at", "bot"."updated_at", "bot"."id", "bot"."user_id", "bot"."name", "bot"."posted", "bot"."score"
+# FROM "bot"
+# INNER JOIN "user" ON ("bot"."user_id" = "user"."id")
+# WHERE
+# (
+#    "bot"."posted" AND
+#    "user"."is_active" AND NOT
+#    (
+#        "bot"."user_id" = '6f362d54-50f2-4fe9-9470-a86d80411a4b'::uuid AND
+#        "bot"."user_id" IS NOT NULL
+#    )
+# )
+# ORDER BY RANDOM() ASC LIMIT 1
 
 class Match(TimestampedModel):
     """The match's model."""
