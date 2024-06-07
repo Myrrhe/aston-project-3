@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-26 16:14+0100\n"
+"POT-Creation-Date: 2024-06-07 09:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,12 +181,22 @@ msgstr "Admin"
 msgid "is_admin_help_text"
 msgstr "L'utilisateur est-il un administrateur"
 
-#: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
+#: .\apps\account\models\user_model.py:127
+msgid "is_active"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:128
+#, fuzzy
+#| msgid "is_admin_help_text"
+msgid "is_active_help_text"
+msgstr "L'utilisateur est-il un administrateur"
+
+#: .\apps\account\models\user_model.py:140 .\apps\forum\models\post_model.py:22
 #: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:54
 msgid "user"
 msgstr "Utilisateur"
 
-#: .\apps\account\models\user_model.py:136
+#: .\apps\account\models\user_model.py:141
 msgid "users"
 msgstr "Utilisateurs"
 
@@ -198,8 +208,8 @@ msgstr "Gestion du forum"
 msgid "your_answer"
 msgstr "Votre réponse"
 
-#: .\apps\forum\forms\answer_topic_form.py:23 .\templates\forum\topic.html:128
-#: .\templates\forum\topic.html:173
+#: .\apps\forum\forms\answer_topic_form.py:23 .\templates\forum\topic.html:129
+#: .\templates\forum\topic.html:174
 msgid "answer"
 msgstr "Réponse"
 
@@ -354,103 +364,103 @@ msgstr "Bot"
 msgid "bots"
 msgstr "Bots"
 
-#: .\apps\game\models\match_model.py:56
+#: .\apps\game\models\match_model.py:77
 msgid "bot_left"
 msgstr "Bot gauche"
 
-#: .\apps\game\models\match_model.py:57
+#: .\apps\game\models\match_model.py:78
 msgid "bot_left_of_match_help_text"
 msgstr "L'un des bots d l'affrontement"
 
-#: .\apps\game\models\match_model.py:64
+#: .\apps\game\models\match_model.py:85
 msgid "bot_right"
 msgstr "Bot droit"
 
-#: .\apps\game\models\match_model.py:65
+#: .\apps\game\models\match_model.py:86
 msgid "bot_right_of_match_help_text"
 msgstr "L'autre bot de l'affrontement"
 
-#: .\apps\game\models\match_model.py:72
+#: .\apps\game\models\match_model.py:93
 msgid "movements"
 msgstr "Mouvements"
 
-#: .\apps\game\models\match_model.py:73
+#: .\apps\game\models\match_model.py:94
 msgid "movements_help_text"
 msgstr "Les mouvements des bots"
 
-#: .\apps\game\models\match_model.py:79
+#: .\apps\game\models\match_model.py:100
 msgid "result"
 msgstr "Résultat"
 
-#: .\apps\game\models\match_model.py:80
+#: .\apps\game\models\match_model.py:101
 msgid "result_help_text"
 msgstr "L'issue du match'"
 
-#: .\apps\game\models\match_model.py:86
+#: .\apps\game\models\match_model.py:107
 msgid "score_change_left"
 msgstr "Changement de score gauche"
 
-#: .\apps\game\models\match_model.py:87
+#: .\apps\game\models\match_model.py:108
 msgid "score_change_left_help_text"
 msgstr "Le changement de score du bot de gauche"
 
-#: .\apps\game\models\match_model.py:93
+#: .\apps\game\models\match_model.py:114
 msgid "score_change_right"
 msgstr "Changement de score droite"
 
-#: .\apps\game\models\match_model.py:94
+#: .\apps\game\models\match_model.py:115
 msgid "score_change_right_help_text"
 msgstr "Le changement de score du bot de droite"
 
-#: .\apps\game\models\match_model.py:100
+#: .\apps\game\models\match_model.py:121
 msgid "output_left"
 msgstr "Output gauche"
 
-#: .\apps\game\models\match_model.py:101
+#: .\apps\game\models\match_model.py:122
 msgid "output_left_help_text"
 msgstr "L'output du bot de gauche"
 
-#: .\apps\game\models\match_model.py:107
+#: .\apps\game\models\match_model.py:128
 msgid "output_right"
 msgstr "Output droit"
 
-#: .\apps\game\models\match_model.py:108
+#: .\apps\game\models\match_model.py:129
 msgid "output_right_help_text"
 msgstr "L'output du bot de droite"
 
-#: .\apps\game\models\match_model.py:117
+#: .\apps\game\models\match_model.py:138
 msgid "stderr_left"
 msgstr "Sortie d'erreur gauche"
 
-#: .\apps\game\models\match_model.py:118
+#: .\apps\game\models\match_model.py:139
 msgid "stderr_left_help_text"
 msgstr "La sortie d'erreur du bot de gauche"
 
-#: .\apps\game\models\match_model.py:128
+#: .\apps\game\models\match_model.py:149
 msgid "stderr_right"
 msgstr "Sortie d'erreur droite"
 
-#: .\apps\game\models\match_model.py:129
+#: .\apps\game\models\match_model.py:150
 msgid "stderr_right_help_text"
 msgstr "La sortie d'erreur du bot de droite"
 
-#: .\apps\game\models\match_model.py:154
+#: .\apps\game\models\match_model.py:175
 msgid "match"
 msgstr "Match"
 
-#: .\apps\game\models\match_model.py:155
+#: .\apps\game\models\match_model.py:176
 msgid "matchs"
 msgstr "Matchs"
 
-#: .\aston_project_3\settings.py:139
+#: .\aston_project_3\settings.py:141
 msgid "french"
 msgstr "Français"
 
-#: .\aston_project_3\settings.py:140
+#: .\aston_project_3\settings.py:142
 msgid "english"
 msgstr "Anglais"
 
-#: .\aston_project_3\settings.py:141
+#: .\aston_project_3\settings.py:143
 msgid "spanish"
 msgstr "Espagnol"
 
@@ -470,7 +480,7 @@ msgstr "Page not Found"
 msgid "server_error"
 msgstr "Server Error"
 
-#: .\templates\account\account.html:15 .\templates\base.html:195
+#: .\templates\account\account.html:15 .\templates\base.html:198
 msgid "my_account"
 msgstr "Mon compte"
 
@@ -479,7 +489,7 @@ msgid "connection"
 msgstr "Se connecter"
 
 #: .\templates\account\account.html:32 .\templates\account\account.html:90
-#: .\templates\game\bot_match.html:39 .\templates\game\bot_matches.html:28
+#: .\templates\game\bot_match.html:40 .\templates\game\bot_matches.html:28
 #: .\templates\game\bot_matches.html:84 .\templates\game\bot_matches.html:100
 #: .\templates\game\my_bots.html:63
 msgid "edit"
@@ -580,77 +590,77 @@ msgstr "Mot de passe oublié ?"
 msgid "Log in"
 msgstr "Se connecter"
 
-#: .\templates\base.html:65 .\templates\game\my_bots.html:19
+#: .\templates\base.html:68 .\templates\game\my_bots.html:19
 msgid "my_bots"
 msgstr "Mes bots"
 
-#: .\templates\base.html:72
+#: .\templates\base.html:75
 msgid "see_my_bots"
 msgstr "Voir mes bots"
 
-#: .\templates\base.html:79 .\templates\game\bot_deleted.html:26
+#: .\templates\base.html:82 .\templates\game\bot_deleted.html:26
 #: .\templates\game\my_bots.html:27 .\templates\game\my_bots.html:78
 #: .\templates\game\my_bots.html:89
 msgid "create_new_bot"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\base.html:94
+#: .\templates\base.html:97
 msgid "matches"
 msgstr "Matchs"
 
-#: .\templates\base.html:101
+#: .\templates\base.html:104
 msgid "see_my_matches"
 msgstr "Voir mes matchs"
 
-#: .\templates\base.html:108
+#: .\templates\base.html:111
 msgid "look_for_match"
 msgstr "Rechercher un match"
 
-#: .\templates\base.html:123
+#: .\templates\base.html:126
 msgid "community"
 msgstr "Communauté"
 
-#: .\templates\base.html:130
+#: .\templates\base.html:133
 msgid "discussions"
 msgstr "Discussions"
 
-#: .\templates\base.html:137
+#: .\templates\base.html:140
 msgid "ranking"
 msgstr "Classement"
 
-#: .\templates\base.html:172 .\templates\forum\forum.html:85
+#: .\templates\base.html:175 .\templates\forum\forum.html:85
 msgid "change"
 msgstr "Modifier"
 
-#: .\templates\base.html:201
+#: .\templates\base.html:204
 msgid "deconnect"
 msgstr "Se déconnecter"
 
-#: .\templates\base.html:213 .\templates\registration\login.html:56
+#: .\templates\base.html:216 .\templates\registration\login.html:56
 msgid "connect"
 msgstr "Se connecter"
 
-#: .\templates\base.html:218
+#: .\templates\base.html:221
 msgid "signup"
 msgstr "S'inscrire"
 
-#: .\templates\base.html:228
+#: .\templates\base.html:231
 msgid "contact"
 msgstr "Me contacter"
 
-#: .\templates\base.html:229
+#: .\templates\base.html:232
 msgid "faq"
 msgstr "FAQ"
 
-#: .\templates\base.html:230
+#: .\templates\base.html:233
 msgid "about"
 msgstr "À propos"
 
-#: .\templates\base.html:231
+#: .\templates\base.html:234
 msgid "terms_of_use"
 msgstr "Mentions légales"
 
-#: .\templates\base.html:235
+#: .\templates\base.html:238
 msgid "copyright"
 msgstr ""
 "Copyright © 2023 Myrrhe. All Rights Reserved. This is an alpha version, some "
@@ -716,28 +726,28 @@ msgstr ""
 msgid "go_to_cookies_policy_page"
 msgstr "Voir la politique des cookies"
 
-#: .\templates\forum\create_topic.html:17
+#: .\templates\forum\create_topic.html:18
 msgid "create_new_topic"
 msgstr "Créer un nouveau topic"
 
-#: .\templates\forum\create_topic.html:44 .\templates\forum\topic.html:143
+#: .\templates\forum\create_topic.html:45 .\templates\forum\topic.html:144
 msgid "markdown_supported"
 msgstr "Markdown supporté"
 
-#: .\templates\forum\create_topic.html:50 .\templates\forum\topic.html:149
+#: .\templates\forum\create_topic.html:51 .\templates\forum\topic.html:150
 msgid "write"
 msgstr "Écrire"
 
-#: .\templates\forum\create_topic.html:56 .\templates\forum\topic.html:155
+#: .\templates\forum\create_topic.html:57 .\templates\forum\topic.html:156
 msgid "preview"
 msgstr "Aperçu"
 
-#: .\templates\forum\create_topic.html:69 .\templates\forum\topic.html:26
-#: .\templates\forum\topic.html:123
+#: .\templates\forum\create_topic.html:70 .\templates\forum\topic.html:27
+#: .\templates\forum\topic.html:124
 msgid "back_to_topics"
 msgstr "Revenir aux topics"
 
-#: .\templates\forum\create_topic.html:74
+#: .\templates\forum\create_topic.html:75
 msgid "create_the_topic"
 msgstr "Créer le topic"
 
@@ -770,16 +780,16 @@ msgid "activity"
 msgstr "Activité"
 
 #: .\templates\forum\forum.html:152 .\templates\forum\forum.html:161
-#: .\templates\forum\topic.html:52 .\templates\forum\topic.html:61
+#: .\templates\forum\topic.html:53 .\templates\forum\topic.html:62
 msgid "previous"
 msgstr "Précédent"
 
 #: .\templates\forum\forum.html:205 .\templates\forum\forum.html:214
-#: .\templates\forum\topic.html:105 .\templates\forum\topic.html:114
+#: .\templates\forum\topic.html:106 .\templates\forum\topic.html:115
 msgid "next"
 msgstr "Suivant"
 
-#: .\templates\forum\topic.html:178
+#: .\templates\forum\topic.html:179
 msgid "close"
 msgstr "Fermer"
 
@@ -791,14 +801,14 @@ msgstr "Bot supprimé"
 msgid "bot_deleted_text"
 msgstr "Le bot a été supprimé avec succès."
 
-#: .\templates\game\bot_deleted.html:21 .\templates\game\bot_match.html:34
+#: .\templates\game\bot_deleted.html:21 .\templates\game\bot_match.html:35
 #: .\templates\game\bot_matches.html:33 .\templates\game\bot_matches.html:89
-#: .\templates\game\bot_matches.html:105 .\templates\game\create_bot.html:42
+#: .\templates\game\bot_matches.html:105 .\templates\game\create_bot.html:43
 #: .\templates\game\delete_bot.html:41
 msgid "back_to_my_bots"
 msgstr "Revenir à mes bots"
 
-#: .\templates\game\bot_match.html:29
+#: .\templates\game\bot_match.html:30
 msgid "back_to_the_matchs"
 msgstr "Revenir aux matches"
 
@@ -834,35 +844,35 @@ msgstr "Défaite"
 msgid "see_match"
 msgstr "Voir le match"
 
-#: .\templates\game\bot_matches.html:94 .\templates\home\start.html:24
+#: .\templates\game\bot_matches.html:94 .\templates\home\start.html:25
 msgid "no_matches"
 msgstr "Pas de matches"
 
-#: .\templates\game\create_bot.html:16 .\templates\game\create_bot.html:87
+#: .\templates\game\create_bot.html:17 .\templates\game\create_bot.html:88
 msgid "create_bot"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\game\create_bot.html:22 .\templates\game\my_bots.html:68
+#: .\templates\game\create_bot.html:23 .\templates\game\my_bots.html:68
 msgid "delete"
 msgstr "Supprimer"
 
-#: .\templates\game\create_bot.html:34
+#: .\templates\game\create_bot.html:35
 msgid "duplicate_bot"
 msgstr "Dupliquer le bot"
 
-#: .\templates\game\create_bot.html:92
+#: .\templates\game\create_bot.html:93
 msgid "create_bot_text"
 msgstr "Créer un nouveau bot"
 
-#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:114
+#: .\templates\game\create_bot.html:111 .\templates\game\create_bot.html:115
 msgid "bot_published"
 msgstr "Publié"
 
-#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:115
+#: .\templates\game\create_bot.html:111 .\templates\game\create_bot.html:116
 msgid "bot_unpublished"
 msgstr "Non-publié"
 
-#: .\templates\game\create_bot.html:117
+#: .\templates\game\create_bot.html:118
 msgid "publish_bot_text"
 msgstr "Votre bot n'affrontera aucun autre bot tant qu'il ne sera pas publié"
 
