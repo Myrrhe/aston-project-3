@@ -4,6 +4,7 @@ import uuid
 
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.utils.html import escape
 from django.utils.translation import gettext as _
 
 from apps.core.models import TimestampedModel
@@ -12,9 +13,14 @@ from apps.game.utils.bot_fight_util import main_fight
 
 
 class MatchManager(models.Manager):
-    """Custom manager for the bot model."""
+    """Custom manager for the match model."""
 
-    def bot_fight(self, bot_left: Bot, bot_right: Bot, friendly: bool = True) -> Match:
+    def bot_fight(
+            self,
+            bot_left: Bot,
+            bot_right: Bot,
+            friendly: bool = True
+        ) -> Match:
         """Create a match between two bots."""
         res = main_fight([bot_left.id, bot_right.id])
         win = res["result"] == "1"
@@ -23,10 +29,10 @@ class MatchManager(models.Manager):
             bot_right=bot_right,
             movements=res["movements"],
             result=res["result"] == "1",
-            output_left=res["stdout"][0],
-            output_right=res["stdout"][1],
-            error_messages_left=res["stderr"][0],
-            error_messages_right=res["stderr"][1],
+            output_left=[escape(out_left) for out_left in res["stdout"][0]],
+            output_right=[escape(out_left) for out_left in res["stdout"][1]],
+            error_messages_left=[[escape(one_err_left) for one_err_left in err_left] for err_left in res["stderr"][0]],
+            error_messages_right=[[escape(one_err_left) for one_err_left in err_left] for err_left in res["stderr"][1]],
         )
         if not friendly:
             match.score_change_left = 1 if win else -1
@@ -40,10 +46,25 @@ class MatchManager(models.Manager):
 
     def start_match(self) -> None:
         """Start a match between two random bots."""
-        bot_left = Bot.objects.order_by("?").first()
-        bot_right = Bot.objects.exclude(id=bot_left.id).order_by("?").first()
-        self.bot_fight(bot_left, bot_right)
+        bot_left = Bot.objects.filter(posted=True, user__is_active=True).order_by("?").first()
+        if bot_left:
+            bot_right = Bot.objects.filter(posted=True, user__is_active=True).exclude(user=bot_left.user).order_by("?").first()
+            if bot_right:
+                self.bot_fight(bot_left, bot_right)
 
+# SELECT "bot"."created_at", "bot"."updated_at", "bot"."id", "bot"."user_id", "bot"."name", "bot"."posted", "bot"."score"
+# FROM "bot"
+# INNER JOIN "user" ON ("bot"."user_id" = "user"."id")
+# WHERE
+# (
+#    "bot"."posted" AND
+#    "user"."is_active" AND NOT
+#    (
+#        "bot"."user_id" = '6f362d54-50f2-4fe9-9470-a86d80411a4b'::uuid AND
+#        "bot"."user_id" IS NOT NULL
+#    )
+# )
+# ORDER BY RANDOM() ASC LIMIT 1
 
 class Match(TimestampedModel):
     """The match's model."""

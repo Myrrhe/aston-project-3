@@ -1,0 +1,26 @@
+1) Concevoir et développer des composants d’interface utilisateur en intégrant les recommandations de sécurité
+
+a/ Développer la partie front-end d'une interface utilisateur web
+Bornes
+
+b/ Développer la partie front-end d'une interface utilisateur web
+Odoo
+
+
+2) Concevoir et développer la persistance des données en intégrant
+les recommandations de sécurité
+
+a/ Mettre en place une base de données. (Installation, optimisation du SGBD)
+Fichiers B2
+
+b/ Mettre en place une base de données. (Installation, optimisation du SGBD)
+Numéro de sécu
+
+
+3) Concevoir et développer une application multicouches en intégrant les recommandations de sécurité
+
+a/ Développer des composants métier. (Code entre la couche contrôleur et le repository qui représente le cœur de l'application)
+Api Acheel
+
+b/ Construire une application organisée en couches. (Typiquement : Vue - Contrôleur - Service métier - Repository – SGBD)
+Api Etranet

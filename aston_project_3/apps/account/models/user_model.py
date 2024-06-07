@@ -122,6 +122,11 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         verbose_name=_("is_admin"),
         help_text=_("is_admin_help_text"),
     )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_("is_active"),
+        help_text=_("is_active_help_text"),
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load static %}
+{% load external_script_templatetag %}
 {% block head_css_site %}
 {{ block.super }}
     <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
@@ -182,8 +183,8 @@
     </form>
 </div>
 <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
-    integrity="sha256-iOtvu+DCcN3zOEruDJYg0HDgkKJuB8Z0Ia42yQO11kk="
+    src="{{EXTERNAL_SCRIPTS.showdown.url}}"
+    integrity="{{EXTERNAL_SCRIPTS.showdown|external_script}}"
     crossorigin="anonymous">
 </script>
 <script src="{% static "js/forum/main.js" %}"></script>

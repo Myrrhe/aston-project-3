@@ -14,16 +14,16 @@
 }
 
 .row-topic:nth-child(2n) {
-    background-color: var(--white-veil-5-color);
+    background-color: var(--dim-veil-5-color);
 }
 
 .row-topic:nth-child(2n + 1) {
-    background-color: var(--white-veil-10-color);
+    background-color: var(--dim-veil-10-color);
 }
 
 #preview-answer {
     /* min-height: 274px; */
-    border: 2px solid var(--white-veil-10-color);
+    border: 2px solid var(--dim-veil-10-color);
 }
 
 .textarea-answer {

@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 subprocess.run("coverage run manage.py test", shell=False, check=False)
             else:
                 subprocess.run(
-                    f"coverage run manage.py test {options["module"]}",
+                    f"coverage run manage.py test {options['module']}",
                     shell=False,
                     check=False
                 )

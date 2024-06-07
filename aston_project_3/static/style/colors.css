@@ -3,12 +3,15 @@
 }
 
 .dark-mode {
-    --main-color: #0d0d28ff;
-    --primary-light-color: rgb(38, 38, 87);
-    --primary-light-hover-color: rgb(73, 73, 118);
+    --main-color: #161630ff;
+    --primary-light-color: #262657ff;
+    --primary-light-hover-color: #494976ff;
     --back-color: #111111ff;
-    --dark-grey-color: rgb(4, 64, 106);
+    --dark-grey-color: #04406aff;
     --fore-color: #eeeeeeff;
+    --fore-nochange-color: #eeeeeeff;
+    --fore-inv-color: #111111ff;
+    --fore-inv-nochange-color: #111111ff;
     --bright-color: #00fea9ff;
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
@@ -20,18 +23,31 @@
     --transparent-color: #00000000;
     --white-veil-5-color: #ffffff11;
     --white-veil-10-color: #ffffff19;
+    --dim-veil-5-color: #ffffff11;
+    --dim-veil-10-color: #ffffff19;
 }
 
 .light-mode {
-    --main-color: rgb(180, 255, 203);
-    --primary-light-color: rgb(38, 38, 87);
-    --primary-light-hover-color: rgb(73, 73, 118);
-    --back-color: #111111ff;
-    --fore-color: #eeeeeeff;
+    --main-color: #8888aaff;
+    --primary-light-color: #262657ff;
+    --primary-light-hover-color: #494976ff;
+    --back-color: #ccccccff;
+    --dark-grey-color: #04406aff;
+    --fore-color: #111111ff;
+    --fore-nochange-color: #eeeeeeff;
+    --fore-inv-color: #eeeeeeff;
+    --fore-inv-nochange-color: #111111ff;
     --bright-color: #00fea9ff;
     --bright-hover-color: #56ffc7ff;
     --bright-alt-color: #fe00a9ff;
     --bright-alt-hover-color: #ff56c7ff;
+    --blue-color: #007bffff;
+    --grey-color: #888888ff;
+    --light-grey-color: #c0c0c0ff;
+    --black-color: #000000ff;
+    --transparent-color: #00000000;
     --white-veil-5-color: #ffffff11;
     --white-veil-10-color: #ffffff19;
+    --dim-veil-5-color: #00000011;
+    --dim-veil-10-color: #00000019;
 }

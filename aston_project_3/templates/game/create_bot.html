@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load djangocodemirror_tags %}
+{% load external_script_templatetag %}
 {% block head_css_site %}
 {{ block.super }}
     <link rel="stylesheet" href="{% static "style/registration/login.css" %}">
@@ -125,8 +126,8 @@
 {% codemirror_field_css_assets create_bot_form.code %}
 {% codemirror_field_js_assets create_bot_form.code %}
 <script
-    src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"
-    integrity="sha256-l/g591WzABd9b8YZA9G7UMDxAWh8iMSzqelPaAWSht8="
+    src="{{EXTERNAL_SCRIPTS.pixijs.url}}"
+    integrity="{{EXTERNAL_SCRIPTS.pixijs|external_script}}"
     crossorigin="anonymous">
 </script>
 <script src="{% static "js/game/match/match.js" %}"></script>

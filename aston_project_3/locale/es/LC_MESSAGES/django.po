@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-17 11:54+0100\n"
+"POT-Creation-Date: 2024-06-07 09:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,14 +192,24 @@ msgstr ""
 msgid "is_admin_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:135 .\apps\forum\models\post_model.py:22
-#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:53
+#: .\apps\account\models\user_model.py:127
+msgid "is_active"
+msgstr ""
+
+#: .\apps\account\models\user_model.py:128
+#, fuzzy
+#| msgid "username"
+msgid "is_active_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\account\models\user_model.py:140 .\apps\forum\models\post_model.py:22
+#: .\apps\forum\models\topic_model.py:20 .\apps\game\models\bot_model.py:54
 #, fuzzy
 #| msgid "username"
 msgid "user"
 msgstr "Nombre de usuario"
 
-#: .\apps\account\models\user_model.py:136
+#: .\apps\account\models\user_model.py:141
 #, fuzzy
 #| msgid "username"
 msgid "users"
@@ -213,8 +223,8 @@ msgstr ""
 msgid "your_answer"
 msgstr ""
 
-#: .\apps\forum\forms\answer_topic_form.py:23 .\templates\forum\topic.html:128
-#: .\templates\forum\topic.html:173
+#: .\apps\forum\forms\answer_topic_form.py:23 .\templates\forum\topic.html:129
+#: .\templates\forum\topic.html:174
 msgid "answer"
 msgstr ""
 
@@ -327,7 +337,7 @@ msgid "code_help_text"
 msgstr "Nombre de usuario"
 
 #: .\apps\forum\models\topic_section_model.py:32
-#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:60
+#: .\apps\game\forms\create_bot_form.py:24 .\apps\game\models\bot_model.py:61
 #: .\templates\game\my_bots.html:34
 #, fuzzy
 #| msgid "username"
@@ -335,7 +345,7 @@ msgid "name"
 msgstr "Nombre de usuario"
 
 #: .\apps\forum\models\topic_section_model.py:33
-#: .\apps\game\models\bot_model.py:61
+#: .\apps\game\models\bot_model.py:62
 #, fuzzy
 #| msgid "username"
 msgid "name_help_text"
@@ -359,7 +369,7 @@ msgstr ""
 msgid "topic_sections"
 msgstr ""
 
-#: .\apps\game\apps.py:11
+#: .\apps\game\apps.py:16
 #, fuzzy
 #| msgid "username"
 msgid "bot_management"
@@ -371,161 +381,161 @@ msgstr "Nombre de usuario"
 msgid "bot_name"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\bot_model.py:54
+#: .\apps\game\models\bot_model.py:55
 #, fuzzy
 #| msgid "username"
 msgid "user_of_bot_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\bot_model.py:67 .\templates\game\my_bots.html:36
+#: .\apps\game\models\bot_model.py:68 .\templates\game\my_bots.html:36
 msgid "posted"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:68
+#: .\apps\game\models\bot_model.py:69
 #, fuzzy
 #| msgid "username"
 msgid "posted_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\bot_model.py:74 .\templates\game\my_bots.html:35
+#: .\apps\game\models\bot_model.py:75 .\templates\game\my_bots.html:35
 msgid "score"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:75
+#: .\apps\game\models\bot_model.py:76
 #, fuzzy
 #| msgid "username"
 msgid "score_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\bot_model.py:86
+#: .\apps\game\models\bot_model.py:87
 msgid "bot"
 msgstr ""
 
-#: .\apps\game\models\bot_model.py:87
+#: .\apps\game\models\bot_model.py:88
 msgid "bots"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:41
+#: .\apps\game\models\match_model.py:77
 msgid "bot_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:42
+#: .\apps\game\models\match_model.py:78
 #, fuzzy
 #| msgid "username"
 msgid "bot_left_of_match_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\match_model.py:49
-msgid "bot_right"
-msgstr ""
-
-#: .\apps\game\models\match_model.py:50
-#, fuzzy
-#| msgid "username"
-msgid "bot_right_of_match_help_text"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:57
-msgid "movements"
-msgstr ""
-
-#: .\apps\game\models\match_model.py:58
-#, fuzzy
-#| msgid "username"
-msgid "movements_help_text"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:64
-msgid "result"
-msgstr ""
-
-#: .\apps\game\models\match_model.py:65
-#, fuzzy
-#| msgid "username"
-msgid "result_help_text"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:71
-#, fuzzy
-#| msgid "username"
-msgid "score_change_left"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:72
-#, fuzzy
-#| msgid "username"
-msgid "score_change_left_help_text"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:78
-#, fuzzy
-#| msgid "username"
-msgid "score_change_right"
-msgstr "Nombre de usuario"
-
-#: .\apps\game\models\match_model.py:79
-#, fuzzy
-#| msgid "username"
-msgid "score_change_right_help_text"
-msgstr "Nombre de usuario"
-
 #: .\apps\game\models\match_model.py:85
-msgid "output_left"
+msgid "bot_right"
 msgstr ""
 
 #: .\apps\game\models\match_model.py:86
 #, fuzzy
 #| msgid "username"
+msgid "bot_right_of_match_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:93
+msgid "movements"
+msgstr ""
+
+#: .\apps\game\models\match_model.py:94
+#, fuzzy
+#| msgid "username"
+msgid "movements_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:100
+msgid "result"
+msgstr ""
+
+#: .\apps\game\models\match_model.py:101
+#, fuzzy
+#| msgid "username"
+msgid "result_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:107
+#, fuzzy
+#| msgid "username"
+msgid "score_change_left"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:108
+#, fuzzy
+#| msgid "username"
+msgid "score_change_left_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:114
+#, fuzzy
+#| msgid "username"
+msgid "score_change_right"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:115
+#, fuzzy
+#| msgid "username"
+msgid "score_change_right_help_text"
+msgstr "Nombre de usuario"
+
+#: .\apps\game\models\match_model.py:121
+msgid "output_left"
+msgstr ""
+
+#: .\apps\game\models\match_model.py:122
+#, fuzzy
+#| msgid "username"
 msgid "output_left_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\match_model.py:92
+#: .\apps\game\models\match_model.py:128
 msgid "output_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:93
+#: .\apps\game\models\match_model.py:129
 #, fuzzy
 #| msgid "username"
 msgid "output_right_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\match_model.py:102
+#: .\apps\game\models\match_model.py:138
 msgid "stderr_left"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:103
+#: .\apps\game\models\match_model.py:139
 #, fuzzy
 #| msgid "username"
 msgid "stderr_left_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\match_model.py:113
+#: .\apps\game\models\match_model.py:149
 msgid "stderr_right"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:114
+#: .\apps\game\models\match_model.py:150
 #, fuzzy
 #| msgid "username"
 msgid "stderr_right_help_text"
 msgstr "Nombre de usuario"
 
-#: .\apps\game\models\match_model.py:135
+#: .\apps\game\models\match_model.py:175
 msgid "match"
 msgstr ""
 
-#: .\apps\game\models\match_model.py:136
+#: .\apps\game\models\match_model.py:176
 msgid "matchs"
 msgstr ""
 
-#: .\aston_project_3\settings.py:139
+#: .\aston_project_3\settings.py:141
 msgid "french"
 msgstr "Francés"
 
-#: .\aston_project_3\settings.py:140
+#: .\aston_project_3\settings.py:142
 msgid "english"
 msgstr "Inglés"
 
-#: .\aston_project_3\settings.py:141
+#: .\aston_project_3\settings.py:143
 msgid "spanish"
 msgstr "Español"
 
@@ -545,7 +555,7 @@ msgstr ""
 msgid "server_error"
 msgstr ""
 
-#: .\templates\account\account.html:15 .\templates\base.html:195
+#: .\templates\account\account.html:15 .\templates\base.html:198
 msgid "my_account"
 msgstr ""
 
@@ -554,7 +564,7 @@ msgid "connection"
 msgstr ""
 
 #: .\templates\account\account.html:32 .\templates\account\account.html:90
-#: .\templates\game\bot_match.html:39 .\templates\game\bot_matches.html:28
+#: .\templates\game\bot_match.html:40 .\templates\game\bot_matches.html:28
 #: .\templates\game\bot_matches.html:84 .\templates\game\bot_matches.html:100
 #: .\templates\game\my_bots.html:63
 msgid "edit"
@@ -659,77 +669,77 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: .\templates\base.html:65 .\templates\game\my_bots.html:19
+#: .\templates\base.html:68 .\templates\game\my_bots.html:19
 msgid "my_bots"
 msgstr ""
 
-#: .\templates\base.html:72
+#: .\templates\base.html:75
 msgid "see_my_bots"
 msgstr ""
 
-#: .\templates\base.html:79 .\templates\game\bot_deleted.html:26
+#: .\templates\base.html:82 .\templates\game\bot_deleted.html:26
 #: .\templates\game\my_bots.html:27 .\templates\game\my_bots.html:78
 #: .\templates\game\my_bots.html:89
 msgid "create_new_bot"
 msgstr ""
 
-#: .\templates\base.html:94
+#: .\templates\base.html:97
 msgid "matches"
 msgstr ""
 
-#: .\templates\base.html:101
+#: .\templates\base.html:104
 msgid "see_my_matches"
 msgstr ""
 
-#: .\templates\base.html:108
+#: .\templates\base.html:111
 msgid "look_for_match"
 msgstr ""
 
-#: .\templates\base.html:123
+#: .\templates\base.html:126
 msgid "community"
 msgstr ""
 
-#: .\templates\base.html:130
+#: .\templates\base.html:133
 msgid "discussions"
 msgstr ""
 
-#: .\templates\base.html:137
+#: .\templates\base.html:140
 msgid "ranking"
 msgstr ""
 
-#: .\templates\base.html:172 .\templates\forum\forum.html:85
+#: .\templates\base.html:175 .\templates\forum\forum.html:85
 msgid "change"
 msgstr ""
 
-#: .\templates\base.html:201
+#: .\templates\base.html:204
 msgid "deconnect"
 msgstr ""
 
-#: .\templates\base.html:213 .\templates\registration\login.html:56
+#: .\templates\base.html:216 .\templates\registration\login.html:56
 msgid "connect"
 msgstr ""
 
-#: .\templates\base.html:218
+#: .\templates\base.html:221
 msgid "signup"
 msgstr ""
 
-#: .\templates\base.html:228
+#: .\templates\base.html:231
 msgid "contact"
 msgstr ""
 
-#: .\templates\base.html:229
+#: .\templates\base.html:232
 msgid "faq"
 msgstr ""
 
-#: .\templates\base.html:230
+#: .\templates\base.html:233
 msgid "about"
 msgstr ""
 
-#: .\templates\base.html:231
+#: .\templates\base.html:234
 msgid "terms_of_use"
 msgstr ""
 
-#: .\templates\base.html:235
+#: .\templates\base.html:238
 msgid "copyright"
 msgstr ""
 
@@ -791,28 +801,28 @@ msgstr ""
 msgid "go_to_cookies_policy_page"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:17
+#: .\templates\forum\create_topic.html:18
 msgid "create_new_topic"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:44 .\templates\forum\topic.html:143
+#: .\templates\forum\create_topic.html:45 .\templates\forum\topic.html:144
 msgid "markdown_supported"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:50 .\templates\forum\topic.html:149
+#: .\templates\forum\create_topic.html:51 .\templates\forum\topic.html:150
 msgid "write"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:56 .\templates\forum\topic.html:155
+#: .\templates\forum\create_topic.html:57 .\templates\forum\topic.html:156
 msgid "preview"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:69 .\templates\forum\topic.html:26
-#: .\templates\forum\topic.html:123
+#: .\templates\forum\create_topic.html:70 .\templates\forum\topic.html:27
+#: .\templates\forum\topic.html:124
 msgid "back_to_topics"
 msgstr ""
 
-#: .\templates\forum\create_topic.html:74
+#: .\templates\forum\create_topic.html:75
 msgid "create_the_topic"
 msgstr ""
 
@@ -845,16 +855,16 @@ msgid "activity"
 msgstr ""
 
 #: .\templates\forum\forum.html:152 .\templates\forum\forum.html:161
-#: .\templates\forum\topic.html:52 .\templates\forum\topic.html:61
+#: .\templates\forum\topic.html:53 .\templates\forum\topic.html:62
 msgid "previous"
 msgstr ""
 
 #: .\templates\forum\forum.html:205 .\templates\forum\forum.html:214
-#: .\templates\forum\topic.html:105 .\templates\forum\topic.html:114
+#: .\templates\forum\topic.html:106 .\templates\forum\topic.html:115
 msgid "next"
 msgstr ""
 
-#: .\templates\forum\topic.html:178
+#: .\templates\forum\topic.html:179
 msgid "close"
 msgstr ""
 
@@ -868,14 +878,14 @@ msgstr ""
 msgid "bot_deleted_text"
 msgstr "Nombre de usuario"
 
-#: .\templates\game\bot_deleted.html:21 .\templates\game\bot_match.html:34
+#: .\templates\game\bot_deleted.html:21 .\templates\game\bot_match.html:35
 #: .\templates\game\bot_matches.html:33 .\templates\game\bot_matches.html:89
-#: .\templates\game\bot_matches.html:105 .\templates\game\create_bot.html:42
+#: .\templates\game\bot_matches.html:105 .\templates\game\create_bot.html:43
 #: .\templates\game\delete_bot.html:41
 msgid "back_to_my_bots"
 msgstr ""
 
-#: .\templates\game\bot_match.html:29
+#: .\templates\game\bot_match.html:30
 msgid "back_to_the_matchs"
 msgstr ""
 
@@ -911,35 +921,35 @@ msgstr ""
 msgid "see_match"
 msgstr ""
 
-#: .\templates\game\bot_matches.html:94
+#: .\templates\game\bot_matches.html:94 .\templates\home\start.html:25
 msgid "no_matches"
 msgstr ""
 
-#: .\templates\game\create_bot.html:16 .\templates\game\create_bot.html:87
+#: .\templates\game\create_bot.html:17 .\templates\game\create_bot.html:88
 msgid "create_bot"
 msgstr ""
 
-#: .\templates\game\create_bot.html:22 .\templates\game\my_bots.html:68
+#: .\templates\game\create_bot.html:23 .\templates\game\my_bots.html:68
 msgid "delete"
 msgstr ""
 
-#: .\templates\game\create_bot.html:34
+#: .\templates\game\create_bot.html:35
 msgid "duplicate_bot"
 msgstr ""
 
-#: .\templates\game\create_bot.html:92
+#: .\templates\game\create_bot.html:93
 msgid "create_bot_text"
 msgstr ""
 
-#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:114
+#: .\templates\game\create_bot.html:111 .\templates\game\create_bot.html:115
 msgid "bot_published"
 msgstr ""
 
-#: .\templates\game\create_bot.html:110 .\templates\game\create_bot.html:115
+#: .\templates\game\create_bot.html:111 .\templates\game\create_bot.html:116
 msgid "bot_unpublished"
 msgstr ""
 
-#: .\templates\game\create_bot.html:117
+#: .\templates\game\create_bot.html:118
 msgid "publish_bot_text"
 msgstr ""
 

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "django_otp",
     "django_otp.plugins.otp_totp",
     "bootstrap5",
@@ -88,6 +89,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "apps.core.context_processors.external_scripts_context_processor.external_scripts",
             ],
         },
     },
@@ -177,10 +179,39 @@ DATABASES = {
         "NAME": env("NAME_DB"),
         "USER": env("USER_DB"),
         "PASSWORD": env("PASSWORD_DB"),
-        # Ou l'adresse IP de votre serveur PostgreSQL
         "HOST": env("HOST_DB"),
-        # Port par défaut de PostgreSQL
         "PORT": env("PORT_DB"),
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s',
+        },
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        }
+    },
+    'loggers': {
+        # '': {
+        #     'handlers': ['console'],
+        #     'level': 'DEBUG',
+        #     "propagate": True
+        # },
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        # },
     }
 }
 
@@ -204,3 +235,25 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
 SONAR_TOKEN = env("SONAR_TOKEN")
 
 MATCH_AUTO = env("MATCH_AUTO")
+
+EXTERNAL_SCRIPTS = {
+    "pixijs": {
+        "url": "https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js",
+        "sha": "PaaQR/Kf0+ItZTMVjdgJRUcrktec2B3m6XM+TiflUXy5hAF7eVys9dETQO4UX3/A/0H6KJf+e3D2VMVMlywAdA==",
+        "algorithm": "sha512",
+    },
+    "jquery": {
+        "url": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js",
+        "sha": "nhY06wKras39lb9lRO76J4397CH1XpRSLfLJSftTeo3+q2vP7PaebILH9TqH+GRpnOhfAGjuYMVmVTOZJ+682w==",
+        "algorithm": "sha512",
+    },
+    "showdown": {
+        "url": "https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js",
+        "sha": "LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA==",
+        "algorithm": "sha512",
+    },
+}
+
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True

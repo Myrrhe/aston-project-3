@@ -2,5 +2,6 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "myrrhe",
         "projectKey": "myrrhe_aston-project-3"
-    }
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
 }

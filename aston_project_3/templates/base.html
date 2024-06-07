@@ -4,6 +4,7 @@
         {% load i18n %}
         {% load static %}
         {% load bootstrap5 %}
+        {% load external_script_templatetag %}
 
         <title>{% block title %}{% endblock %}</title>
 
@@ -29,8 +30,8 @@
         <script src="{% static "fontawesomefree/js/fontawesome.js" %}"></script>
         <script src="{% static "fontawesomefree/js/solid.js" %}"></script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-            integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+            src="{{EXTERNAL_SCRIPTS.jquery.url}}"
+            integrity="{{EXTERNAL_SCRIPTS.jquery|external_script}}"
             crossorigin="anonymous">
         </script>
     </head>
@@ -48,7 +49,9 @@
                     </a>
                     <ul class="navbar-nav align-items-stretch">
                         <li class="d-flex align-items-center no-bar">
-                            <a href="{% url "account:home" %}" class="h-100 d-flex align-items-center">
+                            <a
+                                href="{% url "account:home" %}"
+                                class="h-100 d-flex align-items-center position-relative">
                                 <p class="link-light fas fa-house link-nav-icon"></p>
                             </a>
                         </li>
@@ -225,10 +228,10 @@
             {% endblock %}
             <div class="main-footer mt-auto">
                 <div class="links-footer d-flex flex-column mt-4 ms-4 mb-4">
-                    <a class="link-footer link-light" href="/contact">{% translate "contact" %}</a>
-                    <a class="link-footer link-light" href="/faq">{% translate "faq" %}</a>
-                    <a class="link-footer link-light" href="/about">{% translate "about" %}</a>
-                    <a class="link-footer link-light" href="/legal">{% translate "terms_of_use" %}</a>
+                    <a class="link-footer" href="/contact">{% translate "contact" %}</a>
+                    <a class="link-footer" href="/faq">{% translate "faq" %}</a>
+                    <a class="link-footer" href="/about">{% translate "about" %}</a>
+                    <a class="link-footer" href="/legal">{% translate "terms_of_use" %}</a>
                 </div>
                 <div class="copyright-footer">
                     <p class="text-color-fore pb-1 text-center">
